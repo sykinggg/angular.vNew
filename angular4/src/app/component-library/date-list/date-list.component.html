@@ -1,0 +1,13 @@
+<div class="weekList">
+    <div (click)="choiceWeekAll()" 
+         class="item pull-left text-center border f-c-999 mar-r-10 cursor-pointer" 
+         [class.active]="weekData.length == 7">
+         每天
+    </div>
+    <div *ngFor="let item of weekList; let i = index"
+        (click)="choice(item)" 
+        class="item pull-left text-center border f-c-999 mar-r-10 cursor-pointer"
+        [class.active]="weekData.indexOf(item.value) >= 0">
+        {{item.name}}
+    </div>
+</div>

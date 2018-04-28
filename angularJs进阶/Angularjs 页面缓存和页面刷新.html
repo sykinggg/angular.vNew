@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Angularjs 页面缓存和页面刷新</title>
+	</head>
+	<body>
+		<h1>Angularjs 页面缓存和页面刷新</h1>
+
+
+
+
+
+
+
+
+
+
+
+		<h1>缓存</h1>
+		<p>一个缓存就是一个组件，它可以透明的存储数据，以便未来可以更快地服务于请求</p>
+		<p>缓存不需要时常重新计算的数据是安全的，而重新获取数据会导致数据重复</p>
+
+
+		<p>缓存能够服务的请求越多，整理系统性能就提升得越多</p>
+
+
+
+
+
+		<h1>angularjs 中的缓存</h1>
+		<p>angularJS提供的内置缓存服务是一个很方便的特性</p>
+		<p>让我们能够使用同一机制来缓存自定义的内容</p>
+
+
+		<h2>$cacheFactry</h2>
+		<p>$cacheFactory是一个为所有angular服务生成缓存对象的服务</p>
+		<p>在内部，$cacheFactory会创建一个默认的缓存对象</p>
+
+		<p>要创建一个缓存对象，可以使用$cacheFactory通过一个ID创建一个缓存</p>
+		<script>
+			var cache = $cacheFactory("myCache");
+		</script>
+
+		<h3>代码描述</h3>
+		<p>定义了一个ID为“myCache”的缓存</p>
+
+		<h4>这个$cacheFactory方法可以接受两个参数</h4>
+		<ul>
+			<li>
+				<h6>cacheId（字符串）：这个cacheId就是创建缓存时的ID名称，即上面的“myCache”</h6>
+				<p>可以通过get()方法使用缓存名称来引用它</p>
+			</li>
+			<li>
+				<h6>options（对象）：这个选项用于指定缓存如何表现</h6>
+				<p>一般情况下，这个选项对象是一个键：capacity（数字）</p>
+				<p>这个容量描述了在任何给定时间要使用缓存存储并保存的缓存键值对的最大数量</p>
+			</li>
+		</ul>
+		<p>$cacheFactory()方法返回一个缓存数组</p>
+
+
+
+
+
+
+		<h2>缓存对象</h2>
+		<p>缓存对象自身有下列方法可以用来与缓存交互</p>
+
+		<p>对象的使用方式如下</p>
+		<script>
+			cache.info();
+		</script>
+		<ul>
+			<li>
+				<h6>info()</h6>
+				<p>info()方法返回缓存对象的ID，尺寸和选项</p>
+			</li>
+			<li>
+				<h6>put()</h6>
+				<p>put()方法允许我们把任意JavaScript对象值形式的键（字符串）放进缓存中</p>
+				<p>cache.put(“hello”,”world”)</p>
+			</li>
+			<li>
+				<h6>get()</h6>
+				<p>get()方法让我们能够访问一个键对应的缓存值</p>
+				<ul>
+					<li>如果找到了这个键，它会返回它的值</li>
+					<li>如果没哟找到，它会返回undefined</li>
+				</ul>
+				<p>cache.get(“hello”)</p>
+			</li>
+			<li>
+				<h6>remove()</h6>
+				<p>remove()函数用于在找到一个键值对的情况下从缓存中移除它</p>
+				<p>如果没有找到，返回undefined</p>
+			</li>
+			<li>
+				<h6>removeAll()</h6>
+				<p>removeAll()函数用于重置缓存，同时移除所有已缓存的值</p>
+			</li>
+			<li>
+				<h6>destory()</h6>
+				<p>destory()方法用于从$cacheFactory缓存注册表中移除指定缓存的所有引用</p>
+			</li>
+		</ul>
+
+
+
+
+
+
+
+
+
+
+		<h1>$http</h1>
+
+		<p>angularJS的$http服务创建了一个带有ID为$http的缓存</p>
+		<p>要让$http请求使用默认的缓存对象很简单：$http方法允许我们给它传递一个cache参数</p>
+
+		<p>$http缓存默认是打开的</p>
+
+		<p>当数据不会经常改变时，默认的$http缓存就特别有用了</p>
+		<script>
+			$http({
+				method: 'GET',
+				url: '/api/user',
+				cache: true
+			})
+		</script>
+
+		<p>或者使用辅助方法.get()</p>
+		<script>
+			$http.get('/api/user', {
+				cache:true
+			})
+		</script>
+
+		<h3>代码描述</h3>
+		<p>通过$http到URL /api/user的每个请求将会存储到默认的$http缓存中</p>
+		<p>这个$http缓存中的请求键就是完整的URL路径</p>
+
+		<p>通过在$http选项中传入参数true，可以告诉$http服务使用默认的缓存</p>
+		<p>如果不想经常干扰那些缓存，使用默认缓存时很有用的</p>
+	</body>
+</html>

@@ -1,0 +1,451 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>angularjs_scope(详解)</title>
+		<script src="angular.js"></script>
+	</head>
+	<body>
+		<h1>angularjs_scope(详解)</h1>
+		<p>跳过AngularJS 的scopes和AngularJS应用生命周期的各种坑</p>
+
+		
+		<h2>如果这个图表看起来非常的费解，那么这篇文章很适合你</h2>
+		<img src="image/01-mindbender.png" alt="">
+
+		<h3>图片描述</h3>
+		<p>AngularJS 用scopes分离指令和DOM的通信</p>
+		<p>scopes也存在于controller层</p>
+		<p>scopes 是普通的JavaScript对象，AngularJS没有过多的操作</p>
+		<p>只是添加了“一串”带有一个或两个$符号前缀的内部属性</p>
+
+
+
+
+		<h2>js的作用域</h2>
+		<p>在大多数语言中，变量维持在一个用花括号（{}）或代码块定义的虚拟袋中</p>
+		<p>块级作用域</p>
+		<p>Javascript 使用的是词法作用域，大致意思是使用函数或者全局对象定义虚拟袋而不是代码块</p>
+		<p>虚拟袋可以嵌套更多小的袋子</p>
+
+		<script>
+			function eat(thing) {
+				console.log("Eatings a " + thing);
+			}
+
+			function nuts() {
+				var hazelnut = "hazelnut";
+				eat(hazelnut);
+				function seeds() {
+					var almond = 'almond';
+					eat(almond);
+				}
+			}
+
+			nuts();
+			// Eatings a hazelnut
+		</script>
+
+
+
+
+
+
+		<h2>AngularJS 中scope 的继承 Link</h2>
+		<p>在Angular的条款中，scope也是结合上下文的</p>
+		<p>AngularJS中，一个scope跟一个元素关联（以及所有它的子元素）</p>
+		<p>而一个元素不是必须直接跟一个scope关联</p>
+
+
+		<h3>素通过以下三中方式被分配一个scope</h3>
+
+		<h4>scope通过controller或者directive创建在一个element上（指令不总是引入新的scope）</h4>
+		<nav ng-controller="menuCtrl"></nav>
+
+		<h4>如果一个scope不存在于元素上，那么它将继承它的父级scope</h4>
+		<nav ng-controller="menuCtrl">
+			<a ng-click="navigate()">Click Me</a>
+		</nav>
+
+		<h4>如果一个元素不是某个ng-app的一部分，那么它不属于任何scope</h4>
+		<head>
+			<h1>...</h1>
+		</head>
+		<main ng-app="PonyDeli">
+			<nav ng-controller="menuCtrl">
+				<a ng-click="navigate()">Click Me!</a>
+			</nav>
+		</main>
+
+
+
+
+
+
+
+		<h2>拨开 AngularJS scope 内部属性 Link</h2>
+		<p>$0能获得最后一个选中的元素</p>
+		<p>$1能访问前一个被选中的元素</p>
+		<script>
+			angular.element($0).scope()
+			/*使用jquery*/
+			$($0).scope()
+		</script>
+		<p>典型的scope中可访问的特殊属性， 它们以一个或多个 $ 符号开头</p>
+		<script>
+			for(o in $($0).scope())o[0] == '$'&&console.log(o)
+		</script>
+
+
+
+
+		<h3>scope导航</h3>
+		<ul>
+			<li>
+				<p>$id scope的唯一标识</p>
+			</li>
+			<li>
+				<p>$root 根scope</p>
+			</li>
+			<li>
+				<p>$parent 父级scope</p>
+				<span>如果scope == scope.$root 则为 null</span>
+			</li>
+			<li>
+				<p>$$childHead 第一个子 scope</p>
+				<span>如果没有则为 null</span>
+			</li>
+			<li>
+				<p>$childTail 最后一个子scope</p>
+				<span>如果没有则为 null</span>
+			</li>
+			<li>
+				<p>$prevSibling 前一个相邻节点 scope</p>
+				<span>如果没有则为 null</span>
+			</li>
+			<li>
+				<p>$$nextSibing 下一个相邻节点 scope</p>
+				<span>如果没有则为 null</span>
+			</li>
+		</ul>
+
+
+
+
+		<h3>介绍的属性允许发布事件和订阅事件</h3>
+		<ul>
+			<li>
+				<p>$$listeners 在scope上注册事件监听器</p>
+			</li>
+			<li>
+				<p>$on(evt, fn) 注册一个名为evt，监听器为fn的事件</p>
+			</li>
+			<li>
+				<p>$emit(evt, args) 发送事件 evt</p>
+				<span>在scope 链上冒泡，在当前scope 以及所有的 $parents 上触发，包括 $rootScope</span>
+			</li>
+			<li>
+				<p>$broadcast(evt, args) 发送事件 evt</p>
+				<span>在当前scope 以及它 所有的 children 上触发</span>
+			</li>
+		</ul>
+
+		<h3>注意:</h3>
+		<p>当事件触发的时候， 事件监听器传递 event 对象和其它参数到 $emit 或者 $broadcast 函数。有很多方式为 scope 上的事件传递值</p>
+
+		<h3>真实示例</h3>
+		<script>
+			angular.module('PonyDeli').directive('food', function() {
+				return {
+					scope: {
+						type: '=type'
+					},
+					template: 'I want to eat some {{type}}!',
+					link: function(scope, element, attrs)  {
+						scope.eat = function() {
+							letThemHaveIt();
+							scope.$emit('food.order, scope.type, element');
+						};
+
+						function letThemHaveIt() {
+							// Do some fancy UI things
+						}
+					}
+				};
+			});
+		</script>
+		<h3>代码描述</h3>
+		<p>为事件添加了命名空间可以防止命名冲突</p>
+
+		<script>
+			angular.module('PonyDeli').directive("foodTracker", function(mixpanelService) {
+				return {
+					link: function(scope, element, attrs) {
+						scope.$on('food.order', function(e, type) {
+							mixpanelService.track('food-eater', type);
+						});
+					}
+				};
+			});
+		</script>
+		<h3>代码描述</h3>
+		<p>这个服务的实现是不贴切的，因为它仅仅是对Mixpanel的客户端API的封装</p>
+		<p>用了一个 controller 来维护所有的实物类型</p>
+		<p>ng-app指令很好的帮助 AngularJS 自动启动我的程序</p>
+		<p> ng-repeat指令来渲染我所有的 food 而不是重复自身</p>
+
+		<ul ng-app="PonyDeil" ng-controller="foodCtrl" food-tracker>
+			<li food type="type" ng-repeat="type in foodType"></li>
+		</ul>
+
+		<script>
+			angular.module('PonyDeil').controller('foodCtrl', function($scope) {
+				$scope.foodType = ['onion', 'cucumber', 'hazelnut'];
+			})
+		</script>
+
+		
+
+		<h3>同级之间的通信</h3>
+		<p>同级之前往往很难相互通信， 经常通过它们共同的父级scope 来通信</p>
+		<p>通常从 $rootScope 开始广播，然后在你希望的相邻节点监听</p>
+
+
+		<h3>真实示例</h3>
+		<body ng-app='PonyDeli'>
+		   <div ng-controller='foodCtrl'>
+		      <ul food-tracker>
+		         <li food type='type' ng-repeat='type in foodTypes'></li>
+		      </ul>
+		      <button ng-click='deliver()'>I want to eat that!</button>
+		   </div>
+		   <div ng-controller='deliveryCtrl'>
+		      <span ng-show='received'>
+		         A monkey has been dispatched. You shall eat soon.
+		      </span>
+		   </div>
+		</body>
+
+		<script>
+			angular.module('PonyDeli').controller('foodCtrl', function($rootScope, $scope) {
+				$scope.foodTypes = ['onion', 'cucumber', 'hazelnut'];
+				$scope.deliver = function(req) {
+					$rootScope.$broadcast('delivery.request', req);
+				};
+			});
+
+			angular.module('PonyDeli').controller('deliveryCtrl', function($scope) {
+				$scope.$on('delivery.request', function(e, req) {
+					$scope.received = true;
+				})
+			})
+		</script>
+
+
+
+		<h3>代码描述</h3>
+		<p>期望视图模块改变来响应事件，应该使用 event</p>
+		<p>不期望视图模块改变，你应该使用 service</p>
+		<p>有时候响应是这两种的混合：一个动作触发了一个事件，事件调用了一个 service， 或者 service 从 $rootScope广播了一个事件</p>
+
+
+		<h4>两个组件通过 $rootScope 通信</h4>
+		<p>使用 $rootScope.$emit （而不是 $broadcast）和 $rootScope.$on</p>
+		<p>事件只会在 $rootScope.$$listeners 之间传播</p>
+
+		<script>
+			angular.module("PonyDeli").factory("notificationService", function($rootScope) {
+				function notify(data) {
+					$rootScope.$emit('notificationService.update', data);
+				}
+
+				function listen(fn) {
+					$rootScope.$on('notificationService.update', function(e, data) {
+						fn(data);
+					});
+				}
+
+				function load() {
+					setInterval(notify, bind(null, 'Something happened!'), 1000);
+				}
+
+				return {
+					subscribe: listen,
+					load: load
+				};
+			});
+		</script>
+
+		<p>事件跟服务已经差不多了，让我们移步到一些其它的属性</p>
+
+
+
+
+
+
+		<h2>数据绑定</h2>
+		<p>AngularJS 基于它的数据绑定的特性，通过循环脏检测来追踪变化并且在变化时触发事件</p>
+		<p>让我们快速的浏览一下 $digest 循环的核心组件</p>
+		<h4>有一个 scope.$digest 方法，通过递归检测scope 和它的后代们的变化</h4>
+
+
+		<h3>$digest()</h3>
+		<p>执行 $digest 循环脏检测</p>
+
+
+		<h3>$$phase</h3>
+		<p>digest 循环的当前阶段， [null, '$apply', '$digest'] 中的一个</p>
+
+
+		<h3>注意</h3>
+		<p>需要小心触发 digest，因为当你已经在一个 digest 阶段而尝试这么做， 会因为一些无法解释的现象导致 AngularJS 出错</p>
+
+
+		<h4>官方文档</h4>
+		<span>它处理当前scope 及其 后代们的所有的 watchers。因为 watcher 的监听器可以改变 model，$digest() 持续调用 watcher 直到没有监听器被触发</span>
+		<p>这意味着可能进入死循环</p>
+		<span>如果迭代超过10次，这个函数会抛出异常 'Maximum iteration limit exceeded'</span>
+		<p>通常，在控制器或指令中不直接调用 $digest</p>
+		<span>应该调用$apply() (通常在一个指令里) 用来强制执行一个 $digest()</span>
+
+
+
+
+		<h2>watcher监听事件</h2>
+		<p>$scope.$watch</p>
+		<p>$scope.$watchCollection</p>
+		<p>$$watchers 属性有用 scope 上所有的 watcher</p>
+		<ul>
+			<li>
+				<p>$watch(watchExp, listener, objectEquality)</p>
+				<span>为scope添加一个 watch 监听器</span>
+			</li>
+			<li>
+				<p>$watchCollection</p>
+				<span>监听数组元素或对象属性</span>
+			</li>
+			<li>
+				<p>$$watchers</p>
+				<span>保持所有的 watch 与 scope 的关联</span>
+			</li>
+		</ul>
+
+		<h3>概念描述</h3>
+		<p>watcher 是AngularJS的数据绑定功能的很重要的一面</p>
+		<p>否则，不能有效的更新数据绑定的变量为正确值</p>
+		
+		<h2>真实示例</h2>
+		<body ng-app='PonyDeli'>
+		   <ul ng-controller='foodCtrl'>
+		      <li ng-bind='prop'></li>
+		      <li ng-bind='dependency'></li>
+		   </ul>
+		</body>
+
+		<script>
+			angular,module('PonyDeli').controller('foodCtrl', function($scope) {
+				$scope.prop = 'initial value';
+				$scope.dependency = 'nothing yet!';
+
+				$scope.$watch('prop', function(value) {
+					$scope.dependency = 'prop is' + value + '"! such amaze"';
+				});
+
+				setTimeout(function() {
+					$scope.prop = 'Something else';
+				}, 1000);
+			});
+		</script>
+
+		<h3>代码描述</h3>
+		<p>在 HTML 标签上的一系列操作都是以创建 watcher 结束</p>
+		<p>这种情况下，每个 ng-bind 指令创建一个 watcher,当 prop、 dependency 变化时它会更新 HTML</p>
+		<p>现在可以把你的代码想象成3个 watcher，每个 ng-bind 指令的watcher</p>
+		<h4>解决方法</h4>
+		<p>可以在 timeout 回调时添加一个手动的 digest</p>
+
+		<script>
+			setTimeout(function() {
+				$scope.prop = 'Something else';
+				$scope.$digest();
+			}, 1000);
+		</script>
+		<h3>代码拓展</h3>
+		<p>可以用$timeout service 替换 setTimeout，它提供了一些错误处理，并且会执行 $apply()</p>
+		<script>
+			$timeout(function() {
+				$scope.prop = 'something else';
+			}, 1000);
+		</script>
+		<h3>代码拓展</h3>
+		<p>$apply(expr) 解析和计算一个表达式，然后在 $rootScope 上执行 $digest 循环</p>
+
+
+		<p>为了在每个 scope 上执行 digest， $apply 提供了很好的错误处理功能</p>
+		<p>实际上很少时候需要手动调用 $digest()；$apply 总是更好的选择</p>
+
+
+
+
+
+		<h3>什么触发了 $digest</h3>
+
+		<p>Digest的内部触发在AngularJS代码库中具有重要地位</p>
+		<p>它们的要么直接被触发，要么是调用 $apply() 触发，就像在 $timeout 服务里看到的</p>
+		<span>不管是AngularJS中的核心还是边缘的指令都会触发digest。 digest 触发 watcher， watcher更新UI</span>
+
+		
+
+		<h4>与 $digest 循环相关的属性</h4>
+		<ul>
+			<li>
+				<p>$eval(expression, locals)</p>
+				<span>立刻解析和计算出一个 scope 表达式</span>
+			</li>
+			<li>
+				<p>$evalAsync(expression)</p>
+				<span>在稍后的时间里解析和计算一个表达式</span>
+			</li>
+			<li>
+				<p>$$asyncQueue</p>
+				<span>同步处理队列，会消耗每个 digest</span>
+			</li>
+			<li>
+				<p>$$postDigest(fn)</p>
+				<span>在下一个 digest 周期后执行 fn</span>
+			</li>
+			<li>
+				<p>$$postDigestQueue</p>
+				<span>用 $$postDigest(fn) 注册方法</span>
+			</li>
+		</ul>
+
+
+
+
+
+
+
+		<h2>scope的性能</h2>
+		<p>有时候你可能要用 $new 声明自己的scope， 但它们使用内部手段处理 scope 的生命周期</p>
+		<ul>
+			<li>
+				<p>$$isolateBindings</p>
+				<span>独立 scope 绑定（例如：{ options: '@megaOptions' }）</span>
+			</li>
+			<li>
+				<p>$new(isolate)</p>
+				<span>创建一个子 scope 或者一个独立的 scope， 它不继承自它们的父级</span>
+			</li>
+			<li>
+				<p>$destroy</p>
+				<span>从 scope 链里移除该 scope</span>
+				<p> scope 和后代们不会收到事件， watcher 也不再被触发</p>
+			</li>
+			<li>
+				<p>$$destroyed</p>
+				<span>scope 是否被销毁</span>
+			</li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../angularJs/angular.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myCtrl">
+		<!--ng-repeat的高级用法-->
+		<!--<div ng-repeat="(key, value) in records">
+			<span ng-bind="key"></span>
+			<span ng-bind="value"></span>
+		</div>-->
+		<!--依然报错-->
+		<!--<div ng-repeat="record in records track by $id(record)">
+			<span ng-bind="record"></span>
+		</div>-->
+		<!--可行！！-->
+		<div ng-repeat="record in records track by $index">
+			<span ng-bind="record"></span>
+		</div>
+	</body>
+	<script>
+		var app = angular.module("myApp", []);
+		app.controller("myCtrl", function($scope) {
+			$scope.records = [
+				1, 1, 1, 4, 5
+			]
+		});
+	</script>
+</html>

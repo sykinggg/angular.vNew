@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>指令与checkbox结合</title>
+    <script type="text/javascript" src="../angular.js"></script>
+  </head>
+  <body>
+    <div ng-app="checkbox" ng-controller="homeCtrl">
+      <div ng-repeat="item in list">
+        <input type="checkbox" checkbox-group>
+        <!-- <div style="width:400px; height:500px; border:1px solid red;" checkbox-group></div> -->
+      </div>{{array}}
+    </div>{{update()}}
+  </body>
+  <script type="text/javascript">
+    var app = angular.module("checkbox", []);
+    app.controller("homeCtrl", function($scope) {
+      $scope.array = [1, 5];
+      $scope.array_ = angular.copy($scope.array);
+      $scope.list = [{
+        "id":1,
+        "value":"apple",
+      }, {
+        "id":3,
+        "value":"orange",
+      }, {
+        "id":5,
+        "value":"pear"
+      }];
+      $scope.update = function() {
+        if($scope.array.toString() !== $scope.array_.toString()) {
+          return "Changed";
+        } else {
+          return "Not Changed";
+        }
+      };
+    })
+    .directive("checkboxGroup", function() {
+      return {
+        restrict: "A",
+        link: function(scope, elem, attrs) {
+          if(scope.array.indexOf(scope.item.id) !== -1) {
+            elem[0].checked = true;
+          }
+          elem.bind("click", function() {
+            var index = scope.array.indexOf(scope.item.id);
+            if(elem[0].checked) {
+              if(index === -1)scope.array.push(scope.item.id);
+            } else {
+              if(index !== -1)scope.array.splice(index, 1);
+            }
+            scope.$apply(scope.array.sort(function(a, b) {
+              return a - b;
+            }));
+          });
+        }
+      }
+    });
+  </script>
+</html>

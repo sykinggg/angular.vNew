@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>angularjs 测试</title>
+		<script src="angular.js"></script>
+	</head>
+	<body>
+		<div ng-app="app" ng-controller="ctrl">
+			<input type="text" test ng-model="_val" name="jie">
+		</div>
+		<script>
+			var app = angular.module('app', []);
+
+			app.controller('ctrl', function($scope) {
+				$scope._val = "test";
+				console.log($scope._val.$modelValue);
+				// undefined
+				console.log($scope._val.$viewValue);
+				// undefined
+				console.log($scope._val.$$lastCommittedViewValue);
+				// undefined
+			})
+
+			app.directive('test', function() {
+				return {
+					restrict: 'AE',
+					require: 'ngModel',
+					link: function(scope, iElem, iAttr, ngmodel) {
+						console.log(scope);
+						// $$childScopeClass {$$childTail: null, $$childHead: null, $$nextSibling: null, $$watchers: Array[1], $$listeners: Object…}
+						console.log(scope._val);
+						// 测试示例
+						console.log(iElem);
+						// [input.ng-pristine.ng-valid]
+						console.log(iAttr);
+						// Attributes {$$element: JQLite[1], $attr: Object, type: "text", test: "", ngModel: "_val"…}
+						console.log(iAttr.name);
+						// jie
+						console.log(iAttr.ngModel);
+						// _val
+						console.log(iAttr.test);
+						// (null)
+						console.log(iAttr.type);
+						// text
+						console.log(ngmodel);
+						// Constructor {$viewValue: NaN, $modelValue: NaN, $parsers: Array[0], $formatters: Array[0], $viewChangeListeners: Array[0]…}
+						console.log(ngmodel.$modelValue);
+						// NaN
+						console.log(ngmodel.$viewValue);
+						// NaN
+						console.log(ngmodel.$$lastCommittedViewValue);
+						// undefined
+						console.log(ngmodel.$name);
+						// jie
+						console.log(ngmodel.$dirty);
+						// false
+						console.log(ngmodel.$invalid);
+						// false
+						console.log(ngmodel.$pristine);
+						// true
+						console.log(ngmodel.$valid);
+						// true
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

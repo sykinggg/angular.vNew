@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app = "tt">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angularJs/angular.js"></script>
+	</head>
+	<body>
+	<add minor class="col-md-2 col-md-offset-3">
+          <div >次数: {{ count }}</div>
+          <figure></figure>
+      </add>
+	</body>
+	<script>
+		var tt =  angular.module("tt", []);
+		//angularjs directive 连接使用
+		tt.directive("add", function(){
+			return {
+				restrict: 'ECMA',
+				controller: function($scope){
+					$scope.count = 0;
+					this.addCount = function(){
+						$scope.$apply(function(){
+							$scope.count++;
+						})
+					}
+				}
+			}
+		});
+		tt.directive("minor", function(){
+			return {
+				restrict: 'ECMA',
+				controller: function($scope){
+					this.reduceCount = function(){
+						$scope.$apply(function(){
+							$scope.count--;
+						})
+					}
+				}
+			}
+		});
+		tt.directive("figure", function(){
+			return {
+				restrict: 'ECMA',
+				template: '<button id="add" class="btn btn-default">增加</button>'+
+                     '<button id="minor" class="btn btn-danger">减少</button>'+
+                     '<div>{{ figureCtrl.temp }}</div>',
+                require: ['?^add', '?^minor'],
+                controler: function(){
+                	this.temp = "这个属性被隔离开，可通过controllerAs创建的动态对象调用";
+                },
+                controllerAs:'figureCtrl',
+                link: function(scope, element, attrs, resultCtrl){
+                	angular.element(document.querySelector('#minor')).on('click',resultCtrl[1].reduceCount);
+                	angular.element(document.querySelector('#add')).on('click',resultCtrl[0].addCount);
+                }
+			}
+		})
+	</script>
+	<h1>说明</h1>
+	<p>1.由于add和minor指令都已被注入resultCtrl数组中，所以想调用它们的控制器中的方法，就可以使用resultCtrl[i].fun()的方式</p>
+	<p>2.更新count的值，但视图是不会改变的，所以需要通过手动$apply()的方式来更新</p>
+	<p>3.controllerAs实际上是把controller创建为一个对象，并且是隔离的</p>
+</html>

@@ -1,0 +1,28 @@
+@import "theme";
+
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.pull-left {
+    float: left;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.main {
+    margin-bottom: 60px;
+}
+//home
+.left-nav {
+    p:hover {
+        background: $b-g-c-666;
+    }
+}
+
+

@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJs $location 服务</title>
+	</head>
+	<body>
+		<h1>AngularJs $location 服务</h1>
+		<p>$location服务解析在浏览器地址栏中的URL（基于window.location）并且让URL在你的应用中可用</p>
+		<p>改变在地址栏中的URL会作用到$location服务，同样的，改变$location服务也会改变浏览器的地址栏</p>
+
+
+
+
+		<h1>$location服务</h1>
+		<p>暴露浏览器地址栏中的URL</p>
+		<ul>
+			<li>监察URL</li>
+			<li>改变URL</li>
+		</ul>
+		<p>与浏览器同步URL</p>
+		<ul>
+			<li>改变地址栏</li>
+			<li>单击『前进』『后退』或一个历史记录中的链接</li>
+			<li>打开一个链接</li>
+			<li>将URL对象表示为一个方法集</li>
+		</ul>
+
+
+
+
+		<h2>服务依赖</h2>
+		<ul>
+			<li>$browser</li>
+			<li>$sniffer</li>
+			<li>$rootElement</li>
+		</ul>
+
+
+
+
+		<h2>内置方法</h2>
+		<ul>
+			<li>
+				<h3>absUrl() <b>只读</b></h3>
+				<p>返回url，带有所有的片段</p>
+			</li>
+			<li>
+				<h3>hash() <b>读、写</b></h3>
+				<p>当带有参数时，返回哈希碎片</p>
+				<p>当在带有参数的情况下，改变哈希碎片时，返回$location</p>
+			</li>
+			<li>
+				<h3>host() <b>只读</b></h3>
+				<p>返回url中的主机路径</p>
+			</li>
+			<li>
+				<h3>path() <b>读、写</b></h3>
+				<p>当没有任何参数时，返回当前url的路径</p>
+				<p>当带有参数时，改变路径，并返回$location</p>
+			</li>
+			<li>
+				<h3>port() <b>只读</b></h3>
+				<p>返回当前路径的端口号</p>
+			</li>
+			<li>
+				<h3>protocol() <b>只读</b></h3>
+				<p>返回当前url的协议</p>
+			</li>
+			<li>
+				<h3>replace()</h3>
+				<p>如果被调用，就会用改变后的URL直接替换浏览器中的历史记录</p>
+				<p>而不是在历史记录中新建一条信息，这样可以阻止『后退』</p>
+			</li>
+			<li>
+				<h3>search() <b>读、写</b></h3>
+				<p>当不带参数调用的时候，以对象形式返回当前url的搜索部分</p>
+			</li>
+			<li>
+				<h3>url() <b>读、写</b></h3>
+				<p>当不带参数时，返回url</p>
+				<p>当带有参数时，返回$location</p>
+			</li>
+		</ul>
+
+		
+
+
+		<h2>内置事件</h2>
+		<ul>
+			<li>
+				<h3>$locationChangeStart：在URL改变前发生</h3>
+				<p>这种改变可以通过调用事件的preventDefault方法为阻止</p>
+				<p>查看ng.$rootScope.Scope#$on获得更多的细节</p>
+				<p>成功时触发$locationChangeSuccess事件</p>
+			</li>
+			<li>
+				<p>$locationChangeSuccess：当URL改变后发生</p>
+			</li>
+		</ul>
+
+
+
+
+
+
+
+
+
+
+		<h1>使用</h1>
+
+
+
+		<h2>何时使用$location</h2>
+
+		<p>任何你想要改变当前URL的时候，都可以使用$location</p>
+
+		<h2>$location不会做</h2>
+
+		<p>当浏览器的URL改变时，不会重新加载整个页面</p>
+		<p>如果想要重新加载整个页面，需要使用$window.location.href</p>
+	</body>
+</html>

@@ -1,0 +1,361 @@
+<h1 class="text-center">Attribute Directives</h1>
+<dt>描述</dt>
+<dd>Attribute指令改变DOM元素的外观或行为。</dd>
+<a href="{{onLineHref}}" target="{{targetType}}">在线实例</a>
+<a href="{{downloadHref}}" target="{{targetType}}">实例下载</a>
+
+<h2>Directives overview(概述)</h2>
+<dt>Angular有三种指令：</dt>
+<ul>
+	<li>
+		Components-指令与模板。
+	</li>
+	<li>
+		Structural directives-通过添加和删除DOM元素来更改DOM布局。
+	</li>
+	<li>
+		Attribute directives-改变元素，组件或其他指令的外观或行为。
+	</li>
+</ul>
+
+<h3>Build a simple attribute directive</h3>
+<dt>描述</dt>
+<dd>一个属性指令最低限度需要构建一个用@Directive注释的控制器类，它指定了标识该属性的选择器。</dd>
+<dd>控制器类实现所需的指令行为</dd>
+<pre>
+	ng generate directive highlight
+
+	import &#123; Directive &#125; from '@angular/core';
+	
+	@Directive(&#123;
+	  selector: '[appHighlight]'
+	&#125;)
+	export class HighlightDirective &#123;
+	  constructor() &#123; &#125;
+	&#125;
+</pre>
+<dd>@Directive元数据到达指令的控制器类（称为HighlightDirective），其中包含该指令（当前为空）的逻辑。</dd>
+<dd>导出HighlightDirective使指令可以访问。</dd>
+<pre>
+	import &#123; Directive, ElementRef &#125; from '@angular/core';
+
+	@Directive(&#123;
+		selector: '[appHighlight]'
+	&#125;)
+	export class HighlightDirective &#123;
+		constructor(el: ElementRef) &#123;
+		el.nativeElement.style.backgroundColor = 'yellow';
+		&#125;
+	&#125;
+</pre>
+<dt>描述</dt>
+<dd>import语句从Angular核心库中指定一个额外的ElementRef符号：</dd>
+<dd>可以使用指令的构造函数</dd>
+<dd>ElementRefin来引用主DOM元素，即应用appHighlight的元素</dd>
+<dd>ElementRef通过其nativeElement属性授予对主DOM元素的直接访问权限。</dd>
+
+<h3>Apply the attribute directive</h3>
+<dt>描述</dt>
+<dd>要使用新的HighlightDirective，请将一个段落（
+	<p>）元素添加到根AppComponent的模板中，并将该指令作为属性</dd>
+
+
+<h3>Respond to user-initiated(发起) events</h3>
+<dt>描述</dt>
+<dd>可以检测到用户将鼠标移入或移出元素，并通过设置或清除高亮颜色来进行响应</dd>
+<dd>首先将HostListener添加到导入的符号列表中</dd>
+<pre>
+	import &#123; Directive, ElementRef, HostListener &#125; from '@angular/core';
+
+	然后添加两个事件处理程序，当鼠标进入或离开时作出响应，每个由HostListener装饰器装饰
+
+	@HostListener('mouseenter') onMouseEnter() &#123;
+		this.highlight('yellow');
+	&#125;
+
+	@HostListener('mouseleave') onMouseLeave() &#123;
+		this.highlight(null);
+	&#125;
+
+	private highlight(color: string) &#123;
+		this.el.nativeElement.style.backgroundColor = color;
+	&#125;
+</pre>
+<dt>描述</dt>
+<dd>@HostListener修饰器允许你订阅DOM元素的事件，这个DOM元素包含一个属性指令</dd>
+<dd>可以通过标准的JavaScript来访问DOM，并手动添加事件监听器</dd>
+<ul>
+	<li> listeners correctly.</li>
+	<li>当指令被销毁时，代码必须分离侦听器以避免内存泄漏</li>
+	<li>直接与DOM API directly 不是最佳实践</li>
+</ul>
+<dd>处理程序委托给设置主DOM元素el的颜色的辅助方法</dd>
+<dd>修改后的构造函数只声明注入的el：ElementRef</dd>
+<pre>
+	constructor(private el: ElementRef) &#123; &#125;
+</pre>
+<dt>更新后的组件</dt>
+<pre>
+		import &#123; Directive, ElementRef, HostListener &#125; from '@angular/core';
+		
+		@Directive(&#123;
+		  selector: '[appHighlight]'
+		&#125;)
+		export class HighlightDirective &#123;
+			constructor(private el: ElementRef) &#123; &#125;
+		
+			@HostListener('mouseenter') onMouseEnter() &#123;
+				this.highlight('yellow');
+			&#125;
+		
+			@HostListener('mouseleave') onMouseLeave() &#123;
+				this.highlight(null);
+			&#125;
+		
+			private highlight(color: string) &#123;
+				this.el.nativeElement.style.backgroundColor = color;
+			&#125;
+		&#125;
+</pre>
+
+<h3>Pass values into the directive with an @Input data binding</h3>
+<dt>实现</dt>
+<dd>将输入添加到从中导入的符号列表</dd>
+<pre>
+	import &#123; Directive, ElementRef, HostListener, Input &#125; from '@angular/core';
+
+	Add a highlightColor property to the directive class like this
+
+	@Input() highlightColor: string;
+</pre>
+
+<h4>Binding to an @Input property</h4>
+<dt>描述</dt>
+<dd>注意@Input装饰器。它将元数据添加到使指令的highlightColor属性可用于绑定的类</dd>
+<dd>被称为输入属性，因为数据从绑定表达式流入指令</dd>
+<dd>没有这个输入元数据，Angular拒绝绑定</dd>
+<pre>
+	&#60;p appHighlight highlightColor="yellow">Highlighted in yellow&#60;/p>
+	&#60;p appHighlight [highlightColor]="'orange'">Highlighted in orange&#60;/p>
+
+	export class AppComponent &#123;
+		color = 'yellow';
+	&#125;
+</pre>
+<dd>用一个属性绑定来控制高亮颜色</dd>
+<pre>
+	&#60;p appHighlight &#91;highlightColor&#93;="color">Highlighted with parent component's color&#60;/p>
+
+	&#60;p &#91;appHighlight&#93;="color">Highlight me!&#60;/p>
+
+	@Input() appHighlight: string;
+</pre>
+<dd>&#91;appHighlight&#93;属性绑定都将突出显示指令应用于
+	<p>元素，并使用属性绑定来设置指令的突出显示颜色</dd>
+
+<h4>Bind to an @Input alias</h4>
+<dd>可以根据需要命名指令属性，并将其别名用于绑定目的</dd>
+<pre>
+	@Input('appHighlight')&nbsp;highlightColor:&nbsp;string;
+</pre>
+<dt>描述</dt>
+<dd>该指令内的属性被称为highlightColor</dd>
+<dd>在指令之外，绑定到它的地方，它被称为appHighlight</dd>
+<pre>
+	&#60;p [appHighlight]="color">Highlight me!&#60;/p>
+	@HostListener('mouseenter') onMouseEnter() &#123;
+		this.highlight(this.highlightColor || 'red');
+	&#125;
+
+
+	import &#123; Directive, ElementRef, HostListener, Input &#125; from '@angular/core';
+	
+	@Directive(&#123;
+	  selector: '[appHighlight]'
+	&#125;)
+	export class HighlightDirective &#123;
+	
+	  constructor(private el: ElementRef) &#123; &#125;
+	
+	  @Input('appHighlight') highlightColor: string;
+	
+	  @HostListener('mouseenter') onMouseEnter() &#123;
+		this.highlight(this.highlightColor || 'red');
+	  &#125;
+	
+	  @HostListener('mouseleave') onMouseLeave() &#123;
+		this.highlight(null);
+	  &#125;
+	
+	  private highlight(color: string) &#123;
+		this.el.nativeElement.style.backgroundColor = color;
+	  &#125;
+	&#125;
+</pre>
+
+<h4>Write a harness to try it</h4>
+<dt>描述</dt>
+<dd>把AppComponent转换为一个线束，让您用单选按钮选取高亮颜色，并将您的颜色选择绑定到指令</dd>
+<pre>
+	&#60;h1>My First Attribute Directive&#60;/h1>
+	
+	&#60;h4>Pick a highlight color&#60;/h4>
+	&#60;div>
+	  	&#60;input type="radio" name="colors" (click)="color='lightgreen'">Green
+	  	&#60;input type="radio" name="colors" (click)="color='yellow'">Yellow
+	  	&#60;input type="radio" name="colors" (click)="color='cyan'">Cyan
+	&#60;/div>
+	&#60;p [appHighlight]="color">Highlight me!&#60;/p>
+
+
+	export class AppComponent &#123;
+		color: string;
+	&#125;
+</pre>
+
+<h4>Bind to a second property</h4>
+<dt>描述</dt>
+<dd>将第二个输入属性添加到HighlightDirective，名为defaultColor</dd>
+<pre>
+	@Input() defaultColor: string;
+
+	修改指令的onMouseEnter，使其首先尝试用highlightColor突出显示，
+	然后用defaultColor突出显示，如果两个属性都未定义，则返回到“红色”
+
+	@HostListener('mouseenter') onMouseEnter() &#123;
+		this.highlight(this.highlightColor || this.defaultColor || 'red');
+	&#125;
+</pre>
+<dt>描述</dt>
+<dd>defaultColor绑定属于HighlightDirective，因为你使用@Input修饰器来公开它。</dd>
+
+<h4>Summary</h4>
+<dt>描述</dt>
+<dd>构建一个修改元素行为的属性指令。</dd>
+<dd>将该指令应用于模板中的元素。</dd>
+<dd>回应改变指令行为的事件。</dd>
+<dd>将值绑定到指令。</dd>
+<pre>
+	app/app.component.ts
+
+	import &#123; Component &#125; from '@angular/core';
+	
+	@Component(&#123;
+	  	selector: 'app-root',
+	  	templateUrl: './app.component.html'
+	&#125;)
+	export class AppComponent &#123;
+	  	color: string;
+	&#125;
+
+	app/app.component.html
+
+	&#60;h1>My First Attribute Directive&#60;/h1>
+	
+	&#60;h4>Pick a highlight color&#60;/h4>
+	&#60;div>
+		&#60;input type="radio" name="colors" (click)="color='lightgreen'">Green
+		&#60;input type="radio" name="colors" (click)="color='yellow'">Yellow
+		&#60;input type="radio" name="colors" (click)="color='cyan'">Cyan
+	&#60;/div>
+	&#60;p [appHighlight]="color">Highlight me!&#60;/p>
+	
+	&#60;p [appHighlight]="color" defaultColor="violet">
+	  	Highlight me too!
+	&#60;/p>
+
+	app/highlight.directive.ts
+	
+	/* tslint:disable:member-ordering */
+	import &#123; Directive, ElementRef, HostListener, Input } from '@angular/core';
+	
+	@Directive(&#123;
+	  selector: '[appHighlight]'
+	&#125;)
+	export class HighlightDirective &#123;
+	
+	  constructor(private el: ElementRef) &#123; &#125;
+	
+	  @Input() defaultColor: string;
+	
+	  @Input('appHighlight') highlightColor: string;
+	
+	  @HostListener('mouseenter') onMouseEnter() &#123;
+		this.highlight(this.highlightColor || this.defaultColor || 'red');
+	  &#125;
+	
+	  @HostListener('mouseleave') onMouseLeave() &#123;
+		this.highlight(null);
+	  &#125;
+	
+	  private highlight(color: string) &#123;
+		this.el.nativeElement.style.backgroundColor = color;
+	  &#125;
+	&#125;
+
+	app/app.module.ts
+
+	import &#123; NgModule &#125; from '@angular/core';
+	import &#123; BrowserModule &#125; from '@angular/platform-browser';
+	
+	import &#123; AppComponent &#125; from './app.component';
+	import &#123; HighlightDirective &#125; from './highlight.directive';
+	
+	@NgModule(&#123;
+	  imports: [ BrowserModule ],
+	  declarations: [
+		AppComponent,
+		HighlightDirective
+	  ],
+	  bootstrap: [ AppComponent ]
+	})
+	export class AppModule &#123; &#125;
+
+	main.ts
+
+	import &#123; enableProdMode &#125; from '@angular/core';
+	import &#123; platformBrowserDynamic &#125; from '@angular/platform-browser-dynamic';
+	
+	import &#123; AppModule &#125; from './app/app.module';
+	import &#123; environment &#125; from './environments/environment';
+	
+	if (environment.production) &#123;
+	  enableProdMode();
+	&#125;
+	
+	platformBrowserDynamic().bootstrapModule(AppModule);
+</pre>
+
+<h4>Why add @Input?</h4>
+<dt>描述</dt>
+<dd>highlightColor属性是HighlightDirective的输入属性。</dd>
+<pre>
+	@Input() highlightColor: string;
+
+	@Input('appHighlight') highlightColor: string;
+</pre>
+<dt>描述</dt>
+<dd>无论哪种方式，@Input修饰器告诉Angular这个属性是公共的，并可以由父组件绑定</dd>
+<dd>没有@Input，Angular拒绝绑定到属性</dd>
+<dd>之前已将模板HTML绑定到组件属性，并且从未使用@Input。有什么不同</dd>
+<dd>差别是一个信任的问题。</dd>
+<dd>Angular将组件的模板视为属于组件。</dd>
+<dd>组件和它的模板隐式相互信任。</dd>
+<dd>因此，组件自己的模板可以绑定到该组件的任何属性，有或没有@Input修饰器。</dd>
+<dd>但是组件或指令不应该盲目地信任其他组件和指令。</dd>
+<dd>默认情况下，组件或指令的属性是隐藏的。</dd>
+<dd>从angular度约束角度来看，它们是私密的。</dd>
+<dd>当用@Input装饰器装饰时，该属性从Angular绑定的角度变成公共的。</dd>
+<dd>只有这样它才能被其他组件或指令绑定。</dd>
+
+<h4>使用描述</h4>
+<dd>可以通过绑定中属性名称的位置来判断是否需要@Input</dd>
+<dt>当它出现在equals（=）右边的模板表达式中时，它属于模板的组件，不需要@Input修饰器。</dt>
+<dt>当它出现在equals（=）左边的方括号（[]）中时，该属性属于某个其他组件或指令;该属性必须用@Input修饰器装饰。</dt>
+<pre>
+	&#60;p [appHighlight]="color">Highlight me!&#60;/p>
+</pre>
+<dt>描述</dt>
+<dd>右边表达式中的颜色属性属于模板的组件。模板及其组件互相信任</dd>
+<dd>color属性不需要@Input修饰器。左侧的appHighlight属性指的是HighlightDirective的别名属性，而不是模板组件的属性。有信任问题。</dd>
+<dd>因此，指令属性必须携带@Input装饰器。</dd>

@@ -1,0 +1,353 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Angularjs Service 和 Factory</title>
+		<script src="angular.js"></script>
+	</head>
+	<body>
+		<h1>Angularjs Service 和 Factory</h1>
+		<pre>
+			供应商==>泛指provider
+			服务==>泛指service
+
+			provider==>provider()方法创建的东东
+			service==>service()方法创建的东东
+		</pre>
+
+
+
+		<h2>$provide</h2>
+		<p>$provide服务负责告诉Angular如何创造一个新的可注入的东西：即服务</p>
+		<p>服务会被叫做供应商的东西来定义，你可以使用$provide来创建一个供应商</p>
+		<span>需要使用$provide中的provider()方法来定义一个供应商，同时你也可以通过要求$provide被注入到一个应用的config函数中来获得$provide服务</span>
+		<br>
+		<img src="image/Providers-service.png" alt="">
+		<h3>如图所示</h3>
+		<ul>
+			<li>$provide是一个服务，在Auto模块中</li>
+			<li>这个服务下面有好多方法，是用来定义供应商</li>
+			<li>而供应商是用来提供服务的，被注入来注入去的东西就是供应商们提供的服务</li>
+		</ul>
+
+
+		<h2>真实示例</h2>
+		<script>
+			// myMod.config(function($provide) {
+			// 	$provide.provider('greeting', function() {
+			// 		this.$get = function() {
+			// 			return function(name) {
+			// 				alert("Hello, " + name);
+			// 			};
+			// 		};
+			// 	});
+			// });
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>定义供应商的方法们</h1>
+		<p>AngularJS用$provide去定义一个供应商</p>
+		<ul>
+			<li>constant</li>
+			<li>value</li>
+			<li>service</li>
+			<li>factory</li>
+			<li>provider</li>
+			<li>decorator</li>
+		</ul>
+
+
+
+
+
+		<h2>Constant</h2>
+		<p>定义常量用的，定义的值就不能被改变，它可以被注入到任何地方，但是不能被装饰器(decorator)装饰</p>
+		
+		<h3>语法格式</h3>
+		<pre>
+			app.constant('movieTitle', 'The Matrix');
+		</pre>
+
+		<script>
+			// var app = angular.module("app", []);
+
+			// app.config(function($provide) {
+			// 	$provide.constant("moveTitle", "The Matrix");
+			// });
+
+			// app.controller("ctrl", function($scope, moveTitle) {
+			// 	console.log(moveTitle);
+			// });
+		</script>
+		<!-- <div ng-app = "app" ng-controller="ctrl"></div>
+
+		<h3>输出结果</h3>
+		<pre>
+			The Matrix
+		</pre> -->
+
+		
+
+
+
+
+
+
+
+		<h2>Value</h2>
+		<p>可以是string,number甚至function,它和constant的不同之处在于，它可以被修改，不能被注入到config中，但是它可以被decorator装饰</p>
+		
+		<h3>语法格式</h3>
+		<pre>
+			app.value('movieTitle', 'The Matrix');
+		</pre>
+
+		<script>
+			// var app = angular.module("app", []);
+			// app.config(function($provide) {
+			// 	$provide.value('moveTitle', 'The Matrix');
+			// });
+
+			// app.controller('ctrl', function(moveTitle) {
+			// 	console.log(moveTitle);
+			// });
+		</script>
+
+		<!-- <div ng-app="app" ng-controller="ctrl"></div>
+
+		<h3>运行结果</h3>
+		<pre>
+			The Matrix
+		</pre> -->
+
+
+
+
+
+
+		<h2>Service</h2>
+		<p>它是一个可注入的构造器，在AngularJS中它是单例的，用它在Controller中通信或者共享数据都很合适</p>
+		
+		<h3>语法格式</h3>
+		<pre>
+			app.service('movie', function() {
+				this.title = 'The Matrix';
+			});
+		</pre>
+
+		<script>
+			// var app = angular.module('app', []);
+
+			// app.config(function($provide) {
+			// 	$provide.service('move', function() {
+			// 		this.title = 'The Matrix';
+			// 	});
+			// });
+
+			// app.controller('ctrl', function(move) {
+			// 	console.log(move.title);
+			// 	console.log(move);
+			// })
+		</script>
+
+		<!-- <div ng-app="app" ng-controller="ctrl"></div>
+
+		<h3>运行结果</h3>
+		<pre>
+			The Matrix
+			Constructor {title: "The Matrix"}
+		</pre> -->
+		<h3>概念描述</h3>
+		<p>在service里面可以不用返回东西，因为AngularJS会调用new关键字来创建对象</p>
+
+
+
+
+
+
+
+		<h2>Factory</h2>
+		<p>是一个可注入的function</p>
+		
+		<h3>语法格式</h3>
+		<pre>
+			app.factory('movie', function() {
+				return {
+					title: 'The Matrix';
+				}
+			});
+		</pre>
+
+		<h3>和service的区别</h3>
+		<p>factory是普通function，而service是一个构造器(constructor)</p>
+		<p>Angular在调用service时会用new关键字，而调用factory时只是调用普通的function</p>
+
+		<p>所以factory可以返回任何东西，而service可以不返回</p>
+
+		<h3>注意:可查阅new关键字的作用</h3>
+
+		<script>
+			// var app = angular.module('app', []);
+
+			// app.config(function($provide) {
+			// 	$provide.factory('movie', function() {
+			// 		return {
+			// 			title: 'The Matrix'
+			// 		}
+			// 	});
+			// });
+
+			// app.controller('ctrl', function(movie) {
+			// 	console.log(movie);
+			// 	console.log(movie.title);
+			// })
+		</script>
+
+		<div ng-app="app" ng-controller="ctrl"></div>
+
+		<!-- <h3>运行结果</h3>
+		<pre>
+			Object {title: "The Matrix"}
+			The Matrix
+		</pre> -->
+
+
+
+
+
+
+
+		<h2>Provider</h2>
+		<p>上面的几乎(除了constant)都是provider的封装，provider必须有一个$get方法</p>
+		<p>也可以说provider是一个可配置的factory</p>
+
+		<script>
+			var app = angular.module('app', []);
+
+			app.provider('movie', function() {
+				var version;
+				return {
+					setVersion: function(value) {
+						version = value;
+					},
+					$get: function() {
+						return {
+							title: 'The Matrix' + ' ' + version
+						}
+					}
+ 				}
+			});
+
+			app.config(function(movieProvider) {
+				console.log(movieProvider);
+				movieProvider.setVersion('Reloaded');
+			});
+
+			app.controller('ctrl', function(movie) {
+				console.log(movie);
+				console.log(movie.title);
+			});
+		</script>
+
+		<div ng-app="app" ng-controller="ctrl"></div>
+
+		<h3>运行结果</h3>
+		<pre>
+			console.log(movieProvider);
+			object {}
+				$get: function()
+				setVersion: function(value)
+
+			console.log(movie);
+			Object {title: "The Matrix Reloaded"}
+
+			console.log(movie.title);
+			The Matrix Reloaded
+		</pre>
+		
+		<h3>注意:</h3>
+		<p>这里config方法注入的是movieProvider，上面定义了一个供应商叫movie，但是注入到config中不能直接写movie</p>
+		<p>因为前文讲了注入的那个东西就是服务，是供应商提供出来的，而config中又只能注入供应商（两个例外是$provide和$injector）</p>
+		<p>所以用驼峰命名法写成movieProvider，Angular就会帮你注入它的供应商</p>
+
+
+
+
+
+
+
+		<h2>Decorator</h2>
+		<p>它不是provider,它是用来装饰其他provider的</p>
+		<p>他不能装饰Constant，因为实际上Constant不是通过provider()方法创建的</p>
+
+		<script>
+			var app = angular.module('app', []);
+
+			app.value('moveTitle', 'The Matrix');
+
+			app.config(function($provide) {
+				$provide.decorator('moveTitle', function($delegate) {
+					console.log($delegate);
+					return $delegate + ' - starring Keanu Reeves';
+				});
+			});
+
+			app.controller('ctrl', function(moveTitle) {
+				console.log(moveTitle);
+			})
+		</script>
+
+		<div ng-app="app" ng-controller="ctrl"></div>
+
+		<h3>运行结果</h3>
+		<pre>
+			console.log($delegate);
+			The Matrix
+
+			console.log(moveTitle);
+			The Matrix - starring Keanu Reeves
+		</pre>
+
+
+
+
+
+
+
+
+
+
+		<h1>总结</h1>
+		<ul>
+			<li>
+				<p>所有的供应商都只被实例化一次，也就说他们都是单例的</p>
+			</li>
+			<li>
+				<p>除了constant，所有的供应商都可以被装饰器(decorator)装饰</p>
+			</li>
+			<li>
+				<p>value就是一个简单的可注入的值</p>
+			</li>
+			<li>
+				<p>service是一个可注入的构造器</p>
+			</li>
+			<li>
+				<p>factory是一个可注入的方法</p>
+			</li>
+			<li>
+				<p>decorator可以修改或封装其他的供应商，当然除了constant</p>
+			</li>
+			<li>
+				<p>provider是一个可配置的factory</p>
+			</li>
+		</ul>
+	</body>
+</html>

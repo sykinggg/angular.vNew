@@ -1,0 +1,380 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Angularjs 单元测试</title>
+	</head>
+	<body>
+		<h1>Angularjs 单元测试</h1>
+
+		<p>karma和jasmine来进行ng模块的单元测试</p>
+
+
+
+
+
+
+		<h1>Karma</h1>
+		<p>karma是一个单元测试的运行控制框架,提供以不同环境来运行单元测试</p>
+
+		<p>比如chrome,firfox,phantomjs等</p>
+
+		<p>测试框架支持jasmine,mocha,qunit,是一个以nodejs为环境的npm模块</p>
+
+
+		<p>安装测试相关的npm模块建议使用----save-dev参数,因为这是开发相关的</p>
+		<ul>
+			<li>npm install karma --save-dev</li>
+			<li>npm install karma-junit-reporter --save-dev</li>
+		</ul>
+		<p>安装karma的时候会自动的安装一些常用的模块</p>
+		<p>参考karma代码里的package.json文件的peerDependencies属性</p>
+
+		<pre>
+			"peerDependencies": {
+				"karma-jasmine": "~0.1.0",
+				"karma-requirejs": "~0.2.0",
+				"karma-coffee-preprocessor": "~0.1.0",
+				"karma-html2js-preprocessor": "~0.1.0",
+				"karma-chrome-launcher": "~0.1.0",
+				"karma-firefox-launcher": "~0.1.0",
+				"karma-phantomjs-launcher": "~0.1.0",
+				"karma-script-launcher": "~0.1.0"
+			}
+		</pre>
+
+
+
+		<h2>一个典型的运行框架通常都需要一个配置文件</h2>
+		<p>在karma里可以是一个karma.conf.js</p>
+		<p>里面的代码是一个nodejs风格的</p>
+		<script>
+			module.exports = function(config) {
+				config.set({
+					// 下面files里的基础目录
+					basePath: '../',
+					// 测试环境需要加载的JS信息
+					files: [
+						'app/bower_components/angular/angular.js',
+						'app/bower_components/angular-route/angular-route.js',
+						'app/bower_components/angular-mocks/angular-mocks.js',
+						'app/js/**/*.js',
+						'test/unit/**/*.js'
+					],
+					// 是否自动监听上面文件的改变自动运行测试
+					autoWatch: true,
+					// 应用的测试框架
+					frameworks: ['jasmine'],
+					// 用什么环境测试代码,这里是chrome`
+					browsers: ['Chrome'],
+					// 用到的插件,比如chrome浏览器与jasmine插件
+					plugins: [
+						'karma-chrome-launcher',
+						'karma-firefox-launcher',
+						'karma-jasmine',
+						'karma-junit-reporter'
+					],
+					// 测试内容的输出以及导出用的模块名
+					reporters: ['progress', 'junit'],
+					// 设置输出测试内容文件的信息
+					junitReporter: {
+						outputFile: 'test_out/unit.xml',
+						suite: 'unit'
+					}
+				});
+			};
+		</script>
+		<h3>插件解析</h3>
+		<p>只有karma-junit-reporter导出插件需要单独安装</p>
+		<a href="http://karma-runner.github.io/0.13/index.html">配置详细信息</a>
+
+
+
+
+
+
+
+
+
+		<h1>jasmine</h1>
+		<p>jasmine是一个行为驱动开发的测试框架</p>
+		<p>不依赖任何js框架以及dom,是一个非常干净以及友好API的测试库</p>
+
+
+		<h2>示例用法</h2>
+		<script>
+			describe("A spec (with setup and tear-down)", function() {
+				var foo;
+
+				beforeEach(function() {
+					foo = 0;
+					f00 += 1;
+				});
+
+				afterEach(function() {
+					foo = 0;
+				});
+
+				it("is just a function, so is can contain any code", function() {
+					expect(foo).toEqual(1);
+				});
+
+				it("can have more than one expectation", function() {
+					expect(foo).toEqual(1);
+					expect(true).toEqual(true);
+				});
+			});
+		</script>
+
+		<h2>重点API说明</h2>
+		<ul>
+			<li>
+				<h6>首先任何一个测试用例以describe函数来定义</h6>
+				<p>第一个用来描述测试大体的中心内容</p>
+				<p>第二个参数是一个函数,里面写一些真实的测试代码</p>
+			</li>
+			<li>
+				<h6>it是用来定义单个具体测试任务</h6>
+				<p>第一个用来描述测试内容</p>
+				<p>第二个参数是一个函数,里面存放一些测试方法</p>
+			</li>
+			<li>
+				<h6>expect主要用来计算一个变量或者一个表达式的值</h6>
+				<p>用来跟期望的值比较或者做一些其它的事件</p>
+			</li>
+			<li>
+				<h6>beforeEach与afterEach主要是用来在执行测试任务之前和之后做一些事情</h6>
+				<p>在执行之前改变变量的值,然后在执行完成之后重置变量的值</p>
+			</li>
+		</ul>
+		<p>describe函数里的作用域跟普通JS一样都是可以在里面的子函数里访问的,就像上面的it访问foo变量</p>
+
+
+		<p>想要运行上面的测试例子可以通过karar来运行,命令例子如下</p>
+
+		<pre>
+			Karma start test/Karma.conf.js
+		</pre>
+
+
+
+
+
+
+
+
+
+
+		<h1>NG的单元测试</h1>
+		<p>因为ng本身框架的原因,模块都是通过di来加载以及实例化的</p>
+		<span>为了方便配合jasmine来编写测试脚本,所以官方提供了angular-mock.js的一个测试工具类来提供模块定义,加载,注入等.</span>
+		<p>ng-mock里的一些常用方法</p>
+		<ul>
+			<li>angular.mock.module 此方法同样在window命名空间下,非常方便</li>
+		</ul>
+		<p>module是用来配置inject方法注入的模块信息</p>
+		<p>参数可以是字符串,函数,对象</p>
+
+		<script>
+			beforeEach(module('myApp.filters'));
+
+			beforeEach(module(function($provide) {
+				$provide.value('version', 'TEST_VER');
+			}));
+		</script>
+
+		<p>一般用在beforeEach方法里,因为这个可以确保在执行测试任务的时候,inject方法可以获取到模块配置</p>
+
+		<ul>
+			<li>angular.mock.inject 此方法同样在window命名空间下,非常方便调用</li>
+		</ul>
+
+		<p>inject是用来注入上面配置好的ng模块,方面在it的测试函数里调用</p>
+
+		<script>
+			angular.module('myApplicationModule', [])
+				.value('mode', 'app')
+				.value('version', 'v1.0.1');
+
+			describe('MyApp', function() {
+				beforeEach(module('myApplicationModule'));
+
+				it('should provide a version', inject(function() {
+					expect(version).toEqual('v1.0.1');
+					expect(mode).toEqual('app');
+				}));
+
+				it('should overide a version and test the new version is injected', function() {
+					module(function($provide) {
+						$provide.value('version', 'overridden');
+					});
+
+					inject(function(version) {
+						expect(version).toEqual('overridden');
+					});
+				});
+			});
+		</script>
+
+		<h3>代码描述</h3>
+		<p>其实inject里面就是利用angular.inject方法创建的一个内置的依赖注入实例</p>
+		<p>里面的模块注入跟普通ng模块里的依赖处理是一样的</p>
+
+
+
+
+		<h2>ng里控制器的单元测试</h2>
+		<p>定义一个简单的控制器</p>
+
+		<script>
+			var myApp = angular.module('myApp', []);
+
+			myApp.controller('MyController', function($scope) {
+				$scope.spices = [{"name":"pasilla", "spiciness":"mild"},
+                       {"name":"jalapeno", "spiciness":"hot hot hot!"},
+                       {"name":"habanero", "spiciness":"LAVA HOT!!"}];
+                $scope.spice = "hello feenan!";
+			});
+		</script>
+
+		<p>编写一个测试脚本</p>
+
+		<script>
+			describe('myController function', function() {
+				describe('myController', function() {
+					var $scope;
+
+					beforeEach(module('myApp'));
+
+					beforeEach(inject(function($rootScope, $controller) {
+						$scope = $rootScope.$new();
+						$controller('MyController', {$scope: $scope});
+					}));
+
+					it("should create 'spices' module with 3 spices", function() {
+						expect($scope.spices.length).toBe(3);
+					});
+
+					it("should set the default value of spice", function() {
+						expect($scope.spice).toBe('hello feenan!');
+					});
+				});
+			});
+		</script>
+
+		<h3>代码描述</h3>
+		<p>利用了$rootScope来创建子作用域</p>
+		<p>然后把这个参数传进控制器的构建方法$controller里去</p>
+		<p>最终会执行上面的控制器里的方法</p>
+		<p>检查子作用域里的数组数量以及字符串变量是否跟期望的值相等</p>
+
+
+
+
+
+
+		<h2>ng里指令的单元测试</h2>
+
+		<p>定义一个简单的指令</p>
+
+		<script>
+			var app = angular.module('myApp', []);
+
+			app.directive('AGreateEye', function() {
+				return {
+					restrict: 'E',
+					replace: true,
+					template: '<h1>lidless, wreathed in flame, {{1+1}} times</h1>'
+				};
+			});
+		</script>
+		
+		<p>编写一个简单的测试脚本</p>
+
+		<script>
+			describe('Unit testing great quotes', function() {
+				var $compile;
+				var $rootScope；
+
+				beforeEach(module('myApp'));
+
+				beforeEach(inject(function(_$compile_, _$rootScope_) {
+					$compile = _$compile_;
+					$rootScope = _$rootScope_;
+				}));
+
+				it('Replace the element with the appropriate content', function() {
+					var element = $compile('<a-great-eye></a-great-eye>')($rootScope);
+
+					$rootScope.$digest();
+
+					expect(element.html()).toContain("lidless, wreathed in flame, 2 times");
+				});
+			});
+		</script>
+		<p>最终上面的指令将会这用在html里使用</p>
+		<a-great-eye></a-great-eye>
+
+
+		<h3>代码描述</h3>
+		<p>测试脚本里首先注入$compile与$rootScope两个服务</p>
+		<ul>
+			<li>一个用来编译html</li>
+			<li>一个用来创建作用域用</li>
+		</ul>
+		<h3>注意重点:</h3>
+		<p>注意这里的_,默认ng里注入的服务前后加上_时</p>
+		<p>最后会被ng处理掉的,这两个服务保存在内部的两个变量里,方便下面的测试用例能调用到</p>
+
+
+		<p>$compile方法传入原指令html,然后在返回的函数里传入$rootScope</p>
+		<p>这样就完成了作用域与视图的绑定,最后调用$rootScope.$digest来触发所有监听,保证视图里的模型内容得到更新</p>
+		<p>然后获取当前指令对应元素的html内容与期望值进行对比</p>
+
+
+
+
+
+
+
+
+
+		<h2>ng里的过滤器单元测试</h2>
+
+		<p>定义一个简单的过滤器</p>
+
+		<script>
+			var app = angular.module('myApp', []);
+			app.filter('interpolate', ['version', function(version) {
+				return function(text) {
+					return String(text).replace(/\%VERSION\%/mg, version);
+				};
+			}]);
+		</script>
+
+		<p>然后编写一个简单的测试脚本</p>
+
+		<script>
+			describe('filter', function() {
+				beforeEach(module('myApp'));
+
+				describe('interpolate', function() {
+					beforeEach(module(function($provide) {
+						$provide.value('version', 'TEST_VER');
+					}));
+
+					it("Should replace VERSION", inject(function(interpolateFilter) {
+						expect(interpolateFilter('before %VERSION% after')).toEqual('before TEST_VER after');
+					}));
+				});
+			});
+		</script>
+
+		<h3>代码描述</h3>
+
+		<p>上面的代码先配置过滤器模块</p>
+		<p>定义一个version值,因为interpolate依赖这个服务</p>
+		<p>最后用inject注入interpolate过滤器</p>
+		<span>注意这里的过滤器后面得加上Filter后缀,最后传入文本内容到过滤器函数里执行,与期望值进行对比</span>
+	</body>
+</html>

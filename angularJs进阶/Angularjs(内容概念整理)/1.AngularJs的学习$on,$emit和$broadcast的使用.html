@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>AngularJs的$on,$emit和$broadcast的使用</title>
+		<script src="../angular.js"></script>
+	</head>
+	<body ng-app>
+		<h1>AngularJs的$on,$emit和$broadcast的使用</h1>
+		<p>AngularJS中的作用域有一个非常有层次和嵌套分明的结构</p>
+		<h2>作用域之间通信</h2>
+		<p>其中一个选择就是在应用程序作用域之中创建一个单例服务，然后通过这个服务处理所有子作用域的通信</p>
+		<p>另外一个选择：通过作用域中的事件处理通信</p>
+		<h3>注意:并不能广泛的将事件传播到所有监控的作用域中,因此:必须选择是否与父级作用域或者子作用域通信</h3>
+		<h3>注意:使用说明</h3>
+		<p>$emit只能向parent controller传递</p>
+		<p>event与data $broadcast只能向child controller传递</p>
+		<p>event与data $on用于接收event与data</p>
+		<div ng-controller="ParentCtrl">
+			<div ng-controller="SelfCtrl">
+				<a ng-click="click()">click me</a>
+				<div ng-controller="ChildCtrl"></div>
+			</div>
+			<div ng-controller="BroCtrl"></div>
+		</div>
+		<script>
+			var app = angular.module('app',[]);
+			app.controller('SelfCtrl', function($scope) {
+    $scope.click = function () {
+        $scope.$broadcast('to-child', 'child');
+        $scope.$emit('to-parent', 'parent');
+    }
+});
+
+app.controller('ParentCtrl', function($scope) {
+    $scope.$on('to-parent', function(event,data) {
+        console.log('ParentCtrl', data);       //父级能得到值
+    });
+    $scope.$on('to-child', function(event,data) {
+        console.log('ParentCtrl', data);       //子级得不到值
+    });
+});
+
+app.controller('ChildCtrl', function($scope){
+    $scope.$on('to-child', function(event,data) {
+        console.log('ChildCtrl', data);         //子级能得到值
+    });
+    $scope.$on('to-parent', function(event,data) {
+        console.log('ChildCtrl', data);         //父级得不到值
+    });
+});
+
+app.controller('BroCtrl', function($scope){  
+    $scope.$on('to-parent', function(event,data) {  
+        console.log('BroCtrl', data);          //平级得不到值  
+    });  
+    $scope.$on('to-child', function(event,data) {  
+        console.log('BroCtrl', data);          //平级得不到值  
+    });  
+});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="pad-l-2em navbar-brand" routerLink="home">首页</a>
+        <div class="pad-l-5em collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li *ngFor="let item of routerLinkArr; let i = index" class="nav-item dropdown" [ngClass]="{'b-g-c-fff': acxtiveRouterName.indexOf(item.routerLink) > 0}">
+                    <a class="pad-l-05em pad-r-05em" [ngClass]="{true: 'f-c-999', false: 'f-c-fff'}[acxtiveRouterName.indexOf(item.routerLink) > 0]"
+                        [routerLink]="[item.routerLink]">
+                        {{item.routerName}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main role="main" class="main">
+    <router-outlet></router-outlet>
+</main>
+<!-- 底部区域 -->
+<footer class="pad-t-1em pad-b-1em text-muted b-g-c-111">
+    <div class="">Powered by angular2</div>
+</footer>

@@ -1,0 +1,1362 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Angularjs_directive(详解)</title>
+		<script src="angular.js"></script>
+	</head>
+	<body>
+		<h1>Angularjs_directive</h1>
+
+		<h2>定义</h2>
+		<script>
+			angular.module('app').directive('directiveName', function() {
+				return {
+					// 通过设置项定义
+				};
+			})
+		</script>
+		<p>其中return返回的对象包含很多参数</p>
+		<table>
+			<th>
+				<td>属性</td>
+				<td>含义</td>
+			</th>
+			<tr>
+				<td>restrict</td>
+				<td>申明标识符在模板中作为元素,属性,注释和组合来使用</td>
+			</tr>
+			<tr>
+				<td>priority</td>
+				<td>设置模板中相对与其他标识符的执行顺序</td>
+			</tr>
+			<tr>
+				<td>Template</td>
+				<td>指定一个字符串式的内嵌模板</td>
+			</tr>
+			<tr>
+				<td>TemplateUrl</td>
+				<td>指定URL加载模板.注意:已经指定内嵌的模板字符串则不会使用</td>
+			</tr>
+			<tr>
+				<td>Replace</td>
+				<td>如果为真则替换当前元素,如果为假或未指定则拼接当前元素</td>
+			</tr>
+			<tr>
+				<td>Transclude</td>
+				<td>移动一个标识符的原始字节并连接到一个新模板的位置</td>
+			</tr>
+			<tr>
+				<td>Scope</td>
+				<td>为这个表示符创建一个新的作用域而不是继承父作用域</td>
+			</tr>
+			<tr>
+				<td>Controller</td>
+				<td>创建一个控制器通过标识符公开通信API</td>
+			</tr>
+			<tr>
+				<td>Require</td>
+				<td>当前标识符需要一个标识符提供正确的函数功能</td>
+			</tr>
+			<tr>
+				<td>Link</td>
+				<td>通过代码修改目标DOM元素的实例,添加事件监听,建立数据绑定</td>
+			</tr>
+			<tr>
+				<td>Compile</td>
+				<td>通过标识符拷贝编程修改DOM模板</td>
+			</tr>
+		</table>
+
+
+
+		<h1>restrict</h1>
+		<p>（字符串）可选参数，指明指令在DOM里面以什么形式被声明</p>
+		<p>取值有：E(元素),A(属性),C(类),M(注释)，其中默认值为A</p>
+		
+
+
+		<h1>priority</h1>
+		<p>(数字)，可选参数，指明指令的优先级，若在单个DOM上有多个指令，则优先级高的先执行</p>
+
+		<h3>注意:</h3>
+		<p>ng-repeat的优先级为1000</p>
+		<p>ng-init的优先级为450</p>
+
+
+		<h1>terminal</h1>
+		<p>（布尔型），可选参数，可以被设置为true或false，若设置为true，则优先级低于此指令的其他指令则无效，不会被调用(优先级相同的还是会执行)</p>
+
+
+		<h1>template</h1>
+		<p>（字符串或者函数）可选参数</p>
+		
+
+		<h2>一段HTML文本</h2>
+		<script>
+			angular.module("app", []).directive("hello", function() {
+				return {
+					restrict: "EA",
+					template: '<div><h3>hello World</h3></div>'
+				}
+			})
+		</script>
+
+
+		<h2>一个函数,可以接受两个参数Element和Attrs</h2>
+		<p>其中Element是指使用此指令的元素</p>
+		<p>Attrs则实例的属性，它是一个由元素上所有的属性组成的集合（对象）</p>
+		<script>
+			angular.module("app", []).directive("directive", function() {
+				return {
+					restrict: "EAC",
+					template: function(Element, Attrs) {
+						var _html = "";
+						_html += "<div>" + Attrs.title + "</div>";
+						return _html;
+					}
+				};
+			})
+		</script>
+		<p>原始html代码</p>
+		<directive title="biaoti"></directive>
+		<p>渲染后的html</p>
+		<div>biaoti</div>
+
+
+
+
+
+		<h1>templateUrl</h1>
+		<p>（字符串或者函数），可选参数</p>
+
+		<h2>一个代表HTML文件路径的字符串</h2>
+		<h2>一个函数，可接受两个参数tElement和tAttrs（大致同上）</h2>
+
+
+		<h3>注意:</h3>
+		<p>在本地开发时候，需要运行一个服务器，不然使用templateUrl会报错 Cross Origin Request Script（CORS）错误</p>
+
+		<p>由于加载html模板是通过异步加载的，若加载大量的模板会拖慢网站的速度</p>
+		<p>这里有个技巧，就是先缓存模板</p>
+
+		<p>可以再你的index页面加载好的，将下列代码作为你页面的一部分包含在里面</p>
+		<script type="text/ng-template" id="woshimuban.html">
+			<div>模板内容</div>
+		</script>
+		<h3>注意:</h3>
+		<p>这里的id属性就是被设置在templateUrl上用的</p>
+
+		<p>另一种办法缓存</p>
+		<script>
+			angular.module("template.html", []).run(["$templateCache", function($templateCache) {
+				$templateCache.put('template.html',
+					"<div>模板文件</div>");
+			}]);
+		</script>
+
+
+
+
+
+
+
+		<h1>replace</h1>
+		<p>（布尔值），默认值为false，设置为true时候</p>
+
+		<script>
+			angular.module("app", []).directive("hello", function() {
+				return {
+					restrict: "EA",
+					replace: true,
+					template: "<div>Hello World</div>"
+				};
+			})
+		</script>
+		<p>原始代码</p>
+		<hello></hello>
+		<p>编译后的代码</p>
+		<div>Hello World</div>
+
+
+		<h3>注意:</h3>
+		<p>当模板为纯文本（即template:"wo shi wen ben"）的时候，渲染之后的html代码默认的为文本用span包含</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>scope</h1>
+		<p>可选参数，（布尔值或者对象）默认值为false</p>
+
+		<ul>
+			<li>
+				<p>默认值false</p>
+				<span>表示继承父作用域</span>
+			</li>
+			<li>
+				<p>true</p>
+				<span>表示继承父作用域，并创建自己的作用域（子作用域）</span>
+			</li>
+			<li>
+				<p>{}</p>
+				<span>表示创建一个全新的隔离作用域</span>
+			</li>
+		</ul>
+
+		<h2>scope的继承机制</h2>
+		<p>ng-controller（内置指令）可以从父作用域中继承并且创建一个新的子作用域</p>
+		<!-- <div ng-app="myApp" ng-init="aaa='fa'">
+			parentNode: {{aaa}}
+			<div ng-controller="myController">
+				childNode: {{aaa}}
+			</div>
+		</div> -->
+		<script>
+			// angular.module("myApp", []).controller("myController", function($scope) {
+			// 	$scope.aaa = "child";
+			// })
+		</script>
+
+		<h3>实验结果</h3>
+		parentNode: fa
+		childNode: child
+		<p>若去掉$scope.aaa = 'child'</p>
+		parentNode: fa
+		childNode: fa
+
+
+		<h3>注意:</h3>
+		<ul>
+			<li>若一个元素上有多个指令，使用了隔离作用域，则只有其中一个可以生效</li>
+			<li>只有指令模板中的根元素才能获得一个新的作用域，这时候，scope就被设置为true了</li>
+		</ul>
+
+		<!-- <div ng-app="myApp1" ng-init="aaa='fa'">
+			parentNode: {{aaa}}
+			<div ng-controller="myController">
+				childNode: {{aaa}}
+				<div ng-controller="myController2">
+					{{aaa}}
+				</div>
+			</div>
+		</div> -->
+		<script>
+			// var a =  angular.module("myApp1", []);
+			// a.controller("myController", function($scope) {
+			// 	$scope.aaa = "child";
+			// });
+			// a.controller('myController2', function($scope) {
+			// 	$scope.aaa = "sonson";
+			// });
+		</script>
+		<h3>页面结果</h3>
+		<p>class为one那个div获得了指令ng-controller=’myController‘所创建的新的作用域</p>
+		<p>class为two那个div获得了指令ng-controller=’myController2‘所创建的新的作用域</p>
+
+
+		<!-- <div ng-app="myApp" ng-controller="MainController">
+			{{name}}
+			<input type="text" ng-model="name">
+			<div my-directive></div>
+		</div> -->
+		<script>
+			// angular.module("myApp", [])
+			// .controller("MainController", function($scope) {
+			// 	$scope.name = "leifeng";
+			// })
+			// .directive("myDirective", function() {
+			// 	return {
+			// 		restrict: "EA",
+			// 		// scope: false,
+			// 		scope: true,
+			// 		// scope: {},
+			// 		template: '<div>childNode:{{name}} <input type="text" ng-model="name" /></div>'
+			// 	};
+			// });
+		</script>
+
+		<h3>代码描述</h3>
+		<ul>
+			<li>
+				<p>当为false时候</p>
+				<h4>继承不隔离</h4>
+				<p>儿子继承父亲的值，改变父亲的值，儿子的值也随之变化，反之亦如此</p>
+			</li>
+			<li>
+				<p>当为true时候</p>
+				<h4>继承隔离</h4>
+				<p>儿子继承父亲的值，改变父亲的值，儿子的值随之变化，但是改变儿子的值，父亲的值不变</p>
+			</li>
+			<li>
+				<p>当为{}时候</p>
+				<h4>不继承隔离</h4>
+				<p>没有继承父亲的值，所以儿子的值为空，改变任何一方的值均不能影响另一方的值</p>
+			</li>
+		</ul>
+
+		<h3>注意:</h3>
+		<p>当想要创建一个可重用的组件时隔离作用域是一个很好的选择</p>
+		<p>通过隔离作用域我们确保指令是‘独立’的</p>
+		<p>并可以轻松地插入到任何HTML app中，并且这种做法防止了父作用域被污染</p>
+
+
+		<h3>隔离作用域可以通过绑定策略来访问父作用域的属性</h3>
+		<!-- <div ng-app="myApp" ng-controller="MainController">
+			<input type="text" ng-model="color" placeholder="Enter a color">
+			<hello-world></hello-world>
+		</div> -->
+		<script>
+			// var app = angular.module('myApp', []);
+			// app.controller("MainController", function() {});
+			// app.directive('helloWorld', function() {
+			// 	return {
+			// 		// scope: {},
+			// 		// scope: false,
+			// 		scope.true,
+			// 		restrict: "AE",
+			// 		replace: true,
+			// 		template: '<p style="background-color:{{color}}">Hello World</p>'
+			// 	}
+			// });
+		</script>
+
+
+
+
+		<h3>绑定策略</h3>
+		<p>将scope设置为{}时候，再次运行上面的代码可以发现页面并不能成功完整显示</p>
+		<p>原因在于，这里将scope设置为{}，产生了隔离作用域</p>
+		<p>在template模板中{{color}}变成了依赖于自己的作用域，而不是依赖于父作用域</p>
+		<p>因此我们需要一些办法来让隔离作用域能读取父作用域的属性</p>
+
+
+
+		<h4>使用@（@attr）来进行单向文本（字符串）绑定</h4>
+		<!-- <div ng-app="myApp" ng-controller="MainController">
+			<input type="text" ng-model="color" placeholder="Enter a color">
+			<hello-world color-attr="{{color}}"></hello-world>
+		</div> -->
+		<script>
+			// var app = angular.module("myApp", []);
+			// app.controller("MainController", function() {});
+			// app.directive('helloWorld', function() {
+			// 	return {
+			// 		scope: {color: '@colorAttr'},
+			// 		restrict: "AE",
+			// 		replace: true,
+			// 		template: '<p style="background-color: {{color}}">Hello World</p>'
+			// 	}
+			// });
+		</script>
+
+		<h3>代码描述</h3>
+
+		<h4>缺点</h4>
+		<p>这种办法只能单向，通过在运行的指令的那个html标签上设置color-attr属性，并且采用{{}}绑定某个模型值</p>
+
+		<h4>注意:</h4>
+		<p>可以再这里直接绑定字符串的颜色值,如：color-attr=“red”</p>
+		<p>可以看到表达式{{color}}被赋值给了color-attr</p>
+		<p>当表达式的值发生变化时，属性color-attr也会发生变化，所以也改变了隔离作用域中的属性color</p>
+
+		<h3>注意:</h3>
+		<h3>如果绑定的隔离作用域属性名与元素的属性名相同，则可以采取缺省写法</h3>
+
+
+		<h2>缺省的默认配置</h2>
+		<h3>html:</h3>
+		<hello-world color="{{color}}" />
+		<h3>js定义指令的片段：</h3>
+		<script>
+			// app.directive('helloWorld', function() {
+			// 	return {
+			// 		scope: {'@'},
+			// 	}
+			// });
+		</script>
+
+
+
+
+
+
+		<h4>使用=(=attr)进行双向绑定</h4>
+		<!-- <div ng-app="myApp" ng-controller="MainController">
+			<input type="text" ng-model="color" placehodle="Enter a color">
+			{{color}}
+			<hello-world color="color"></hello-world>
+		</div> -->
+		<script>
+			// var app = angular.module("myApp", []);
+			// app.controller("MainController", function(){});
+			// app.directive("helloWorld", function() {
+			// 	return {
+			// 		scope:{color: '='},
+			// 		restrict: 'AE',
+			// 		replace: true,
+			// 		template: '<div style="background-color:{{color}}">Hello World<div><input type="text" ng-model="color"></div></div>'
+			// 	}
+			// })
+		</script>
+		<!-- 上面的</div>没看懂 -->
+
+		<h3>代码描述</h3>
+		<p>这里需要注意的是，我们要直接在指令运行的那个元素上设置属性时候，是直接将 实际的作用域模型 赋值给该属性（这里就是color）</p>
+		<p>一个双向绑定被建立了，改变任何一个input都会改变另一个值</p>
+
+
+
+
+
+
+		<h4>使用&来调用父作用域中的函数</h4>
+		<!-- <div ng-app="myApps" ng-controller="MainControllers">
+			<input type="text" ng-model="name" placeholder="Enter a color">
+			{{name}}
+			<hello-world saysomething999="say()" name="liucunjie"></hello-world>
+		</div> -->
+		<script>
+			// var apps = angular.module("myApps", []);
+			// apps.controller("MainControllers", function($scope) {
+			// 	$scope.say = function() {
+			// 		alert('hello');
+			// 	}
+			// 	$scope.name="leifeng";
+			// });
+			// apps.directive('helloWorld', function() {
+			// 	return {
+			// 		scope: {
+			// 			saysomething: '&saysomething999',
+			// 			name: '@'
+			// 		},
+			// 		restrict: "AE",
+			// 		replace: true,
+			// 		template: '<button type="button" ng-bind="name" ng-init = "saysomething()"></button>'
+			// 	}
+			// })
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<h1>transclude</h1>
+		<p>（布尔值或者字符‘element’），默认值为false</p>
+		<p>这个配置选项可以让我们提取包含在指令那个元素里面的内容，再将它放置在指令模板的特定位置</p>
+		<p>当你开启transclude后，你就可以使用ng-transclude来指明了应该在什么地方放置transcluded内容</p>
+		<!-- <div ng-app = "myApp" ng-controller="MainController">
+			<div class="a">
+				<p>china</p>
+				<hello-world>
+					{{name}}
+				</hello-world>
+			</div>
+		</div> -->
+		<script>
+			// var app = angular.module('myApp', []);
+			// app.controller("MainController", function($scope) {
+			// 	$scope.name = 'leifeng';
+			// });
+			// app.directive("helloWorld", function() {
+			// 	return {
+			// 		scope: {},
+			// 		restrict: "AE",
+			// 		transclude: true,
+			// 		template: "<div class='b'><div ng-transclude>不可见</div></div>"
+			// 	}
+			// });
+		</script>
+		<h3>输出结果</h3>
+		<pre>
+			china
+
+			leifeng
+		</pre>
+
+		<h3>代码描述</h3>
+		<p>另外当开启transclude，会创建一个新的transclude空间，并且继承了父作用域</p>
+		<span>即使Scope设置为隔离作用域</span>
+
+		<p>上面代码中的{{name}}是依赖于父作用域的，仍然能被渲染出来，就说明了这点</p>
+		<p>发现文本“你看不见我”消失了，这是因为被transclude内容替换掉了</p>
+
+		<p>这里的transclude内容就是{{name}}</p>
+		<img src="image/26014316_XjAD.png" alt="">
+
+		<h4>transclude</h4>
+		<p>区别在于嵌入的内容</p>
+		<ul>
+			<li>当transclude：true时候，嵌入的内容为{{name}}</li>
+			<li>当transclude：“element”时候，嵌入的内容为
+				<pre>
+					<hello-world>
+						{{name}}
+					</hello-world>
+				</pre>
+			</li>
+		</ul>
+
+		<p>此时嵌入的内容为整个元素</p>
+		<p>将上面代码transclude：true换成transclude：true后，再运行，结果并不是和你想的一样</p>
+
+
+		<p>查看生成的html代码</p>
+		<img src="image/26014316_ukGT.png" alt="">
+
+		<p>指令绑定的元素被转换为了一个HTML注释</p>
+
+		<p>解决方案是加上replace: true</p>
+
+		<p>查看HTML代码</p>
+		<img src="image/26014316_vSCa.png" alt="">
+
+		<h3>注意:</h3>
+		<p>在一个指令的模板template上只能申明一个ng-transclude</p>
+
+		<h4>为题产生:想把嵌入部分多次放入我们的模板中</h4>
+		<p>可以使用$transclude</p>
+		<p>可以使用compile函数，里面有个transcludeFn参数</p>
+		<p>使用link链接函数</p>
+
+
+
+
+
+
+
+
+		<h1>controller</h1>
+		<p>可以是一个字符串或者函数</p>
+
+		<p>若是为字符串，则将字符串当做是控制器的名字</p>
+		<p>来查找注册在应用中的控制器的构造函数</p>
+		<script>
+			// angular.module("myApp", [])
+			// .directive('myDirective', function() {
+			// 	restrict: "EA",
+			// 	controller: "SomeController"
+			// })
+			// // 应用中其他的地方，可以是同一个文件或被index.html包含的另一个文件
+			// angular.module("myApp")
+			// .controller("SomeController", function($scope, $element,  $attrs, $ transclude) {
+			// 	// 控制器逻辑放在这里
+			// });
+		</script>
+		<p>也可以直接在指令内部的定义为匿名函数</p>
+		<p>同样我们可以再这里注入任何服务（$log,$timeout等等）</p>
+
+		<script>
+			// angular.module("myApp", [])
+			// .directive("myDirective", function() {
+			// 	restrict: "A",
+			// 	controller: 
+			// 		function($scope, $element, $attrs, $transclude) {
+			// 			// 控制器逻辑放在这里
+			// 		}
+			// });
+		</script>
+
+		<h2>还有一些特殊的服务（参数）可以注入</h2>
+		<li>$scope，与指令元素相关联的作用域</li>
+		<li>$element，当前指令对应的 元素</li>
+		<li>$attrs，由当前元素的属性组成的对象</li>
+		<li>$transclude，嵌入链接函数，实际被执行用来克隆元素和操作DOM的函数</li>
+
+		<h3>注意:</h3>
+		<p>除非是用来定义一些可复用的行为，一般不推荐在这使用</p>
+
+
+		<p>指令的控制器和link函数（后面会讲）可以进行互换</p>
+		<span>区别在于，控制器主要是用来提供可在指令间复用的行为但link链接函数只能在当前内部指令中定义行为，且无法再指令间复用</span>
+
+		<h2>html代码</h2>
+		<my-site site="http://www.cnblogs.com/cunjieliu">示例</my-site>
+
+		<script>
+			// angular.module("myApp", []).directive("mySite", function() {
+			// 	return {
+			// 		restrict: "EA",
+			// 		transclude: true,	//注意此处必须设置为true
+			// 		controller:
+			// 		//在这里你可以注入你想注入的服务
+			// 		function($scope, $element, $attrs, $transclude, $log) {
+			// 			$transclude(function(clone) {
+			// 				var a = angular.element('<a>');
+			// 				a.attr('href', $attrs.site);
+			// 				a.text(clone.text());
+			// 				$element.append(a);
+			// 			});
+			// 			$log.info("hello everyone");
+			// 		}
+			// 	};
+			// });
+		</script>
+
+		<h3>代码描述</h3>
+		<p>$transclude();在这里，它可以接收两个参数，第一个是$scope，作用域，第二个是带有参数clone的回调函数</p>
+
+		<p>clone实际上就是嵌入的内容（经过jquery包装），可以在它上做很多DOM操作</p>
+
+		<h3>简单示例</h3>
+		<script>
+			// angular.module("myApp", []).directive('mySite', function() {
+			// 	return {
+			// 		restrict: "AE",
+			// 		transclude: true,
+			// 		controller: 
+			// 		function($scope, $element, $attrs, $transclude, $log) {
+			// 			var a = $transclude();	//$transclude()就是嵌入的内容
+			// 			$element.append(a);
+			// 		}
+			// 	}
+			// })
+		</script>
+		
+		<h3>注意:</h3>
+		<h3>使用$transclude会生成一个新的作用域</h3>
+
+		<h3>代码描述</h3>
+		<p>简单使用$transclude()，那么默认的其作用域就是$transclude生成的作用域</p>
+		<p>使用$transclude($scope,function(clone){}),那么作用域就是directive的作用域了</p>
+
+		<h4>如果想使用父作用域</h4>
+		<p>可以使用$scope.$parent</p>
+
+		<div ng-app="myApp" ng-controller="parentctrl">
+			<div ng-controller="sonctrl">
+				<my-site site="http://www.cnblogs.com/cunjieliu"><div>博客</div></my-site>
+			</div>
+		</div>
+		<script>
+			var app = angular.module("myApp", []);
+			app.controller("parentctrl", function($scope) {
+				$scope.title="hello parent";
+			});
+			app.controller("sonctrl", function($scope) {
+				$scope.title="hello son";
+			});
+			app.directive("mySite", function() {
+				return {
+					restrict: "AE",
+					transclude: true,
+					controller:
+					function($scope, $element, $attrs, $transclude, $log) {
+						var a = $transclude();
+						$element.append(a);
+						// $log同console.log
+						$log.info($scope);
+						// Scope {$$childTail: $$childScopeClass, $$childHead: $$childScopeClass, $$nextSibling: null, $$watchers: null, $$listeners: Object…}
+						$log.info($element);
+						// [my-site]
+						$log.info($attrs);
+						// Attributes {$$element: JQLite[1], $attr: Object, site: "http://www.cnblogs.com/cunjieliu"}
+						$log.info($transclude);
+						// function controllersBoundTransclude(scope, cloneAttachFn) {
+				  //         var transcludeControllers;
+
+				  //         // no scope passed
+				  //         if (arguments.length < 2) {
+				  //           cloneAttachFn = sc…
+						$log.info($scope.title);
+						// hello son
+						$log.info($scope.$parent.title);
+						// hello parent
+					}
+				};
+			});
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>controllerAs</h1>
+		<p>这个选项的作用是可以设置控制器的别名</p>
+
+		<p>一般以前经常用这样方式来写代码</p>
+		<script>
+			angular.module("app", [])
+			.controller("demoController", ["$scope", function($scope) {
+				$scope.title = "angular";
+			}])
+		</script>
+		<div ng-app="app" ng-controller="demoController">
+			{{title}}
+		</div>
+
+		<p>后来angularjs1.2给我们带来新语法糖</p>
+		<script>
+			angular.module("app", [])
+			.controller("demoController", [function() {
+				this.title = "angular";
+			}])
+		</script>
+		<div ng-app = "app" ng-controller="demoController as demo">
+			{{demo.title}}
+		</div>
+
+		<p>也可以再指令里面也这样写</p>
+		<script>
+			angular.module("myApp", []).directive("mySite", function() {
+				return {
+					restrict: "AE",
+					transclude: true,
+					controller: 'SomeController',
+					controllerAs: 'mainController'
+					// ...其他设置
+				};
+			});
+		</script>
+
+
+
+
+
+
+
+
+
+		<h1>require(字符串或者数组)</h1>
+		<p>字符串代表另一个指令的名字，它将会作为link函数的第四个参数</p>
+
+		<h2>实例说明</h2>
+		<p>编写两个指令，两个指令中的link链接函数中存在有很多重合的方法</p>
+		<p>可以将这些重复的方法写在第三个指令的controller中</p>
+		<p>然后在这两个指令中，require这个拥有controller字段的的指令</p>
+
+		<p>最后通过link链接函数的第四个参数就可以引用这些重合的方法</p>
+
+		<outer-directive ng-app="myApp">
+			<inner-directive></inner-directive>
+			<inner-directive2></inner-directive2>
+		</outer-directive>
+		<script>
+			var app = angular.module("myApp", []);
+			app.directive("outerDirective", function() {
+				return {
+					scope: {},
+					restrict: "AE",
+					controller: function($scope) {
+						this.say = function(someDirective) {
+							console.log("Get:" + someDirective.message);
+						};
+					}
+				};
+			});
+			app.directive("innerDirective", function() {
+				return {
+					scope: {},
+					restrict: "AE",
+					require: "^outerDirective",
+					controller: 
+					function($scope, $element, $attrs, $transclude, $log) {
+						$log($scope.message);
+					},
+					link: function(scope, elem, attrs, controllerInstance) {
+						scope.message = "Hi leifeng";
+						controllerInstance.say(scope);
+					}
+				};
+			});
+			app.directive("innerDirective", function() {
+				return {
+					scope: {},
+					restrict: "AE",
+					require: "^outerDirective",
+					controller: 
+					function($scope, $element, $attrs, $transclude, $log) {
+						$log($scope.message);
+					},
+					link: function(scope, elem, attrs, controllerInstance) {
+						scope.message = "Hi shushu";
+						controllerInstance.say(scope);
+					}
+				};
+			});
+		</script>
+
+
+		<h3>代码描述</h3>
+		<p>指令innerDirective和指令innerDirective2复用了定义在指令outerDirective的controller中的方法</p>
+
+		<p>指令中的controller是用来让不同指令间通信用的</p>
+
+		<h4>可以在require的参数值加上下面的某个前缀，这会改变查找控制器的行为</h4>
+		<ul>
+			<li>
+				<p>没有前缀</p>
+				<span>指令会在自身提供的控制器中进行查找，如果找不到任何控制器，则会抛出一个error</span>
+			</li>
+			<li>
+				<p>?</p>
+				<span>如果在当前的指令没有找到所需的控制器，则会将null传给link连接函数的第四个参数</span>
+			</li>
+			<li>
+				<p>^</p>
+				<span>如果在当前的指令没有找到所需的控制器，则会查找父元素的控制器</span>
+			</li>
+			<li>
+				<p>^?</p>
+				<span>组合使用</span>
+			</li>
+		</ul>
+
+
+
+
+
+
+
+
+
+
+		<h1>Angular 的指令编译过程</h1>
+
+		<pre>
+			<p>首先加载angularjs库，查找到ng-app指令，从而找到应用的边界</p>
+			<p>根据ng-app划定的作用域来调用$compile服务进行编译</p>
+			<p>angularjs会遍历整个HTML文档，并根据js中指令的定义来处理在页面上声明的各个指令</p>
+			<p>按照指令的优先级(priority)排列，根据指令中的配置参数(template，place，transclude等)转换DOM</p>
+			<p>然后就开始按顺序执行各指令的compile函数（如果指令上有定义compile函数）对模板自身进行转换</p>
+
+			<h3>注意:</h3>
+			<p>此处的compile函数是我们指令中配置的，跟上面说的$compile服务不一样</p>
+
+			<p>每个compile函数执行完后都会返回一个link函数，所有的link函数会合成一个大的link函数</p>
+
+			<p>然后这个大的link函数就会被执行，主要做数据绑定，通过在DOM上注册监听器来动态修改scope中的数据</p>
+
+			<p>或者是使用$watchs监听 scope中的变量来修改DOM，从而建立双向绑定等等</p>
+
+			<p>若我们的指令中没有配置compile函数，那我们配置的link函数就会运行</p>
+
+			<p>她做的事情大致跟上面complie返回之后所有的link函数合成的的大的link函数差不多</p>
+
+			<h3>注意:</h3>
+			<p>所以：在指令中compile与link选项是互斥的，如果同时设置了这两个选项</p>
+
+			<p>那么就会把compile所返回的函数当做是链接函数，而link选项本身就会被忽略掉</p>
+		</pre>
+
+
+
+
+
+
+
+
+
+
+		<h1>compile编译函数和link链接函数</h1>
+
+
+
+		<h2>compile编译函数选项</h2>
+		<pre>
+			<p>compile选项可以返回一个对象或者函数</p>
+
+			<p>可以在指令和实时数据被放到DOM中之前进行DOM操作</p>
+
+			<p>可以在这里进行添加或者删除节点的DOM的操作</p>
+
+			<h3>注意:</h3>
+			<p>编译函数是负责对模板的DOM进行转换，并且仅仅只会运行一次</p>
+		</pre>
+		<script>
+			// compile函数的语法
+			compile: function compile(Element, attrs, transclude) {
+				return {
+					pre: function preLink(scope, Element, Attrs, controller){},
+					post: function postLink(scope, Element, Attrs, controller){}
+				}
+			}
+		</script>
+
+		<h3>使用详解</h3>
+		<p>大部分情况只要编写link函数就可以了</p>
+
+		<h3>注意:</h3>
+		<p>preLink函数会在编译阶段之后，指令链接到子元素之前执行</p>
+		<p>postLink会在指令链接到子元素之后执行</p>
+		<p>为了不破坏绑定过程，如果你需要修改DOM结构，你应该在postLink函数中来做这件事</p>
+
+
+		<h2>link链接函数</h2>
+
+		<p>链接函数负责将作用域和DOM进行链接</p>
+		<script>
+			// link链接函数
+			link: function postLink(scope, Element, Attrs) {}
+		</script>
+		<h3>代码描述</h3>
+		<p>若指令中定义有require选项，则link函数会有第四个参数</p>
+		<p>代表控制器或者所依赖的指令的控制器</p>
+
+
+
+
+
+
+
+
+
+		<h1>ngModel</h1>
+		<p>使用require：‘ngModel’ 这个选项来增强对表单的操作</p>
+
+		<pre>
+			link: function(scope, iElem, isAttr, ngmodel) {
+				//	其与逻辑代码
+			}
+		</pre>
+
+		<p>在控制台输出ngmodel这个参数看看</p>
+
+		<script>
+			var app = angular.module('app', []);
+
+			app.controller('ctrl', function($scope) {
+				$scope._val = 'content';
+			})
+
+			app.directive('test', function() {
+				return {
+					restrict: 'AE',
+					require: 'ngModel',
+					link: function(scope, iElem, iAttr, ngmodel) {
+						console.log(ngmodel);
+					}
+				}
+			})
+		</script>
+		<div ng-app="app" ng-controller="ctrl">
+			<input type="text" test ng-model="_val">
+		</div>
+
+		<h3>运行结果</h3>
+		<img src="image/angularjs_ngModel.png" style="max-width: 800px; width: 100%;" alt="">
+
+
+
+		
+
+
+
+
+
+		<h2>这个对象包含很多属性和方法</h2>
+
+
+
+		
+
+
+		<h3>$viewValue</h3>
+		<p>$viewValue为视图值，即显示在视图（页面）的实际值</p>
+		<span>就是上面例子中input输入框的值</span>
+		<p>$modelValue为模型值，即赋给ng-model的值（与控制器绑定的值）</p>
+		<h3>重点</h3>
+		<p>两者不一定相等，因为$viewValue同步到$modelValue要经过一系列的操作（经过三个管道）</p>
+
+
+
+
+
+
+		<h3>$parsers</h3>
+		<p>$parsers为一个执行它里面每一个元素（每一个元素都是一个函数）的数组</p>
+		<span>用来做验证和转换值的过程</span>
+		<p>ngModel从DOM读取的值会被传入到其中的函数</p>
+
+		<h4>ng-model的执行过程</h4>
+		<p>会依次执行每一个函数，把每一个函数执行的结果传个下一个函数</p>
+		<p>最后一个函数执行的值将会传到model中</p>
+
+		<h3>注意</h3>
+		<p>可以将函数push进去，那样它就会执行</p>
+
+
+
+
+
+
+		<h3>$formatters</h3>
+		<p>是一个执行它里面每一个元素（每一个元素都是一个函数）的数组</p>
+
+		<h4>主要作用</h4>
+		<p>用来对值进行格式化和转换，以便在绑定了这个值的控件中显示</p>
+
+		<p>当数据的模型值发生变化的时候，里面的函数会被一一执行</p>
+		
+		<h4>使用</h4>
+		<p>可以将函数push进去，让它执行</p>
+
+
+
+
+
+
+
+		<h3>$viewChangeListeners</h3>
+		<p>$viewChangeListeners的值也是一个由函数组成的数组</p>
+
+		<h4>功能</h4>
+		<p>当视图的值发生变化的时候里面的函数会被一一调用</p>
+
+		<h4>拓展</h4>
+		<p>实现跟$watch类似的功能</p>
+
+
+
+
+
+
+
+		<h3>$render</h3>
+		<p>$render函数负责将模型值同步到视图</p>
+
+		<h4>单向传播</h4>
+		<p>如果模型值被改变,需要同步视图的值</p>
+		
+
+
+
+
+
+
+
+		<h3>$setViewValue</h3>
+		<p>$setViewValue用于设置视图值</p>
+		<span>上面的例子就是将input的value值赋值给$viewValue</span>
+
+
+
+
+
+
+
+		<h3>$error</h3>
+		<p>$error 一个包含所有error的对象</p>
+
+
+
+
+
+
+
+		<h2>$setpristine</h2>
+		<p>$setPristine 设置为原始状态，会添加ng-pristine的class类名，移除ng-dirty的class类名</p>
+
+		<h3>注意:</h3>
+		<p>ng-model 指令根据表单域的状态添加/移除以下类</p>
+		<ul>
+			<li>ng-empty</li>
+			<li>ng-not-empty</li>
+			<li>ng-touched</li>
+			<li>ng-untouched</li>
+			<li>ng-valid</li>
+			<li>ng-invalid</li>
+			<li>ng-dirty</li>
+			<li>ng-pending</li>
+			<li>ng-pristine</li>
+		</ul>
+
+
+
+
+
+
+
+
+		<h2>$setValidity</h2>
+		<p>函数，接受两个参数</p>
+		<ul>
+			<li>第一个参数为错误标志的名字，是字符串类型，将会被设置成$error的属性</li>
+			<li>第二个参数为布朗值，为这个错误标志的值</li>
+		</ul>
+		<p>在控制台中打印出来ngmodel.$setValidity</p>
+
+		<script>
+			function (validationErrorKey, isValid) {
+
+				if($error[validationErrorKey] === !isValid) return;
+
+				if(isValid) {
+					if($error[validationErrorKey]) invalidCount--;
+					if(!invalidCount) {
+						toggleValidCss(true);
+						this.$valid = true;
+						this.$invalid = false;
+					}
+				}else{
+					toggleValidCss(false);
+					this.$invalid = true;
+					this.$valid = false;
+					invalidCount++;
+				}
+
+				$error[validationErrorKey] = !isValid;
+				toggleValidCss(isValid， validationErrorKey);
+
+				parentForm.$setValidity(validationErrorKey, isValid, this);
+			}
+		</script>
+
+		<h3>代码描述</h3>
+		<p>执行了ngmodel.$setValidity会影响到$invalid和$valid的值</p>
+		<p>$error[validationErrorKey] = !isValid</p>
+		<h4>执行之后</h4>
+		<p>$error对象中的错误标志validationErrorKey为我们设置的布朗值isValid的相反值</p>
+
+
+
+		<h4>ngmodel的用法</h4>
+		<p>用法就是ngmodel.$setValidity('flag',布朗值)</p>
+		<p>可以在页面上用formname.inputname.$error.flag</p>
+		
+		<form ng-app="app" ng-controller="ctrl" action="" name="myform">
+			<input type="text" test ng-model="_val" name="jie">
+			<div ng-show="myform.jie.$error.empty">empty!</div>
+		</form>
+		<script>
+			var app = angular.module('app', []);
+
+			app.controller('ctrl', function($scope) {
+				$scope._val = "content";
+			})
+
+			app.directive('test', function() {
+				return {
+					restrict: 'AE',
+					require: 'ngModel',
+					link: function(scope, iElem, iAttr, ngmodel) {
+						scope.$watch(function() {return scope._val}, function() {
+							if(ngmodel.$isEmpty(ngmodel.$viewValue)) {
+								ngmodel.$setValidity('empty', false);
+								//注意到这里设置为false，而$error.empty则会显示为true
+								console.log(ngmodel.$error);
+							}
+						})
+						console.log(ngmodel.$setValidity);
+					}
+				}
+			});
+		</script>
+
+		<h4>运行结果</h4>
+		<pre>
+			function(validationErrorKey, isValid) {
+		    // Purposeful use of ! here to cast isValid to boolean in case it is undefined
+		    // jshint -W018
+		    if ($error[validationErrorKey] === !isValid) retu…
+
+		</pre>
+		<script>
+			/*angularjs源码*/
+		 /**
+		   * @ngdoc method
+		   * @name ngModel.NgModelController#$setValidity
+		   *
+		   * @description
+		   * Change the validity state, and notifies the form when the control changes validity. (i.e. it
+		   * does not notify form if given validator is already marked as invalid).
+		   *
+		   * This method should be called by validators - i.e. the parser or formatter functions.
+		   *
+		   * @param {string} validationErrorKey Name of the validator. the `validationErrorKey` will assign
+		   *        to `$error[validationErrorKey]=isValid` so that it is available for data-binding.
+		   *        The `validationErrorKey` should be in camelCase and will get converted into dash-case
+		   *        for class name. Example: `myError` will result in `ng-valid-my-error` and `ng-invalid-my-error`
+		   *        class and can be bound to as  `{{someForm.someControl.$error.myError}}` .
+		   * @param {boolean} isValid Whether the current state is valid (true) or invalid (false).
+		   */
+		  this.$setValidity = function(validationErrorKey, isValid) {
+		    // Purposeful use of ! here to cast isValid to boolean in case it is undefined
+		    // jshint -W018
+		    if ($error[validationErrorKey] === !isValid) return;
+		    // jshint +W018
+
+		    if (isValid) {
+		      if ($error[validationErrorKey]) invalidCount--;
+		      if (!invalidCount) {
+		        toggleValidCss(true);
+		        ctrl.$valid = true;
+		        ctrl.$invalid = false;
+		      }
+		    } else {
+		      toggleValidCss(false);
+		      ctrl.$invalid = true;
+		      ctrl.$valid = false;
+		      invalidCount++;
+		    }
+
+		    $error[validationErrorKey] = !isValid;
+		    toggleValidCss(isValid, validationErrorKey);
+
+		    parentForm.$setValidity(validationErrorKey, isValid, ctrl);
+		  };
+		</script>
+
+		<h4>当清空input里的值时候，这时候</h4>
+		<h3>注意:每次清空都会触发</h3>
+		<p>empty!</p>
+		<pre>
+			Object {empty: true}
+		</pre>
+
+
+
+		<h4>$name 的值为input的name属性的值</h4>
+		<div ng-app="app" ng-controller="ctrl">
+			<input type="text" test ng-model="_val" name="jie">
+		</div>
+		<script>
+			var app = angular.module('app', []);
+
+			app.controller('ctrl', function($scope) {
+				$scope._val = "测试示例";
+				console.log($scope._val.$modelValue);
+				// undefined
+				console.log($scope._val.$viewValue);
+				// undefined
+				console.log($scope._val.$$lastCommittedViewValue);
+				// undefined
+			})
+
+			app.directive('test', function() {
+				return {
+					restrict: 'AE',
+					require: 'ngModel',
+					link: function(scope, iElem, iAttr, ngmodel) {
+						console.log(scope);
+						// $$childScopeClass {$$childTail: null, $$childHead: null, $$nextSibling: null, $$watchers: Array[1], $$listeners: Object…}
+						console.log(scope._val);
+						// 测试示例
+						console.log(iElem);
+						// [input.ng-pristine.ng-valid]
+						console.log(iAttr);
+						// Attributes {$$element: JQLite[1], $attr: Object, type: "text", test: "", ngModel: "_val"…}
+						console.log(iAttr.name);
+						// jie
+						console.log(iAttr.ngModel);
+						// _val
+						console.log(iAttr.test);
+						// (null)
+						console.log(iAttr.type);
+						// text
+						console.log(ngmodel);
+						// Constructor {$viewValue: NaN, $modelValue: NaN, $parsers: Array[0], $formatters: Array[0], $viewChangeListeners: Array[0]…}
+						console.log(ngmodel.$modelValue);
+						// NaN
+						console.log(ngmodel.$viewValue);
+						// NaN
+						console.log(ngmodel.$$lastCommittedViewValue);
+						// undefined
+						console.log(ngmodel.$name);
+						// jie
+						console.log(ngmodel.$dirty);
+						// false
+						console.log(ngmodel.$invalid);
+						// false
+						console.log(ngmodel.$pristine);
+						// true
+						console.log(ngmodel.$valid);
+						// true
+					}
+				}
+			})
+		</script>
+
+		<h3>注意:</h3>
+		<p>其中ngmodel这个对象中的$modelValue,$viewValue,$$lastCommittedViewValue中的参数无法直接获取。。。</p>
+
+
+
+
+
+
+
+		<h3>$$validityState</h3>
+		<p>暂时不明</p>
+
+
+
+
+
+
+
+
+		<h3>$isEmpty(value)函数,判断为空</h3>
+		<p>当需要判断input的value值是否为空的时候,可以使用这个方法</p>
+		<p>其实可以就当它是个判断是否为空的方法</p>
+		<span>传入一个参数,判断这个参数是否为空,你传入任何值都可以</span>
+		<h4>拓展</h4>
+		<p>也可以自己在指令里重写这个方法，来定义我们自己需要的“是否为空”的概念</p>
+
+
+
+
+
+
+
+		<h3>$pristine</h3>
+		<p>$pristine 如果用户还没有进行过交互,值是true</p>
+		<p>$drity 如果用户已经进行过交互，值是true</p>
+
+
+
+
+
+
+
+		<h3>$valid</h3>
+		<p>$valid 如果没有错误，值是true</p>
+		<p>$invalid 如果有错误，值是true</p>
+
+
+
+
+
+		<h1>angularjs directive补充</h1>
+		<table>
+			<tr>
+				<td>属性</td>
+				<td>描述</td>
+			</tr>
+			<tr>
+				<td>$dirty</td>
+				<td>表单有填写记录</td>
+			</tr>
+			<tr>
+				<td>$valid</td>
+				<td>字段内容合法</td>
+			</tr>
+			<tr>
+				<td>$invalid</td>
+				<td>字段内容是非法的</td>
+			</tr>
+			<tr>
+				<td>$pristine</td>
+				<td>表单没有填写记录</td>
+			</tr>
+		</table>
+	</body>
+</html>

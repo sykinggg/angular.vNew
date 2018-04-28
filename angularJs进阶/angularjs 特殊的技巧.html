@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>angular 特殊的技巧</title>0
+    <script type="text/javascript" src="angular.js"></script>
+  </head>
+  <body>
+    <h1>angularjs 中的 {{}} 与Python 中的flask冲突</h1>
+    <h2>问题产生</h2>
+    <p> Python的flask使用的模板中,数据绑定也是通过两个"{"大括号,这就于angular的数据绑定有冲突</p>
+    <h2>解决方式</h2>
+    <p>这个有两种解决方法,一种是修改angular的绑定标记,另一种就是修改flask的绑定标记,这里两种方案都给出</p>
+
+    <h3>修改angularjs</h3>
+    <script type="text/javascript">
+      $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    </script>
+
+    <h3>代码描述</h3>
+    <p>将这句话加在config中即可,放在route的module中即可</p>
+    <p>这里将原来angular的{{ }}绑定,修改为通过{[{ }]}绑定</p>
+
+
+    <h4>修改flask</h4>
+    <pre>
+      class CustomFlask(Flask):
+          jinja_options = Flask.jinja_options.copy()
+          jinja_options.update(dict(
+              block_start_string='{%',
+              block_end_string='%}',
+              variable_start_string='{#',
+              variable_end_string='#}',
+              comment_start_string='<#',
+              comment_end_string='#>',
+          ))
+
+      app = CustomFlask(__name__, instance_path='/web')
+    </pre>
+
+    <h3>注意:</h3>
+    <p>推荐修改flask,因为用了angular之后,前后端分离</p>
+    <p>flask的jinjia模板不再需要</p>
+    <p>同时如果你修改了Angular的绑定标记</p>
+    <p>其他的控件和库会有问题的</p>
+
+
+
+
+
+
+
+
+
+
+    <h1>去除url中总是默认带有"#"</h1>
+    <p>在设置route的时候开启HTML5模式</p>
+    <script type="text/javascript">
+      angular.module('router', ['ngRouter'])
+      .config(["$routeProvider", "$locationProvider",
+        function($routeProvider, $locationProvider) {
+          $locationProvider.html5Mode(true);
+        }
+    ]);
+    </script>
+    <h3>真是使用测评</h3>
+    <p>其实并没什么卵用</p>
+
+
+
+
+
+
+
+
+
+
+
+    <h1>ng-click="expression"以及类似的指令,怎样在expression中书写多个表达式</h1>
+    <p>比如在一个ng-click中给两个表达式赋值</p>
+    <a href="#" ng-click="obja = 1; objb = 2"></a>
+
+
+
+
+
+
+
+
+
+
+    <h1>$watch没有产生作用或者只生效了一次</h1>
+    <p>这种情况一般来说是监听一个字符串或者数字的时候会出现$scope.$watch("name", function(){})</p>
+    <p>没有生效或者只生效了一次</p>
+    <p>解决方式是$watch尽量监听的是一个对象也就是要监听的只要附在一个对象下</p>
+
+    <h2>问题产生</h2>
+    <p>使用angular-ui中的modal时,这个比较明显</p>
+    <p>具体的原因是因为$scope的继承,因为modal相当于在当前页面的controller中又创建了一个scope</p>
+    <p>所以对于字面量没法检索追溯原型链,想解决就要有一个对象</p>
+    <p>才能通过原型链实现跨父子scope的数据刷新绑定</p>
+
+
+
+
+
+
+
+
+
+
+    <h1>希望ng-view的内容全页展示</h1>
+    <p>通常一个页面可能会有固定的top-menu或者sidebar</p>
+    <p>这类固定不变的部分,然后每次route变化的都是ng-view的template</p>
+  </body>
+</html>

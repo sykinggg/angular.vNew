@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.js"></script>
+		<script src="../react.js"></script>
+		<script src="../react-dom.js"></script>
+		<script src="../browser.min.js"></script>
+	</head>
+	<body ng-app="fasterAngular">
+		<h1>Fast AngularJs</h1><h3>AngularJs with ReactJs</h3>
+		<div ng-controller="mycontroller">
+			<input type="text" ng-model="framework" />
+			<hr />
+			<fast-ng framework="framework"></fast-ng>
+		</div>
+		Rendering with traditional Angular
+	</body>
+	<script type="text/babel">
+		var MYAPP = React.createClass({
+			displayName:'MYAPP',
+			render: function(){
+				return React.DOM.div(null,
+				"Rendering faster in AngularJs with",
+				this.props.framework);
+			}
+		});
+	</script>
+	<script>
+		angular.module('fasterAngular', []).
+		controller('mycontroller', ['$scope', function($scope){
+			$scope.framework = "ReactJs";
+		}]).directive('fastNg', function(){
+			return {
+				restrict: 'E',
+				scope: {
+					framework: '='
+				},
+				link: function(scope, el, attrs){
+					scope.$watch('framework', function(newValue, oldValue){
+						React.renderComponent(
+							MYAPP({framework:newValue}),
+							el[0]
+						);
+					})
+				}
+			}
+		})
+	</script>
+</html>

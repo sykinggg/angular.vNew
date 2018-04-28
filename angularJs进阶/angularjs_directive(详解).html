@@ -1,0 +1,673 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>angularjs_directive</title>
+		<script src="angular.js"></script>
+	</head>
+	<body>
+		<h1>angularjs_directive</h1>
+		<p>独立的scope，内嵌，link函数，编译器，指令控制器</p>
+
+
+
+		<h2>示例图</h2>
+		<img src="image/angular-opt-preview.png" alt="">
+
+
+
+
+
+
+
+		<h1>directive</h1>
+		<p>指令是 通常是小的 组件， 这意味着跟DOM交互</p>
+		<p>用作顶层DOM的抽象层</p>
+		<p>大多数的操作可以不用jQuery，jqLite等包装的DOM元素</p>
+
+		<h2>指令绑定属性</h2>
+		<p>指令可以绑定元素的属性（例如可见性，class列表，内部文本，内部HTML或者值）到scope的属性或表达式</p>
+
+		<p>一旦监测到scope中的变化被标记，这些绑定就会被更新</p>
+
+		<p>使用$observe函数能够监测DOM属性，当监测到属性变化时会触发一个回调</p>
+
+
+
+
+
+
+
+
+
+		<h1>创建一个指令Link</h1>
+		<p>示例</p>
+		<script>
+			angular.module('PonyDeli').directive('pieceOfFood', function() {
+				var definition = {};
+			})
+		</script>
+		<p>如果这个指令作为一个属性实现，那么我在 HTML 中就会像这样调用</p>
+		<span piece-of-food></span>
+		<p>默认情况，指令只能作为属性被触发</p>
+		<span>想改变这种方式，可以使用 restrict 属性</span>
+
+
+
+		<h2>restrict</h2>
+		<p>定义一个指令作为标签使用</p>
+		<script>
+			angular.module('PonyDeli').directive('pieceOfFood', function() {
+				return {
+					restrict: 'E',
+					template: //...
+				};
+			});
+		</script>
+		<p>restrict 的默认值是 EA</p>
+
+		<h3>'A': attributes are allowed</h3>
+		<p>'A': 允许作为一个属性</p>
+		<span piece-of-food></span>
+		
+		<h3>'E': elements are allowed</h3>
+		<p>'E': 允许作为一个元素</p>
+		<piece-of-food></piece-of-food>
+
+		<h3>'C': as a class name</h3>
+		<p>'C': 作为一个类名</p>
+		<span class="piece-of-food"></span>
+
+		<h3>'M': as a comment</h3>
+		<p>'M': 作为一个注释</p>
+		<!-- directive: piece-of-food -->
+
+
+
+		<h2>scope</h2>
+		<p>设置一个指令与父级 scope 交互</p>
+		<p>scope: false，使作用域链保持不受影响</p>
+
+		<h3>scope使用的总结</h3>
+		<p>当指令不会和 scope有互动，保持作用域链不变显然是有用的</p>
+		<p>不改变作用域创建一个指令，给他一个作用域，实例化多次并且只跟一个scope属性交互———指令的名字</p>
+
+		<script>
+			angular.module('PonyDeli').directive('pieceOfFood', function() {
+				return {
+					template: '{{pieceOfFood}}',
+					link: function(scope, element, attrs) {
+						attr.$observe('pieceOfFood', function(value) {
+							scope.pieceOfFood = value;
+						});
+					}
+				};
+			});
+		</script>
+		<div ng-app="PonyDeli">
+			<span piece-of-food='Fish & Chips'></span>
+		</div>
+
+
+
+
+		<h2>控制器操作每个实例化的指令</h2>
+		<p>在指令的链接函数里，我们可以获得元素上的属性集合</p>
+		<p>这个集合有一个特殊的方法，叫$observe(), 当一个属性变化时可以触发一个回调</p>
+		<p>没有监听属性变化时，属性永远不会对应到scope上，也无法绑定到我们的模板上</p>
+
+		<script>
+			var deli = angular.module("PonyDeli", []);
+
+			deli.controller("foodCtrl", function($scope) {
+				$scope.piece = "Fish & Chips";
+			});
+
+			deli.directive('pieceOfFood', function() {
+				return {
+					template: '{{pieceOfFood}}',
+					link:　function(scope, element, attrs) {
+						attrs.$observe('pieceOfFood', function(value) {
+							scope.pieceOfFood = scope.$eval(value);
+						});
+					}
+				};
+			});
+		</script>
+
+		<div ng-app="PonyDeli" ng-controller="foodCtrl">
+			<span piece-of-food="piece"></span>
+		</div>
+		<h3>代码描述</h3>
+		<p>通过 scope 我解析出了属性的值 piece，这个值定义在controller 中的 $scope.piece</p>
+		<p>直接使用模板方式如{{piece}}</p>
+		<p>但是那样需要你特别注意你想追踪的scope属性。这种方式增加了一点灵活性</p>
+
+		<h3>注意:</h3>
+		<p>想在所有的指令间共享scope时， 如果尝试用同样的scope添加多个指令则会导致意外的结果</p>
+
+
+
+
+		<h2>子作用域</h2>
+		<p>创建一个子作用域来解决这个问题， 他继承自父级的原型</p>
+		<p>为了创建子作用域， 仅仅需要声明 scope: true</p>
+		<script>
+			var deli = angular.module("PonyDeli", []);
+
+			deli.controller('foodCtrl', function($scope) {
+				$scope.pieces = ['Fish & Chips', 'Potato Salad'];
+			});
+
+			deli.directive('pieceOfFood', function() {
+				return {
+					template: '{{pieceOfFood}}',
+					scope: true,
+					link: function(scope, element, attrs) {
+						attrs.$observe('pieceOfFood', function(value) {
+							scope.pieceOfFood = scope.$eval(value);
+						});
+					}
+				};
+			});
+		</script>
+		<div ng-app="PonyDeli" ng-controller="foodCtrl">
+			<p piece-of-food="pieces[0]"></p>
+			<p piece-of-food="pieces[1]"></p>
+		</div>
+		<h3>代码描述</h3>
+		<p>可以使用指令的多个实例来达到预期的效果，因为每个指令都创建了自己的作用域</p>
+		<h3>局限：一个元素的多个指令都是一个相同的作用域</h3>
+		<h3>注意:</h3>
+		<p>如果同一元素的多个指令需要新的作用域，那么只会创建一个作用域</p>
+
+
+
+
+
+
+		<h2>独立的scopeLink</h2>
+		<p>创建一个本地的，独立的作用域</p>
+		<p>独立的作用域跟子作用域不同在于前者不是继承自他的父级（但是也可以通过 scope.$parent 访问）</p>
+		<p>声明一个独立的作用域：scope: {}</p>
+		<p>可以添加一些属性到这个对象，用来从父级scope获取数据绑定并且当前作用域也可访问</p>
+		<h3>注意:</h3>
+		<p>很像restrict，独立scope的属性简洁但语法复杂</p>
+		<p>可以用符号例如：&，@ 和＝来定义属性的绑定方式</p>
+
+
+		<h3>使用你本地scope的属性名</h3>
+
+		<p>@，& 或者＝</p>
+
+
+		<h4>属性观察器: @</h4>
+		<p>使用 @ 绑定父级作用域]监测属性的结果</p>
+		<div ng-app="PonyDeli" ng-controller="foodCtrl">
+			<p note="You just bought some {{type}}"></p>
+		</div>
+		<script>
+			deli.directive('note', function() {
+				return {
+					template: '{{note}}',
+					scope: {
+						note: '@'
+					}
+				};
+			});
+		</script>
+		<p>等效于观察属性变化来更新本地scope</p>
+		<p>当然，用 @ 符号是更多的“AngularJS”</p>
+		<script>
+			deli.directive('note', function() {
+				return {
+					template: '{{note}}',
+					scope: {},
+					link: function(scope, element, attrs) {
+						attrs.$observe('note', function(value) {
+							scope.note = value;
+						});
+					}
+				};
+			});
+		</script>
+		<h3>代码描述</h3>
+		<p>当指令的选项很复杂时，属性监测器很有用</p>
+		<h3>注意:</h3>
+		<p>如果想通过改变选项来改变指令的行为</p>
+		<p>自己写代码使用attrs.$observe创建检测</p>
+		<h4>优点</h4>
+		<p>比AngularJS 内部去做更有意义，更快</p>
+
+
+		<h3>总结</h3>
+		<p>如上面的$observe操作所示，任何你想要添加到$watch监听上都应该这样写</p>
+
+		<h3>注意:</h3>
+		<p>当遇到 @时，是观察和属性，而不是绑定到父作用域</p>
+
+
+
+
+
+		<h2>表达式构造器： &</h2>
+		<p>使用 & 提供一个 表达式解析函数 ，他的上下文是父级作用域</p>
+		<div ng-app="PonyDeli" ng-controller="foodCtrl">
+			<p note="'You just bought some' + type"></p>
+		</div>
+		<script>
+			deli.directive("note", function() {
+				return {
+					template: '{{note()}}',
+					scope: {
+						note: '&'
+					}
+				};
+			});
+		</script>
+		<h3>代码拓展</h3>
+		<p>已经在link函数里扼要地实现一个相同的功能 ，这个例子中你看不到 & </p>
+		<p>比用 @ 要长一点点，因为他 是在属性里解析表达式的,也构建了一个可重用的功能</p>
+		<script>
+			deli.directive('note', function($parse) {
+				return {
+					template: '{{note()}}',
+					scope: {},
+					link: function(scope, element, attrs) {
+						var parentGet = $parse(attrs.note);
+
+						scope.note = function(locals) {
+							return parentGet(scope.$parse, locals);
+						};
+					}
+				};
+			});
+		</script>
+		<h3>代码描述</h3>
+		<p>表达式构造器会生成了一个依赖父级scope的方法</p>
+		<p>可以随时执行他，甚至可以监测到输出的变化</p>
+		<p>这个方法在父级scope应该作为只读的查询对待</p>
+		<h3>使用注意:</h3>
+		<p>当需要监听父级scope的变化时，这种情况下应该在表达式函数 note()上设置一个监听</p>
+
+		<h3>使用总结</h3>
+		<p>假设父级scope有一个方法用来更新一个 table，而你的本地 scope用来显示一个table的行</p>
+		<p>如果按钮在子scope里，那么通过使用 & 绑定和使用父级scope的刷新方法是很有用的</p>
+
+
+
+
+
+
+		<h2>双向数据绑定: = </h2>
+		<p>使用 = 设置 本地scope与父级scope间的双向数据绑定</p>
+		<div ng-app="PonyDeli" ng-controller="foodCtrl">
+			<button countable="clicks"></button>
+			<span>Got {{clicks}} clicks</span>
+		</div>
+		<script>
+			deli.directive('countable', function() {
+				return {
+					template: 
+						'' + 
+							'Click me {{remaining}} more times! ({{count}})' + 
+						'',
+					replace: true,
+					scope: {
+						count: '=countable'
+					},
+					link: function(scope, element, attrs) {
+						scope.remaining = 10;
+						element.bind('click', function() {
+							scope.remaining--;
+							scope.count++;
+							scope.$apply();
+						});
+					}
+				};
+			});
+		</script>
+		<h3>双向数据绑定比 & 或者 @ 更复杂一点</h3>
+		<script>
+			deli.directive('countable', function($parse) {
+				return {
+					template: '' + 'click me {{remaining}} more times! ({{count}})' + '',
+					replace: true,
+					scope: {},
+					link: function(scope, element, attrs) {
+						var compare;
+						var parentGet = $parse(attrs.countable);
+						if(parentGet.literal) {
+							compare = angular.equals;
+						}else{
+							compare = function(a, b) {
+								return a===b;
+							};
+						}
+						var parentSet = parentGet.assign;
+						var lastValue = scope.count = parentGet(scope.$parent);
+
+						scope.$watch(function() {
+							var value = parentGet(scope.$parent);
+							if(!compare(value, scope.count)) {
+								if(!compare(value, lastValue)) {
+									scope.count = value;
+								}else{
+									parentSet(scope.$parent, value = scope.count);
+								}
+							}
+							return lastValue = value;
+						}, null, parentSet.literal);
+
+						scope.remaining = 10;
+
+						element.bind('click', function() {
+							scope.remaining--;
+							scope.count++;
+							scope.$apply();
+						});
+					}
+				};
+			});
+		</script>
+
+		<h3>代码描述</h3>
+		<p>父级scope属性与本地scope保持同步</p>
+		<p>任何时候的本地scope的值发生改变，都会设置到父级scope上</p>
+		<p>同样，任何时候的父级scope值改变了，本地scope也能更新</p>
+		<h3>代码适用</h3>
+		<p>最直接有用的情形是，你有一个子scope用来展示父级scope的子模块。试想一个经典CRUD的table（增、删、改、查）</p>
+
+		<p>table作为一整个父级scope， 每个row 包含一个独立的指令用来双向绑定每行的数据模型</p>
+
+
+
+
+
+
+
+
+
+		<h2>敏锐的视图模板</h2>
+		<p>当指令包含小的可重用的 HTML 代码片段时，指令变得非常高效， 这是指令的真正力量来源</p>
+
+		<h3>template: 以纯文本提供视图模板</h3>
+		<script>
+			template: '<span ng-bind="message"></span>'
+		</script>
+
+		<h3>templateUrl: 允许提供一个链接作为 HTML模板</h3>
+		<script>
+			templateUrl: '/partials/message.html'
+		</script>
+
+		<h3>注意:</h3>
+		<p>用 templateUrl 将 HTML从你的 link函数中分开是很棒的</p>
+		<p>当指令第一次初始化时会发出一个AJAX请求</p>
+		<h3>解决方法</h3>
+		<p>构建任务提前填充到 $templateCache，就可以规避AJAX请求</p>
+		<h4><a href="https://github.com/ericclemmons/grunt-angular-templates">grunt-angular-templates</a></h4>
+		<script>
+			angular.module('app').run(["templateCache", function($templateCache) {
+				$templateCache.put("home.html", 
+					// contents for home.html ...
+				);
+				...
+				$templateCache.put('src/app/templates/button.html',
+					// contents for button.html
+				);
+			}]);
+		</script>
+		<h3>注意:</h3>
+		<p>当使用:ng-include, templateUrl, $routeProvider等初始化时不会有一次额外的AJAX请求</p>
+
+		<h3>使用经验</h3>
+		<p>可以用一个函数 function (tElement, tAttrs) 作为模板，但是这既不需要也不实用</p>
+
+
+
+
+
+
+
+		<h2>replace 声明模板应该插入到</h2>
+		<p>默认值是 false</p>
+		<ul>
+			<li>true-模板将替换当前的元素</li>
+			<li>false-模板将替换当前元素的内容</li>
+		</ul>
+		<p>如果 replace: false， 元素只是只是被追加</p>
+		<p>如果 replace: true， 将会有序的替换元素</p>
+		<p>指令应该与DOM保持尽可能少的干扰</p>
+		
+
+		<h3>指令被编译的结果是 pre-link 函数和 post-link函数</h3>
+		<script>
+			compile: function(templateElement, templateAttrs) {
+				return {
+					pre: function(scope, instanceElement, instanceAttrs, controller) {
+						// pre-linking function
+					},
+					post: function(scope, instanceElement, instanceAttrs, controller) {
+						// post-linking function
+					}
+				}
+			}
+
+
+
+			compile: function(templateElement, templateAttrs) {
+				return: function(scope, instanceElement, instanceAttrs, controller) {
+					// post-linking function
+				};
+			}
+
+
+
+			link: {
+				pre: function(scope, instanceElement, instanceAttrs, controller) {
+					// pre-linking function
+				};
+				post: function(scope, instanceElement, instanceAttrs, controller) {
+					// post-linking function
+				}
+			}
+
+
+
+			link: function(scope, instanceElement, instanceAttrs, controller) {
+				// post-linking function
+			}
+		</script>
+		<h3>代码描述</h3>	
+		<p>只是返回后的 post-link 函数</p>
+		<h3>注意:</h3>
+		<p>link函数中声明控制器或指令时不支持依赖注入</p>
+		<p>大多数情况下，AngularJS 的依赖注入在顶层API可用</p>
+		<p>但是大多数其他方法有封装好的静态参数列表，你不能改变</p>
+
+		<script>
+			deli.directive('food', function() {
+				return function(scope, element, attrs) {
+					// post-linking function
+				};
+			});
+		</script>
+
+		<h3>代码注意</h3>
+		<p>如果模板被克隆了，模板实例和link实例可能是不同的对象</p>
+		<p>出于这点，在compile函数里，除了 转换那些可以被安全操作的克隆DOM节点外，都是不安全的</p>
+		<p>特别是，DOM监听器注册应该在link函数中，而不是compile函数中</p>
+
+
+
+		<p>一个post-link 函数就够了，即使分配给定义对象的link函数</p>
+		<h3>compile函数使用注意</h3>
+		<p>如果一个 scope 一定要在 DOM链接之前填充好， 可以在pre-link 函数中操作</p>
+		<p>但是要在post-link 函数中绑定该功能，就像正常的操作</p>
+
+		<script>
+			link: {
+				pre: function(scope, element, attrs, controller) {
+					scope.requiredThing = [1, 2, 3];
+				},
+				post: function(scope, element, attrs, controller) {
+					scope.squeal = function() {
+						scope.$emit("squeal");
+					};
+				}
+			}
+		</script>
+
+
+
+
+
+
+
+
+		<h2>controller 指令的控制器实例</h2>
+		<p>指令可以创建 scope</p>
+		<p>该控制器在所有的同一 scope 的指令中共享，同时可以作为 link 函数的第四个参数被访问到</p>
+		<p>在同一层级的scope上，这些控制器是指令间的一个可用的通信信道，也可能包含指令自身</p>
+
+		<h3>controllerAs在模板中使用的 controller 别名</h3>
+		<p>使用控制器别名允许你在模板里面引用控制器，因为他在 scope 中是可见的</p>
+		<h3>require没有链接其他的指令到某个元素上会抛出一个错误</h3>
+
+
+		<h3> require 文档</h3>
+		<pre>
+			<h2>引入其他指令并注入到控制器中，并作为当前指令的链接函数的第四个参数</h2>
+			<p>require使用字符串或数组元素来传入指令</p>
+			<p>如果是数组，注入的参数是一个相应顺序的数组</p>
+			<p>如果这样的指令没有被找到，或者该指令没有控制器， 就会报错</p>
+		</pre>
+		<h4>require参数可以加一些前缀</h4>
+		<ul>
+			<li>
+				<p>没有前缀</p>
+				<span>如果没有前缀，指令将会在自身所提供的控制器中进行查找，如果没有找到任何控制器就抛出一个错误</span>
+			</li>
+			<li>
+				<p>?</p>
+				<span>如果在当前指令中没有找到所需要的控制器，会将null作为传给link函数的第四个参数</span>
+			</li>
+			<li>
+				<p>^</p>
+				<span>如果添加了^前缀，指令会在上游的指令链中查找require参数所指定的控制器</span>
+			</li>
+			<li>
+				<p>?^</p>
+				<span>可选择地加载需要的指令并在父指令链中进行查找</span>
+			</li>
+		</ul>
+
+
+		<h3>总结</h3>
+		<p>如果指令需要依赖其他的指令时，require 很有用</p>
+
+		<h3>举个栗子</h3>
+		<script>
+			angular.module('PonyDeli').directive('needsModel', function() {
+				return {
+					require: 'ngModel',
+				}
+			});
+		</script>
+		<div needs-model ng-model="foo"></div>
+		<h3>代码描述</h3>
+		<p>定义一个 needs-model 指令， 如果他没有找到依赖的 ng-model 就会抛出一个错误 </p>
+		<p>因为 needs-model指令使用了那个指令，或者某种程度上取决于他在元素上可用</p>
+
+
+
+
+
+
+		<h2>priority 定义了指令执行的顺序</h2>
+		<p>当一个DOM元素上定义了多个指令时，有时指定指令的执行顺序很有必要</p>
+		<p>指令在未调用compile函数前根据priority排序</p>
+		<p>priority 被定义为一个数字</p>
+		<p>拥有大数字的priority的指令先执行</p>
+
+		<h3>注意:</h3>
+		<p>pre-link函数也按照priority顺序执行，但是post-link 函数按照相反的顺序执行</p>
+
+		<h3>相同优先级的指令顺序是不确定的。priority 的默认值是 0</h3>
+
+
+
+
+
+		<h2>terminal 防止指令进一步执行</h2>
+		<p>如果terminal设置为 true， 那么当前优先级的指令就是当前元素的指令集的最后一个可执行</p>
+		<p>任何比当前优先级高的指令都会按照顺序执行， 相同优先级的顺序是不确定的</p>
+
+
+
+
+
+
+
+		<h2>transclude 对元素内容的编译和指令中使其可用</h2>
+		<p>这个属性允许两个值。你可以设置为 true 允许嵌套</p>
+		<p>也可以设置为 'element'，这种情况下整个元素，包括一些低优先定义的级指令， 都被嵌入</p>
+
+		<p>嵌套允许指令的使用自定义的 HTML 片段，用 ng-transclude 指令嵌入到指令的一部分</p>
+
+		<script>
+			angular.module("PonyDeli").directive("transclusing", function() {
+				return {
+					restrict: 'E',
+					template: 
+						'<div ng-hide="hidden" class="transcluded">' + 
+							'<span ng-transclude></span>' + 
+							'<span ng-click="hidden=true" class="close"></span>' + \
+						'</div>',
+					transclude: true
+				};
+			});
+		</script>
+		<div ng-app="PonyDeli">
+			<transclusing>
+				<span>The plot thickens!</span>
+			</transclusing>
+		</div>
+
+		<h3>代码描述</h3>
+		<p>指令里获取嵌入的内容总是从父级内容响应</p>
+		<p>即使在指令中被替换，即使指令的呈现出一个独立的scope</p>
+		<p>嵌入内容定义在销毁的内容，他属于父级scope，而不是指令的scope</p>.
+		<p>指令依然绑定的是本地scope</p>
+
+		<script>
+			var deli = angular.module('PonyDeli', []);
+
+			deli.controller('fooCtrl', function($scope) {
+				$scope.message = "The plot thickens!";
+			});
+
+			deli.directive("transclusing", function() {
+				return {
+					restrict: 'E',
+					template:
+						'<div ng-hide="hidden" class="transcluded">' + 
+							'<span ng-transclude></span>' +
+							'<span ng-click="hidden=true" class="close" ng-bind="close"></span>' +
+						'</div>',
+					transcluded: true,
+					scope: {},
+					link: function(scope) {
+						scope.close = "Close";
+					}
+				};
+			});
+		</script>
+		<div ng-app="PonyDeli" ng-controller="foodCtrl">
+			<transclusion>
+				<span ng-bind="message"></span>
+			</transclusion>
+		</div>
+	</body>
+</html>
