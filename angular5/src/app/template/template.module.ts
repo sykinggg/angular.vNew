@@ -4,7 +4,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {TemplateRoutesModule} from "./template.routes.module";
 import {TemplateUiModule} from "./template.ui.module";
-import {NgZorroAntdModule} from "ng-zorro-antd";
 
 import {TemplateComponent} from "./template/template.component";
 import {AllTemplateComponent} from "./template.component";
@@ -30,7 +29,6 @@ import { PipeHttpPipe } from '../pipe/pipe-http/pipe-http.pipe';
         CommonModule,
         TemplateRoutesModule,
         TemplateUiModule,
-        NgZorroAntdModule.forRoot(),
     ],
     declarations: [
         TemplateComponent,

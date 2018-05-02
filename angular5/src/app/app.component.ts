@@ -17,11 +17,13 @@ export class AppComponent {
 
     routerLinkArr: Array<any> = [
         { routerName: 'about', routerLink: 'about' },
+        { routerName: 'module', routerLink: 'module' },
         { routerName: 'map', routerLink: 'map' },
         // { routerName: 'http', routerLink: 'http' },
         { routerName: 'Alltemplate', routerLink: 'Alltemplate' },
         { routerName: 'form', routerLink: 'form' },
-        { routerName: 'observable', routerLink: 'observable' }
+        { routerName: 'observable', routerLink: 'observable' },
+        { routerName: 'cssSummary', routerLink: 'cssSummary' }
     ]
 
     constructor(private router: Router,

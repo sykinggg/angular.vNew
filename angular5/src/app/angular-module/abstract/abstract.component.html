@@ -1,0 +1,101 @@
+<nz-card class="m-t-20" nzTitle="JavaScript 模块 vs. NgModule">
+	<p class="f-c-999">JavaScript 和 Angular 都使用模块来组织代码，虽然它们的组织形式不同，但 Angular 的应用会同时依赖两者</p>
+	<h6>JavaScript 模块</h6>
+	<p class="f-c-999">模块是内含 JavaScript 代码的独立文件</p>
+	<p>使用：export && import 用来防止全局变量引起的意外</p>
+	<h6>NgModules</h6>
+	<p class="f-c-999">NgModule 是一些带有 @NgModule 装饰器的类</p>
+	<p>imports 数组中的这些模块与 JavaScript 模块不同，它们都是 NgModule 而不是常规的 JavaScript 模块</p>
+	<h6>NgModule和JavaScript模块不同点</h6>
+	<ul>
+		<li>Angular 模块只绑定了可声明的类，这些可声明的类只是供Angular 编译器用的</li>
+		<li>与 JavaScript 类把它所有的成员类都放在一个巨型文件中不同，你要把该模块的类列在它的 @NgModule.declarations 列表中</li>
+		<li>Angular 模块只能导出可声明的类。这可能是它自己拥有的也可能是从其它模块中导入的。它不会声明或导出任何其它类型的类</li>
+		<li>与 JavaScript 模块不同，NgModule 可以通过把服务提供商加到 @NgModule.providers 列表中，来用服务扩展整个应用</li>
+	</ul>
+</nz-card>
+
+<nz-card class="m-t-20" nzTitle="angular 模块启动">
+	<p class="f-c-999"></p>
+	<h5>基本结构</h5>
+	<p>@NgModule 装饰器表明 AppModule 是一个 NgModule 类</p>
+	<ul>
+		<li>declarations —— 该应用所拥有的组件</li>
+		<li>imports —— 导入 BrowserModule 以获取浏览器特有的服务，比如 DOM 渲染、无害化处理和位置（location）</li>
+		<li>providers —— 各种服务提供商</li>
+		<li>bootstrap —— 根组件，Angular 创建它并插入 index.html 宿主页面</li>
+	</ul>
+	<h6>declarations 数组</h6>
+	<ul>
+		<li>每个组件都应该（且只能）声明（declare）在一个 NgModule 类</li>
+		<li>
+			<p>declarations 数组只能接受可声明对象</p>
+			<p class="f-c-999">可声明对象包括组件、指令和管道</p>
+		</li>
+		<li>一个模块的所有可声明对象都必须放在 declarations 数组中</li>
+	</ul>
+	<h6>使用 declarations 数组声明指令</h6>
+	<ul>
+		<li>从编写它的文件中导出它</li>
+		<li>导入到适当的模块中</li>
+		<li>在 @NgModule 的 declarations 数组中声明</li>
+	</ul>
+	<h6>imports 数组</h6>
+	<p class="f-c-999">模块的 imports 数组只会出现在 @NgModule 元数据对象中</p>
+	<p>组件的模板中可以引用在当前模块中声明的或从其它模块中导入的组件、指令、管道</p>
+	<h6>bootstrap 数组</h6>
+	<p class="f-c-999">通过引导根模块启动</p>
+</nz-card>
+
+<nz-card class="m-t-20" nzTitle="Angular 模块化">
+	<p class="f-c-999">Angular 模块把组件、指令和管道打包成内聚的功能块，每个模块聚焦于一个特性区域、业务领域、工作流或通用工具</p>
+	<h6>NgModule的元数据</h6>
+	<ul>
+		<li>声明某些组件、指令和管道属于这个模块</li>
+		<li>公开其中的部分组件、指令和管道，以便其它模块中的组件模板中可以使用它们</li>
+		<li>导入其它带有组件、指令和管道的模块，这些模块中的元件都是本模块所需的</li>
+		<li>提供一些供应用中的其它组件使用的服务</li>
+	</ul>
+</nz-card>
+
+<nz-card class="m-t-20" nzTitle="常用模块">
+	<p class="f-c-999">自带模块</p>
+	<table class="table table-hover table-bordered">
+		<tr>
+			<th>NgModule</th>
+			<th>引用路径</th>
+			<th>使用</th>
+		</tr>
+		<tr>
+			<td>BrowserModule</td>
+			<td>@angular/platform-browser</td>
+			<td>在浏览器中运行应用</td>
+		</tr>
+		<tr>
+			<td>CommonModule</td>
+			<td>@angular/common</td>
+			<td>使用NgIf或NgFor</td>
+		</tr>
+		<tr>
+			<td>FormModule</td>
+			<td>@angular/forms</td>
+			<td>模板驱动表单（包含 NgModel ）</td>
+		</tr>
+		<tr>
+			<td>ReactiveFormModule</td>
+			<td>@angular/forms</td>
+			<td>响应式表单</td>
+		</tr>
+		<tr>
+			<td>RouterModule</td>
+			<td>@angular/router</td>
+			<td>要使用路由功能，RouterLink,.forRoot()、 .forChild() 时</td>
+		</tr>
+		<tr>
+			<td>HttpClientModule</td>
+			<td>@angular/common/http</td>
+			<td>和服务器对话时</td>
+		</tr>
+	</table>
+	<h6 class="f-c-999">注意：BrowserModule模块最先被导入在跟模块中</h6>
+</nz-card>

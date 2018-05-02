@@ -17,6 +17,10 @@ const appRoutes: Routes = [
         loadChildren: './about/about.module#AboutModule'
     },
     {
+        path: 'module',
+        loadChildren: './angular-module/angular-module.module#AngularModuleModule'
+    },
+    {
         path: 'map',
         loadChildren: './map/map.module#MapModule',
     },
@@ -35,6 +39,10 @@ const appRoutes: Routes = [
     {
         path: 'observable',
         loadChildren: './observable/observable.module#ObservableModule'
+    },
+    {
+        path: 'cssSummary',
+        loadChildren: './css-summary/css-summary.module#CssSummaryModule'
     }
 ];
 

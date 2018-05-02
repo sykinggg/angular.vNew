@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { TemplateComponent } from './template/template.component';
 import { AllTemplateComponent } from './template.component';
@@ -49,10 +50,12 @@ const templateRoutes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(templateRoutes)
+        RouterModule.forChild(templateRoutes),
+        NgZorroAntdModule.forRoot()
     ],
     exports: [
-        RouterModule
+        RouterModule,
+        NgZorroAntdModule
     ]
 })
 

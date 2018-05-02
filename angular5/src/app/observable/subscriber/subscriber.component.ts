@@ -254,21 +254,21 @@ export class SubscriberComponent implements OnInit {
     /**
      * demo 10 defer操作符
      * */
-    demo10Data: any;
-    subscribe10 = () => {
-        function doHeavyJob() {
-            setTimeout(function() {console.log('doing something') }, 2000);
-            return true;
-        }
+    // demo10Data: any;
+    // subscribe10 = () => {
+    //     function doHeavyJob() {
+    //         setTimeout(function() {console.log('doing something') }, 2000);
+    //         return true;
+    //     }
         
-        Observable.defer(() => {
-            let result = doHeavyJob();
-            return result ? 'success' : 'failed';
-        })
-        .subscribe(x => {
-            console.log(x)
-        });
-    };
+    //     Observable.defer(() => {
+    //         let result = doHeavyJob();
+    //         return result ? 'success' : 'failed';
+    //     })
+    //     .subscribe(x => {
+    //         console.log(x)
+    //     });
+    // };
     constructor() {
     }
   
