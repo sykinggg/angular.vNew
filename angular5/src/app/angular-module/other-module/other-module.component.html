@@ -38,16 +38,16 @@ constructor (@Optional() @SkipSelf() parentModule: CoreModule) &#123;
 		<li>该构造函数检测到存在 parentModule，于是抛出一个错误</li>
 	</ul>
 </nz-card>
-<nz-card nzTitle="惰性加载的特性模块">
+<nz-card class="m-t-20" nzTitle="惰性加载的特性模块">
 	<p class="f-c-999">就是这个项目中的根据模块进行异步加载将项目中的组件以树杈的方式进行分割管理</p>
 
 	<h6>forRoot() 与 forChild()</h6>
 	<ul>
-		<li>RouterModule.forRoot(routes)——跟路由</li>
+		<li>RouterModule.forRoot(routes)——根路由</li>
 		<li>RouterModule.forChild(routes)——子路由</li>
 	</ul>
 </nz-card>
-<nz-card nzTitle="共享Angular模块">
+<nz-card class="m-t-20" nzTitle="共享Angular模块">
 	<p class="f-c-999">将angular模块进行统一注入并导出</p>
 	<ul>
 		<li>导入了 CommonModule，因为该模块需要一些常用指令</li>

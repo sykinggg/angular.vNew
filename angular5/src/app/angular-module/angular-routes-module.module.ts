@@ -6,6 +6,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { AngularModuleComponent } from './angular-module.component';
 import { AbstractComponent } from './abstract/abstract.component';
 import { OtherModuleComponent } from './other-module/other-module.component';
+import { DependencyComponent } from './dependency/dependency.component';
 
 const moduleRoutes = [
 	{
@@ -24,6 +25,10 @@ const moduleRoutes = [
 			{
 				path: 'other',
 				component: OtherModuleComponent
+			},
+			{
+				path: 'dependency',
+				component: DependencyComponent
 			}
 		]
 	}

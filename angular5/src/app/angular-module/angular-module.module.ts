@@ -5,6 +5,7 @@ import { AngularModuleComponent } from './angular-module.component';
 import { OtherModuleComponent } from './other-module/other-module.component';
 import { AngularRoutesModuleModule } from './angular-routes-module.module';
 import { AppUIModule } from '../app.ui.module';
+import { DependencyComponent } from './dependency/dependency.component';
 
 @NgModule({
  	imports: [
@@ -15,7 +16,8 @@ import { AppUIModule } from '../app.ui.module';
   	declarations: [
 		AbstractComponent, 
 		AngularModuleComponent,
-		OtherModuleComponent
+		OtherModuleComponent,
+		DependencyComponent,
 	]
 })
 export class AngularModuleModule { }
