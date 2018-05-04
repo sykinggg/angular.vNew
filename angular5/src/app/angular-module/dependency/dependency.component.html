@@ -15,7 +15,7 @@
 		<li>直接改变常量数据则会使controller和filter做出相应的变化</li>
 	</ul>
 </nz-card>
-<nz-caed class="m-t-20" nzTitle="Angular 依赖注入">
+<nz-card class="m-t-20" nzTitle="Angular 依赖注入">
 	<p class="f-c-999">依然是使用模块化进行注入器的树形管理</p>
 	<h6>@NgModule && @Component</h6>
 	<ul>
@@ -70,7 +70,7 @@ let heroServiceFactory = (logger: Logger, userService: UserService) => &#123;
 };
 工厂提供商
 export let heroServiceProvider =
-{
+&#123;
 	provide: HeroService,	//根据deps中的服务集合方法进行
     useFactory: heroServiceFactory,		//调用工厂方法
     deps: [Logger, UserService]		//优先调用服务中的方法对provide中的方法进行更改和初始化
@@ -97,12 +97,44 @@ export let heroServiceProvider =
 	</ul>
 	<h5>非类依赖</h5>
 	<p class="f-c-999">注意无法使用TypeScript来定义非类的接口（因为不支持）</p>
-	<h6>解决方法1（InjectionToken 值）</h6>
-	<p class="f-c-999">为非类依赖定义和使用InjectionToken作为提供商令牌</p>
-	<pre>
+	<ul>
+		<li>
+			<h6>解决方法（InjectionToken 值）</h6>
+			<p class="f-c-999">为非类依赖定义和使用InjectionToken作为提供商令牌</p>
+			<pre>
 使用依赖注入加入InjectionToken
 import &#123; InjectionToken } from '@angular/core';
 实例化常量值
-export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+export const APP_CONFIG = new InjectionToken&#60;AppConfig>('app.config');
+使用InjectionToken 对象注册依赖的提供商(Component|Module)
+providers: [&#123; provide: APP_CONFIG, useValue: HERO_DI_CONFIG }]
+在component使用@Inject装饰器注入在构造函数中
+constructor(@Inject(APP_CONFIG) config: AppConfig) &#123;
+	this.title = config.title;
+}
+			</pre>
+		</li>
+	</ul>
+	<h6>可选依赖</h6>
+	<p class="f-c-999">构造函数的参数标记为 @Optional()，告诉 Angular 该依赖是可选的</p>
+	<pre>
+引用声明
+import &#123; Optional } from '@angular/core';
+使用装饰器
+constructor(@Optional() private logger: Logger) &#123;
+	if(this.Logger) &#123;
+		this.logger.log(some_message);
+	}
+}
 	</pre>
-</nz-caed>
+	<p>如果其它的代码没有注册一个 logger，注入器会设置该 logger 的值为空 null</p>
+	<h6>直接使用注入器(Injector)</h6>
+	<p class="f-c-999">Injector 本身是可注入的服务</p>
+	<p>类似于js原型继承</p>
+	<ul>
+		<li>组件在 ngOnInit() 中向注入的注入器请求它所需的服务</li>
+		<li>注意，这些服务本身没有注入到组件，它们是通过调用 injector.get() 获得的</li>
+		<li>get() 方法如果不能解析所请求的服务，会抛出异常</li>
+		<li>调用 get() 时，还可以使用第二个参数，一旦获取的服务没有在当前或任何祖先注入器中注册过， 就把它作为返回值</li>
+	</ul>
+</nz-card>

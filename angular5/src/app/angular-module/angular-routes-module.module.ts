@@ -7,6 +7,8 @@ import { AngularModuleComponent } from './angular-module.component';
 import { AbstractComponent } from './abstract/abstract.component';
 import { OtherModuleComponent } from './other-module/other-module.component';
 import { DependencyComponent } from './dependency/dependency.component';
+import { DiskillComponent } from './diskill/diskill.component';
+import { DecoratorComponent } from './decorator/decorator.component';
 
 const moduleRoutes = [
 	{
@@ -29,6 +31,14 @@ const moduleRoutes = [
 			{
 				path: 'dependency',
 				component: DependencyComponent
+			},
+			{
+				path: 'diskill',
+				component: DiskillComponent
+			},
+			{
+				path: 'decorator',
+				component: DecoratorComponent
 			}
 		]
 	}

@@ -6,6 +6,8 @@ import { OtherModuleComponent } from './other-module/other-module.component';
 import { AngularRoutesModuleModule } from './angular-routes-module.module';
 import { AppUIModule } from '../app.ui.module';
 import { DependencyComponent } from './dependency/dependency.component';
+import { DiskillComponent } from './diskill/diskill.component';
+import { DecoratorComponent } from './decorator/decorator.component';
 
 @NgModule({
  	imports: [
@@ -18,6 +20,8 @@ import { DependencyComponent } from './dependency/dependency.component';
 		AngularModuleComponent,
 		OtherModuleComponent,
 		DependencyComponent,
+		DiskillComponent,
+		DecoratorComponent,
 	]
 })
 export class AngularModuleModule { }

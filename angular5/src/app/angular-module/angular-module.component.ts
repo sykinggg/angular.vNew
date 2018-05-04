@@ -10,7 +10,9 @@ export class AngularModuleComponent implements OnInit {
 	private routerLinkArr: Array<any> = [
         { routerName: 'abstract', routerLink: 'abstract' },
 		{ routerName: 'other', routerLink: 'other' },
-		{ routerName: 'dependency', routerLink: 'dependency' }
+		{ routerName: 'dependency', routerLink: 'dependency' },
+		{ routerName: 'diskill', routerLink: 'diskill' },
+		{ routerName: 'decorator', routerLink: 'decorator' }
     ]
 
   	constructor() { }
