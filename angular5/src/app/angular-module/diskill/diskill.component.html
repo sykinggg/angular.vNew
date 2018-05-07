@@ -50,6 +50,7 @@ constructor(private logger: xxxx) &#123; }
 		</li>
 	</ul>
 
+
 	<h6>外部模块配置</h6>
 	<p class="f-c-999">在模块上声明在模块之下的组件中使用</p>
 	<pre>
@@ -71,10 +72,11 @@ constructor(logger: LoggerService, public userContext: UserContextService) &#123
 重新创建第三方服务
 @Injectable()
 export class UserContextService &#123;
-	constructor(private userService: UserService, private loggerService: LoggerService) {
+	constructor(private userService: UserService, private loggerService: LoggerService) &#123;
 	}
 }
 	</pre>
+
 
 	<h6>@Injectable 的使用注意</h6>
 	<p class="f-c-999">@Inject 不支持服务的依赖所以默认使用 @Injectable</p>
@@ -114,9 +116,9 @@ private loggerService: LoggerService
 	<p class="f-c-999">使用ElementRef在constructor中取得DOM元素</p>
 	<pre>
 引入依赖
-import { ElementRef } from '@angular/core';
+import &#123; ElementRef } from '@angular/core';
 初始化
-constructor(el: ElementRef) {
+constructor(el: ElementRef) &#123;
 	nativeElement 属性把该 DOM 元素暴露出来
 	this.el = el.nativeElement;
 }
@@ -124,7 +126,7 @@ constructor(el: ElementRef) {
 	</pre>
 </nz-card>
 
-<nz-card nzTitle="依赖注入提供商（重要）">
+<nz-card class="m-t-20" nzTitle="依赖注入提供商（重要）">
 	<pre>
 ...
 providers: [
@@ -137,6 +139,7 @@ providers: [
 ]
 ...
 	</pre>
+
 	<h4>provide 对象</h4>
 	<ul class="f-c-999">
 		<li>provide 对象需要一个令牌和一个定义对象</li>
@@ -199,7 +202,6 @@ Angular 通过使用 deps 数组中的两个令牌，来识别注入的值，用
 这两个 deps 值是供注入器使用的令牌，用来提供工厂函数的依赖
 	</pre>
 
-
 	<h5>类-接口</h5>
 	<p class="f-c-999">就是使用类来定义一个接口（JavaScript不支持直接声明接口）</p>
 	<pre>
@@ -222,7 +224,6 @@ exports("MinimalLogger", MinimalLogger);
 	</pre>
 
 
-
 	<h5>InjectableToken 值</h5>
 	<p class="f-c-999">依赖对象可以是一个任意（类|非类）</p>
 	<h6>使用套路</h6>
@@ -232,6 +233,6 @@ exports("MinimalLogger", MinimalLogger);
 对于使用injectableToken的方法的代理名称的初始化
 import &#123; InjectionToken } from '@angular/core';
 
-export const TITLE = new InjectionToken&#60;string>('title');
+export const TITLE = new InjectionToken &#60; string > ('title');
 	</pre>
 </nz-card>
