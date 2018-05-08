@@ -43,6 +43,10 @@ const appRoutes: Routes = [
     {
         path: 'cssSummary',
         loadChildren: './css-summary/css-summary.module#CssSummaryModule'
+    },
+    {
+        path: 'commonDirective',
+        loadChildren: './common-directive/common-directive.module#CommonDirectiveModule'
     }
 ];
 

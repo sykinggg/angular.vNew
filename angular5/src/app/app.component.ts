@@ -23,7 +23,8 @@ export class AppComponent {
         { routerName: 'Alltemplate', routerLink: 'Alltemplate' },
         { routerName: 'form', routerLink: 'form' },
         { routerName: 'observable', routerLink: 'observable' },
-        { routerName: 'cssSummary', routerLink: 'cssSummary' }
+        { routerName: 'cssSummary', routerLink: 'cssSummary' },
+        { routerName: 'commonDirective', routerLink: 'commonDirective' },
     ]
 
     constructor(private router: Router,
