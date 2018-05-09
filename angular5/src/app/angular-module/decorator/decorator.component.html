@@ -25,6 +25,63 @@
 		<li>
 			<p>animations(用过)</p>
 			<p class="f-c-999">组件的动画列表</p>
+			<h6>详细描述:</h6>
+			<ul class="f-c-999">
+				<li>类似动画的DSL在组件上定义的</li>
+				<li>动画通过监听模板内某个元素上发生的状态变化来工作</li>
+				<li>通过编程DSL，动画不仅限于DOM特定的环境（Angular也可以在后台执行优化，使动画更加高效。）</li>
+				<li>
+					<p>要使动画可供使用，动画状态更改将放置在动画注释元数据内部的动画触发器中</p>
+					<p class="f-c-999">在触发器内，可以放置状态和转换条目</p>
+				</li>
+			</ul>
+			<pre>
+@Component(&#123;
+	selector: 'animation-cmp',
+	templateUrl: 'animation-cmp.html',
+	animations: [
+		// 动画触发器包含状态更改动画
+		trigger('myTriggerName', [
+			// 为`on`和`off`定义的样式，声明的状态是持久的
+			state('on', style(&#123; opacity: 1 }),
+			state('off', style(&#123; opacity: 0 }),
+		
+			// 当它开始时 这种状态改变跳转是真实的
+			transition('on => off', [
+				animate("1s")
+			])
+		])
+	]
+})
+			</pre>
+			<h6>代码描述:</h6>
+			<p class="f-c-999">一组相关的动画状态都包含在动画触发器中</p>
+			<ul class="f-c-999">
+				<li>当触发器被创建时，它可以通过由@符号前缀的属性绑定到组件模板中的一个元素上</li>
+				<li>后跟一个触发器名称和一个用于确定该触发器的状态值的表达式</li>
+			</ul>
+			<pre>
+<!-- animation-cmp.html -->
+&#60;div @myTriggerName="expression">...&#60;/div>
+			</pre>
+			<h6>异步使用值的处理</h6>
+			<p class="f-c-999">对于要执行的状态更改，表达式值必须将其现有值的值更改为我们设置动画进行动画处理的某个值</p>
+			<h5>DSL动画功能(从animation中引申出来)</h5>
+			<p class="f-c-999">共8中内置方法</p>
+			<ul>
+				<li>
+					<h6>trigger()</h6>
+					<p class="f-c-999">已经弃用到时候百度吧</p>
+				</li>
+				<li>
+					<h6>state()</h6>
+					<p class="f-c-999">已经弃用到时候百度吧</p>
+				</li>
+				<li>
+					<h6>transition()</h6>
+					<p class="f-c-999">已经弃用到时候百度吧</p>
+				</li>
+			</ul>
 		</li>
 		<li>
 			<p>changeDetection</p>
@@ -73,6 +130,20 @@ enum ChangeDetectionStrategy &#123;
 		<li>
 			<p>moduleId</p>
 			<p class="f-c-999">定义组件的文件的ES / CommonJS模块ID</p>
+			<h6>具体描述:</h6>
+			<p class="f-c-999">
+				包含组件的模块的模块ID
+				需要能够解析模板和样式的相关URL
+				在CommonJS中，这可以始终设置为module.id，类似地，SystemJS在每个模块中公开__moduleName变量
+			</p>
+			<pre>
+@Directive(&#123;
+	selector: 'someDir',
+	moduleId: module.id
+})
+class SomeDir &#123;
+}
+			</pre>
 		</li>
 		<li>
 			<p>outputs</p>
@@ -101,14 +172,51 @@ enum ChangeDetectionStrategy &#123;
 		<li>
 			<p>template</p>
 			<p class="f-c-999">内联定义的视图模板</p>
+			<h6>详细描述:</h6>
+			<p class="f-c-999">
+				每个组件只能定义一个templateUrl或template
+			</p>
 		</li>
 		<li>
 			<p>templateUrl</p>
 			<p class="f-c-999">url到包含视图模板的外部文件</p>
+			<h6>详细描述:</h6>
+			<p class="f-c-999">
+				每个组件只能定义一个templateUrl或template
+			</p>
 		</li>
 		<li>
 			<p>viewProviders</p>
 			<p class="f-c-999">组件及其视图子项可用的提供者列表</p>
+			<h6>一个可以注入类的栗子</h6>
+			<pre>
+class Greeter &#123;
+	greet(name:string) &#123;
+		return 'Hello ' + name + '!';
+	}
+}
+
+@Directive(&#123;
+	selector: 'needs-greeter'
+})
+class NeedsGreeter &#123;
+	greeter:Greeter;
+
+	constructor(greeter:Greeter) &#123;
+		this.greeter = greeter;
+	}
+}
+
+@Component(&#123;
+	selector: 'greet',
+	viewProviders: [
+		Greeter
+	],
+	template: `&#60;needs-greeter>&#60;/needs-greeter>`
+})
+class HelloWorld &#123;
+}
+			</pre>
 			<h6>参数格式:Provider[]</h6>
 			<p class="f-c-999">type Provider = TypeProvider | ValueProvider | ClassProvider | ExistingProvider | FactoryProvider | any[];</p>
 			<ul class="f-c-999">
@@ -292,7 +400,67 @@ expect(injector.get(FormalGreeting)).toBe(injector.get(Greeting));
 					</pre>
 				</li>
 				<li>
-					<p></p>
+					<p>FactoryProvider</p>
+					<p class="f-c-999">通过调用useFactory函数来配置注入器以返回值</p>
+					<pre>
+接口:
+interface FactoryProvider extends FactorySansProvider &#123;
+	provide: any,
+	multi?: boolean
+}
+
+provide: 
+一个注射令牌(通常是Type或InjectionToken的实例)
+
+nulti:
+如果为true，那么注入器将返回一个实例数组
+允许跨多个文件传播的多个提供程序将配置信息提供给一个通用token很有用
+
+const locale = new InjectionToken < string[] > ('locale');
+const injector = Injector.create([
+  	&#123;provide: locale, multi: true, useValue: 'en'},
+  	&#123;provide: locale, multi: true, useValue: 'sk'},
+]);
+
+const locales: string[] = injector.get(locale);
+expect(locales).toEqual(['en', 'sk']);
+
+使用:
+function serviceFactory() &#123;}
+
+const provider: FactoryProvider = &#123;provide: 'someToken', useFactory: serviceFactory, deps: []};
+
+实栗:
+const Location = new InjectionToken('location');
+const Hash = new InjectionToken('hash');
+
+const injector = Injector.create([
+	&#123;
+		provide: Location, 
+		useValue: 'http://angular.io/#someLocation'
+	},
+	&#123;
+		provide: Hash,
+		useFactory: (location: string) => location.split('#')[1],
+		deps: [Location]
+	}
+]);
+
+expect(injector.get(Hash)).toEqual('someLocation');
+
+加入依赖关系
+const Location = new InjectionToken('location');
+const Hash = new InjectionToken('hash');
+
+const injector = Injector.create([&#123;
+  provide: Hash,
+  useFactory: (location: string) => `Hash for: $&#123;location}`,
+  // use a nested array to define metadata for dependencies.
+  deps: [[new Optional(), Location]]
+}]);
+
+expect(injector.get(Hash)).toEqual('Hash for: null');
+					</pre>
 				</li>
 			</ul>
 		</li>
