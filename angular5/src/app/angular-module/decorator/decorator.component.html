@@ -67,11 +67,83 @@
 			<h6>异步使用值的处理</h6>
 			<p class="f-c-999">对于要执行的状态更改，表达式值必须将其现有值的值更改为我们设置动画进行动画处理的某个值</p>
 			<h5>DSL动画功能(从animation中引申出来)</h5>
-			<p class="f-c-999">共8中内置方法</p>
+			<p class="f-c-999">共8中内置方法(@angular/animations)</p>
 			<ul>
 				<li>
 					<h6>trigger()</h6>
-					<p class="f-c-999">已经弃用到时候百度吧</p>
+					<p class="f-c-999">状态和转换声明组成的数组</p>
+					<pre>
+使用
+触发器将根据提供的名称值创建动画触发器引用
+@Component(&#123;
+	selector: 'component',
+	templateUrl: 'component.tpl.html',
+	animations: [
+		trigger('animation1', [
+			state(...),
+			state(...),
+			transition(...),
+			transition(...)
+		])
+	]
+})
+class Component &#123;
+	status = 'something';
+}
+
+somewhere inside of component.tpl.html
+&#60;div [@myAnimationTrigger]="status">...&#60;/div>
+					</pre>
+					<h6>是否禁用动画</h6>
+					<p class="f-c-999">@ .disabled使用属性绑定来控制这个元素及其子元素的动画</p>
+					<pre>
+如果@.disabled属性绑定的值为true则会阻止所有动画(该元素的以及该元素内的)
+@Component(&#123;
+	selector: 'my-component',
+	template: `
+	  	&#60;div [@.disabled]="isDisabled">
+		  	&#60;div [@childAnimation]="exp">&#60;/div>
+	  	&#60;/div>
+	`,
+	animations: [
+	  	trigger("childAnimation", [
+			// ...
+	  	])
+	]
+})
+class MyComponent &#123;
+	isDisabled = true;
+	exp = '...';
+}
+					</pre>
+					<h6>组件中禁用动画</h6>
+					<p class="f-c-999">
+						主要是区分两个概念主要组件以及副组件,
+						影响就是禁用动画的生效范围,
+						主组件就是枝干可以被别的枝干引用就类似于树,
+						生效范围就是依赖注入的生效的范围.
+					</p>
+					<pre>
+import &#123;Component, HostBinding} from '@angular/core';
+
+@Component(&#123;
+	selector: 'app-component',
+	templateUrl: 'app.component.html',
+})
+class AppComponent &#123;
+	@HostBinding('@.disabled')
+	public animationsDisabled = true;
+}
+					</pre>
+					<h6>动画查询</h6>
+					<p class="f-c-999">禁用不是消失动画还在可以使用query()和animateChild()来查询使用</p>
+					<h6>检测动画被禁用</h6>
+					<p class="f-c-999">
+						如某个区域禁用了其动画，
+						则动画触发器回调仍然会像正常一样触发（仅适用于零秒）,
+						当触发器回调触发时，它将提供一个AnimationEvent实例,
+						如果动画被禁用，则事件的.disabled标志将为true
+					</p>
 				</li>
 				<li>
 					<h6>state()</h6>
