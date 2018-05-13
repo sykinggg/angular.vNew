@@ -45,6 +45,10 @@ const appRoutes: Routes = [
         loadChildren: './css-summary/css-summary.module#CssSummaryModule'
     },
     {
+        path: 'jsSummary',
+        loadChildren: './js-summary/js-summary.module#JsSummaryModule'
+    },
+    {
         path: 'commonDirective',
         loadChildren: './common-directive/common-directive.module#CommonDirectiveModule'
     }

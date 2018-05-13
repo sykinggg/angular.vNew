@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+
 import { AbstractComponent } from './abstract/abstract.component';
 import { AngularModuleComponent } from './angular-module.component';
 import { OtherModuleComponent } from './other-module/other-module.component';
@@ -11,6 +15,9 @@ import { DecoratorComponent } from './decorator/decorator.component';
 
 @NgModule({
  	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		NgZorroAntdModule.forRoot(),
 		CommonModule,
 		AngularRoutesModuleModule,
 		AppUIModule

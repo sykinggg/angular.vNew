@@ -24,6 +24,7 @@ export class AppComponent {
         { routerName: 'form', routerLink: 'form' },
         { routerName: 'observable', routerLink: 'observable' },
         { routerName: 'cssSummary', routerLink: 'cssSummary' },
+        { routerName: 'jsSummary', routerLink: 'jsSummary' },
         { routerName: 'commonDirective', routerLink: 'commonDirective' },
     ]
 
