@@ -142,15 +142,187 @@ export class DecoratorComponent implements OnInit {
 					active: false,
 					name: '2.state()',
 					content: this.sanitizer.bypassSecurityTrustHtml(`
-						<p class="f-c-999">已经弃用到时候百度吧</p>
+					<p class="f-c-999">在给定的触发器中声明一个动画状态</p>
+					<pre>
+声明一个新的状态值
+function state(name: string, styles: AnimationStyleMetadata, options?: &#123;
+	params: &#123;
+		[name: string]: any;
+	};
+}): AnimationStyleMetadata;
+					</pre>
+					<p class="f-c-999">默认状态显示</p>
+					<ul>
+						<li>
+							<h6>void state</h6>
+							<p class="f-c-999">void状态值是一个保留字，用于确定元素何时不再与应用程序分离</p>
+							<p>当ngIf计算结果为false，则相关元素的状态为void时</p>
+						</li>
+						<li>
+							<h6>*(default) state</h6>
+							<p class="f-c-999">
+								*状态（当样式化时）是一个后备状态，如果正在动画的状态未在触发器中声明，则将使用该状态
+							</p>
+						</li>
+					</ul>
+					<pre>
+使用:
+stateNameExpr可以是一个或多个以逗号分隔的状态名称
+
+默认状态
+state("void", style(&#123;height: 0}))
+
+使用状态
+state('closed', style(&#123;height: 0}))
+state('open, visible', style(&#123;height: ''}))
+
+style是指一旦达到状态就会在元素上保留的样式数据
+import &#123;animate, state, style, transition, trigger} from '@angular/animations';
+import &#123;Component, NgModule} from '@angular/core';
+import &#123;BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+@Component(&#123;
+	selector: 'example-app',
+	styles: [\`
+		.toggle-container &#123;
+		background-color:white;
+		border:10px solid black;
+		width:200px;
+		text-align:center;
+		line-height:100px;
+		font-size:50px;
+		box-sizing:border-box;
+		overflow:hidden;
+		}
+	\`],
+	animations: [trigger(
+		'openClose',
+		[
+			state('collapsed, void', style(&#123;height: '0px', color: 'maroon', borderColor: 'maroon'})),
+			state('expanded', style(&#123;height: '*', borderColor: 'green', color: 'green'})),
+			transition(
+				'collapsed < = > expanded', [animate(500, style(&#123;height: '250px'})), animate(500)])
+		])],
+	template: \`
+		&#60;button (click)="expand()">Open&#60;/button>
+		&#60;button (click)="collapse()">Closed&#60;/button>
+		&#60;hr />
+		&#60;div class="toggle-container" [@openClose]="stateExpression">
+		Look at this box
+		&#60;/div>
+	\`
+})
+export class MyExpandoCmp &#123;
+	stateExpression: string;
+	constructor() &#123; this.collapse(); }
+	expand() &#123; this.stateExpression = 'expanded'; }
+	collapse() &#123; this.stateExpression = 'collapsed'; }
+}
+
+@NgModule(
+    &#123;imports: [BrowserAnimationsModule], declarations: [MyExpandoCmp], bootstrap: [MyExpandoCmp]})
+export class AppModule &#123;}
+					</pre>
 					`)
 				},
 				{
 					active: false,
 					name: '3.transition()',
 					content: this.sanitizer.bypassSecurityTrustHtml(`
-						<p class="f-c-999">已经弃用到时候百度吧</p>
+					<p class="f-c-999">转换声明的动画步骤序列,根据当前的stateChangeExpr</p>
+					<pre>
+stateChangeExpr由state1 => state2组成，它由两个已知状态组成（使用asterix（*）来指代动态开始和/或结束状态）
+function transition(stateChangeExpr: string | ((fromState: string, toState: string) => boolean), 
+steps: AnimationMetadata | AnimationMetadata[], options: AnimationOptions | null = null): AnimationTransitionMetadata;
+
+函数也可以作为transition的stateChangeExpr参数提供，并且每次发生状态更改时都会执行此函数
+
+如果函数内返回的值为true，则将运行关联的动画
+
+动画转换放置在动画触发器内
+
+使用:
+// 所有转换/状态更改都在动画触发器中定义
+trigger("myAnimationTrigger", [
+	// 如果一个状态被定义了，那么当它的样式将被保持
+	// 动画已经完全自行完成
+	state("on", style(&#123; background: "green" })),
+	state("off", style(&#123; background: "grey" })),
+
+	// 一个将在状态值时被启动的过渡动画
+	// 状态值从on=>off
+	transition("on => off", animate(500)),
+
+	// 可以为两个方向运行相同的动画
+	transition("on < = > off", animate(500)),
+
+	// 或定义由逗号分隔的多个状态对
+	transition("on => off, off => void", animate(500)),
+
+	// 插入元素时的全部状态变化
+	// 该页面和目标状态是未知的
+	transition("void => *", [
+		style(&#123; opacity: 0 }),
+		animate(500)
+	]),
+
+	// 将捕获任何状态之间的状态变化
+	transition("* => *", animate("1s 0s")),
+
+	// 可以使用函数
+	transition((fromState, toState) => &#123;
+		// 当为真时,调用下面的动画
+		return fromState == "off" && toState == "on";
+	}, animate("1s 0s"))
+])
+
+与此组件关联的模板将通过绑定到其模板代码中的元素来使用myAnimationTrigger动画触发器
+<!-- somewhere inside of my-component-tpl.html -->
+&#60;div [@myAnimationTrigger]="myStatusExp">...&#60;/div>
+
+默认优先执行的动画
+transition("void => *", [
+	style(&#123;opacity: 0}),
+	animate(500)
+])
+
+:enter && :leave
+transition(":enter", [
+	style(&#123;opacity: 0}),
+	animate(500, style(&#123;opacity: 1}))
+]),
+transition(":leave", [
+	animate(500, style(&#123;opacity: 0}))
+])
+					</pre>
 					`)
+				},
+				{
+					active: false,
+					name: '4.group()',
+					content: this.sanitizer.bypassSecurityTrustHtml(`
+					
+					`)
+				},
+				{
+					active: false,
+					name: '5.sequence()',
+					content: this.sanitizer.bypassSecurityTrustHtml(``)
+				},
+				{
+					active: false,
+					name: '6.style()',
+					content: this.sanitizer.bypassSecurityTrustHtml(``)
+				},
+				{
+					active: false,
+					name: '7.animate()',
+					content: this.sanitizer.bypassSecurityTrustHtml(``)
+				},
+				{
+					active: false,
+					name: '8.keyframes()',
+					content: this.sanitizer.bypassSecurityTrustHtml(``)
 				}
 			]
 		},
