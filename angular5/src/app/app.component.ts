@@ -26,6 +26,7 @@ export class AppComponent {
         { routerName: 'cssSummary', routerLink: 'cssSummary' },
         { routerName: 'jsSummary', routerLink: 'jsSummary' },
         { routerName: 'commonDirective', routerLink: 'commonDirective' },
+        { routerName: 'chart', routerLink: 'chart' }
     ]
 
     constructor(private router: Router,

@@ -41,6 +41,10 @@ const appRoutes: Routes = [
         loadChildren: './observable/observable.module#ObservableModule'
     },
     {
+        path: 'chart',
+        loadChildren: './chart/chart.module#ChartModule'
+    },
+    {
         path: 'cssSummary',
         loadChildren: './css-summary/css-summary.module#CssSummaryModule'
     },
