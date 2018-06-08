@@ -379,6 +379,45 @@ export class HighChartComponent implements OnInit {
 				},
 				url: 'GraphWithMarkedArea',
 				writeID: ['yAxis', 'series']
+			},
+			{
+				config: {
+					chart: {
+						type: 'spline'
+					},
+					title: {
+						text: '时间不连续的曲线图'
+					},
+					subtitle: {
+						text: '非规律性时间内的变化'
+					},
+					xAxis: {
+						type: 'datetime',
+						title: {
+							text: null
+						}
+					},
+					yAxis: {
+						title: {
+							text: '积雪 厚度 (m)'
+						},
+						min: 0
+					},
+					tooltip: {
+						headerFormat: '<b>{series.name}</b><br>',
+						pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+					},
+					plotOptions: {
+						spline: {
+							marker: {
+								enabled: true
+							}
+						}
+					},
+					series: []
+				},
+				url: 'TimeDiscontinuousGraph',
+				writeID: ['series']
 			}
 		]
 	}
@@ -426,13 +465,28 @@ export class HighChartComponent implements OnInit {
 							let getFlag = key.split('.');
 							if(getFlag[0] == 'series') {
 								if(item.config[getFlag[0]][0][getFlag[1]] && !item.config[getFlag[0]][0][getFlag[1]].length) {
-									item.config[getFlag[0]][0][getFlag[1]] = this.highChartLocalData[item.url][getFlag[1]];
+									item.config[getFlag[0]][0][getFlag[1]] = eval(this.highChartLocalData[item.url][getFlag[1]]);
 									item.render = true;
 								}
 							}
 						}else{
 							if(item.config[key] && !item.config[key].length) {
-								item.config[key] = this.highChartLocalData[item.url][key];
+								item.config[key] = eval(this.highChartLocalData[item.url][key]);
+								// if(key == 'series') {
+								// 	if(item.config[key].length) {
+								// 		item.config[key].map(Citem => {
+								// 			if(Citem.data.length) {
+								// 				Citem.data.map(CDitem => {
+								// 					if(CDitem.length) {
+								// 						CDitem.map(CDTitem => {
+								// 							CDTitem = eval(CDTitem);
+								// 						})
+								// 					}
+								// 				})
+								// 			}
+								// 		})
+								// 	}
+								// }
 								item.render = true;
 							}
 						}

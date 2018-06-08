@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MapComponent } from './map.component';
 import { MapBaseComponent } from './map-base/map-base.component';
 import { MapSearchComponent } from './map-search/map-search.component';
+import { GmapComponent } from './gmap/gmap.component';
 
 const mapRoutes = [
     {
@@ -22,6 +23,10 @@ const mapRoutes = [
             {
                 path: 'search',
                 component: MapSearchComponent
+            },
+            {
+                path: 'google',
+                component: GmapComponent
             }
         ]
     }

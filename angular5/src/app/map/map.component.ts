@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class MapComponent implements OnInit {
 
     routerLinkArr: Array<any> = [
-        { routerName: 'base', routerLink: 'base' }
-        // { routerName: 'operation', routerLink: 'search' }
+        { routerName: 'base', routerLink: 'base' },
+        // { routerName: 'operation', routerLink: 'search' },
+        { routerName: 'google', routerLink: 'google' },
     ];
 
     constructor() { }
