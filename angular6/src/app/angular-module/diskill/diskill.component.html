@@ -1,0 +1,238 @@
+<nz-card class="m-t-20" nzTitle="多级依赖注入器">
+	<p class="f-c-999">就是js的原型继承的逻辑弄过来进行依赖的操作</p>
+
+	<h6>注入器树</h6>
+	<p class="f-c-999">每一个模块实例化之后会出现组件树——相对应的也会实例化出注入器树</p>
+	<nz-badge nzstatus="sucess" nzText="注入器冒泡"></nz-badge>
+	<p>就类似于js原型继承因此可以在树杈和树梢上进行依赖的重新注册其实就是重新注册token</p>
+	<ul>
+		<li>可以在注入的时候使用别名（但是会创建两个一样的单例服务|之前原始的和新的别名的）</li>
+		<li>另一种可以使用Injection Token的方式进行生命</li>
+	</ul>
+
+	<h6>使用技巧(依赖隔离)</h6>
+	<p class="f-c-999">可以根据js原型的原理进行隔离</p>
+	<p>子可以访问父级依赖但不能访问同级及其下的依赖</p>
+
+	<h6>使用技巧(单例处理)</h6>
+	<p class="f-c-999">
+		在依赖隔离的前提下每个组件都依赖某一个服务则但从组件来看服务是单例的
+		但是从所渲染的组件来看有多少声明的组件就有多少实例化的单例服务（相互独立）
+	</p>
+
+	<h6>使用技巧(依赖的功能性分离)</h6>
+	<p class="f-c-999">可以根据组建的功能性将服务的依赖进行功能分离便于管理</p>
+</nz-card>
+
+<nz-card class="m-t-20" nzTitle="DI 使用技巧（基础）">
+	<h6>基本使用套路</h6>
+	<ul>
+		<li>
+			<pre>
+首先import
+import &#123; xxxx } from './xxxx';
+			</pre>
+		</li>
+		<li>
+			<pre>
+其次providers
+providers: [xxxx]
+			</pre>
+		</li>
+		<li>
+			<pre>
+使用constructor
+constructor(logger: xxxx) &#123;
+	logger.logInfo('xxxx')
+}
+constructor(private logger: xxxx) &#123; }
+			</pre>
+		</li>
+	</ul>
+
+
+	<h6>外部模块配置</h6>
+	<p class="f-c-999">在模块上声明在模块之下的组件中使用</p>
+	<pre>
+providers: [
+	&#123; provide: LocationStrategy, useClass: HashLocationStrategy }
+]
+provide: 别名
+useClass: 依赖的真正名称
+	</pre>
+
+	<h6>@Injectable和嵌套服务依赖</h6>
+	<p class="f-c-999">使用装饰器@Injectable对于服务的依赖以及组合使用进行第三方服务的创建</p>
+	<pre>
+使用服务组合的component
+constructor(logger: LoggerService, public userContext: UserContextService) &#123;
+	userContext.loadUser(this.userId);
+  	logger.logInfo('AppComponent initialized');
+}
+重新创建第三方服务
+@Injectable()
+export class UserContextService &#123;
+	constructor(private userService: UserService, private loggerService: LoggerService) &#123;
+	}
+}
+	</pre>
+
+
+	<h6>@Injectable 的使用注意</h6>
+	<p class="f-c-999">@Inject 不支持服务的依赖所以默认使用 @Injectable</p>
+</nz-card>
+
+<nz-card class="m-t-20" nzTitle="DI 使用技巧（比基础更6一点）">
+	
+	<h6>多个服务实例(sandboxing)</h6>
+	<p class="f-c-999">感觉常用component也就是在页面上使用selector回实例化多个相对独立的服务</p>
+	<p>就类似于之前的directive</p>
+
+	<h6>使用@Optional()和 @Host() 装饰器来限定依赖查找方式</h6>
+	<p class="f-c-999">对于上面的js原型原理依赖的功能优化(感觉更加限制)</p>
+	<ul>
+		<li>
+			<p>@Optional(就相当于参数的?)</p>
+			<span class="f-c-999">当依赖没有找到提示angular继续执行（相当于隐藏处理错误）</span>
+			<br>
+			<span class="f-c-999">会默认将没有注入的依赖设置为null</span>
+		</li>
+		<li>
+			<p>@Host</p>
+			<span class="f-c-999">将向上搜索服务的功能限定为父层（本层|父层）</span>
+		</li>
+	</ul>
+	<pre>
+利用装饰器声明注入的服务
+@Host()
+private heroCache: HeroCacheService
+利用装饰器可以复合使用
+@Host()
+@Optional()
+private loggerService: LoggerService
+	</pre>
+
+	<h6>注入组件的 DOM 元素</h6>
+	<p class="f-c-999">使用ElementRef在constructor中取得DOM元素</p>
+	<pre>
+引入依赖
+import &#123; ElementRef } from '@angular/core';
+初始化
+constructor(el: ElementRef) &#123;
+	nativeElement 属性把该 DOM 元素暴露出来
+	this.el = el.nativeElement;
+}
+注意：该 ElementRef 代表了宿主的 DOM 元素
+	</pre>
+</nz-card>
+
+<nz-card class="m-t-20" nzTitle="依赖注入提供商（重要）">
+	<pre>
+...
+providers: [
+    &#123; provide: Hero,          useValue:    someHero },
+    &#123; provide: TITLE,         useValue:   'Hero of the Month' },
+    &#123; provide: HeroService,   useClass:    HeroService },
+    &#123; provide: LoggerService, useClass:    DateLoggerService },
+    &#123; provide: MinimalLogger, useExisting: LoggerService },
+    &#123; provide: RUNNERS_UP,    useFactory:  runnersUpFactory(2), deps: [Hero, HeroService] }
+]
+...
+	</pre>
+
+	<h4>provide 对象</h4>
+	<ul class="f-c-999">
+		<li>provide 对象需要一个令牌和一个定义对象</li>
+		<li>对象有一个必填属性(即 useValue)，用来标识该提供商会如何新建和返回该服务的单例对象</li>
+	</ul>
+
+
+	<h5>useValue——值-提供商</h5>
+	<p class="f-c-999">把一个*固定的值，也就是该提供商可以将其作为依赖对象返回的值，赋给 useValue 属性</p>
+	<h6>一般使用套路</h6>
+	<ul class="f-c-999">
+		<li>使用该技巧来进行运行期常量设置，比如网站的基础地址和功能标志等</li>
+		<li>在单元测试中使用值-提供商，用一个假的或模仿的(服务)来取代一个生产环境的服务</li>
+	</ul>
+	<h6>栗子</h6>
+	<pre>
+Hero提供的是一个实例而用的是someHero
+&#123; provide: Hero,          useValue:    someHero },
+TITle提供的就不是一个实例（injectionToken——非类类型：字符串、数字、函数）
+&#123; provide: TITLE,         useValue:   'Hero of the Month' },
+	</pre>
+	<h6>注意：值-提供商的值必须要立即定义也就是传进来执行到依赖注入就必须加载完成</h6>
+
+
+	<h5>useClass - 类-提供商</h5>
+	<p class="f-c-999">userClass 提供商创建并返回一个指定类的新实例</p>
+	<h6>语法糖</h6>
+	<pre>
+默认情况下
+&#123; provide: HeroService,   useClass:    HeroService }
+展开使用的情况下
+&#123; provide: LoggerService, useClass:    DateLoggerService }
+提供商使用 DateLoggerService 来满足 LoggerService
+该 LoggerService 在 AppComponent 级别已经被注册
+当这个组件要求 LoggerService 的时候，它得到的却是 DateLoggerService 服务
+	</pre>
+	<p>总结：这个组件及其子组件会得到 DateLoggerService 实例。这个组件树之外的组件得到的仍是 LoggerService 实例</p>
+	
+
+
+	<h5>useExisting - 别名-提供商</h5>
+	<p class="f-c-999">使用 useExisting，提供商可以把一个令牌映射到另一个令牌上(创造了访问同一个服务对象的两种方法)</p>
+	
+
+
+	<h5>useFactory - 工厂-提供商</h5>
+	<p class="f-c-999">useFactory 提供商通过调用工厂函数来新建一个依赖对象</p>
+	<h6>基本套路</h6>
+	<p class="f-c-999">就是将服务之间的依赖逻辑关系抽离出来重新创建一个工厂并且使用它</p>
+	<pre>
+&#123; provide: RUNNERS_UP,    useFactory:  runnersUpFactory(2), deps: [Hero, HeroService] }
+
+export function runnersUpFactory(take: number) &#123;
+	return (winner: Hero, heroService: HeroService): string => &#123;
+	  /* ... */
+	};
+};
+这个返回的函数需要一个 Hero 和一个 HeroService 参数
+Angular 通过使用 deps 数组中的两个令牌，来识别注入的值，用来提供这些参数
+这两个 deps 值是供注入器使用的令牌，用来提供工厂函数的依赖
+	</pre>
+
+	<h5>类-接口</h5>
+	<p class="f-c-999">就是使用类来定义一个接口（JavaScript不支持直接声明接口）</p>
+	<pre>
+使用依赖注入的接口类
+&#123; provide: MinimalLogger, useExisting: LoggerService },
+定义作为接口的类
+export abstract class MinimalLogger &#123;
+	logs: string[];
+	logInfo: (msg: string) => void;
+}
+主要功能不是为了实例化或者是依赖之间的逻辑而是作为接口的强类型换句话就是让后面使用的依赖服务的接口的初始化
+也就是作为强类型的接口当做提供商的令牌使用
+注意：作为强类型接口的类
+var MinimalLogger = (function () &#123;
+	function MinimalLogger() &#123;}
+	return MinimalLogger;
+}());
+exports("MinimalLogger", MinimalLogger);
+只要不实现它，不管添加多少成员，它永远不会增长大小
+	</pre>
+
+
+	<h5>InjectableToken 值</h5>
+	<p class="f-c-999">依赖对象可以是一个任意（类|非类）</p>
+	<h6>使用套路</h6>
+	<pre>
+进行injectableToken的方法来代理一个依赖
+&#123; provide: TITLE,         useValue:   'Hero of the Month' },
+对于使用injectableToken的方法的代理名称的初始化
+import &#123; InjectionToken } from '@angular/core';
+
+export const TITLE = new InjectionToken &#60; string > ('title');
+	</pre>
+</nz-card>

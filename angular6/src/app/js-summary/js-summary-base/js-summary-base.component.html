@@ -1,0 +1,11 @@
+<h3 class="m-t-20">设计模式再整理一下</h3>
+<nz-collapse nzAccordion class="m-t-20">
+	<nz-collapse-panel 
+		*ngFor="let panel of headSummary"
+		[nzHeader]="panel.name || '暂无内容'"
+		[nzActive]="panel.content">
+		<div [innerHtml]="panel.content">
+			暂无内容
+		</div>
+	</nz-collapse-panel>
+</nz-collapse>

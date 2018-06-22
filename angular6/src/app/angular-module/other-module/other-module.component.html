@@ -1,0 +1,57 @@
+<nz-card class="m-t-20" nzTitle="服务">
+	<p class="f-c-999">service使用import在模块的providers中使用</p>
+	<h6>注意：使用中的作用域（引入模块中则模块中的组件会使用但是如果组件中声明则会发生同名覆盖）</h6>
+
+	<h5>使用惰性加载限制service的作用域</h5>
+	<p class="f-c-999">如果出现惰性加载则会使根注入器和子注入器的分离，但也会使根注入器得到扩展</p>
+	<p>也可以使用缓存进行service实例的使用</p>
+</nz-card>
+
+<nz-card class="m-t-20" nzTitle="单例应用">
+	<p class="f-c-999">在定义模块时创建的注入器将会拥有一些服务，这些服务对于该注入器来说都是单例的</p>
+	<p>通过路由进行组件的创建和销毁而组件引用的service是同步生命周期的因此是单例的</p>
+	<h6>forRoot()</h6>
+	<p class="f-c-999">如果某个模块同时提供了服务提供商和可声明对象（组件、指令、管道）</p>
+	<p>当在某个子注入器中加载它的时候（比如路由），就会生成多个该服务提供商的实例</p>
+	<ul>
+		<li>在该模块上创建一个静态方法 forRoot()返回当前service的集合</li>
+		<li>将服务中的多个单例服务组合起来进行注入</li>
+	</ul>
+	<h6>防止重复导入CoreModule</h6>
+	<p class="f-c-999">只有根模块 AppModule 才能导入 CoreModule</p>
+	<p>如果一个惰性加载模块也导入了它， 该应用就会为服务生成多个实例</p>
+	<p class="f-c-999">防止惰性加载模块重复导入 CoreModule</p>
+	<pre>
+constructor (@Optional() @SkipSelf() parentModule: CoreModule) &#123;
+	if (parentModule) &#123;
+		throw new Error(
+		'CoreModule is already loaded. Import it in the AppModule only');
+	}
+}
+	</pre>
+	<ul>
+		<li>@SkipSelf 装饰器表示 “在注入器树中那些高于我的祖先注入器中查找 CoreModule”</li>
+		<li>
+			<p>@Optional 装饰器表示找不到该服务也无所谓</p>
+			<p class="f-c-999">于是注入器会返回 null，parentModule 参数也就被赋成了空值，而构造函数没有任何异常</p>
+		</li>
+		<li>该构造函数检测到存在 parentModule，于是抛出一个错误</li>
+	</ul>
+</nz-card>
+<nz-card class="m-t-20" nzTitle="惰性加载的特性模块">
+	<p class="f-c-999">就是这个项目中的根据模块进行异步加载将项目中的组件以树杈的方式进行分割管理</p>
+
+	<h6>forRoot() 与 forChild()</h6>
+	<ul>
+		<li>RouterModule.forRoot(routes)——根路由</li>
+		<li>RouterModule.forChild(routes)——子路由</li>
+	</ul>
+</nz-card>
+<nz-card class="m-t-20" nzTitle="共享Angular模块">
+	<p class="f-c-999">将angular模块进行统一注入并导出</p>
+	<ul>
+		<li>导入了 CommonModule，因为该模块需要一些常用指令</li>
+		<li>声明并导出了一些工具性的管道、指令和组件类</li>
+		<li>重新导出了 CommonModule 和 FormsModule</li>
+	</ul>
+</nz-card>

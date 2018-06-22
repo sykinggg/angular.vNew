@@ -1,0 +1,39 @@
+<mat-card class="example-card mar-t-20">
+    <mat-card-header>
+        <mat-card-title>HTML attribute 与 DOM property 的对比</mat-card-title>
+        <mat-card-subtitle>描述</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <ul>
+            <li>attribute 初始化 DOM property，然后它们的任务就完成了</li>
+            <li>property 的值可以改变；attribute 的值不能改变</li>
+            <li>模板绑定是通过 property 和事件来工作的，而不是 attribute。</li>
+        </ul>
+    </mat-card-content>
+    <nz-card nzTitle="HTML attribute 与 DOM property 的对比">
+        <h6>
+            HTML attribute 和 DOM propert
+            <small>attribute 是由 HTML 定义的;property 是由 DOM (Document Object Model) 定义的</small>
+        </h6>
+        <ul>
+            <li>少量 HTML attribute 和 property 之间有着 1:1 的映射，如 id</li>
+            <li>有些 HTML attribute 没有对应的 property，如 colspan</li>
+            <li>有些 DOM property 没有对应的 attribute，如 textContent</li>
+            <li>大量 HTML attribute 看起来映射到了 property</li>
+        </ul>
+        <h6>html渲染策略</h6>
+        <ul>
+            <li>attribute 初始化 DOM property</li>
+            <li>property 的值可以改变；attribute 的值不能改变</li>
+        </ul>
+        <h6>注意：</h6>
+        <p class="f-c-999">disabled 这个 attribute 是另一种特例</p>
+        <ul>
+            <li>按钮的 disabled 这个 property 是 false，因为默认情况下按钮是可用的</li>
+            <li>当你添加 disabled 这个 attribute 时，只要它出现了按钮的 disabled 这个 property 就初始化为 true，于是按钮就被禁用了</li>
+            <li>添加或删除 disabled 这个 attribute 会禁用或启用这个按钮；但 attribute 的值无关紧要</li>
+        </ul>
+        <h6>注意：模板绑定是通过 property 和事件来工作的，而不是 attribute</h6>
+    </nz-card>
+    <a href="https://angular.cn/guide/template-syntax">有时间再进行整理</a>
+</mat-card>

@@ -1,0 +1,196 @@
+<nz-card class="m-t-10" nzTitle="css基本">
+	<ul class="css-base">
+		<li>
+			<h6>before,after 伪类声明</h6>
+			<p class="hello-world">ello Worl</p>
+		</li>
+		<li>
+			<h6>正方形中的正三角形</h6>
+			<div class="triangle"></div>
+		</li>
+		<li>
+			<h6>正三角形</h6>
+			<div class="position-triangle"></div>
+		</li>
+		<li>
+			<h6>仿照qq聊天框的样式</h6>
+			<div class="qq-box"></div>
+		</li>
+		<li>
+			<h6>仿照qq聊天框的样式升级版</h6>
+			<div class="qq-box-upgrade"></div>
+		</li>
+		<li>
+			<h6>作为内容的半透明背景层</h6>
+			<div class="semitransparent-background-box">
+				<div class="semitransparent-background">
+					<table>
+						<tr>
+							<td>Name</td>
+							<td><input placeholder="your name" /></td>
+						</tr>
+						<tr>
+							<td>Password</td>
+							<td><input placeholder="your password" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="button" value="login" /></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</li>
+		<li>
+			<h6>position 定位</h6>
+			<ul>
+				<li>absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位</li>
+				<li>fixed：生成绝对定位的元素，相对于浏览器窗口进行定位</li>
+				<li>relative：生成相对定位的元素，相对于其正常位置进行定位</li>
+				<li>inherit：规定应该从父元素继承 position 属性的值</li>
+			</ul>
+		</li>
+		<li>
+			<h6>em 和 rem</h6>
+			<div class="mar-t-20">
+				<p class="first-div">Hello World</p>
+				<p class="second-div">Hello World</p>
+				<p class="third-div">Hello World</p>
+				<p class="fourth-div">Hello World</p>
+			</div>
+		</li>
+		<li>
+			<h6>:after伪类+content 让大小不固定图片垂直居中</h6>
+			<div class="pic-box">
+				<img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg" />
+			</div>
+		</li>
+		<li>
+			<h6>css 任意居中 —— css3的transform</h6>
+			<div class="arbitrarily-centered arbitrarily-centered1">
+				<div class="arbitrarily-centered-center"></div>
+			</div>
+		</li>
+		<li>
+			<h6>css 任意居中 —— flex盒子布局</h6>
+			<div class="arbitrarily-centered arbitrarily-centered2">
+				<div class="arbitrarily-centered-center"></div>
+			</div>
+		</li>
+		<li>
+			<h6>css 任意居中 —— display的table-cell</h6>
+			<div class="arbitrarily-centered arbitrarily-centered3">
+				<div class="arbitrarily-centered-center"></div>
+			</div>
+		</li>
+		<li>
+			<h6>css 任意居中 —— 绝对定位</h6>
+			<div class="arbitrarily-centered arbitrarily-centered4">
+				<div class="arbitrarily-centered-center"></div>
+			</div>
+		</li>
+		<li>
+			<h6>css 任意居中 —— 绝对定位另一种</h6>
+			<div class="arbitrarily-centered arbitrarily-centered5">
+				<div class="arbitrarily-centered-center"></div>
+			</div>
+		</li>
+		<li>
+			<h6>css 伪类居中</h6>
+			<div class="pseudo-class-middle">css 伪类居中</div>
+		</li>
+		<li>
+			<h6>css 伪类居中的另一种</h6>
+			<div class="pseudo-class-middle1">css 伪类居中的另一种</div>
+		</li>
+	</ul>
+</nz-card>
+
+<nz-card class="m-t-10" nzTitle="flex">
+	<h4>容器属性</h4>
+	<ul class="css-base">
+		<li>
+			<h6>flex-direction</h6>
+			<ul>
+				<li>row（默认值）：主轴为水平方向，起点在左端。</li>
+				<li>row-reverse：主轴为水平方向，起点在右端。</li>
+				<li>column：主轴为垂直方向，起点在上沿。</li>
+				<li>column-reverse：主轴为垂直方向，起点在下沿。</li>
+			</ul>
+		</li>
+		<li>
+			<h6>flex-wrap</h6>
+			<ul>
+				<li>nowrap（默认）：不换行。</li>
+				<li>wrap：换行，第一行在上方。</li>
+				<li>wrap-reverse：换行，第一行在下方。</li>
+			</ul>
+		</li>
+		<li>
+			<h6>flex-flow</h6>
+			<ul>
+				<li>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap</li>
+			</ul>
+		</li>
+		<li>
+			<h6>justify-content</h6>
+			<ul>
+				<li>flex-start（默认值）：左对齐。</li>
+				<li>flex-end：右对齐。</li>
+				<li>center： 居中。</li>
+				<li>space-between：两端对齐，项目之间的间隔都相等。</li>
+				<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li>
+			</ul>
+		</li>
+		<li>
+			<h6>align-items(假设交叉轴从上到下)</h6>
+			<ul>
+				<li>flex-start：交叉轴的起点对齐。</li>
+				<li>flex-end：交叉轴的终点对齐。</li>
+				<li>center：交叉轴的中点对齐。</li>
+				<li>baseline: 项目的第一行文字的基线对齐。</li>
+				<li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+			</ul>
+		</li>
+		<li>
+			<h6>align-content(属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用)</h6>
+			<ul>
+				<li>flex-start：与交叉轴的起点对齐。</li>
+				<li>flex-end：与交叉轴的终点对齐。</li>
+				<li>center：与交叉轴的中点对齐。</li>
+				<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+				<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+				<li>stretch（默认值）：轴线占满整个交叉轴。</li>
+			</ul>
+		</li>
+	</ul>
+	<h4>项目属性</h4>
+	<ul class="css-base">
+		<li>
+			<h6>order</h6>
+			<p>定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+		</li>
+		<li>
+			<h6>flex-grow</h6>
+			<p>定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+		</li>
+		<li>
+			<h6>flex-shrink</h6>
+			<p>定义项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+		</li>
+		<li>
+			<h6>flex-basis</h6>
+			<p>定义了在分配多余空间之前，项目占据的主轴空间（main size）。</p>
+			<p>浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</p>
+		</li>
+		<li>
+			<h6>flex</h6>
+			<p>flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。</p>
+		</li>
+		<li>
+			<h6>align-self</h6>
+			<p>允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。</p>
+			<p>默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+		</li>
+	</ul>
+</nz-card>
