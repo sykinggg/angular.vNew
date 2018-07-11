@@ -70,7 +70,7 @@ export class FormResponseDetailComponent implements OnInit {
     
     onSubmit() {
         this.hero = this.prepareSaveHero();
-        this.heroService.updateHero(this.hero).subscribe(/* error handling */);
+        // this.heroService.updateHero(this.hero).subscribe(/* error handling */);
         this.ngOnChanges();
     }
     

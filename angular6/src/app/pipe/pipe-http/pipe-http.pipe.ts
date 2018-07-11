@@ -15,13 +15,13 @@ export class PipeHttpPipe implements PipeTransform {
     constructor(private http: Http) { }
 
     transform(url: String): any {
-        if (url !== this.cacheUrl && typeof url === 'string') {
-            this.cacheData = null;
-            this.cacheUrl = url;
-            this.http.get(url)
-                .map(result => result.json())
-                .subscribe(result => this.cacheData = result);
-        }
+        // if (url !== this.cacheUrl && typeof url === 'string') {
+        //     this.cacheData = null;
+        //     this.cacheUrl = url;
+        //     this.http.get(url)
+        //         .map(result => result.json())
+        //         .subscribe(result => this.cacheData = result);
+        // }
 
         return this.cacheData;
     }

@@ -10,14 +10,14 @@ export class HeroServiceService {
     constructor() { }
     delayMs = 500;
 
-    getHeroes(): Observable<Hero[]> {
-        return of(heroes).delay(this.delayMs);
-    }
+    // getHeroes(): Observable<Hero[]> {
+    //     // return of(heroes).delay(this.delayMs);
+    // }
 
-    updateHero(hero: Hero): Observable<Hero> {
-        const oldHero = heroes.find(h => h.id === hero.id);
-        const newHero = Object.assign(oldHero, hero);
+    // updateHero(hero: Hero): Observable<Hero> {
+    //     const oldHero = heroes.find(h => h.id === hero.id);
+    //     const newHero = Object.assign(oldHero, hero);
 
-        return of(newHero).delay(this.delayMs);
-    }
+    //     return of(newHero).delay(this.delayMs);
+    // }
 }

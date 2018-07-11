@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChange, Output, EventEmitter } from '@angular/core';
 
 import { ComponentInteractionService } from '../../../service/component-interaction/component-interaction.service';
-import { Subscription } from 'rxjs/Subscription';
+// import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-component-interaction-child',

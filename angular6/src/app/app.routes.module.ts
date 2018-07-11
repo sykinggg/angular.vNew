@@ -9,7 +9,7 @@ import {ObservableModule} from "./observable/observable.module";
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'module/decorator',
+        redirectTo: '/about',
         pathMatch: 'full'
     },
     {

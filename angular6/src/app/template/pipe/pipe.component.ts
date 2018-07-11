@@ -60,9 +60,9 @@ export class PipeComponent implements OnInit {
     ]
     
     resend() {
-        this.message$ = Observable.interval(500)
-        .map(i => this.message[i])
-        .take(this.message.length);
+        // this.message$ = Observable.interval(500)
+        // .map(i => this.message[i])
+        // .take(this.message.length);
     }
 
     ngOnInit() {
