@@ -1,0 +1,63 @@
+<h4>IOC</h4>
+<ul>
+	<li>
+		1.注册一个类将自动注册depdence类（必须有一个类装饰器）
+	</li>
+	<li>
+		2.get Instance可以自动创建构造函数参数。
+		（必须有一个类装饰器或在容器中注册）。
+	</li>
+</ul>
+<h4>装饰器</h4>
+<ul>
+	<li>
+		1.@Abstract
+		抽象类装饰
+	</li>
+	<li>
+		2.@AutoRun
+		class，方法装饰器，用于在注册后定义类自动运行（通过方法或不通过方法）。
+	</li>
+	<li>
+		3.@AutoWried
+		property或param decorator，用于自动伪造类型实例或值到装饰器的一个类的实例
+	</li>
+	<li>
+		4.@Component
+		类装饰器，用于定义类。
+		它可以将提供者设置为某些token，可单独使用。
+		它将在创建实例时执行ComponentLifecycle挂钩。
+	</li>
+	<li>
+		5.Inject
+		property或param decorator，用于自动伪造类型实例或值到装饰器的一个类的实例
+	</li>
+	<li>
+		6.@Injectable
+		class decortator，用于定义类。
+		它可以将提供者设置为某些token，可单独使用。
+	</li>
+	<li>
+		7.@IonExt
+		class decortator，用于定义类是Ioc扩展模块。
+		它会在注册后自动运行，帮助你设置模块。
+	</li>
+	<li>
+		8.@Method
+		方法装饰器
+	</li>
+	<li>
+		9.@Param
+		param decortator
+		对象序列化装饰器，用于使用装饰器将一个类的实例或值自动写入实例
+	</li>
+	<li>
+		10.@Singleton
+		类装饰器，用于定义类是单例
+	</li>
+	<li>
+		11.@DefModule
+		class decortator，用于将类定义为模块。
+		配置模块配置。
+	</li>
+</ul>

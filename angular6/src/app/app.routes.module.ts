@@ -55,6 +55,10 @@ const appRoutes: Routes = [
     {
         path: 'commonDirective',
         loadChildren: './common-directive/common-directive.module#CommonDirectiveModule'
+    },
+    {
+        path: 'ico',
+        loadChildren: './ioc/ioc.module#IocModule'
     }
 ];
 

@@ -15,7 +15,7 @@ const observableRoutes = [
         children: [
             {
                 path: '',
-                redirectTo: 'subscriber',
+                redirectTo: 'observableObj',
                 pathMatch: 'full'
             },
             {

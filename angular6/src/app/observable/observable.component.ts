@@ -9,9 +9,9 @@ import { Observable } from "rxjs";
 export class ObservableComponent implements OnInit {
     
     routerLinkArr: Array<any> = [
+        { routerName: 'observableObj', routerLink: 'observableObj' },
         { routerName: 'subscriber', routerLink: 'subscriber' },
         { routerName: 'RxJs', routerLink: 'RxJs' },
-        { routerName: 'observableObj', routerLink: 'observableObj' },
         { routerName: 'actualCombat', routerLink: 'actualCombat' },
         { routerName: 'otherSkill', routerLink: 'otherSkill' },
     ];
