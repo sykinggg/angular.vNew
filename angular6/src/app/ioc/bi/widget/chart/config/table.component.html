@@ -1,0 +1,101 @@
+<!-- <chart-group-config 
+    [curWidget]="curWidget" 
+    [helpMessage]="helpMessage" 
+    [changeChartStatus]="changeChartStatus"
+    [configRule]="configRule"
+    [targetHighlight]="targetHighlight"></chart-group-config> -->
+<div class="form-group row">
+    <label class="col-sm-2 control-label text-right">{{'CONFIG.WIDGET.VALUE'|translate}}</label>
+    <div class="col-sm-10">
+        <div dnd-list="curWidget.config.values[0].cols"
+                dnd-droppable (onDropSuccess)="toCol(curWidget.config.values[0].cols,curWidget.config.values[0].cols.length,$event.dragData.data, $event.dragData.type)"
+                [ngClass]="{highlight: targetHighlight.value}"
+                class="form-control" style="min-height: 35px;height: auto;padding: 0px">
+            <!-- 拖动占位 -->
+            <!-- <div class="dndPlaceholder sort-highlight"
+                    style="height: 24px; width: 93px;margin: 3px 3px;display: inline-block;vertical-align: middle;">
+            </div> -->
+            <div *ngFor="let o of curWidget.config.values[0].cols" class="btn-group"
+                    style="margin: 3px 3px;">
+                <div on="o.type" [ngSwitch]="o.type">
+                    <!-- <div *ngSwitchCase="exp" class="btn-group" ngbDropdown>
+                        <button type="button" class="btn btn-primary btn-sm" style="cursor: move;"
+                                dnd-draggable="o" dnd-type="'exp'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="curWidget.config.values[0].cols.splice($index, 1)"
+                                (click)="curWidget.config.values[0].cols.splice($index, 1);">
+                            {{o.alias}}
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm "
+                                (click)="editSort(o);cleanRowSort(o);">
+                            <span class="fa" [ngClass]="{undefined:'fa-sort','asc':'fa-sort-up','desc':'fa-sort-down'}[o.sort]"></span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm "
+                                (click)="editAlign(o)">
+                            <span class="fa" [ngClass]="{undefined:'fa-align-center','left':'fa-align-left','right':'fa-align-right'}[o.align]"></span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm " id="chartTypeTable" ngbDropdownToggle>
+                            <span class="fa fa-edit"></span>
+                        </button>
+                        <ul class="dropdown-menu multi-level" ngbDropdownMenu aria-labelledby="chartTypeTable">
+                            <li class="cursor-pointer">
+                                <input type="text" class="input" [(ngModel)]="o.formatter"
+                                        placeholder="{{'CONFIG.WIDGET.FORMATTER'|translate}}">
+                            </li>
+                            <li *ngIf="!isDsExpression(o)" class="cursor-pointer">
+                                <a (click)="editExp(o)">{{'COMMON.EDIT'|translate}}</a>
+                            </li>
+                            <li class="cursor-pointer">
+                                <a (click)="editVFilter(o)">{{'CONFIG.WIDGET.FILTER'|translate}}</a>
+                            </li>
+                        </ul>
+                    </div> -->
+                    <div *ngSwitchDefault class="btn-group" ngbDropdown>
+                        <button type="button"
+                                dnd-draggable="o" dnd-type="'col'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="curWidget.config.values[0].cols.splice($index, 1)"
+                                (click)="curWidget.config.values[0].cols.splice($index, 1);"
+                                class="btn btn-default btn-sm" style="cursor: move;">
+                            {{o.aggregate_type+'('+o.col+')'+ (o.alias?(' -> '+o.alias):'')}}
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm "
+                                (click)="editSort(o);cleanRowSort(o);">
+                            <span class="fa" [ngClass]="{undefined:'fa-sort','asc':'fa-sort-up','desc':'fa-sort-down'}[o.sort]"></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm "
+                                (click)="editAlign(o)">
+                            <span class="fa" [ngClass]="{undefined:'fa-align-center','left':'fa-align-left','right':'fa-align-right'}[o.align]"></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm "
+                            ngbDropdownToggle id="chartTypeTableDefault">
+                            <span class="fa fa-edit"></span>
+                        </button>
+                        <ul class="dropdown-menu multi-level" role="menu" ngbDropdownMenu 
+                            aria-labelledby="chartTypeTableDefault">
+                            <li>
+                                <input type="text" class="input" [(ngModel)]="o.alias"
+                                        placeholder="{{'CONFIG.WIDGET.ALIAS'|translate}}">
+                            </li>
+                            <li>
+                                <input type="text" class="input" [(ngModel)]="o.formatter"
+                                        placeholder="{{'CONFIG.WIDGET.FORMATTER'|translate}}">
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1">{{'CONFIG.WIDGET.AGGREGATE_TYPE'|translate}}</a>
+                                <ul class="dropdown-menu">
+                                    <li *ngFor="let a of value_aggregate_types" (click)="o.aggregate_type=a.value">
+                                        <a>{{a.name+'('+o.col+')'}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li (click)="editVFilter(o)">
+                                <a>{{'CONFIG.WIDGET.FILTER'|translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

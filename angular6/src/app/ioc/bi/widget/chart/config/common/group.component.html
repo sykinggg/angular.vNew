@@ -1,0 +1,35 @@
+<div class="row" *ngIf="curWidget&&curWidget.config&&configRule[curWidget.config.chart_type]&&configRule[curWidget.config.chart_type].groups">
+    <label class="col-sm-2 control-label text-right">
+        {{'CONFIG.WIDGET.GROUP'|translate}}
+        <i class="fa fa-question-circle" title="{{helpMessage.column}}" [ngClass]="{false: 'd-none'}[helpMessage&&helpMessage.column?true:false]"></i>
+    </label>
+    <div class="col-sm-10">
+        <!-- dnd-inserted="toKeysGroups(curWidget.config.groups,index,item,type)"
+        dnd-allowed-types="['dimension','select','group','key','filter']" -->
+        <div dnd-list="curWidget.config.groups"
+                dnd-droppable (onDropSuccess)="toKeysGroups('groups',$event.dragData)"
+                class="form-control" style="min-height: 35px;height: auto;padding: 0px"
+                [ngClass]="{highlight: targetHighlight.column}">
+            <!-- 占位 -->
+            <!-- <div class="dndPlaceholder sort-highlight"
+                    style="height: 24px; width: 93px;margin: 3px 3px;display: inline-block;vertical-align: middle;">
+            </div> -->
+            <div *ngFor="let o of curWidget.config.groups; let idx = index" 
+                    dnd-draggable [dragData]="{data: o, type: 'groups', delList: curWidget.config.groups, delIdx: idx}"
+                    class="btn-group" style="cursor: move;margin: 3px 3px;">
+                <button type="button" class="btn btn-default btn-sm" style="cursor: move;"
+                        (click)="delKeysGroups('groups', idx)">
+                    {{o.level?'['+o.level+'].':''}}{{o.alias?o.alias:o.col}}
+                </button>
+                <button type="button" class="btn btn-default btn-sm"
+                        (click)="editSort(o)">
+                    <span class="fa" [ngClass]="{undefined:'fa-sort','asc':'fa-sort-up','desc':'fa-sort-down'}[o&&o.sort]"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm"
+                        (click)="editFilter(curWidget.config.groups,idx)">
+                    <span class="fa fa-filter"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

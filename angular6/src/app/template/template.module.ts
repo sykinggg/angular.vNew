@@ -21,6 +21,8 @@ import { StrFirstDirectiveDirective } from '../directive/str-first-directive/str
 import { ExponentialStrengthPipePipe } from '../pipe/exponential-strength-pipe/exponential-strength-pipe.pipe';
 import { PipeFirstPipe } from '../pipe/pipe-first/pipe-first.pipe';
 import { PipeHttpPipe } from '../pipe/pipe-http/pipe-http.pipe';
+import { DynamicComponentComponent } from './dynamic-component/dynamic-component.component';
+import { DemoComponent } from './dynamic-component/demo/demo.component';
 
 @NgModule({
     imports: [
@@ -47,6 +49,8 @@ import { PipeHttpPipe } from '../pipe/pipe-http/pipe-http.pipe';
         ExponentialStrengthPipePipe,
         PipeFirstPipe,
         PipeHttpPipe,
+        DynamicComponentComponent,
+        DemoComponent,
     ]
 })
 

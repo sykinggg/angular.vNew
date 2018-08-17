@@ -29,7 +29,7 @@ const appRoutes: Routes = [
         component: HttpComponent
     },
     {
-        path: 'Alltemplate',
+        path: 'template',
         loadChildren: './template/template.module#TemplateModule'
     },
     {

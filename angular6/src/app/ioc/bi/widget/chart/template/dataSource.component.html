@@ -1,0 +1,121 @@
+<div class="container-fluid py-2 border" style="margin-top: 15px;" *ngIf="schema">
+    <div class="box-header with-border">
+        <h1 class="d-inline h5">
+            <i class="fa fa-cube" aria-hidden="true"></i>
+            {{'CONFIG.DATASET.DATASET'|translate}}
+        </h1>
+        <div class="float-right">
+            <a href="javascript:void(0);" class="mr-1" role="button" (click)="refreshSchema()">
+                <i class="fa fa-sync-alt" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="mr-1" role="button">
+                <i class="fa fa-bars" aria-hidden="true" data-widget="collapse"></i>
+            </a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <hr />
+    
+    <div class="box-body" style="padding: 10px 0px; overflow-x: auto; font-size: small;">
+        <div class="tree tree-bg-dragout " style="overflow:auto; overflow-x: auto; border:none; min-height: 70vh; max-height: 79vh; margin-bottom: 0px;">
+            <!-- 维度列 -->
+            <ul style="padding-left: 5px" *ngIf="schema.dimension">
+                <li class="parent_li">
+                    <span><img src="assets/images/board/schema/dimension.gif"><b>{{'CONFIG.DATASET.DIMENSION'|translate}}</b></span>
+                    <ul>
+                        <!-- |filter:filterDimension -->
+                        <li *ngFor="let o of schema.dimension" 
+                            [ngClass]="{'parent_li': o&&o.type == 'level', 'd-none': (disKeysGroups.indexOf(o.id) + 1)}" 
+                            dnd-draggable [dragEnabled]="true"
+                            [dragData]="{data: o, type: 'dimension'}">
+                            <span>
+                                <!-- <i class="fa fa-caret-down"/> -->
+                                <img src="assets/images/board/schema/hierarchy.gif">
+                                {{o.alias}}
+                                {{o.column ? o.column + ' ('+o.column+')':o.column}}
+                            </span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- 指标列 -->
+            <ul style="padding-left: 5px" *ngIf="schema.measure">
+                <li class="parent_li">
+                    <span>
+                        <img src="assets/images/board/schema/measure.gif">
+                        <b>{{'CONFIG.DATASET.MEASURE'|translate}}</b>
+                    </span>
+                    <ul>
+                        <li *ngFor="let o of schema.measure"
+                            [ngClass]="{'d-none': (disKeysGroups.indexOf(o.id) + 1)}" 
+                            dnd-draggable [dragEnabled]="true"
+                            [dragData]="{data: o, type: 'measure'}">
+                            <span>
+                                <img src="assets/images/board/schema/bullet_red.png">
+                                {{o.alias?o.alias:o.column}}
+                            </span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- 可选表达式 -->
+            <ul style="padding-left: 5px" *ngIf="schema.selects">
+                <li class="parent_li">
+                    <span><b>{{'CONFIG.DATASET.UNCLASSIFY'|translate}}</b></span>
+                    <ul>
+                        <!-- |filter:filterDimension -->
+                        <li *ngFor="let o of schema.selects"
+                            [ngClass]="{'d-none': (disselect.indexOf(o.id) + 1)}" 
+                            dnd-draggable [dragEnabled]="true"
+                            [dragData]="{data: o, type: 'select'}">
+                            <span>
+                                <img src="assets/images/board/schema/bullet_red.png">{{o.column}}
+                            </span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- 过滤器 -->
+            <ul style="padding-left: 5px">
+                <li class="parent_li" *ngIf="false">
+                    <span><img src="assets/images/board/schema/measure.gif"/><b>{{'CONFIG.COMMON.CUSTOM_EXPRESSION'|translate}}</b></span>
+                    <i *ngIf="customDs" class="glyphicon glyphicon-plus" (click)="editExp()"></i>
+                    <ul>
+                        <!-- |filter:filterExpressions -->
+                        <li *ngFor="let o of curWidget.expressions"
+                            [ngClass]="{'d-none': (disexp.indexOf(o.id) + 1)}" 
+                            dnd-draggable [dragEnabled]="true"
+                            [dragData]="{data: o, type: 'exp'}">
+                            <span>
+                                <img src="assets/images/board/schema/bullet_red.png">{{o.alias}}
+                            </span>
+                            <i class="fa fa-edit" (click)="editExp(o)" *ngIf="!isDsExpression(o)"></i>
+                            <i class="text-blue fa fa-info-circle" (click)="viewExp(o)"></i>
+                            <i class="fa fa-trash-o" (click)="curWidget.expressions.splice($index, 1)" *ngIf="!isDsExpression(o)"></i>
+                        </li>
+                    </ul>
+                </li>
+        
+                <li class="parent_li">
+                    <span><img src="assets/images/board/schema/filter.png"/><b>{{'CONFIG.DATASET.FILTER'|translate}}</b></span>
+                    <a href="javascript:void(0);" role="button" (click)="editFilterGroup()">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <span class="sr-only">{{'COMMON.DELETE'|translate}}</span>
+                    </a>
+                    <ul>
+                        <!-- |filter:filterFilterGroup -->
+                        <li *ngFor="let o of curWidget.filterGroups"
+                            [ngClass]="{'d-none': (disFilterGroups.indexOf(o.group) + 1)}" 
+                            dnd-draggable [dragEnabled]="true"
+                            [dragData]="{data: o, type: 'filterGroups'}">
+                            <span>
+                                <img src="assets/images/board/schema/bullet_green.png">{{o.group}}</span>
+                            <i class="fa fa-edit" (click)="editFilterGroup(o)" *ngIf="!isDsFilter(o)"></i>
+                            <i class="fa fa-trash-o" (click)="curWidget.filterGroups.splice($index, 1)" *ngIf="!isDsFilter(o)"></i>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

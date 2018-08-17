@@ -21,7 +21,7 @@ export class AppComponent {
         { routerName: 'map', routerLink: 'map' },
         { routerName: 'ico', routerLink: 'ico' },
         // { routerName: 'http', routerLink: 'http' },
-        { routerName: 'Alltemplate', routerLink: 'Alltemplate' },
+        { routerName: 'template', routerLink: 'template' },
         { routerName: 'form', routerLink: 'form' },
         { routerName: 'observable', routerLink: 'observable' },
         { routerName: 'cssSummary', routerLink: 'cssSummary' },

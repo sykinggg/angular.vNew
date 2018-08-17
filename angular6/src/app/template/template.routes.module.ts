@@ -9,6 +9,7 @@ import { AttrDirectiveComponent } from './attr-directive/attr-directive.componen
 import { StrDirectiveComponent } from './str-directive/str-directive.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { AnimationsComponent } from './animations/animations.component';
+import { DynamicComponentComponent } from './dynamic-component/dynamic-component.component';
 
 const templateRoutes = [
     {
@@ -43,6 +44,10 @@ const templateRoutes = [
             {
                 path: 'animations',
                 component: AnimationsComponent
+            },
+            {
+                path: 'dynamic-component',
+                component: DynamicComponentComponent
             }
         ]
     }

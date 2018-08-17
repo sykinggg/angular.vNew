@@ -1,0 +1,14 @@
+<div class="tab-pane active" id="preview_widget2"
+        style="min-height: 300px;height: 100%;overflow: hidden;">
+    <div [ngClass]="{'d-none': loadingPre?true:false}" id="preview_widget" style="min-height: 300px;"></div>
+    <div class="overlay fa box box-solid" *ngIf="false" [ngClass]="{false: 'd-none'}[loadingPre?true:false]" style="min-height: 300px;">
+        <div class="box-header">
+            <!--<h3 class="box-title"></h3>-->
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                    <i class="fa fa-times" style="font-size: large"></i></button>
+            </div>
+        </div>
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</div>
