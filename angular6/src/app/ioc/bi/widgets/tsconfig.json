@@ -4,7 +4,9 @@
         "baseUrl": ".",
         "rootDir": "../../",
         "paths": {
-
+            "bi/dataSet":[
+                "../dataSet/src"
+            ]
         }
     },
     "exclude": [

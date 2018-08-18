@@ -1,0 +1,54 @@
+<div class="border border-light" [ngClass]="{'p-2': viewType !== 'kpiContent'}">
+    <h3 class="d-inline-block h6" *ngIf="viewType !== 'kpiContent'">
+        <i class="fa fa-chart-bar" aria-hidden="true"></i> {{widget.name}}
+    </h3>
+    <div class="float-right" *ngIf="!readonly && viewType !== 'kpiContent'">
+        <a href="javascript:void(0);" role="button" *ngIf="(widget.show && loading === false && viewType === 'chartContent')" (click)="modalTable(widget)">
+            <i class="fa fa-expand fa-xs" aria-hidden="true"></i>
+        </a>
+        <a href="javascript:void(0);" role="button" *ngIf="(widget.show && loading === false && viewType === 'echartContent')" (click)="modalChart(widget)">
+            <i class="fa fa-expand fa-xs" aria-hidden="true"></i>
+        </a>
+        <a href="javascript:void(0);" role="button" *ngIf="(widget.show && loading === false)" (click)="reload(widget)">
+            <i class="fa fa-sync-alt fa-xs" aria-hidden="true"></i>
+        </a>
+        <a href="javascript:void(0);" role="button" *ngIf="(configurable && widget.hasRole !== false)" (click)="config(widget)">
+            <i class="fa fa-wrench fa-xs" aria-hidden="true"></i>
+        </a>
+        <a href="javascript:void(0);" role="button" (click)="widget.isCollapsed = !widget.isCollapsed">
+            <i class="fa fa-xs" aria-hidden="true" [ngClass]="{'fa-minus': !widget.isCollapsed, 'fa-plus': widget.isCollapsed}"></i>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+    <div [ngbCollapse]="widget.isCollapsed">
+        <div [id]="widget.widgetId" class="widget-view" [ngClass]="{'d-none': widget.hasRole === false || !widget.show}" [ngStyle]="{height: height}">
+            <div class="text-center flex-column d-none d-sm-flex" *ngIf="loading" [ngStyle]="{height: height}">
+                <div class="row h-50">
+                    <div class="col">&nbsp;</div>
+                    <div class="col">&nbsp;</div>
+                </div>
+                <i class="fa fa-spinner fa-pulse fa-3x text-muted m-2"></i>
+                <div class="row h-50">
+                    <div class="col">&nbsp;</div>
+                    <div class="col">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="widget.hasRole === false" [ngStyle]="{height: height}">
+            {{'ADMIN.CONTACT_ADMIN' | translate}}
+            <ul>
+                <li *ngFor="let ri of widget.roleInfo">{{ri.type | translate}} {{ri.name}}</li>
+            </ul>
+        </div>
+        <div class="p-1 position-absolute text-center fa-sm" style="left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.1);" *ngIf="!readonly && widget.show && !loading && viewType === 'kpiContent'">
+            <a href="javascript:void(0);" role="button" (click)="reload(widget)">
+                {{"COMMON.REFRESH" | translate}}
+                <i class="fa fa-sync-alt"></i>
+            </a>
+            <a class="ml-2" href="javascript:void(0);" role="button" (click)="config(widget)" *ngIf="configurable">
+                {{"COMMON.EDIT" | translate}}
+                <i class="fa fa-wrench"></i>
+            </a>
+        </div>
+    </div>
+</div>
