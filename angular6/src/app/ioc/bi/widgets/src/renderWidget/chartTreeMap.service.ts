@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { Render } from './render';
 
-@Injectable()
+
 
 export class ChartTreeMapService {
     constructor(

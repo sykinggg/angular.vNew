@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
 var numbro = require("numbro");
@@ -8,7 +8,7 @@ import { CBoardKpiRenderService } from './render/kpiRender.service';
 // import { CBoardKpiRender } from './render/kpiRender';
 var html2canvas = require('html2canvas');
 
-@Injectable()
+
 
 export class ChartKpiService{
     constructor(

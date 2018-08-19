@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+
 import { CBoardMapRenderService } from './render/cBoardMapRender.service';
 import { ChartDataProcessService } from './common/chartDataProcess.service';
-@Injectable()
+
 
 export class ChartMapService {
     constructor(

@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+
 
 import { CBoardTableRenderService } from './render/tableRender.service';
 import { ChartDataProcessService } from './common/chartDataProcess.service';
 // import {CBoardTableRender} from './render/tableRender';
 // import {chartDataProcess} from './common/chartDataProcess';
 // var chartDataProcessFun = chartDataProcess
-@Injectable()
+
 
 export class ChartTableService {
     constructor(

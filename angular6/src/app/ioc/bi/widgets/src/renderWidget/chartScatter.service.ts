@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { UpdateEchartOptionsService } from './common/updateechartOptions.service';
 import { Render } from './render';
 var numbro = require('numbro');
 import * as _ from 'lodash';
 
-@Injectable()
+
 
 export class ChartScatterService {
     constructor(

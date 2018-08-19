@@ -10,7 +10,7 @@ export enum WidgetType {
     tableType= 'tableWidget',
     chartType= 'chartType',
     valueType= 'valueType',
-
+    configType= 'configType'
 }
 
 @Abstract()

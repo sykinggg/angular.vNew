@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+
 import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 import { UpdateEchartOptionsService } from './common/updateechartOptions.service';
 import { Render } from './render';
 
-@Injectable()
+
 
 export class ChartContrastService {
     constructor(

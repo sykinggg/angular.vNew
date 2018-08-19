@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { UpdateEchartOptionsService } from './common/updateechartOptions.service';
 import { Render } from './render';
@@ -6,7 +6,7 @@ import { Render } from './render';
 import * as _ from 'lodash';
 var eCharts = require('echarts');
 
-@Injectable()
+
 
 export class ChartRadarService {
     constructor(

@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+
 import { TranslateService } from '@ngx-translate/core';
 import { Render } from './render';
 var echarts = require('echarts');
 
-@Injectable()
+
 
 export class ChartHeatMapCalendarService {
     constructor(

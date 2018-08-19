@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+
 import * as _ from 'lodash';
 import { Render } from './render';
 import { ActivatedRoute } from '@angular/router';
 var echarts = require('echarts');
 
-@Injectable()
+
 
 export class ChartAreaMapService {
     constructor(private activatedRoute: ActivatedRoute) {

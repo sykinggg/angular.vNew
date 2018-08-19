@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+
 import { Render } from './render';
 var numbro = require('numbro');
 
-@Injectable()
+
 
 export class ChartGaugeService {
     constructor() {

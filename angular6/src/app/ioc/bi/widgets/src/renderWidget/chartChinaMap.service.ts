@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+
 import { CBoardHeatMapRenderService } from './render/cBoardHeatMapRender.service';
 var echarts = require('echarts');
 
-@Injectable()
+
 
 export class ChartChinaMapService {
     constructor(

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
 import { CHART_BASIC_OPTION } from './chart-options';
@@ -7,7 +7,7 @@ var numbro = require("numbro");
 
 import { UpdateEchartOptionsService } from './common/updateechartOptions.service';
 
-@Injectable()
+
 
 export class ChartLineService {
 

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+
 import { Render } from './render';
 require('echarts-liquidfill');
 
-@Injectable()
+
 
 export class ChartLiquidFillService {
     constructor() {

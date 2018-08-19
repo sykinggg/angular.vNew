@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+
 import * as _ from 'lodash';
 import { Subject } from 'rxjs';
 
-import { DataService } from './data';
+import { DataService } from './bi/dataSet';
 import { ChartLineService } from './chartLine.service';
 import { ChartTableService } from './chartTable.service';
 import { ChartPieService } from './chartPie.service';
@@ -24,7 +24,7 @@ import { ChartChinaMapService } from './chartChinaMap.service';
 import { ChartChinaMapBMapService } from './chartChinaMapBmap.service';
 import { ChartRelationService } from './chartRelation.service';
 
-@Injectable()
+
 
 export class ChartService {
     constructor(

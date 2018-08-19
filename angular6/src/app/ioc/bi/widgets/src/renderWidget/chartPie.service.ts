@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
 import { Render } from './render';
@@ -7,7 +7,7 @@ import { UpdateEchartOptionsService } from './common/updateechartOptions.service
 // import { CBoardEChartRender } from './render/eChartRender';
 // import { updateEchartOptions } from './common/updateechartOptions';
 
-@Injectable()
+
 
 export class ChartPieService {
     constructor(

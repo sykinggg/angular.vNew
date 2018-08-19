@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { CHART_BASIC_OPTION } from './chart-options';
 import { Render } from './render';
 
 import * as _ from 'lodash';
 
-@Injectable()
+
 
 export class ChartSankeyService {
     constructor(private activatedRoute: ActivatedRoute) {
