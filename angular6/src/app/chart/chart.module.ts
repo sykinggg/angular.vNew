@@ -10,6 +10,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ChartIndexComponent } from './chart-index/chart-index.component';
 import { HighChartComponent } from './high-chart/high-chart.component';
 import { EChartComponent } from './e-chart/e-chart.component';
+import { EchartComponent } from './directive/echart/echart.component';
 
 @NgModule({
 	imports: [
@@ -22,7 +23,8 @@ import { EChartComponent } from './e-chart/e-chart.component';
 	declarations: [
 		ChartIndexComponent, 
 		HighChartComponent, 
-		EChartComponent
-	]
+		EChartComponent, 
+		EchartComponent,
+	],
 })
 export class ChartModule { }
