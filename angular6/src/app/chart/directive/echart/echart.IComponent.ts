@@ -16,6 +16,7 @@ export interface EInit {
     }
 }
 
+// tslint:disable-next-line:no-empty-interface
 export interface EChartsObj {}
 
 export interface EChartOption {

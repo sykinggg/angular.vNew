@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, ElementRef, AfterViewInit } from '@angular/core';
 import { EChartOption } from './echart.IComponent';
 // import * as echarts from 'echarts';
-var echarts = require('echarts');
+let echarts = require('echarts');
 import * as $ from 'jquery';
 import { BehaviorSubject } from 'rxjs';
 
@@ -28,38 +28,43 @@ export class EchartComponent implements OnInit, AfterViewInit {
     ) { }
 
     defaultChart(option) {
-        console.log(option);
         if (!option.init) {
             option.init = {};
         }
         if (!option.init.dom) {
-            option.init.dom = this.elementRef.nativeElement.querySelector('div');;
+            option.init.dom = $('.echart-content').get(0);
         }
-        if (!this.charts && !option.init) {
-            console.log('需要声明的初始化chart组件初始化dom!');
-            return;
-        } else {
+        if (!option.init.height) {
+            option.init.height = 300;
+        }
+        if (!option.init.width) {
+            option.init.width = 12;
+        }
+        if (!this.charts && option.init) {
             this.charts = echarts.init(option.init.dom);
         }
-        console.log(this.charts);
+        this.charts.resize();
         let returnParams = {}
 
         this.funArr.map(item => {
             if (option[item]) {
-                console.log(this.charts);
                 returnParams[item] = this.charts[item](option[item]);
             }
         })
 
-        this.ReturnchangeData.emit(returnParams);
+        this.ReturnchangeData.emit(this.charts);
     }
 
-    ngOnInit() {
-    }
+    optionData;
+    ngOnInit() { }
 
     ngAfterViewInit() {
         this.option.subscribe(data => {
-            this.defaultChart(data);
+            this.optionData = data;
+            this.defaultChart(this.optionData);
         })
+        if (this.optionData) {
+            this.defaultChart(this.optionData);
+        }
     }
 }

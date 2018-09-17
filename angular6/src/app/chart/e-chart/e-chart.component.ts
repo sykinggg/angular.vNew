@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EChartComponent implements OnInit {
 
+	componentType = 'alone';
+
 	constructor() { }
 
 	line_simple_option = {
+		init: {
+			width: 12,
+			height: 300
+		},
 		setOption: {
 			xAxis: {
 				type: 'category',
@@ -25,8 +31,14 @@ export class EChartComponent implements OnInit {
 		}
 	}
 
+	chartOptionArr = [this.line_simple_option];
+
 	ReturnchangeData1(data) {
-		console.log(data);
+		// console.log(data);
+	}
+
+	chartOptionArrFun(data) {
+		// console.log(data);
 	}
 
 	ngOnInit() {

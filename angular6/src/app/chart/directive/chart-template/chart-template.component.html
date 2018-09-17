@@ -1,0 +1,8 @@
+<div class="container-fluid">
+    <div class="row">
+        <app-echart class="col-sm-{{chartOption.init.width || 12}}" 
+            *ngFor="let chartOption of chartOptionArr"
+            [ngStyle]="{height: chartOption.init.height ? chartOption.init.height + 'px' : 'auto'}"
+            [setdata]="chartOption" (ReturnchangeData)="ReturnchangeData($event)"></app-echart>
+    </div>
+</div>

@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ChartRoutesModule } from './chart-routes.module';
 import { AppUIModule } from '../app.ui.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
+import { FormsModule } from '@angular/forms';
+
 import { ChartIndexComponent } from './chart-index/chart-index.component';
 import { HighChartComponent } from './high-chart/high-chart.component';
 import { EChartComponent } from './e-chart/e-chart.component';
 import { EchartComponent } from './directive/echart/echart.component';
+import { ChartTemplateComponent } from './directive/chart-template/chart-template.component';
 
 @NgModule({
 	imports: [
@@ -18,13 +20,15 @@ import { EchartComponent } from './directive/echart/echart.component';
 		ChartRoutesModule,
 		AppUIModule,
 		NgZorroAntdModule.forRoot(),
-		HttpClientModule
+		HttpClientModule,
+		FormsModule
 	],
 	declarations: [
-		ChartIndexComponent, 
-		HighChartComponent, 
-		EChartComponent, 
+		ChartIndexComponent,
+		HighChartComponent,
+		EChartComponent,
 		EchartComponent,
+		ChartTemplateComponent,
 	],
 })
 export class ChartModule { }
