@@ -18,49 +18,49 @@ export class HighChartComponent implements OnInit {
 	public highChartLocalData: any;
 
 	constructor(
-		private http: HttpClient, 
-		private message: NzMessageService) { 
+		private http: HttpClient,
+		private message: NzMessageService) {
 		this.highChart = [
 			{
 				config: {
 					title: {
-							text: '普通折线图'
+						text: '普通折线图'
 					},
 					subtitle: {
-							text: '数据来源：thesolarfoundation.com'
+						text: '数据来源：thesolarfoundation.com'
 					},
 					yAxis: {
-							title: {
-									text: '就业人数'
-							}
+						title: {
+							text: '就业人数'
+						}
 					},
 					legend: {
-							layout: 'vertical',
-							align: 'right',
-							verticalAlign: 'middle'
+						layout: 'vertical',
+						align: 'right',
+						verticalAlign: 'middle'
 					},
 					plotOptions: {
-							series: {
-									label: {
-											connectorAllowed: false
-									},
-									pointStart: 2010
-							}
+						series: {
+							label: {
+								connectorAllowed: false
+							},
+							pointStart: 2010
+						}
 					},
 					series: [],
 					responsive: {
-							rules: [{
-									condition: {
-											maxWidth: 500
-									},
-									chartOptions: {
-											legend: {
-													layout: 'horizontal',
-													align: 'center',
-													verticalAlign: 'bottom'
-											}
-									}
-							}]
+						rules: [{
+							condition: {
+								maxWidth: 500
+							},
+							chartOptions: {
+								legend: {
+									layout: 'horizontal',
+									align: 'center',
+									verticalAlign: 'bottom'
+								}
+							}
+						}]
 					}
 				},
 				url: 'OrdinaryLineChart',
@@ -89,7 +89,7 @@ export class HighChartComponent implements OnInit {
 						line: {
 							dataLabels: {
 								// 开启数据标签
-								enabled: true          
+								enabled: true
 							},
 							// 关闭鼠标跟踪，对应的提示框、点击事件会失效
 							enableMouseTracking: false
@@ -165,7 +165,7 @@ export class HighChartComponent implements OnInit {
 					},
 					subtitle: {
 						text: document.ontouchstart === undefined ?
-						'鼠标拖动可以进行缩放' : '手势操作进行缩放'
+							'鼠标拖动可以进行缩放' : '手势操作进行缩放'
 					},
 					xAxis: {
 						type: 'datetime',
@@ -303,7 +303,7 @@ export class HighChartComponent implements OnInit {
 					},
 					xAxis: {
 						categories: ['一月', '二月', '三月', '四月', '五月', '六月',
-									 '七月', '八月', '九月', '十月', '十一月', '十二月']
+							'七月', '八月', '九月', '十月', '十一月', '十二月']
 					},
 					yAxis: {
 						title: {
@@ -427,12 +427,12 @@ export class HighChartComponent implements OnInit {
 			data => {
 				this.highChartLocalData = data;
 				this.getChartData();
-			}, 
+			},
 			err => {
 				console.log(err);
 			}
 		)
-		
+
 	}
 
 	ngAfterViewInit() {
@@ -440,36 +440,36 @@ export class HighChartComponent implements OnInit {
 	}
 
 	defaultChartId() {
-		this.highChart.map(item => {
-			item.id = uuidV1();
-			item.render = false;
-		})
+		// this.highChart.map(item => {
+		// 	item.id = uuidV1();
+		// 	item.render = false;
+		// })
 	}
 
 	defaultChart() {
-		this.highChart.map(item => {
-			if(item.render) {
-				Highcharts.chart(item.id, item.config);
-				item.render = false;
-			}
-		})
+		// this.highChart.map(item => {
+		// 	if (item.render) {
+		// 		Highcharts.chart(item.id, item.config);
+		// 		item.render = false;
+		// 	}
+		// })
 	}
 
 	getChartData() {
 		setTimeout(() => {
 			this.highChart.map(item => {
-				if(item.url) {
+				if (item.url) {
 					item.writeID.map(key => {
-						if(key.indexOf('.')+1) {
+						if (key.indexOf('.') + 1) {
 							let getFlag = key.split('.');
-							if(getFlag[0] == 'series') {
-								if(item.config[getFlag[0]][0][getFlag[1]] && !item.config[getFlag[0]][0][getFlag[1]].length) {
+							if (getFlag[0] === 'series') {
+								if (item.config[getFlag[0]][0][getFlag[1]] && !item.config[getFlag[0]][0][getFlag[1]].length) {
 									item.config[getFlag[0]][0][getFlag[1]] = eval(this.highChartLocalData[item.url][getFlag[1]]);
 									item.render = true;
 								}
 							}
-						}else{
-							if(item.config[key] && !item.config[key].length) {
+						} else {
+							if (item.config[key] && !item.config[key].length) {
 								item.config[key] = eval(this.highChartLocalData[item.url][key]);
 								// if(key == 'series') {
 								// 	if(item.config[key].length) {
@@ -505,12 +505,12 @@ export class HighChartComponent implements OnInit {
 					// 	item.render = true;
 					// }
 				}
-				if(item.asynDataUrl) {
-					this.http.get(item.asynDataUrl, {responseType: 'text'}).subscribe(
+				if (item.asynDataUrl) {
+					this.http.get(item.asynDataUrl, { responseType: 'text' }).subscribe(
 						(data) => {
 							data = data.replace('?', '');
 							let useData = eval(data);
-							if(item.config.series.length) {
+							if (item.config.series.length) {
 								item.config.series.map((series, idx) => {
 									series.data = useData;
 								})

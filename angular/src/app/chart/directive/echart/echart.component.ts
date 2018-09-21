@@ -59,12 +59,7 @@ export class EchartComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.option.subscribe(data => {
             this.optionData = data;
-            setTimeout(() => {
                 this.defaultChart(this.optionData);
-            })
         })
-        // if (this.optionData) {
-        //     this.defaultChart(this.optionData);
-        // }
     }
 }

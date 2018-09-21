@@ -1,6 +1,17 @@
 // api 地址：https://api.hcharts.cn/#xAxis.title.align
+// tslint:disable-next-line:class-name
 export interface series {
+    // 系列的名称
     name: String;
+    // 区域系列 如果未指定type选项，则它继承自chart.type
+    type: string;
+    // 系列的数据点数组
+    //      data: [0, 5, 3, 5]
+    //      data: [[0, 5], [5, 3]]
+    //      data: [{x: 0, y: 5, name: 'aa', color: '#00FF00'}]
+    data: Array<any>;
+    // 颜色选择
+    colorIndex: number;
 }
 // 初始化
 export interface HInit {
@@ -8,7 +19,7 @@ export interface HInit {
     chart: {
         // 图表渲染容器的 HTML 元素的 id 或对象引用
         // 当使用构造函数 Highcharts.chart 时，renderTo将作为第一个参数传递，所以在配置中不需要再配置该参数
-        renderTo: String|Object;
+        renderTo: String | Object;
         // 图表的默认类型。 可以是 plotOptions 下列出的任何图表类型。 默认是：line
         type: String;
     };
@@ -100,5 +111,117 @@ export interface HInit {
         treemap: Object;
         // 瀑布图
         waterfall: Object;
+    }
+}
+
+// tslint:disable-next-line:class-name
+export const HCHART_OPTIONS = {
+    default: {
+        chart: {
+            backgroundColor: null
+        },
+        navigation: {
+            buttonOptions: {
+                enabled: false
+            }
+        },
+        time: {
+            useUTC: false
+        },
+        title: {
+            text: 'Chart',
+            style: {
+                color: 'transparent'
+            }
+        },
+        legend: {
+            enabled: true
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            xDateFormat: '%Y-%m-%d %H:%M:%S',
+            shared: true
+        },
+        xAxis: {
+            type: 'datetime',
+            title: {
+                text: null,
+                align: 'high',
+                x: 0,
+                y: 0
+            }
+        },
+        yAxis: {
+            allowDecimals: false,
+            title: {
+                text: null,
+                align: 'high',
+                rotation: 0,
+                offset: 0,
+                y: -20
+            }
+        },
+        plotOptions: {
+            series: {
+                lineWidth: 1,
+                marker: {
+                    radius: 2
+                }
+            },
+            line: {
+                pointStart: 0,
+            },
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: <b>{point.y}</b>'
+                },
+                showInLegend: true,
+                slicedOffset: 5,
+                startAngle: 45
+            }
+        }
+    },
+    column: {
+        chart: {
+            type: 'column',
+        }
+    },
+    pie: {
+        chart: {
+            type: 'pie'
+        },
+        legend: {
+            enabled: true,
+            labelFormat: '{name}: <b>{percentage:.1f}%</b>'
+        }
+    },
+    area: {
+        chart: {
+            type: 'area'
+        }
+    },
+    circle: {
+        chart: {
+            type: 'circle'
+        }
+    },
+    line: {
+        chart: {
+            type: 'line'
+        }
+    },
+    spider: {
+        chart: {
+            type: 'spider'
+        }
+    },
+    sunburst: {
+        chart: {
+        }
     }
 }
