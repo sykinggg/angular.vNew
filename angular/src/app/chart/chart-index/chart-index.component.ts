@@ -12,7 +12,8 @@ export class ChartIndexComponent implements OnInit {
 	constructor() { 
 		this.routerLinkArr = [
 			{ routerName: 'highChart', routerLink: 'highChart' },
-			{ routerName: 'eChart', routerLink: 'eChart' }
+			{ routerName: 'eChart', routerLink: 'eChart' },
+			{ routerName: 'd3', routerLink: 'd3' },
 		]
 	}
 

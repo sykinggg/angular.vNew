@@ -14,6 +14,8 @@ import { EChartComponent } from './e-chart/e-chart.component';
 import { EchartComponent } from './directive/echart/echart.component';
 import { ChartTemplateComponent } from './directive/chart-template/chart-template.component';
 import { HchartComponent } from './directive/hchart/hchart.component';
+import { D3Component } from './d3/d3.component';
+import { D3DComponent } from './directive/d3-d/d3-d.component';
 
 @NgModule({
 	imports: [
@@ -31,6 +33,8 @@ import { HchartComponent } from './directive/hchart/hchart.component';
 		EchartComponent,
 		ChartTemplateComponent,
 		HchartComponent,
+		D3Component,
+		D3DComponent,
 	],
 })
 export class ChartModule { }

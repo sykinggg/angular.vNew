@@ -4,6 +4,7 @@ import { ChartIndexComponent } from './chart-index/chart-index.component';
 import { HighChartComponent } from './high-chart/high-chart.component';
 import { EChartComponent } from './e-chart/e-chart.component';
 import { Router, RouterModule } from '@angular/router';
+import { D3Component } from './d3/d3.component';
 
 const chartRoutes = [
 	{
@@ -22,6 +23,10 @@ const chartRoutes = [
 			{
 				path: 'eChart',
 				component: EChartComponent
+			},
+			{
+				path: 'd3',
+				component: D3Component
 			}
 		]
 	}
