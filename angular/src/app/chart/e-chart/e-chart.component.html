@@ -1,0 +1,16 @@
+
+<section class="example-section mar-t-20">
+	<label class="example-margin">选择组件引用：</label>
+	<mat-radio-group [(ngModel)]="componentType">
+		<mat-radio-button class="example-margin" value="alone">单个</mat-radio-button>
+		<mat-radio-button class="example-margin" value="batch">批量</mat-radio-button>
+	</mat-radio-group>
+</section>
+<!-- 使用单个组件 -->
+<div class="container-fluid" *ngIf="componentType === 'alone'">
+	<div class="row">
+		<app-echart class="col-sm-{{line_simple_option.init.width || 12}}" [ngStyle]="{height: line_simple_option.init.height ? line_simple_option.init.height + 'px' : 'auto'}" [setdata]="line_simple_option" (ReturnchangeData)="ReturnchangeData1($event)"></app-echart>
+	</div>
+</div>
+<!-- 使用批量组件 -->
+<app-chart-template *ngIf="componentType === 'batch'" [chartOptions]="chartOptionArr" (chartOptionArrFun)="chartOptionArrFun($event)"></app-chart-template>
