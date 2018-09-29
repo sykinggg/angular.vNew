@@ -13,7 +13,7 @@ import { LocalStorage } from './common/local.storage';
 })
 export class AppComponent {
 
-    acxtiveRouterName: string = '';
+    acxtiveRouterName = '';
 
     routerLinkArr: Array<any> = [
         { routerName: 'about', routerLink: 'about' },
@@ -26,7 +26,7 @@ export class AppComponent {
         { routerName: 'observable', routerLink: 'observable' },
         { routerName: 'cssSummary', routerLink: 'cssSummary' },
         { routerName: 'jsSummary', routerLink: 'jsSummary' },
-        { routerName: 'commonDirective', routerLink: 'commonDirective' },
+        // { routerName: 'commonDirective', routerLink: 'commonDirective' },
         { routerName: 'chart', routerLink: 'chart' }
     ]
 

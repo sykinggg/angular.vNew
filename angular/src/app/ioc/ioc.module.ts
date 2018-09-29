@@ -13,7 +13,7 @@ import { ReadComponent } from './read/read.component';
 		CommonModule,
 		RoutesModule,
 		AppUIModule,
-		NgZorroAntdModule.forRoot()
+		NgZorroAntdModule
 	],
 	declarations: [
 		IocComponent,

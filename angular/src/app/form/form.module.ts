@@ -24,7 +24,7 @@ import { DynamicService } from '../service/dynamic/dynamic.service';
         CommonModule,
         FormRoutesModule,
         FormUi,
-        NgZorroAntdModule.forRoot()
+        NgZorroAntdModule
     ],
     declarations: [
         FormComponent,

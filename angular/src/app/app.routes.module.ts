@@ -53,14 +53,15 @@ const appRoutes: Routes = [
         loadChildren: './js-summary/js-summary.module#JsSummaryModule'
     },
     {
-        path: 'commonDirective',
-        loadChildren: './common-directive/common-directive.module#CommonDirectiveModule'
-    },
-    {
         path: 'ico',
         loadChildren: './ioc/ioc.module#IocModule'
     }
 ];
+
+// {
+//     path: 'commonDirective',
+//     loadChildren: './common-directive/common-directive.module#CommonDirectiveModule'
+// },
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],

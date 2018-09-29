@@ -15,7 +15,7 @@ import { AboutCreateComponent } from './about-create/about-create.component';
         CommonModule,
         AboutRoutesModule,
         AboutUIModule,
-        NgZorroAntdModule.forRoot()
+        NgZorroAntdModule
     ],
     declarations: [
         AboutComponent,

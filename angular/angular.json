@@ -121,6 +121,46 @@
           }
         }
       }
+    },
+    "karam": {
+      "root": "projects/karam",
+      "sourceRoot": "projects/karam/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/karam/tsconfig.lib.json",
+            "project": "projects/karam/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/karam/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/karam/src/test.ts",
+            "tsConfig": "projects/karam/tsconfig.spec.json",
+            "karmaConfig": "projects/karam/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/karam/tsconfig.lib.json",
+              "projects/karam/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular6",

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: 'app-e-chart',
@@ -8,8 +9,21 @@ import { Component, OnInit } from '@angular/core';
 export class EChartComponent implements OnInit {
 
 	componentType = 'alone';
+	text = {
+		Input: 'Input',
+		Textarea: 'Textarea',
+		Select: 'option'
+	}
 
-	constructor() { }
+	constructor(
+		private http: HttpClient
+	) { }
+
+	getText() {
+		this.http.get('http://localhost:666/text', {params: this.text}).subscribe(res => {
+			console.log(res);
+		})
+	}
 
 	line_simple_option = {
 		init: {

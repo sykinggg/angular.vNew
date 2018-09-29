@@ -1,4 +1,18 @@
+<div class="example-container">
+	<mat-form-field>
+		<input matInput placeholder="Input" [(ngModel)]="text.Input">
+	</mat-form-field>
+	<mat-form-field>
+		<textarea matInput placeholder="Textarea" [(ngModel)]="text.Textarea"></textarea>
+	</mat-form-field>
 
+	<mat-form-field>
+		<mat-select placeholder="Select" [(ngModel)]="text.Select">
+			<mat-option value="option">Option</mat-option>
+		</mat-select>
+	</mat-form-field>
+</div>
+<button mat-button (click)="getText()">get Click me!</button>
 <section class="example-section mar-t-20">
 	<label class="example-margin">选择组件引用：</label>
 	<mat-radio-group [(ngModel)]="componentType">
@@ -9,7 +23,8 @@
 <!-- 使用单个组件 -->
 <div class="container-fluid" *ngIf="componentType === 'alone'">
 	<div class="row">
-		<app-echart class="col-sm-{{line_simple_option.init.width || 12}}" [ngStyle]="{height: line_simple_option.init.height ? line_simple_option.init.height + 'px' : 'auto'}" [setdata]="line_simple_option" (ReturnchangeData)="ReturnchangeData1($event)"></app-echart>
+		<app-echart class="col-sm-{{line_simple_option.init.width || 12}}" [ngStyle]="{height: line_simple_option.init.height ? line_simple_option.init.height + 'px' : 'auto'}"
+		 [setdata]="line_simple_option" (ReturnchangeData)="ReturnchangeData1($event)"></app-echart>
 	</div>
 </div>
 <!-- 使用批量组件 -->

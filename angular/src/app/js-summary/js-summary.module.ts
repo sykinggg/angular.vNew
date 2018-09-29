@@ -16,7 +16,7 @@ import { JsSummaryBaseComponent } from './js-summary-base/js-summary-base.compon
 		CommonModule,
 		JsSummaryRoutesModule,
 		AppUIModule,
-		NgZorroAntdModule.forRoot()
+		NgZorroAntdModule
 	],
 	declarations: [
 		JsSummaryIndexComponent,

@@ -21,7 +21,7 @@ import { GmapComponent } from './gmap/gmap.component';
         CommonModule,
         MapRoutesModule,
         MapUiModule,
-        NgZorroAntdModule.forRoot()
+        NgZorroAntdModule
     ],
     declarations: [
         MapComponent,

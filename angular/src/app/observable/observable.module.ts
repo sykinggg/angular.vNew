@@ -20,7 +20,7 @@ import { OtherSkillComponent } from './other-skill/other-skill.component';
         FormsModule,
         ReactiveFormsModule,
         ObservableUiModule,
-        NgZorroAntdModule.forRoot()
+        NgZorroAntdModule
     ],
     declarations: [
         ObservableComponent,

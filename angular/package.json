@@ -23,6 +23,7 @@
     "@angular/platform-browser": "6.0.6",
     "@angular/platform-browser-dynamic": "6.0.6",
     "@angular/router": "6.0.6",
+    "@swimlane/ngx-charts": "^9.0.0",
     "@ts-ioc/annotations": "^3.2.4",
     "@ts-ioc/aop": "^3.2.4",
     "@ts-ioc/bootstrap": "^3.2.4",
@@ -39,6 +40,7 @@
     "highcharts": "^6.0.7",
     "jquery": "^3.3.1",
     "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "ng-zorro-antd": "^1.0.0",
     "ngx-bootstrap": "^2.0.0-rc.0",
     "rxjs": "^6.2.1",
@@ -46,10 +48,15 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
+    "@angular/compiler-cli": "6.0.6",
+    "@angular-devkit/build-ng-packagr": "~0.6.8",
     "@angular-devkit/build-angular": "~0.6.8",
+    "ng-packagr": "^3.0.0-rc.2",
+    "tsickle": ">=0.25.5",
+    "tslib": "^1.7.1",
+    "typescript": "2.7.2",
     "@angular-devkit/core": "0.6.8",
     "@angular/cli": "^6.0.8",
-    "@angular/compiler-cli": "6.0.6",
     "@angular/language-service": "6.0.6",
     "@ts-ioc/platform-server": "^3.2.4",
     "@types/jasmine": "~2.8.3",
@@ -69,7 +76,6 @@
     "protractor": "^5.3.2",
     "sass-loader": "^7.1.0",
     "ts-node": "~3.2.0",
-    "tslint": "~5.9.1",
-    "typescript": "2.7.2"
+    "tslint": "~5.9.1"
   }
 }

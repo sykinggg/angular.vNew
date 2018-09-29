@@ -12,7 +12,7 @@ import { CssSummaryComponent } from './css-summary.component';
 	  CommonModule,
 	  CssSummaryRoutesModule,
 	  AppUIModule,
-	  NgZorroAntdModule.forRoot()
+	  NgZorroAntdModule
   ],
   declarations: [
 	  CssMiddleComponent, 

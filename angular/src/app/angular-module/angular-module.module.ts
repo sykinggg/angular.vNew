@@ -17,7 +17,7 @@ import { DecoratorComponent } from './decorator/decorator.component';
  	imports: [
 		FormsModule,
 		ReactiveFormsModule,
-		NgZorroAntdModule.forRoot(),
+		NgZorroAntdModule,
 		CommonModule,
 		AngularRoutesModuleModule,
 		AppUIModule

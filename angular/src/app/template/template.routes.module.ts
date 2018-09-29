@@ -56,7 +56,7 @@ const templateRoutes = [
 @NgModule({
     imports: [
         RouterModule.forChild(templateRoutes),
-        NgZorroAntdModule.forRoot()
+        NgZorroAntdModule
     ],
     exports: [
         RouterModule,
