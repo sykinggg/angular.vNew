@@ -19,8 +19,74 @@ export class EChartComponent implements OnInit {
 		private http: HttpClient
 	) { }
 
-	getText() {
-		this.http.get('http://localhost:666/text', {params: this.text}).subscribe(res => {
+	get() {
+		this.http.get('http://127.0.0.1:666/test', {
+			params: this.text
+		}).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	put() {
+		this.http.put('http://127.0.0.1:666/test', {
+			params: this.text
+		}).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	delete() {
+		this.http.delete('http://127.0.0.1:666/test', {
+			params: this.text
+		}).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	post() {
+		this.http.post('http://127.0.0.1:666/test', {
+			params: this.text
+		}).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	options() {
+		this.http.options('http://127.0.0.1:666/test', {
+			params: this.text
+		}).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	patch() {
+		this.http.patch('http://127.0.0.1:666/test', {
+			params: this.text
+		}).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	head() {
+		this.http.head('http://127.0.0.1:666/test', {
+			params: this.text
+		}).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	dbpost() {
+		this.http.post('http://127.0.0.1:666/cats', {
+			params: this.text
+		}).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	dbget() {
+		this.http.get('http://127.0.0.1:666/cats', {
+			params: this.text
+		}).subscribe(res => {
 			console.log(res);
 		})
 	}

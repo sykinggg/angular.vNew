@@ -12,7 +12,15 @@
 		</mat-select>
 	</mat-form-field>
 </div>
-<button mat-button (click)="getText()">get Click me!</button>
+<button mat-button (click)="get()">get!</button>
+<button mat-button (click)="put()">put!</button>
+<button mat-button (click)="delete()">delete!</button>
+<button mat-button (click)="post()">post!</button>
+<button mat-button (click)="options()">options!</button>
+<button mat-button (click)="patch()">patch!</button>
+<button mat-button (click)="head()">head!</button>
+<button mat-button (click)="dbpost()">dbpost!</button>
+<button mat-button (click)="dbget()">dbget!</button>
 <section class="example-section mar-t-20">
 	<label class="example-margin">选择组件引用：</label>
 	<mat-radio-group [(ngModel)]="componentType">
