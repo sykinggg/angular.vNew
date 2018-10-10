@@ -91,6 +91,43 @@ export class EChartComponent implements OnInit {
 		})
 	}
 
+	set5aavPic() {
+		this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: '5aav' } }).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	setjiandanPic() {
+		this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: 'jiandan' } }).subscribe(res => {
+			console.log(res);
+		})
+	}
+
+	imgData = [];
+	get5aavPic() {
+		this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: '5aav' } }).subscribe(res => {
+			console.log(res);
+			if (res[0].address) {
+				this.imgData = res[0].address;
+			}
+		})
+	}
+
+	getJiandanPic() {
+		this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: 'jiandan' } }).subscribe(res => {
+			console.log(res);
+			if (res[0].address) {
+				this.imgData = res[0].address;
+			}
+		})
+	}
+
+	delete5aavPic() {
+		this.http.delete('http://127.0.0.1:666/pic/all').subscribe(res => {
+			console.log(res);
+		})
+	}
+
 	line_simple_option = {
 		init: {
 			width: 12,

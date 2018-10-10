@@ -21,6 +21,12 @@
 <button mat-button (click)="head()">head!</button>
 <button mat-button (click)="dbpost()">dbpost!</button>
 <button mat-button (click)="dbget()">dbget!</button>
+<button mat-button (click)="set5aavPic()">set5aavPic!</button>
+<button mat-button (click)="setjiandanPic()">setjiandanPic!</button>
+<button mat-button (click)="get5aavPic()">get5aavPic!</button>
+<button mat-button (click)="getJiandanPic()">getJiandanPic!</button>
+<button mat-button (click)="delete5aavPic()">delete5aavPic!</button>
+<app-water-full class="container-fluid" [imgData]="imgData" *ngIf="imgData.length"></app-water-full>
 <section class="example-section mar-t-20">
 	<label class="example-margin">选择组件引用：</label>
 	<mat-radio-group [(ngModel)]="componentType">
