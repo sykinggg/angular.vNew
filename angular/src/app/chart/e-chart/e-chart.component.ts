@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as io from 'socket.io-client';
 
 @Component({
 	selector: 'app-e-chart',
@@ -127,6 +128,15 @@ export class EChartComponent implements OnInit {
 			console.log(res);
 		})
 	}
+	socket;
+	sockerInit() {
+		
+	}
+	sockerEmit() {
+		this.socket.emit('events', { name: 'name' }, (data) => {
+			console.log(data);
+		});
+	}
 
 	line_simple_option = {
 		init: {
@@ -158,7 +168,27 @@ export class EChartComponent implements OnInit {
 		// console.log(data);
 	}
 
-	ngOnInit() {
+	ngOnInit() { }
+
+	ngAfterViewInit() {
+		this.socket = io("http://127.0.0.1:8080");
+		// 默认事件
+		this.socket.on('connect', (...data) => {
+			console.log('connect');
+			console.log(...data);
+		});
+		this.socket.on('event', (...data) => {
+			console.log('event');
+			console.log(...data);
+		});
+		this.socket.on('disconnect', (...data) => {
+			console.log('disconnect');
+			console.log(...data);
+		});
+		// 自定义事件
+		this.socket.on('events', (data) => {
+			console.log(data);
+		})
 	}
 
 }
