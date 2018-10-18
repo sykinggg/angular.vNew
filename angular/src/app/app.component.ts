@@ -19,7 +19,7 @@ export class AppComponent {
         { routerName: 'about', routerLink: 'about' },
         { routerName: 'module', routerLink: 'module' },
         { routerName: 'map', routerLink: 'map' },
-        { routerName: 'ico', routerLink: 'ico' },
+        // { routerName: 'ico', routerLink: 'ico' },
         // { routerName: 'http', routerLink: 'http' },
         { routerName: 'template', routerLink: 'template' },
         { routerName: 'form', routerLink: 'form' },
@@ -27,7 +27,8 @@ export class AppComponent {
         { routerName: 'cssSummary', routerLink: 'cssSummary' },
         { routerName: 'jsSummary', routerLink: 'jsSummary' },
         // { routerName: 'commonDirective', routerLink: 'commonDirective' },
-        { routerName: 'chart', routerLink: 'chart' }
+        { routerName: 'chart', routerLink: 'chart' },
+        { routerName: 'data-interaction', routerLink: 'data-interaction' },
     ]
 
     constructor(private router: Router,

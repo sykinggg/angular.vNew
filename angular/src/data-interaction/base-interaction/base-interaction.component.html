@@ -1,0 +1,33 @@
+<div class="example-container">
+	<mat-form-field>
+		<input matInput placeholder="Input" [(ngModel)]="text.Input">
+	</mat-form-field>
+	<mat-form-field>
+		<textarea matInput placeholder="Textarea" [(ngModel)]="text.Textarea"></textarea>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-select placeholder="Select" [(ngModel)]="text.Select">
+			<mat-option value="option">Option</mat-option>
+		</mat-select>
+	</mat-form-field>
+</div>
+<button mat-button (click)="get()">get!</button>
+<button mat-button (click)="put()">put!</button>
+<button mat-button (click)="delete()">delete!</button>
+<button mat-button (click)="post()">post!</button>
+<button mat-button (click)="options()">options!</button>
+<button mat-button (click)="patch()">patch!</button>
+<button mat-button (click)="head()">head!</button>
+<button mat-button (click)="dbpost()">dbpost!</button>
+<button mat-button (click)="dbget()">dbget!</button>
+<button mat-button (click)="set5aavPic()">set5aavPic!</button>
+<button mat-button (click)="setjiandanPic()">setjiandanPic!</button>
+<button mat-button (click)="get5aavPic()">get5aavPic!</button>
+<button mat-button (click)="getJiandanPic()">getJiandanPic!</button>
+<button mat-button (click)="delete5aavPic()">delete5aavPic!</button>
+<button mat-button (click)="sockerInit()">sockerInit!</button>
+<button mat-button (click)="sockerEmit()">sockerEmit!</button>
+<input type="file" (change)="picUpload($event)" [(ngModel)]="file">
+<button mat-button (click)="getHoubiText()">getHoubiText!</button>
+<app-water-full class="container-fluid" [setImgData]="imgData" *ngIf="imgData.length"></app-water-full>

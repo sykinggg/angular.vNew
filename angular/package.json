@@ -58,7 +58,7 @@
     "tslib": "^1.7.1",
     "typescript": "2.7.2",
     "@angular-devkit/core": "0.6.8",
-    "@angular/cli": "^6.0.8",
+    "@angular/cli": "^6.2.3",
     "@angular/language-service": "6.0.6",
     "@ts-ioc/platform-server": "^3.2.4",
     "@types/jasmine": "~2.8.3",

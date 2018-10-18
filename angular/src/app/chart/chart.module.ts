@@ -17,7 +17,7 @@ import { HchartComponent } from './directive/hchart/hchart.component';
 import { D3Component } from './d3/d3.component';
 import { D3DComponent } from './directive/d3-d/d3-d.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { WaterFullComponent } from './directive/water-full/water-full.component';
+import { WaterFullComponent } from '../common-directives/water-full/water-full.component';
 
 @NgModule({
 	imports: [

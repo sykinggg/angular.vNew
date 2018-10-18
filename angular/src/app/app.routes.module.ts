@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HttpComponent } from './http/http.component';
 import { templateRoutes } from './template/template.routes';
-import {TemplateModule} from "./template/template.module";
-import {ObservableModule} from "./observable/observable.module";
+import { TemplateModule } from "./template/template.module";
+import { ObservableModule } from "./observable/observable.module";
 
 const appRoutes: Routes = [
     {
@@ -55,6 +55,10 @@ const appRoutes: Routes = [
     {
         path: 'ico',
         loadChildren: './ioc/ioc.module#IocModule'
+    },
+    {
+        path: 'data-interaction',
+        loadChildren: '../data-interaction/data-interaction.module#DataInteractionModule'
     }
 ];
 
@@ -68,4 +72,4 @@ const appRoutes: Routes = [
     exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }

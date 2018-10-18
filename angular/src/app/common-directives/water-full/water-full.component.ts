@@ -9,8 +9,19 @@ export class WaterFullComponent implements OnInit {
 
     constructor() { }
 
+    imgData;
+
     @Input()
-    imgData: Array<string>;
+    set setImgData(data: Array<string>) {
+        if (data && data.length) {
+            this.imgData = data;
+            this.box = document.getElementById('box');
+            this.items = this.box.children;
+            setTimeout(() => {
+                this.waterFall();
+            }, 0);
+        }
+    };
 
     gap = 10;
 
@@ -37,7 +48,7 @@ export class WaterFullComponent implements OnInit {
         let pageWidth = this.getClient().width;
         let itemWidth = this.items[0].offsetWidth;
         let pageItem = pageWidth / +(+itemWidth + +this.gap) + '';
-        let columns = parseInt(pageItem);
+        let columns = parseInt(pageItem, 10);
         let arr = [];
         for (let i = 0; i < this.items.length; i++) {
             if (i < columns) {
@@ -68,8 +79,9 @@ export class WaterFullComponent implements OnInit {
                 arr[index] = arr[index] + this.items[i].offsetHeight + this.gap;
             }
         }
+        console.log(this.items);
         let lastItem = this.items[this.items.length - 1];
-        this.box.style.height = parseInt(lastItem.style.top) + lastItem.offsetHeight + 'px';
+        this.box.style.height = parseInt(lastItem.style.top, 10) + lastItem.offsetHeight + 'px';
     }
     ngOnInit() {
     }
@@ -88,8 +100,8 @@ export class WaterFullComponent implements OnInit {
 
         this.box = document.getElementById('box');
         this.items = this.box.children;
-        setTimeout(() => {
-            this.waterFall();
-        }, 1000);
+        // setTimeout(() => {
+        //     this.waterFall();
+        // }, 1000);
     }
 }
