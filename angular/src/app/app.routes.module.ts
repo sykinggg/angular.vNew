@@ -58,7 +58,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'data-interaction',
-        loadChildren: '../data-interaction/data-interaction.module#DataInteractionModule'
+        loadChildren: './data-interaction/data-interaction.module#DataInteractionModule'
     }
 ];
 

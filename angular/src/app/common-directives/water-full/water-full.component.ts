@@ -79,7 +79,7 @@ export class WaterFullComponent implements OnInit {
                 arr[index] = arr[index] + this.items[i].offsetHeight + this.gap;
             }
         }
-        console.log(this.items);
+        
         let lastItem = this.items[this.items.length - 1];
         this.box.style.height = parseInt(lastItem.style.top, 10) + lastItem.offsetHeight + 'px';
     }

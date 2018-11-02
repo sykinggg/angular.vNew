@@ -30,4 +30,7 @@
 <button mat-button (click)="sockerEmit()">sockerEmit!</button>
 <input type="file" (change)="picUpload($event)" [(ngModel)]="file">
 <button mat-button (click)="getHoubiText()">getHoubiText!</button>
-<app-water-full class="container-fluid" [setImgData]="imgData" *ngIf="imgData.length"></app-water-full>
+<button mat-button (click)="setMmJpg()">setMmJpg!</button>
+<button mat-button (click)="getMmJpg()">getMmJpg!</button>
+<button mat-button (click)="deleteMmJpg()">deleteMmJpg!</button>
+<app-water-full class="container-fluid" [setImgData]="imgAllData" *ngIf="imgAllData.length"></app-water-full>

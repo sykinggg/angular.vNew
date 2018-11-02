@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as io from 'socket.io-client';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-base-interaction',
@@ -10,53 +11,61 @@ import * as io from 'socket.io-client';
 export class BaseInteractionComponent implements OnInit {
 
     text = {
-		Input: 'Input',
-		Textarea: 'Textarea',
-		Select: 'option'
-	}
+        Input: 'Input',
+        Textarea: 'Textarea',
+        Select: 'option'
+    }
 
     constructor(
         private http: HttpClient
     ) {
-
+        this.imgAllData = [];
     }
 
+    imgAllData: Array<any>;
     ngOnInit() {
+        this.imgAllData = [];
+        this.imgData.subscribe(res => {
+            if (res && res.length) {
+                this.imgAllData = res;
+            }
+        })
+        console.log('ngOninit');
     }
 
     hbSocket;
     ngAfterViewInit() {
-		this.socket = io("http://127.0.0.1:8080");
-		// 默认事件
-		this.socket.on('connect', (...data) => {
-			console.log('connect');
-			console.log(...data);
-		});
-		this.socket.on('event', (...data) => {
-			console.log('event');
-			console.log(...data);
-		});
-		this.socket.on('disconnect', (...data) => {
-			console.log('disconnect');
-			console.log(...data);
-		});
-		// 自定义事件
-		this.socket.on('events', (data) => {
-			console.log(data);
-        })
-
-
-        this.hbSocket = io('wss://api.huobi.pro/ws');
-        this.hbSocket.on('open', () => {
-            console.log('open');
-            this.hbsubscribe(this.hbSocket);
+        this.socket = io("http://127.0.0.1:8080");
+        // 默认事件
+        this.socket.on('connect', (...data) => {
+            console.log('connect');
+            console.log(...data);
         });
-        this.hbSocket.on('message', (data) => {
+        this.socket.on('event', (...data) => {
+            console.log('event');
+            console.log(...data);
+        });
+        this.socket.on('disconnect', (...data) => {
+            console.log('disconnect');
+            console.log(...data);
+        });
+        // 自定义事件
+        this.socket.on('events', (data) => {
             console.log(data);
         })
 
+
+        // this.hbSocket = io('wss://api.huobi.pro/ws');
+        // this.hbSocket.on('open', () => {
+        //     console.log('open');
+        //     this.hbsubscribe(this.hbSocket);
+        // });
+        // this.hbSocket.on('message', (data) => {
+        //     console.log(data);
+        // })
+
     }
-    
+
     hbsubscribe(ws) {
         let symbols = ['xrpbtc', 'bchusdt'];
         // 订阅深度
@@ -160,12 +169,18 @@ export class BaseInteractionComponent implements OnInit {
         })
     }
 
-    imgData = [];
+    setMmJpg() {
+        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: 'mmJpg' } }).subscribe(res => {
+            console.log(res);
+        })
+    }
+
+    imgData = new BehaviorSubject<any>(null);
     get5aavPic() {
         this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: '5aav' } }).subscribe(res => {
             console.log(res);
-            if (res[0].address) {
-                this.imgData = res[0].address;
+            if (res[0] && res[0].address) {
+                this.imgData.next(res[0].address);
             }
         })
     }
@@ -173,9 +188,24 @@ export class BaseInteractionComponent implements OnInit {
     getJiandanPic() {
         this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: 'jiandan' } }).subscribe(res => {
             console.log(res);
-            if (res[0].address) {
-                this.imgData = res[0].address;
+            if (res[0] && res[0].address) {
+                this.imgData.next(res[0].address);
             }
+        })
+    }
+
+    getMmJpg() {
+        this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: 'mmJpg' } }).subscribe(res => {
+            console.log(res);
+            if (res[0] && res[0].address) {
+                this.imgData.next(res[0].address);
+            }
+        })
+    }
+
+    deleteMmJpg() {
+        this.http.delete('http://127.0.0.1:666/pic/one', { params: { type: 'mmJpg' } }).subscribe(res => {
+            console.log(res);
         })
     }
 
@@ -203,7 +233,7 @@ export class BaseInteractionComponent implements OnInit {
         reader.readAsDataURL(files[0]);
         reader.onload = (e) => {
             console.log(e);
-            this.http.post('http://127.0.0.1:666/pic/upload', {file: e}).subscribe(res => {
+            this.http.post('http://127.0.0.1:666/pic/upload', { file: e }).subscribe(res => {
                 console.log(res);
             })
         }
