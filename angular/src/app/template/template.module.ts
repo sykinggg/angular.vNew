@@ -23,6 +23,7 @@ import { PipeFirstPipe } from '../pipe/pipe-first/pipe-first.pipe';
 import { PipeHttpPipe } from '../pipe/pipe-http/pipe-http.pipe';
 import { DynamicComponentComponent } from './dynamic-component/dynamic-component.component';
 import { DemoComponent } from './dynamic-component/demo/demo.component';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import { DemoComponent } from './dynamic-component/demo/demo.component';
         CommonModule,
         TemplateRoutesModule,
         TemplateUiModule,
+        LayoutModule
     ],
     declarations: [
         TemplateComponent,

@@ -8,6 +8,7 @@ import { AboutRoutesModule } from './about.routes.module';
 import { AboutComponent } from './about.component';
 import { AboutIndexComponent } from './about-index/about-index.component';
 import { AboutCreateComponent } from './about-create/about-create.component';
+import { LayoutModule } from '../layout/layout.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AboutCreateComponent } from './about-create/about-create.component';
         CommonModule,
         AboutRoutesModule,
         AboutUIModule,
-        NgZorroAntdModule
+        NgZorroAntdModule,
+        LayoutModule
     ],
     declarations: [
         AboutComponent,
@@ -24,4 +26,4 @@ import { AboutCreateComponent } from './about-create/about-create.component';
     ]
 })
 
-export class AboutModule {}
+export class AboutModule { }

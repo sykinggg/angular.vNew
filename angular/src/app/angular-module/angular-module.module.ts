@@ -12,6 +12,7 @@ import { AppUIModule } from '../app.ui.module';
 import { DependencyComponent } from './dependency/dependency.component';
 import { DiskillComponent } from './diskill/diskill.component';
 import { DecoratorComponent } from './decorator/decorator.component';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
  	imports: [
@@ -20,7 +21,8 @@ import { DecoratorComponent } from './decorator/decorator.component';
 		NgZorroAntdModule,
 		CommonModule,
 		AngularRoutesModuleModule,
-		AppUIModule
+		AppUIModule,
+		LayoutModule
   	],
   	declarations: [
 		AbstractComponent, 

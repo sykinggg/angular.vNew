@@ -1,4 +1,21 @@
-<header>
+<nz-layout class="layout">
+    <nz-header>
+        <div class="logo"></div>
+        <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 34px;">
+            <li nz-menu-item *ngFor="let item of routerLinkArr; let i = index" class="nav-item dropdown" [ngClass]="{'ant-menu-item-selected': acxtiveRouterName.indexOf(item.routerLink) > 0}">
+                <a class="pad-l-05em pad-r-05em"
+                    [routerLink]="[item.routerLink]">
+                    {{item.routerName}}
+                </a>
+            </li>
+        </ul>
+    </nz-header>
+    <nz-layout>
+        <router-outlet></router-outlet>
+    </nz-layout>
+</nz-layout>
+<nz-footer style="text-align: center;padding-top: 0px;"> By Angular</nz-footer>
+<!-- <header>
   <nav class="navbar navbar-expand-sm navbar-dark" [hidden]="true">
       <a class="pad-l-2em navbar-brand" routerLink="home">首页</a>
       <div class="pad-l-5em collapse navbar-collapse">
@@ -14,22 +31,15 @@
   </nav>
   <mat-toolbar class="navbar flex-left">
       <span routerLink="home">首页</span>
-      <!-- <mat-tab-group class="mar-l-10">
-          <mat-tab *ngFor="let item of routerLinkArr; let i = index" label="{{item.routerName}}" routerLinkActive="active" [routerLink]="[item.routerLink]"></mat-tab>
-      </mat-tab-group> -->
-      <!-- <div class="button-row mar-l-10">
-          <button *ngFor="let item of routerLinkArr; let i = index" routerLinkActive="active" [routerLink]="[item.routerLink]">{{item.routerName}}</button>
-      </div> -->
       <mat-chip-list class="mar-l-10">
           <mat-chip *ngFor="let item of routerLinkArr; let i = index" routerLinkActive="active" [routerLink]="item.routerLink">{{item.routerName}}</mat-chip>
       </mat-chip-list>
   </mat-toolbar>
 </header>
 <main role="main" class="main">
-  <router-outlet></router-outlet>
-</main>
+    <router-outlet></router-outlet>
+</main> -->
 <!-- 底部区域 -->
-<footer class="pad-t-1em pad-b-1em text-muted b-g-c-111">
+<!-- <footer class="pad-t-1em pad-b-1em text-muted b-g-c-111">
   <div class="">Powered by angular6</div>
-</footer>
-<!-- <mat-checkbox>Check me!</mat-checkbox> -->
+</footer> -->

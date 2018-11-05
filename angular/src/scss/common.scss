@@ -87,3 +87,26 @@ $px: 0px;
     width: 20px;
     margin-right: 3px;
 }
+
+// 布局
+.ant-layout-header {
+    height: 34px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.ant-layout-sider-children {
+    position: fixed;
+    width: 200px;
+    top: 34px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 1;
+}
+
+.ant-layout-content {
+    padding: 40px 20px 45px 20px;
+}

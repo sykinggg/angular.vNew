@@ -12,6 +12,7 @@ import { RxJsComponent } from './rx-js/rx-js.component';
 import { ObservableObjComponent } from './observable-obj/observable-obj.component';
 import { ActualCombatComponent } from './actual-combat/actual-combat.component';
 import { OtherSkillComponent } from './other-skill/other-skill.component';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { OtherSkillComponent } from './other-skill/other-skill.component';
         FormsModule,
         ReactiveFormsModule,
         ObservableUiModule,
-        NgZorroAntdModule
+        NgZorroAntdModule,
+        LayoutModule
     ],
     declarations: [
         ObservableComponent,

@@ -13,6 +13,7 @@ import { MapSearchComponent } from './map-search/map-search.component';
 import { MapInformationPipe } from '../pipe/map-information/map-information.pipe';
 import { MapDirectiveDirective } from '../directive/map-directive/map-directive.directive';
 import { GmapComponent } from './gmap/gmap.component';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { GmapComponent } from './gmap/gmap.component';
         CommonModule,
         MapRoutesModule,
         MapUiModule,
-        NgZorroAntdModule
+        NgZorroAntdModule,
+        LayoutModule
     ],
     declarations: [
         MapComponent,

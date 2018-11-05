@@ -1,0 +1,23 @@
+<nz-layout>
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzBreakpoint]="'lg'">
+        <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+            <li nz-menu-item *ngFor="let item of routerLinkArr; let i = index" [routerLink]="item.routerLink"
+                routerLinkActive #rla="routerLinkActive" [ngClass]="{'ant-menu-item-selected': rla.isActive}">
+                <span>
+                    <i nz-icon type="user"></i>
+                    <span class="nav-text">{{item.routerName}}</span>
+                </span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-content style="background:#fff; min-height: 280px;">
+            <nz-breadcrumb style="margin:16px 0;">
+                <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+                <nz-breadcrumb-item>List</nz-breadcrumb-item>
+                <nz-breadcrumb-item>App</nz-breadcrumb-item>
+            </nz-breadcrumb>
+            <router-outlet class="mar-t-20"></router-outlet>
+        </nz-content>
+    </nz-layout>
+</nz-layout>

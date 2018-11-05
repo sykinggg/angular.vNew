@@ -16,6 +16,7 @@ import { FormResponseDetailComponent } from './form-response-detail/form-respons
 import { FormResponseListComponent } from './form-response-list/form-response-list.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicService } from '../service/dynamic/dynamic.service';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import { DynamicService } from '../service/dynamic/dynamic.service';
         CommonModule,
         FormRoutesModule,
         FormUi,
-        NgZorroAntdModule
+        NgZorroAntdModule,
+        LayoutModule
     ],
     declarations: [
         FormComponent,

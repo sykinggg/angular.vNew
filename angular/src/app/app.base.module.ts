@@ -7,6 +7,8 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+
+
 @NgModule({
     exports: [
         BrowserModule, // 基础
@@ -19,4 +21,4 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
         NoopAnimationsModule, // UI框架
     ]
 })
-export class AppBaseModule{}
+export class AppBaseModule { }
