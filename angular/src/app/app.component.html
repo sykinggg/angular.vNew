@@ -1,20 +1,5 @@
-<nz-layout class="layout">
-    <nz-header>
-        <div class="logo"></div>
-        <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 34px;">
-            <li nz-menu-item *ngFor="let item of routerLinkArr; let i = index" class="nav-item dropdown" [ngClass]="{'ant-menu-item-selected': acxtiveRouterName.indexOf(item.routerLink) > 0}">
-                <a class="pad-l-05em pad-r-05em"
-                    [routerLink]="[item.routerLink]">
-                    {{item.routerName}}
-                </a>
-            </li>
-        </ul>
-    </nz-header>
-    <nz-layout>
-        <router-outlet></router-outlet>
-    </nz-layout>
-</nz-layout>
-<nz-footer style="text-align: center;padding-top: 0px;"> By Angular</nz-footer>
+<app-layout-header [routerLinkArr]="routerLinkArr" [acxtiveRouterName]="acxtiveRouterName"></app-layout-header>
+<app-layout-footer [footerContent]="footerContent"></app-layout-footer>
 <!-- <header>
   <nav class="navbar navbar-expand-sm navbar-dark" [hidden]="true">
       <a class="pad-l-2em navbar-brand" routerLink="home">首页</a>

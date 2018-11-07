@@ -10,13 +10,12 @@
             </li>
         </ul>
     </nz-sider>
-    <nz-layout>
-        <nz-content style="background:#fff; min-height: 280px;">
-            <nz-breadcrumb style="margin:16px 0;">
-                <nz-breadcrumb-item>Home</nz-breadcrumb-item>
-                <nz-breadcrumb-item>List</nz-breadcrumb-item>
-                <nz-breadcrumb-item>App</nz-breadcrumb-item>
+    <nz-layout [@routeAnmiation]="routerStateCode">
+        <nz-content style="background:#fff; min-height: 100vh;">
+            <nz-breadcrumb [nzSeparator]="iconTemplate" style="margin:16px 0;">
+                <nz-breadcrumb-item *ngFor="let item of breadCrumbs">{{item}}</nz-breadcrumb-item>
             </nz-breadcrumb>
+            <ng-template #iconTemplate><i nz-icon type="arrow-right"></i></ng-template>
             <router-outlet class="mar-t-20"></router-outlet>
         </nz-content>
     </nz-layout>

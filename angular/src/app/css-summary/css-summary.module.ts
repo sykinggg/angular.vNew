@@ -6,13 +6,15 @@ import { CssSummaryRoutesModule } from './css-summary.routes.module';
 
 import { CssMiddleComponent } from './css-middle/css-middle.component';
 import { CssSummaryComponent } from './css-summary.component';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
   imports: [
 	  CommonModule,
 	  CssSummaryRoutesModule,
 	  AppUIModule,
-	  NgZorroAntdModule
+	  NgZorroAntdModule,
+	  LayoutModule
   ],
   declarations: [
 	  CssMiddleComponent, 

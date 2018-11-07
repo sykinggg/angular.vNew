@@ -8,6 +8,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { JsSummaryIndexComponent } from './js-summary-index/js-summary-index.component';
 import { JsSummaryBaseComponent } from './js-summary-base/js-summary-base.component';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
 	imports: [
@@ -16,7 +17,8 @@ import { JsSummaryBaseComponent } from './js-summary-base/js-summary-base.compon
 		CommonModule,
 		JsSummaryRoutesModule,
 		AppUIModule,
-		NgZorroAntdModule
+		NgZorroAntdModule,
+		LayoutModule
 	],
 	declarations: [
 		JsSummaryIndexComponent,

@@ -11,6 +11,7 @@ import { DataInteractionComponent } from './data-interaction/data-interaction.co
 import { BaseInteractionComponent } from './base-interaction/base-interaction.component';
 import { AppUIModule } from '../app.ui.module';
 import { WaterFullComponent } from '../common-directives/water-full/water-full.component';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { WaterFullComponent } from '../common-directives/water-full/water-full.c
         AppUIModule,
         NgZorroAntdModule,
 		HttpClientModule,
-		FormsModule,
+        FormsModule,
+        LayoutModule
     ],
     declarations: [
         WaterFullComponent,

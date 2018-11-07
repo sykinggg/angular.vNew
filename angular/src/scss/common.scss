@@ -1,5 +1,10 @@
 @import "theme";
 
+body,html{
+	margin:0px;
+	height:100%;
+}
+
 .text-center {
     text-align: center;
 }
@@ -95,7 +100,7 @@ $px: 0px;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 2;
+    z-index: 151; // 覆盖地图的层级
 }
 
 .ant-layout-sider-children {
@@ -109,4 +114,8 @@ $px: 0px;
 
 .ant-layout-content {
     padding: 40px 20px 45px 20px;
+}
+
+.ant-menu-root {
+    min-height: 100%;
 }

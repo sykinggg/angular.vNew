@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 import { RouterNameService } from './service/router-name/router-name.service';
 
 import { LocalStorage } from './common/local.storage';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -11,9 +12,13 @@ import { LocalStorage } from './common/local.storage';
     styleUrls: ['./app.component.css'],
     providers: [RouterNameService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
     acxtiveRouterName = '';
+
+    footerContent = 'by Angular'
+
+    routerUnsubscribe: Subscription;
 
     routerLinkArr: Array<any> = [
         { routerName: 'about', routerLink: 'about' },
@@ -37,7 +42,7 @@ export class AppComponent {
         private ls: LocalStorage) { }
 
     ngOnInit() {
-        this.router.events.subscribe((event) => {
+        this.routerUnsubscribe = this.router.events.subscribe((event) => {
             // example: NavigationStart, RoutesRecognized, NavigationEnd
             if (event instanceof NavigationEnd) { // 当导航成功结束时执行
                 // this.routerName.setName(event.url);
@@ -71,5 +76,9 @@ export class AppComponent {
         //         this.acxtiveRouterName = this.routerName.getName();
         //         console.log(this.acxtiveRouterName);
         //     });
+    }
+
+    ngOnDestroy(): void {
+        this.routerUnsubscribe.unsubscribe();
     }
 }

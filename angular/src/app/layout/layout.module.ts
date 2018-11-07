@@ -1,20 +1,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LayoutComponent } from './layout/layout.component';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { RouterModule } from '@angular/router';
+import { LayoutSliderComponent } from './layout-sider/layout.slider.component';
+import { LayoutHeaderComponent } from './layout-header/layout-header.component';
+import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
 
 @NgModule({
     imports: [
         CommonModule,
         NgZorroAntdModule,
-        RouterModule
+        RouterModule,
     ],
     providers: [
-        LayoutComponent,
+        LayoutSliderComponent, 
+        LayoutHeaderComponent, 
+        LayoutFooterComponent
     ],
-    entryComponents: [LayoutComponent],
-    declarations: [LayoutComponent],
-    exports: [LayoutComponent]
+    entryComponents: [
+        LayoutSliderComponent, 
+        LayoutHeaderComponent, 
+        LayoutFooterComponent
+    ],
+    declarations: [
+        LayoutSliderComponent, 
+        LayoutHeaderComponent, 
+        LayoutFooterComponent
+    ],
+    exports: [
+        LayoutSliderComponent, 
+        LayoutHeaderComponent, 
+        LayoutFooterComponent
+    ]
 })
 export class LayoutModule { }

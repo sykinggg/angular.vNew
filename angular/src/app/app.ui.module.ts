@@ -25,4 +25,4 @@ import { MatRadioModule } from '@angular/material/radio';
     ]
 })
 
-export class AppUIModule {}
+export class AppUIModule { }
