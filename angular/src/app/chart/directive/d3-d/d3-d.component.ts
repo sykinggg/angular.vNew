@@ -10,8 +10,19 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 export class D3DComponent implements OnInit, AfterViewInit {
 
     @Input() set option(option: any) {
-
+        if (!option) {
+            if (option.colorScheme) {
+                this.colorScheme = option.colorScheme;
+            }
+            if (option.single) {
+                this.single = option.single;
+            }
+            if (option.multi) {
+                this.multi = option.multi;
+            }
+        }
     }
+
     constructor() { }
 
     view: any[] = [700, 400];
@@ -26,9 +37,10 @@ export class D3DComponent implements OnInit, AfterViewInit {
     showYAxisLabel = true;
     yAxisLabel = 'Population';
 
-    colorScheme = {
+    colorScheme: any = {
         domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
     };
+
     single = [
         {
             "name": "Germany",
@@ -90,7 +102,7 @@ export class D3DComponent implements OnInit, AfterViewInit {
     onSelect(event) {
         console.log(event);
     }
-    
+
     ngOnInit() { }
 
     ngAfterViewInit() {

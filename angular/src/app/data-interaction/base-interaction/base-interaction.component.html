@@ -28,7 +28,17 @@
 <button mat-button (click)="delete5aavPic()">delete5aavPic!</button>
 <button mat-button (click)="sockerInit()">sockerInit!</button>
 <button mat-button (click)="sockerEmit()">sockerEmit!</button>
-<input type="file" (change)="picUpload($event)" [(ngModel)]="file">
+<form #fileForm>
+	<!-- accept=".jpg" -->
+	<input id="fileBoardConfig" name="file" type="file"
+		#inputFile  (change)="picUpload(fileForm)"/>
+</form>
+<form name="formExportBoard" class="d-inline-block mr-1" method="GET" target="_blank"
+	action="{{exportURL}}" ngNoForm>
+	<input name="type" type="hidden" value="file" />
+	<button nz-button nzType="primary" type="submit">下载文件</button>
+</form>
+<button nz-button nzType="primary" (click)="getfile()">下载文件</button>
 <button mat-button (click)="getHoubiText()">getHoubiText!</button>
 <button mat-button (click)="setMmJpg()">setMmJpg!</button>
 <button mat-button (click)="getMmJpg()">getMmJpg!</button>

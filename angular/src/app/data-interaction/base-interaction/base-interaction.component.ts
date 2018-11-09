@@ -225,18 +225,22 @@ export class BaseInteractionComponent implements OnInit {
     }
 
     file;
-    picUpload(event) {
-        console.log(event.target.files);
-        const files = event.target.files;
-        console.log(this.file);
-        const reader = new FileReader();
-        reader.readAsDataURL(files[0]);
-        reader.onload = (e) => {
-            console.log(e);
-            this.http.post('http://127.0.0.1:666/pic/upload', { file: e }).subscribe(res => {
-                console.log(res);
-            })
-        }
+    picUpload(form) {
+        let formData = new FormData(form);
+        this.http.post('http://127.0.0.1:666/pic/upload', formData).subscribe(res => {
+            console.log(res);
+        })
+        // console.log(event.target.files);
+        // const files = event.target.files;
+        // console.log(this.file);
+        // const reader = new FileReader();
+        // reader.readAsDataURL(files[0]);
+        // reader.onload = (e) => {
+        //     console.log(e);
+        //     this.http.post('http://127.0.0.1:666/pic/upload', { file: e }).subscribe(res => {
+        //         console.log(res);
+        //     })
+        // }
         // console.log(reader.readAsDataURL(files[0]));
         // const uploadData = {
         //     readAsArrayBuffer: reader.readAsArrayBuffer(files[0]),
@@ -256,6 +260,12 @@ export class BaseInteractionComponent implements OnInit {
         // // 按字符读取文件内容，结果用字符串形式表示
         // // ERROR TypeError: Failed to execute 'readAsText' on 'FileReader': parameter 1 is not of type 'Blob'.
         // console.log(reader.readAsText(files[0]));
+    }
+    exportURL = 'http://127.0.0.1:666/pic/5aavGet';
+    getfile() {
+        this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: 'file' } }).subscribe(res => {
+            console.log(res);
+        })
     }
 
     getHoubiText() {

@@ -106,6 +106,7 @@ $px: 0px;
 .ant-layout-sider-children {
     position: fixed;
     width: 200px;
+    overflow: hidden;
     top: 34px;
     left: 0px;
     bottom: 0px;
@@ -118,4 +119,16 @@ $px: 0px;
 
 .ant-menu-root {
     min-height: 100%;
+}
+
+html,body,#root{
+    width: 100%;
+    height: 100%;
+}
+.ant-layout{
+    height: 100%;
+}
+
+.sAnt-sider {
+    height: auto;
 }
