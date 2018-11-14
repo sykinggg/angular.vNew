@@ -214,6 +214,12 @@ export class BaseInteractionComponent implements OnInit {
             console.log(res);
         })
     }
+
+    tushare() {
+        this.http.post('http://127.0.0.1:666/tushare/list', {}).subscribe(res => {
+            console.log(res);
+        })
+    }
     socket;
     sockerInit() {
 
