@@ -40,5 +40,15 @@ import { LayoutModule } from '../layout/layout.module';
 		D3Component,
 		D3DComponent,
 	],
+	exports: [
+		ChartIndexComponent,
+		HighChartComponent,
+		EChartComponent,
+		EchartComponent,
+		ChartTemplateComponent,
+		HchartComponent,
+		D3Component,
+		D3DComponent,
+	]
 })
 export class ChartModule { }

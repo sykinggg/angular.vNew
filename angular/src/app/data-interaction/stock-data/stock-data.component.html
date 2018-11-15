@@ -1,0 +1,38 @@
+<!-- <button mat-button (click)="tushare()">tushare!</button> -->
+<nz-table #rowSelectionTable [nzData]="data" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+    (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+    <thead>
+        <tr>
+            <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+            <th>TS代码</th>
+            <th>股票代码</th>
+            <th nzCustomFilter>
+                名称
+                <nz-dropdown nzTrigger="click" [nzClickHide]="false" #dropdown>
+                    <i nz-icon type="smile-o" class="ant-table-filter-icon" [class.ant-table-filter-open]="dropdown.nzVisible"
+                        nz-dropdown></i>
+                    <div class="custom-filter-dropdown">
+                        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue">
+                        <button nz-button [nzType]="'primary'" (click)="search()">Search</button>
+                    </div>
+                </nz-dropdown>
+            </th>
+            <th>地址</th>
+            <th>行业</th>
+            <th>板块名称</th>
+            <th>时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+            <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+            <td>{{data[0]}}</td>
+            <td>{{data[1]}}</td>
+            <td>{{data[2]}}</td>
+            <td>{{data[3]}}</td>
+            <td>{{data[4]}}</td>
+            <td>{{data[5]}}</td>
+            <td>{{data[6]+'000000' | date:'yyyy-mm-dd'}}</td>
+        </tr>
+    </tbody>
+</nz-table>

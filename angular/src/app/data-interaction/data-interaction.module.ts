@@ -12,6 +12,7 @@ import { BaseInteractionComponent } from './base-interaction/base-interaction.co
 import { AppUIModule } from '../app.ui.module';
 import { WaterFullComponent } from '../common-directives/water-full/water-full.component';
 import { LayoutModule } from '../layout/layout.module';
+import { StockDataComponent } from './stock-data/stock-data.component';
 
 @NgModule({
     imports: [
@@ -26,7 +27,7 @@ import { LayoutModule } from '../layout/layout.module';
     declarations: [
         WaterFullComponent,
         DataInteractionComponent, 
-        BaseInteractionComponent
+        BaseInteractionComponent, StockDataComponent
     ]
 })
 export class DataInteractionModule { }
