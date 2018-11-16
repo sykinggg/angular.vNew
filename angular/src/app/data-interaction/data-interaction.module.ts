@@ -13,6 +13,7 @@ import { AppUIModule } from '../app.ui.module';
 import { WaterFullComponent } from '../common-directives/water-full/water-full.component';
 import { LayoutModule } from '../layout/layout.module';
 import { StockDataComponent } from './stock-data/stock-data.component';
+import { DateStringPipe } from './pipe/date-string/date-string.pipe';
 
 @NgModule({
     imports: [
@@ -27,7 +28,7 @@ import { StockDataComponent } from './stock-data/stock-data.component';
     declarations: [
         WaterFullComponent,
         DataInteractionComponent, 
-        BaseInteractionComponent, StockDataComponent
+        BaseInteractionComponent, StockDataComponent, DateStringPipe
     ]
 })
 export class DataInteractionModule { }

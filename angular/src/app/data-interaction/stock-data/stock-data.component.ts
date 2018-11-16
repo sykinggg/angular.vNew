@@ -52,9 +52,9 @@ export class StockDataComponent implements OnInit {
             api_name: 'stock_basic',
             token: '05e2421bfbccb31a09a5009e9b00950fd14615a02dca4eb077e9c3f4',
             params: {
-                list_status: 'L',
+                list_status: 'L,D,P',
             },
-            fields: '',
+            fields: 'ts_code,symbol,name,area,industry,market,list_date',
         }
         this.http.post(this.baseUrl + this.STOCK_BASIC, data).subscribe((res: any) => {
             // if (+res.code === 0) {
