@@ -24,6 +24,10 @@ export class StockDataComponent implements OnInit {
     sortValue: any;
     sortName: any;
 
+    list_status_arr: Array<any>;
+    aaa: string;
+    listOfSelectedValue: Array<any>;
+
     constructor(
         private http: HttpClient,
         private message: NzMessageService
@@ -41,21 +45,43 @@ export class StockDataComponent implements OnInit {
         this.sortValue = null;
         this.sortName = null;
         this.allData = [];
+
+        this.list_status_arr = [
+            {
+                name: '退市',
+                value: 'L'
+            },
+            {
+                name: '上市',
+                value: 'D'
+            },
+            {
+                name: '暂停上市',
+                value: 'P'
+            }
+        ]
+        this.aaa = 'L';
+        this.listOfSelectedValue = ['L'];
     }
 
     ngOnInit() {
         this.tushare();
     }
 
-    tushare() {
+    tushareJoin() {
+        const str = this.listOfSelectedValue.join();
+        this.tushare(str);
+    }
+
+    tushare(type? ) {
         let data = {
             api_name: 'stock_basic',
             token: '05e2421bfbccb31a09a5009e9b00950fd14615a02dca4eb077e9c3f4',
             params: {
-                list_status: 'L,D,P',
+                list_status: type || 'L,D,P',
             },
             fields: 'ts_code,symbol,name,area,industry,market,list_date',
-        }
+        }   
         this.http.post(this.baseUrl + this.STOCK_BASIC, data).subscribe((res: any) => {
             // if (+res.code === 0) {
             //     this.createMessage('success', '数据获取成功!');

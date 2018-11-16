@@ -1,7 +1,9 @@
 <!-- <button mat-button (click)="tushare()">tushare!</button> -->
-<nz-select [(ngModel)]=""></nz-select>
-<nz-table #rowSelectionTable [nzData]="data" (nzCurrentPageDataChange)="currentPageDataChange($event)"
-    (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+<nz-select [nzMaxMultipleCount]="3" style="width: 100%" (ngModelChange)="tushareJoin()" nzMode="multiple" nzPlaceHolder="Please select" [(ngModel)]="listOfSelectedValue">
+    <nz-option *ngFor="let option of list_status_arr" [nzLabel]="option.name" [nzValue]="option.value"></nz-option>
+</nz-select>
+<nz-table #rowSelectionTable [nzData]="data" (nzCurrentPageDataChange)="currentPageDataChange($event)" (nzPageIndexChange)="refreshStatus()"
+    (nzPageSizeChange)="refreshStatus()" nzSize="small">
     <thead>
         <tr>
             <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
@@ -10,8 +12,7 @@
             <th nzCustomFilter>
                 名称
                 <nz-dropdown nzTrigger="click" [nzClickHide]="false" #dropdown>
-                    <i nz-icon type="smile-o" class="ant-table-filter-icon" [class.ant-table-filter-open]="dropdown.nzVisible"
-                        nz-dropdown></i>
+                    <i nz-icon type="smile-o" class="ant-table-filter-icon" [class.ant-table-filter-open]="dropdown.nzVisible" nz-dropdown></i>
                     <div class="custom-filter-dropdown">
                         <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue">
                         <button nz-button [nzType]="'primary'" (click)="search()">Search</button>
