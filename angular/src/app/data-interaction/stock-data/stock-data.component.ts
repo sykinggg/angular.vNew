@@ -76,12 +76,15 @@ export class StockDataComponent implements OnInit {
     tushare(type? ) {
         let data = {
             api_name: 'stock_basic',
-            token: '05e2421bfbccb31a09a5009e9b00950fd14615a02dca4eb077e9c3f4',
+            token: '304bd4b4830d85adf5bee28ae7cc6fe79a5c72e3022f6ca816b83894',
             params: {
-                list_status: type || 'L,D,P',
+                list_status: 'L,D,P',
             },
             fields: 'ts_code,symbol,name,area,industry,market,list_date',
-        }   
+        }
+        if(type) {
+            data.params.list_status = type;
+        }
         this.http.post(this.baseUrl + this.STOCK_BASIC, data).subscribe((res: any) => {
             // if (+res.code === 0) {
             //     this.createMessage('success', '数据获取成功!');

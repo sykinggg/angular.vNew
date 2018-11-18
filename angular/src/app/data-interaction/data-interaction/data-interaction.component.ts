@@ -12,7 +12,8 @@ export class DataInteractionComponent implements OnInit {
     constructor() {
         this.routerLinkArr = [
             { routerName: 'base-interaction', routerLink: 'baseInteraction' },
-            { routerName: 'stock-data', routerLink: 'stockData' }
+            { routerName: 'stock-data', routerLink: 'stockData' },
+            { routerName: 'huobiData', routerLink: 'huobiData' }
         ]
     }
 

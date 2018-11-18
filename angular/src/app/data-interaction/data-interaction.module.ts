@@ -14,6 +14,7 @@ import { WaterFullComponent } from '../common-directives/water-full/water-full.c
 import { LayoutModule } from '../layout/layout.module';
 import { StockDataComponent } from './stock-data/stock-data.component';
 import { DateStringPipe } from './pipe/date-string/date-string.pipe';
+import { HuobiComponent } from './huobi/huobi.component';
 
 @NgModule({
     imports: [
@@ -28,7 +29,7 @@ import { DateStringPipe } from './pipe/date-string/date-string.pipe';
     declarations: [
         WaterFullComponent,
         DataInteractionComponent, 
-        BaseInteractionComponent, StockDataComponent, DateStringPipe
+        BaseInteractionComponent, StockDataComponent, DateStringPipe, HuobiComponent
     ]
 })
 export class DataInteractionModule { }
