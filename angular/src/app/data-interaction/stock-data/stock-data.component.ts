@@ -73,7 +73,7 @@ export class StockDataComponent implements OnInit {
         this.tushare(str);
     }
 
-    tushare(type? ) {
+    tushare(type?) {
         let data = {
             api_name: 'stock_basic',
             token: '304bd4b4830d85adf5bee28ae7cc6fe79a5c72e3022f6ca816b83894',
@@ -82,7 +82,7 @@ export class StockDataComponent implements OnInit {
             },
             fields: 'ts_code,symbol,name,area,industry,market,list_date',
         }
-        if(type) {
+        if (type) {
             data.params.list_status = type;
         }
         this.http.post(this.baseUrl + this.STOCK_BASIC, data).subscribe((res: any) => {
