@@ -1,5 +1,5 @@
 <!-- <button mat-button (click)="tushare()">tushare!</button> -->
-<nz-select [nzMaxMultipleCount]="3" style="width: 100%" (ngModelChange)="tushareJoin()" nzMode="multiple" nzPlaceHolder="Please select" [(ngModel)]="listOfSelectedValue">
+<nz-select [nzMaxMultipleCount]="3" style="width: 100%" (ngModelChange)="tushareJoin($event)" nzMode="multiple" nzPlaceHolder="Please select" [ngModel]="listOfSelectedValue">
     <nz-option *ngFor="let option of list_status_arr" [nzLabel]="option.name" [nzValue]="option.value"></nz-option>
 </nz-select>
 <nz-table #rowSelectionTable [nzData]="data" (nzCurrentPageDataChange)="currentPageDataChange($event)" (nzPageIndexChange)="refreshStatus()"

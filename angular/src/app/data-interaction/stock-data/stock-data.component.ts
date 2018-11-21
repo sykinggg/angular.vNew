@@ -25,8 +25,8 @@ export class StockDataComponent implements OnInit {
     sortName: any;
 
     list_status_arr: Array<any>;
-    aaa: string;
     listOfSelectedValue: Array<any>;
+
 
     constructor(
         private http: HttpClient,
@@ -48,11 +48,11 @@ export class StockDataComponent implements OnInit {
 
         this.list_status_arr = [
             {
-                name: '退市',
+                name: '上市',
                 value: 'L'
             },
             {
-                name: '上市',
+                name: '退市',
                 value: 'D'
             },
             {
@@ -60,7 +60,6 @@ export class StockDataComponent implements OnInit {
                 value: 'P'
             }
         ]
-        this.aaa = 'L';
         this.listOfSelectedValue = ['L'];
     }
 
@@ -68,8 +67,8 @@ export class StockDataComponent implements OnInit {
         this.tushare();
     }
 
-    tushareJoin() {
-        const str = this.listOfSelectedValue.join();
+    tushareJoin(event) {
+        const str = event.sort().join(',');
         this.tushare(str);
     }
 
