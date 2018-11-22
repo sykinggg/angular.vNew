@@ -1,40 +1,60 @@
 <!-- <button mat-button (click)="tushare()">tushare!</button> -->
-<nz-select [nzMaxMultipleCount]="3" style="width: 100%" (ngModelChange)="tushareJoin($event)" nzMode="multiple" nzPlaceHolder="Please select" [ngModel]="listOfSelectedValue">
-    <nz-option *ngFor="let option of list_status_arr" [nzLabel]="option.name" [nzValue]="option.value"></nz-option>
-</nz-select>
-<nz-table #rowSelectionTable [nzData]="data" (nzCurrentPageDataChange)="currentPageDataChange($event)" (nzPageIndexChange)="refreshStatus()"
-    (nzPageSizeChange)="refreshStatus()" nzSize="small">
-    <thead>
-        <tr>
-            <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
-            <th>TS代码</th>
-            <th>股票代码</th>
-            <th nzCustomFilter>
-                名称
-                <nz-dropdown nzTrigger="click" [nzClickHide]="false" #dropdown>
-                    <i nz-icon type="smile-o" class="ant-table-filter-icon" [class.ant-table-filter-open]="dropdown.nzVisible" nz-dropdown></i>
-                    <div class="custom-filter-dropdown">
-                        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue">
-                        <button nz-button [nzType]="'primary'" (click)="search()">Search</button>
-                    </div>
-                </nz-dropdown>
-            </th>
-            <th>地址</th>
-            <th>行业</th>
-            <th>市场类型</th>
-            <th>时间</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let data of rowSelectionTable.data">
-            <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
-            <td>{{data[0]}}</td>
-            <td>{{data[1]}}</td>
-            <td>{{data[2]}}</td>
-            <td>{{data[3]}}</td>
-            <td>{{data[4]}}</td>
-            <td>{{data[5]}}</td>
-            <td>{{data[6] | dateString}}</td>
-        </tr>
-    </tbody>
-</nz-table>
+<nz-tabset nzAnimated="true">
+    <nz-tab nzTitle="交易列表" (nzSelect)="stockBasic()">
+        <nz-select [nzMaxMultipleCount]="3" (ngModelChange)="stockBasic($event)" nzPlaceHolder="Please select" [ngModel]="listOfSelectedValue">
+            <nz-option *ngFor="let option of list_status_arr" [nzLabel]="option.name" [nzValue]="option.value"></nz-option>
+        </nz-select>
+        <nz-table #rowSelectionTable [nzData]="data" (nzCurrentPageDataChange)="currentPageDataChange($event)" (nzPageIndexChange)="refreshStatus()"
+            (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th nzCustomFilter>
+                        名称
+                        <nz-dropdown nzTrigger="click" [nzClickHide]="false" #dropdown>
+                            <i nz-icon type="smile-o" class="ant-table-filter-icon" [class.ant-table-filter-open]="dropdown.nzVisible" nz-dropdown></i>
+                            <div class="custom-filter-dropdown">
+                                <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue">
+                                <button nz-button [nzType]="'primary'" (click)="search()">Search</button>
+                            </div>
+                        </nz-dropdown>
+                    </th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of rowSelectionTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                    <td>{{data[6] | dateString}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-tab>
+    <nz-tab nzTitle="交易日历" (nzSelect)="tradeCal()">
+        {{tradeCalData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="沪深股通成份股" (nzSelect)="hsConst()">
+        {{hsConstData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="股票曾用名" (nzSelect)="namechange()">
+        {{namechangeData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="上市公司基本信息" (nzSelect)="stockCompany()">
+        {{stockCompanyData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="IPO新股列表" (nzSelect)="newShare()">
+        {{newShareData | json}}
+    </nz-tab>
+    <!-- <nz-tab nzTitle="日线行情" ()></nz-tab> -->
+</nz-tabset>

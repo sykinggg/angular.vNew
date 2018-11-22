@@ -11,6 +11,11 @@ export class StockDataComponent implements OnInit {
 
     baseUrl: string;
     STOCK_BASIC: string;
+    TRADE_CAL: string;
+    HS_CONST: string;
+    NAME_CHANGE: string;
+    STOCK_COMPANY: string;
+    NEW_SHARE: string;
 
     data: Array<any>;
     allData: Array<any>;
@@ -25,7 +30,7 @@ export class StockDataComponent implements OnInit {
     sortName: any;
 
     list_status_arr: Array<any>;
-    listOfSelectedValue: Array<any>;
+    listOfSelectedValue: string;
 
 
     constructor(
@@ -34,6 +39,11 @@ export class StockDataComponent implements OnInit {
     ) {
         this.baseUrl = 'http://127.0.0.1:666/tushare';
         this.STOCK_BASIC = '/storkBaseUrl';
+        this.TRADE_CAL = '/tradeCalUrl';
+        this.HS_CONST = '/hsConst';
+        this.NAME_CHANGE = '/namechange';
+        this.STOCK_COMPANY = '/stockCompany';
+        this.NEW_SHARE = '/newShare';
         this.data = [];
 
         // table
@@ -60,24 +70,19 @@ export class StockDataComponent implements OnInit {
                 value: 'P'
             }
         ]
-        this.listOfSelectedValue = ['L'];
+        this.listOfSelectedValue = 'L';
     }
 
     ngOnInit() {
-        this.tushare();
+        this.stockBasic();
     }
 
-    tushareJoin(event) {
-        const str = event.sort().join(',');
-        this.tushare(str);
-    }
-
-    tushare(type?) {
+    stockBasic(type?) {
         let data = {
             api_name: 'stock_basic',
             token: '304bd4b4830d85adf5bee28ae7cc6fe79a5c72e3022f6ca816b83894',
             params: {
-                list_status: 'L,D,P',
+                list_status: 'L',
             },
             fields: 'ts_code,symbol,name,area,industry,market,list_date',
         }
@@ -85,16 +90,70 @@ export class StockDataComponent implements OnInit {
             data.params.list_status = type;
         }
         this.http.post(this.baseUrl + this.STOCK_BASIC, data).subscribe((res: any) => {
-            // if (+res.code === 0) {
-            //     this.createMessage('success', '数据获取成功!');
-            //     this.data = res.data.items;
-            // } else {
-            //     this.createMessage('error', res.msg || '数据获取失败!');
-            // }
-            if (res[0]) {
+            if (+res.code === 0) {
                 this.createMessage('success', '数据获取成功!');
-                this.data = res[0].data[0].items;
-                this.allData = res[0].data[0].items;
+                this.data = res.data.items;
+                this.allData = res.data.items;
+            } else {
+                this.createMessage('error', res.msg || '数据获取失败!');
+            }
+        })
+    }
+
+    tradeCalData = [];
+    tradeCal() {
+        this.http.post(this.baseUrl + this.TRADE_CAL, null).subscribe((res: any) => {
+            if (+res.code === 0) {
+                this.createMessage('success', '数据获取成功!');
+                this.tradeCalData = res.data.items;
+            } else {
+                this.createMessage('error', res.msg || '数据获取失败!');
+            }
+        })
+    }
+
+    hsConstData = [];
+    hsConst() {
+        this.http.post(this.baseUrl + this.HS_CONST, null).subscribe((res: any) => {
+            if (+res.code === 0) {
+                this.createMessage('success', '数据获取成功!');
+                this.hsConstData = res.data.items;
+            } else {
+                this.createMessage('error', res.msg || '数据获取失败!');
+            }
+        })
+    }
+
+    namechangeData = [];
+    namechange() {
+        this.http.post(this.baseUrl + this.NAME_CHANGE, null).subscribe((res: any) => {
+            if (+res.code === 0) {
+                this.createMessage('success', '数据获取成功!');
+                this.namechangeData = res.data.items;
+            } else {
+                this.createMessage('error', res.msg || '数据获取失败!');
+            }
+        })
+    }
+
+    stockCompanyData = [];
+    stockCompany() {
+        this.http.post(this.baseUrl + this.STOCK_COMPANY, null).subscribe((res: any) => {
+            if (+res.code === 0) {
+                this.createMessage('success', '数据获取成功!');
+                this.stockCompanyData = res.data.items;
+            } else {
+                this.createMessage('error', res.msg || '数据获取失败!');
+            }
+        })
+    }
+
+    newShareData = [];
+    newShare() {
+        this.http.post(this.baseUrl + this.NEW_SHARE, null).subscribe((res: any) => {
+            if (+res.code === 0) {
+                this.createMessage('success', '数据获取成功!');
+                this.newShareData = res.data.items;
             } else {
                 this.createMessage('error', res.msg || '数据获取失败!');
             }
