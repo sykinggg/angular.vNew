@@ -1,11 +1,12 @@
 <!-- <button mat-button (click)="tushare()">tushare!</button> -->
-<nz-tabset nzAnimated="true">
+<nz-tabset nzAnimated="true" nzTabPosition="top" [(nzSelectedIndex)]="selectedIndex">
     <nz-tab nzTitle="交易列表" (nzSelect)="stockBasic()">
-        <nz-select [nzMaxMultipleCount]="3" (ngModelChange)="stockBasic($event)" nzPlaceHolder="Please select" [ngModel]="listOfSelectedValue">
+        <nz-select [nzMaxMultipleCount]="3" (ngModelChange)="stockBasic($event)" nzPlaceHolder="Please select"
+            [ngModel]="listOfSelectedValue">
             <nz-option *ngFor="let option of list_status_arr" [nzLabel]="option.name" [nzValue]="option.value"></nz-option>
         </nz-select>
-        <nz-table #rowSelectionTable [nzData]="data" (nzCurrentPageDataChange)="currentPageDataChange($event)" (nzPageIndexChange)="refreshStatus()"
-            (nzPageSizeChange)="refreshStatus()" nzSize="small">
+        <nz-table #rowSelectionTable [nzData]="data" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
             <thead>
                 <tr>
                     <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
@@ -14,7 +15,8 @@
                     <th nzCustomFilter>
                         名称
                         <nz-dropdown nzTrigger="click" [nzClickHide]="false" #dropdown>
-                            <i nz-icon type="smile-o" class="ant-table-filter-icon" [class.ant-table-filter-open]="dropdown.nzVisible" nz-dropdown></i>
+                            <i nz-icon type="smile-o" class="ant-table-filter-icon" [class.ant-table-filter-open]="dropdown.nzVisible"
+                                nz-dropdown></i>
                             <div class="custom-filter-dropdown">
                                 <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue">
                                 <button nz-button [nzType]="'primary'" (click)="search()">Search</button>
@@ -56,5 +58,19 @@
     <nz-tab nzTitle="IPO新股列表" (nzSelect)="newShare()">
         {{newShareData | json}}
     </nz-tab>
-    <!-- <nz-tab nzTitle="日线行情" ()></nz-tab> -->
+    <nz-tab nzTitle="日线行情" (nzSelect)="daily()">
+        {{dailyData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="复权因子" (nzSelect)="adjFactor()">
+        {{adjFactorData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="停复牌信息" (nzSelect)="suspend()">
+        {{suspendData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="沪深港通资金流向" (nzSelect)="moneyflowHsgt()">
+        {{moneyflowHsgtData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="沪深股通十大成交股" (nzSelect)="ggtTop10()">
+        {{ggtTop10Data | json}}
+    </nz-tab>
 </nz-tabset>

@@ -16,6 +16,10 @@ export class StockDataComponent implements OnInit {
     NAME_CHANGE: string;
     STOCK_COMPANY: string;
     NEW_SHARE: string;
+    DAILY: string;
+    ADJ_FACTOR: string;
+    SUSPEND: string;
+    MONEYFLOW_HSGT: string;
 
     data: Array<any>;
     allData: Array<any>;
@@ -31,6 +35,7 @@ export class StockDataComponent implements OnInit {
 
     list_status_arr: Array<any>;
     listOfSelectedValue: string;
+    selectedIndex: number;
 
 
     constructor(
@@ -44,6 +49,10 @@ export class StockDataComponent implements OnInit {
         this.NAME_CHANGE = '/namechange';
         this.STOCK_COMPANY = '/stockCompany';
         this.NEW_SHARE = '/newShare';
+        this.DAILY = '/daily';
+        this.ADJ_FACTOR = '/adjFactor';
+        this.SUSPEND = '/suspend'
+        this.MONEYFLOW_HSGT = '/moneyflowHsgt'
         this.data = [];
 
         // table
@@ -55,6 +64,8 @@ export class StockDataComponent implements OnInit {
         this.sortValue = null;
         this.sortName = null;
         this.allData = [];
+
+        this.selectedIndex = 0;
 
         this.list_status_arr = [
             {
@@ -102,58 +113,54 @@ export class StockDataComponent implements OnInit {
 
     tradeCalData = [];
     tradeCal() {
-        this.http.post(this.baseUrl + this.TRADE_CAL, null).subscribe((res: any) => {
-            if (+res.code === 0) {
-                this.createMessage('success', '数据获取成功!');
-                this.tradeCalData = res.data.items;
-            } else {
-                this.createMessage('error', res.msg || '数据获取失败!');
-            }
-        })
+        this.basePost(this.baseUrl + this.TRADE_CAL, null, 'tradeCalData');
     }
 
     hsConstData = [];
     hsConst() {
-        this.http.post(this.baseUrl + this.HS_CONST, null).subscribe((res: any) => {
-            if (+res.code === 0) {
-                this.createMessage('success', '数据获取成功!');
-                this.hsConstData = res.data.items;
-            } else {
-                this.createMessage('error', res.msg || '数据获取失败!');
-            }
-        })
+        this.basePost(this.baseUrl + this.HS_CONST, null, 'hsConstData');
     }
 
     namechangeData = [];
     namechange() {
-        this.http.post(this.baseUrl + this.NAME_CHANGE, null).subscribe((res: any) => {
-            if (+res.code === 0) {
-                this.createMessage('success', '数据获取成功!');
-                this.namechangeData = res.data.items;
-            } else {
-                this.createMessage('error', res.msg || '数据获取失败!');
-            }
-        })
+        this.basePost(this.baseUrl + this.NAME_CHANGE, null, 'namechangeData');
     }
 
     stockCompanyData = [];
     stockCompany() {
-        this.http.post(this.baseUrl + this.STOCK_COMPANY, null).subscribe((res: any) => {
-            if (+res.code === 0) {
-                this.createMessage('success', '数据获取成功!');
-                this.stockCompanyData = res.data.items;
-            } else {
-                this.createMessage('error', res.msg || '数据获取失败!');
-            }
-        })
+        this.basePost(this.baseUrl + this.STOCK_COMPANY, null, 'stockCompanyData');
     }
 
     newShareData = [];
     newShare() {
-        this.http.post(this.baseUrl + this.NEW_SHARE, null).subscribe((res: any) => {
+        this.basePost(this.baseUrl + this.NEW_SHARE, null, 'newShareData');
+    }
+
+    dailyData = [];
+    daily() {
+        this.basePost(this.baseUrl + this.DAILY, null, 'dailyData');
+    }
+
+    adjFactorData = [];
+    adjFactor() {
+        this.basePost(this.baseUrl + this.ADJ_FACTOR, null, 'adjFactorData');
+    }
+
+    suspendData = [];
+    suspend() {
+        this.basePost(this.baseUrl + this.SUSPEND, null, 'suspendData');
+    }
+
+    moneyflowHsgtData = [];
+    moneyflowHsgt() {
+        this.basePost(this.baseUrl + this.MONEYFLOW_HSGT, null, 'moneyflowHsgtData');
+    }
+
+    basePost(url, params, typeData) {
+        this.http.post(url, params).subscribe((res: any) => {
             if (+res.code === 0) {
                 this.createMessage('success', '数据获取成功!');
-                this.newShareData = res.data.items;
+                this[typeData] = res.data.items;
             } else {
                 this.createMessage('error', res.msg || '数据获取失败!');
             }
