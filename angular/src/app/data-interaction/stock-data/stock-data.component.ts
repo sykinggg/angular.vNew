@@ -20,6 +20,8 @@ export class StockDataComponent implements OnInit {
     ADJ_FACTOR: string;
     SUSPEND: string;
     MONEYFLOW_HSGT: string;
+    HSGT_TOP10: string;
+    GGT_TOP10: string;
 
     data: Array<any>;
     allData: Array<any>;
@@ -51,8 +53,10 @@ export class StockDataComponent implements OnInit {
         this.NEW_SHARE = '/newShare';
         this.DAILY = '/daily';
         this.ADJ_FACTOR = '/adjFactor';
-        this.SUSPEND = '/suspend'
-        this.MONEYFLOW_HSGT = '/moneyflowHsgt'
+        this.SUSPEND = '/suspend';
+        this.MONEYFLOW_HSGT = '/moneyflowHsgt';
+        this.HSGT_TOP10 = '/hsgtTop10';
+        this.GGT_TOP10 = '/ggt_top10';
         this.data = [];
 
         // table
@@ -154,6 +158,16 @@ export class StockDataComponent implements OnInit {
     moneyflowHsgtData = [];
     moneyflowHsgt() {
         this.basePost(this.baseUrl + this.MONEYFLOW_HSGT, null, 'moneyflowHsgtData');
+    }
+
+    hsgtTop10Data = [];
+    hsgtTop10() {
+        this.basePost(this.baseUrl + this.HSGT_TOP10, null, 'hsgtTop10Data');
+    }
+
+    ggtTop10Data = [];
+    ggtTop10() {
+        this.basePost(this.baseUrl + this.GGT_TOP10, null, 'ggtTop10Data');
     }
 
     basePost(url, params, typeData) {

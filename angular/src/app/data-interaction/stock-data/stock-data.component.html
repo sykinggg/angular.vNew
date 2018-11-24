@@ -70,7 +70,10 @@
     <nz-tab nzTitle="沪深港通资金流向" (nzSelect)="moneyflowHsgt()">
         {{moneyflowHsgtData | json}}
     </nz-tab>
-    <nz-tab nzTitle="沪深股通十大成交股" (nzSelect)="ggtTop10()">
+    <nz-tab nzTitle="沪深股通十大成交股" (nzSelect)="hsgtTop10()">
+        {{hsgtTop10Data | json}}
+    </nz-tab>
+    <nz-tab nzTitle="港股通十大成交股" (nzSelect)="ggtTop10()">
         {{ggtTop10Data | json}}
     </nz-tab>
 </nz-tabset>
