@@ -15,6 +15,8 @@ export class HuobiComponent implements OnInit {
     listUrl: string;
     noSignatureUrl: string;
     textSignatureUrl: string;
+    balanceUrl: string;
+    getOpenOrdersUrl: string;
 
     NO_SIGNATURE_API: Array<any>;
 
@@ -27,6 +29,8 @@ export class HuobiComponent implements OnInit {
         this.textUrl = '/text';
         this.noSignatureUrl = '/noSignature';
         this.textSignatureUrl = '/signature';
+        this.balanceUrl = '/v1AccountAccountsbalance';
+        this.getOpenOrdersUrl = '/get_open_orders';
 
         this.NO_SIGNATURE_API = [
             {
@@ -114,6 +118,7 @@ export class HuobiComponent implements OnInit {
         this.NO_SIGNATURE_API.map(item => {
             this.http.post(this.baseUrl + this.noSignatureUrl, item.params).subscribe((res: any) => {
                 if (res.status === 'ok') {
+                    this.createMessage('success', '数据获取成功!');
                     item.data = res.data;
                 } else {
                     //  res['err-msg']
@@ -123,12 +128,35 @@ export class HuobiComponent implements OnInit {
         })
     }
 
+    signatureData = [];
     getSignature() {
-        this.http.post(this.baseUrl + this.textSignatureUrl, {}).subscribe((res: any) => {
-            console.log(res);
-        })
+        this.basePost(this.baseUrl + this.textSignatureUrl, {}, 'signatureData');
     }
 
+    selectBalance(data, idx) {
+        this.getBalance(data.id);
+    }
+
+    getBalanceData = [];
+    getBalance(id) {
+        this.basePost(this.baseUrl + this.balanceUrl, {account_id: id}, 'getBalanceData');
+    }
+
+    getOpenOrdersData = [];
+    getOpenOrders() {
+        this.basePost(this.baseUrl + this.getOpenOrdersUrl, {}, 'getBalanceData');
+    }
+
+    basePost(url, params, typeData) {
+        this.http.post(url, params).subscribe((res: any) => {
+            if (res.status === 'ok') {
+                this.createMessage('success', '数据获取成功!');
+                this[typeData] = res.data;
+            } else {
+                this.createMessage('error', res.msg || '数据获取失败!');
+            }
+        })
+    }
     createMessage(type: string, msg: string) {
         this.message.create(type, msg);
     }

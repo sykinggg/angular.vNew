@@ -76,4 +76,24 @@
     <nz-tab nzTitle="港股通十大成交股" (nzSelect)="ggtTop10()">
         {{ggtTop10Data | json}}
     </nz-tab>
+    <!-- 无权限 -->
+    <!-- <nz-tab nzTitle="融资融券交易汇总" (nzSelect)="margin()">
+        {{marginData | json}}
+    </nz-tab> -->
+    <!-- 无权限 -->
+    <!-- <nz-tab nzTitle="融资融券交易明细" (nzSelect)="marginDetail()">
+        {{marginDetailData | json}}
+    </nz-tab> -->
+    <nz-tab nzTitle="前十大股东" (nzSelect)="top10Holders()">
+        {{top10HoldersData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="前十大流通股东" (nzSelect)="top10Floatholders()">
+        {{top10FloatholdersData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="指数基本信息" (nzSelect)="indexBasic()">
+        {{indexBasicData | json}}
+    </nz-tab>
+    <nz-tab nzTitle="指数日线行情" (nzSelect)="indexDaily()">
+        {{indexDaily | json}}
+    </nz-tab>
 </nz-tabset>

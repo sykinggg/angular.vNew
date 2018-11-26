@@ -1,4 +1,43 @@
-<button (click)="getSignature()">getSignature</button>
-<p>
-    {{NO_SIGNATURE_API | json}}
-</p>
+<nz-tabset nzAnimated="true" nzTabPosition="top" [(nzSelectedIndex)]="selectedIndex">
+    <nz-tab nzTitle="账号列表" (nzSelect)="getSignature()">
+        {{tradeCalData | json}}
+        <button (click)="getSignature()">getSignature</button>
+        <p>
+            {{signatureData | json}}
+        </p>
+        <nz-table #basicTable [nzData]="signatureData">
+            <thead>
+                <tr>
+                    <th>account-id</th>
+                    <th>账户状态</th>
+                    <th>账户类型</th>
+                    <th>余额</th>
+                    <th>详情</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{data.id}}</td>
+                    <td>{{data.state}}</td>
+                    <td>{{data.type}}</td>
+                    <td>{{data.balance}}</td>
+                    <td>
+                        <a (click)="selectBalance(data)">详情</a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <nz-card nzTitle="某一列表下的资产查明">
+            <p>
+                {{getBalanceData | json}}
+            </p>
+        </nz-card>
+    </nz-tab>
+    <nz-tab nzTitle="不需要签名的请求" (nzSelect)="getNoSignature()">
+        {{NO_SIGNATURE_API | json}}
+    </nz-tab>
+    <nz-tab nzTitle="查询当前委托、历史委托" (nzSelect)="getOpenOrders()">
+        {{getOpenOrdersData | json}}
+    </nz-tab>
+    
+</nz-tabset>

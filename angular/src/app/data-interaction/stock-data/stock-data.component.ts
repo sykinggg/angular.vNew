@@ -22,6 +22,13 @@ export class StockDataComponent implements OnInit {
     MONEYFLOW_HSGT: string;
     HSGT_TOP10: string;
     GGT_TOP10: string;
+    MARGIN: string;
+    MARGIN_DETAIL: string;
+    TOP10_HOLDERS: string;
+    TOP10_FLOATHOLDERS: string;
+    INDEX_BASIC: string;
+    INDEX_DAILY: string;
+
 
     data: Array<any>;
     allData: Array<any>;
@@ -57,6 +64,12 @@ export class StockDataComponent implements OnInit {
         this.MONEYFLOW_HSGT = '/moneyflowHsgt';
         this.HSGT_TOP10 = '/hsgtTop10';
         this.GGT_TOP10 = '/ggt_top10';
+        this.MARGIN = '/margin';
+        this.MARGIN_DETAIL = '/margin_detail';
+        this.TOP10_HOLDERS = '/top10_holders';
+        this.TOP10_FLOATHOLDERS = '/top10_floatholders';
+        this.INDEX_BASIC = '/index_basic';
+        this.INDEX_DAILY = '/index_daily';
         this.data = [];
 
         // table
@@ -168,6 +181,36 @@ export class StockDataComponent implements OnInit {
     ggtTop10Data = [];
     ggtTop10() {
         this.basePost(this.baseUrl + this.GGT_TOP10, null, 'ggtTop10Data');
+    }
+
+    marginData = [];
+    margin() {
+        this.basePost(this.baseUrl + this.MARGIN, null, 'marginData');
+    }
+
+    marginDetailData = [];
+    marginDetail() {
+        this.basePost(this.baseUrl + this.MARGIN_DETAIL, null, 'marginDetailData');
+    }
+
+    top10HoldersData = [];
+    top10Holders() {
+        this.basePost(this.baseUrl + this.TOP10_HOLDERS, null, 'top10HoldersData');
+    }
+
+    top10FloatholdersData = [];
+    top10Floatholders() {
+        this.basePost(this.baseUrl + this.TOP10_FLOATHOLDERS, null, 'top10FloatholdersData');
+    }
+
+    indexBasicData = [];
+    indexBasic() {
+        this.basePost(this.baseUrl + this.INDEX_BASIC, null, 'indexBasicData');
+    }
+
+    indexDailyData = [];
+    indexDaily() {
+        this.basePost(this.baseUrl + this.INDEX_DAILY, null, 'indexDailyData');
     }
 
     basePost(url, params, typeData) {
