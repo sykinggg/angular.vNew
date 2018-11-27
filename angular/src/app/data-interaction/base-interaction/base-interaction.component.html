@@ -28,6 +28,9 @@
 <button mat-button (click)="delete5aavPic()">delete5aavPic!</button>
 <button mat-button (click)="sockerInit()">sockerInit!</button>
 <button mat-button (click)="sockerEmit()">sockerEmit!</button>
+<button mat-button (click)="setMovie()">setMovie!</button>
+<button mat-button (click)="getMovie()">getMovie!</button>
+<app-water-full-movie class="container-fluid" [setImgData]="moveList" *ngIf="moveList.length"></app-water-full-movie>
 <form #fileForm>
 	<!-- accept=".jpg" -->
 	<input id="fileBoardConfig" name="file" type="file"

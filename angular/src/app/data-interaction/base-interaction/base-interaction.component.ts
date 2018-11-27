@@ -25,7 +25,7 @@ export class BaseInteractionComponent implements OnInit {
     imgAllData: Array<any>;
     ngOnInit() {
         this.imgAllData = [];
-        this.imgData.subscribe(res => {
+        this.imgData.subscribe((res: any) => {
             if (res && res.length) {
                 this.imgAllData = res;
             }
@@ -88,7 +88,7 @@ export class BaseInteractionComponent implements OnInit {
     get() {
         this.http.get('http://127.0.0.1:666/test', {
             params: this.text
-        }).subscribe(res => {
+        }).subscribe((res: any) => {
             console.log(res);
         })
     }
@@ -96,7 +96,7 @@ export class BaseInteractionComponent implements OnInit {
     put() {
         this.http.put('http://127.0.0.1:666/test', {
             params: this.text
-        }).subscribe(res => {
+        }).subscribe((res: any) => {
             console.log(res);
         })
     }
@@ -104,7 +104,7 @@ export class BaseInteractionComponent implements OnInit {
     delete() {
         this.http.delete('http://127.0.0.1:666/test', {
             params: this.text
-        }).subscribe(res => {
+        }).subscribe((res: any) => {
             console.log(res);
         })
     }
@@ -112,7 +112,7 @@ export class BaseInteractionComponent implements OnInit {
     post() {
         this.http.post('http://127.0.0.1:666/test', {
             params: this.text
-        }).subscribe(res => {
+        }).subscribe((res: any) => {
             console.log(res);
         })
     }
@@ -120,7 +120,7 @@ export class BaseInteractionComponent implements OnInit {
     options() {
         this.http.options('http://127.0.0.1:666/test', {
             params: this.text
-        }).subscribe(res => {
+        }).subscribe((res: any) => {
             console.log(res);
         })
     }
@@ -128,7 +128,7 @@ export class BaseInteractionComponent implements OnInit {
     patch() {
         this.http.patch('http://127.0.0.1:666/test', {
             params: this.text
-        }).subscribe(res => {
+        }).subscribe((res: any) => {
             console.log(res);
         })
     }
@@ -136,7 +136,7 @@ export class BaseInteractionComponent implements OnInit {
     head() {
         this.http.head('http://127.0.0.1:666/test', {
             params: this.text
-        }).subscribe(res => {
+        }).subscribe((res: any) => {
             console.log(res);
         })
     }
@@ -144,7 +144,7 @@ export class BaseInteractionComponent implements OnInit {
     dbpost() {
         this.http.post('http://127.0.0.1:666/cats', {
             params: this.text
-        }).subscribe(res => {
+        }).subscribe((res: any) => {
             console.log(res);
         })
     }
@@ -152,71 +152,86 @@ export class BaseInteractionComponent implements OnInit {
     dbget() {
         this.http.get('http://127.0.0.1:666/cats', {
             params: this.text
-        }).subscribe(res => {
+        }).subscribe((res: any) => {
             console.log(res);
         })
     }
 
     set5aavPic() {
-        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: '5aav' } }).subscribe(res => {
+        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: '5aav' } }).subscribe((res: any) => {
             console.log(res);
         })
     }
 
     setjiandanPic() {
-        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: 'jiandan' } }).subscribe(res => {
+        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: 'jiandan' } }).subscribe((res: any) => {
             console.log(res);
         })
     }
 
     setMmJpg() {
-        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: 'mmJpg' } }).subscribe(res => {
+        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: 'mmJpg' } }).subscribe((res: any) => {
             console.log(res);
+        })
+    }
+
+    setMovie() {
+        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: 'movie' } }).subscribe((res: any) => {
+            console.log(res);
+        })
+    }
+
+    moveList = [];
+    getMovie() {
+        this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type: 'movie' } }).subscribe((res: any) => {
+            if (res && res.address) {
+                this.moveList = res.address;
+            }
         })
     }
 
     imgData = new BehaviorSubject<any>(null);
     get5aavPic() {
-        this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: '5aav' } }).subscribe(res => {
+        this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type: '5aav' } }).subscribe((res: any) => {
             console.log(res);
-            if (res[0] && res[0].address) {
-                this.imgData.next(res[0].address);
+            if (res && res.address) {
+                this.imgData.next(res.address);
             }
         })
     }
 
     getJiandanPic() {
-        this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: 'jiandan' } }).subscribe(res => {
+        this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type: 'jiandan' } }).subscribe((res: any) => {
             console.log(res);
-            if (res[0] && res[0].address) {
-                this.imgData.next(res[0].address);
+            if (res && res.address) {
+                this.imgData.next(res.address);
             }
         })
     }
 
     getMmJpg() {
-        this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: 'mmJpg' } }).subscribe(res => {
+        this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type: 'mmJpg' } }).subscribe((res: any) => {
             console.log(res);
-            if (res[0] && res[0].address) {
-                this.imgData.next(res[0].address);
+            if (res && res.address) {
+                this.imgData.next(res.address);
             }
         })
     }
 
     deleteMmJpg() {
-        this.http.delete('http://127.0.0.1:666/pic/one', { params: { type: 'mmJpg' } }).subscribe(res => {
+        this.http.delete('http://127.0.0.1:666/pic/one', { params: { type: 'mmJpg' } }).subscribe((res: any) => {
             console.log(res);
         })
     }
 
     delete5aavPic() {
-        this.http.delete('http://127.0.0.1:666/pic/all').subscribe(res => {
+        this.http.delete('http://127.0.0.1:666/pic/all').subscribe((res: any) => {
             console.log(res);
         })
     }
 
     tushare() {
-        this.http.post('http://127.0.0.1:666/tushare/list', {}).subscribe(res => {
+        this.http.post('http://127.0.0.1:666/tushare/list', {}).subscribe((res: any) => {
             console.log(res);
         })
     }
@@ -233,49 +248,49 @@ export class BaseInteractionComponent implements OnInit {
     file;
     picUpload(form) {
         let formData = new FormData(form);
-        this.http.post('http://127.0.0.1:666/pic/upload', formData).subscribe(res => {
+        this.http.post('http://127.0.0.1:666/pic/upload', formData).subscribe((res: any) => {
             console.log(res);
         })
         // console.log(event.target.files);
         // const files = event.target.files;
         // console.log(this.file);
         // const reader = new FileReader();
-        // reader.readAsDataURL(files[0]);
+        // reader.readAsDataURL(files);
         // reader.onload = (e) => {
         //     console.log(e);
-        //     this.http.post('http://127.0.0.1:666/pic/upload', { file: e }).subscribe(res => {
+        //     this.http.post('http://127.0.0.1:666/pic/upload', { file: e }).subscribe((res: any) => {
         //         console.log(res);
         //     })
         // }
-        // console.log(reader.readAsDataURL(files[0]));
+        // console.log(reader.readAsDataURL(files));
         // const uploadData = {
-        //     readAsArrayBuffer: reader.readAsArrayBuffer(files[0]),
-        //     readAsBinaryString: reader.readAsBinaryString(files[0]),
-        //     readAsDataURL: reader.readAsDataURL(files[0]),
-        //     readAsText: reader.readAsText(files[0])
+        //     readAsArrayBuffer: reader.readAsArrayBuffer(files),
+        //     readAsBinaryString: reader.readAsBinaryString(files),
+        //     readAsDataURL: reader.readAsDataURL(files),
+        //     readAsText: reader.readAsText(files)
         // }
         // // ArrayBuffer
         // // ERROR TypeError: Failed to execute 'readAsArrayBuffer' on 'FileReader': parameter 1 is not of type 'Blob'.
-        // console.log(reader.readAsArrayBuffer(files[0]));
+        // console.log(reader.readAsArrayBuffer(files));
         // // 二进制串
         // // ERROR TypeError: Failed to execute 'readAsBinaryString' on 'FileReader': parameter 1 is not of type 'Blob'.
-        // console.log(reader.readAsBinaryString(files[0]));
+        // console.log(reader.readAsBinaryString(files));
         // // 结果用data:url的字符串形式表示
         // // ERROR TypeError: Failed to execute 'readAsDataURL' on 'FileReader': parameter 1 is not of type 'Blob'.
-        // console.log(reader.readAsDataURL(files[0]));
+        // console.log(reader.readAsDataURL(files));
         // // 按字符读取文件内容，结果用字符串形式表示
         // // ERROR TypeError: Failed to execute 'readAsText' on 'FileReader': parameter 1 is not of type 'Blob'.
-        // console.log(reader.readAsText(files[0]));
+        // console.log(reader.readAsText(files));
     }
-    exportURL = 'http://127.0.0.1:666/pic/5aavGet';
+    exportURL = 'http://127.0.0.1:666/pic/dataFind';
     getfile() {
-        this.http.get('http://127.0.0.1:666/pic/5aavGet', { params: { type: 'file' } }).subscribe(res => {
+        this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type: 'file' } }).subscribe((res: any) => {
             console.log(res);
         })
     }
 
     getHoubiText() {
-        this.http.get('http://127.0.0.1:666/huobi/text').subscribe(res => {
+        this.http.get('http://127.0.0.1:666/huobi/text').subscribe((res: any) => {
             console.log(res);
         })
     }

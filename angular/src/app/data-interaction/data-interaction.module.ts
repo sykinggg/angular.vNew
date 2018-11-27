@@ -15,6 +15,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { StockDataComponent } from './stock-data/stock-data.component';
 import { DateStringPipe } from './pipe/date-string/date-string.pipe';
 import { HuobiComponent } from './huobi/huobi.component';
+import { WaterFullMovieComponent } from '../common-directives/water-full-movie/water-full-movie.component';
 
 @NgModule({
     imports: [
@@ -29,7 +30,7 @@ import { HuobiComponent } from './huobi/huobi.component';
     declarations: [
         WaterFullComponent,
         DataInteractionComponent, 
-        BaseInteractionComponent, StockDataComponent, DateStringPipe, HuobiComponent
+        BaseInteractionComponent, StockDataComponent, DateStringPipe, HuobiComponent, WaterFullMovieComponent
     ]
 })
 export class DataInteractionModule { }
