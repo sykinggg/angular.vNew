@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as io from 'socket.io-client';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { voiceData } from './voice';
 
 @Component({
     selector: 'app-base-interaction',
@@ -16,10 +17,25 @@ export class BaseInteractionComponent implements OnInit {
         Select: 'option'
     }
 
+    voiceData: any;
+
     constructor(
         private http: HttpClient
     ) {
         this.imgAllData = [];
+        this.voiceData = voiceData;
+    }
+
+    changeSelectData;
+    changeSelect(event) {
+        this.changeSelectData = new SpeechSynthesisUtterance(event);
+    }
+    readObj;
+    read() {
+        this.readObj = window.speechSynthesis.speak(this.changeSelectData);
+    }
+    close() {
+        window.speechSynthesis.cancel();
     }
 
     imgAllData: Array<any>;
@@ -181,13 +197,36 @@ export class BaseInteractionComponent implements OnInit {
         })
     }
 
+    showMoveList = [];
     moveList = [];
     getMovie() {
         this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type: 'movie' } }).subscribe((res: any) => {
             if (res && res.address) {
                 this.moveList = res.address;
+                this.setMoviePage();
             }
         })
+    }
+    moviePageList = [];
+    setMoviePage() {
+        let maxNum = 500, page;
+        page = this.moveList.length / 500;
+        // tslint:disable-next-line:no-bitwise
+        if (page > (page | 0)) {
+            // tslint:disable-next-line:no-bitwise
+            page = page | 0 + 1;
+        }
+        for (let i = 0; i < page + 1; i++) {
+            this.moviePageList.push({
+                key: 'page' + i,
+                value: this.moveList.splice(0, maxNum)
+            })
+        }
+        this.showMoveList = this.moviePageList[0].value;
+    }
+    choiceMovie(arr) {
+        this.showMoveList = [];
+        this.showMoveList = arr;
     }
 
     imgData = new BehaviorSubject<any>(null);

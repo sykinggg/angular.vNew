@@ -30,14 +30,17 @@
 <button mat-button (click)="sockerEmit()">sockerEmit!</button>
 <button mat-button (click)="setMovie()">setMovie!</button>
 <button mat-button (click)="getMovie()">getMovie!</button>
-<app-water-full-movie class="container-fluid" [setImgData]="moveList" *ngIf="moveList.length"></app-water-full-movie>
+<nz-select style="width: 120px;" [(ngModel)]="selectedValue" nzAllowClear nzPlaceHolder="Choose" (ngModelChange)="changeSelect($event)">
+	<nz-option [nzValue]="item.value" [nzLabel]="item.key" *ngFor="let item of voiceData"></nz-option>
+</nz-select>
+<button mat-button (click)="read()">read</button>
+<button mat-button (click)="close()">close</button>
+
 <form #fileForm>
 	<!-- accept=".jpg" -->
-	<input id="fileBoardConfig" name="file" type="file"
-		#inputFile  (change)="picUpload(fileForm)"/>
+	<input id="fileBoardConfig" name="file" type="file" #inputFile (change)="picUpload(fileForm)" />
 </form>
-<form name="formExportBoard" class="d-inline-block mr-1" method="GET" target="_blank"
-	action="{{exportURL}}" ngNoForm>
+<form name="formExportBoard" class="d-inline-block mr-1" method="GET" target="_blank" action="{{exportURL}}" ngNoForm>
 	<input name="type" type="hidden" value="file" />
 	<button nz-button nzType="primary" type="submit">下载文件</button>
 </form>
@@ -47,3 +50,7 @@
 <button mat-button (click)="getMmJpg()">getMmJpg!</button>
 <button mat-button (click)="deleteMmJpg()">deleteMmJpg!</button>
 <app-water-full class="container-fluid" [setImgData]="imgAllData" *ngIf="imgAllData.length"></app-water-full>
+<nz-tabset nzAnimated="true" nzTabPosition="top" [(nzSelectedIndex)]="selectedIndex">
+	<nz-tab nzTitle="{{item.key}}" (nzSelect)="choiceMovie(item.value)" *ngFor="let item of moviePageList;"></nz-tab>
+</nz-tabset>
+<app-water-full-movie class="container-fluid" [setImgData]="showMoveList" *ngIf="showMoveList.length"></app-water-full-movie>

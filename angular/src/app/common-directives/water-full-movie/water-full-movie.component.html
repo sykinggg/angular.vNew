@@ -1,5 +1,6 @@
-<div id="box-movie">
+<div id="boxMovie">
     <a href="{{imgData.detaHref}}" title="{{imgData.name}}" class="item" *ngFor="let imgData of imgData;">
-        <img src="{{imgData.imgUrl}}">
+        <img src="{{imgData.imgUrl}}" alt="{{imgData.name}}">
+        <!-- <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" alt="{{imgData.name}}"> -->
     </a>
 </div>

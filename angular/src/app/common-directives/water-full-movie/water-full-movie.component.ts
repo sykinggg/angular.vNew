@@ -16,11 +16,11 @@ export class WaterFullMovieComponent implements OnInit {
         console.log(data);
         if (data && data.length) {
             this.imgData = data;
-            this.box = document.getElementById('box-movie');
+            this.box = document.getElementById('boxMovie');
             this.items = this.box.children;
             setTimeout(() => {
                 this.waterFall();
-            }, 0);
+            }, 1000);
         }
     };
 
@@ -99,7 +99,7 @@ export class WaterFullMovieComponent implements OnInit {
         //     self.waterFall();
         // };
 
-        this.box = document.getElementById('box-movie');
+        this.box = document.getElementById('boxMovie');
         this.items = this.box.children;
         // setTimeout(() => {
         //     this.waterFall();
