@@ -28,6 +28,9 @@
 <button mat-button (click)="delete5aavPic()">delete5aavPic!</button>
 <button mat-button (click)="sockerInit()">sockerInit!</button>
 <button mat-button (click)="sockerEmit()">sockerEmit!</button>
+<nz-select style="width: 120px;" [(ngModel)]="selectedValue" nzAllowClear nzPlaceHolder="Choose" (ngModelChange)="changeMovie($event)">
+	<nz-option [nzValue]="item" [nzLabel]="item" *ngFor="let item of movieTypeArr"></nz-option>
+</nz-select>
 <button mat-button (click)="setMovie()">setMovie!</button>
 <button mat-button (click)="getMovie()">getMovie!</button>
 <nz-select style="width: 120px;" [(ngModel)]="selectedValue" nzAllowClear nzPlaceHolder="Choose" (ngModelChange)="changeSelect($event)">

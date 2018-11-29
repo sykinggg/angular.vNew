@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import * as io from 'socket.io-client';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { voiceData } from './voice';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-base-interaction',
@@ -24,18 +25,6 @@ export class BaseInteractionComponent implements OnInit {
     ) {
         this.imgAllData = [];
         this.voiceData = voiceData;
-    }
-
-    changeSelectData;
-    changeSelect(event) {
-        this.changeSelectData = new SpeechSynthesisUtterance(event);
-    }
-    readObj;
-    read() {
-        this.readObj = window.speechSynthesis.speak(this.changeSelectData);
-    }
-    close() {
-        window.speechSynthesis.cancel();
     }
 
     imgAllData: Array<any>;
@@ -191,20 +180,36 @@ export class BaseInteractionComponent implements OnInit {
         })
     }
 
+    movieTypeArr = ['movie_sf', 'movie_tx', 'movie_qj', 'movie_yz', 'movie_ll', 'movie_zw'];
+    setOneMovie(type) {
+        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type } }).subscribe((res: any) => {})
+    }
+    movieType;
+    changeMovie(event) {
+        this.movieType = event;
+    }
     setMovie() {
-        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type: 'movie' } }).subscribe((res: any) => {
-            console.log(res);
-        })
+        this.setOneMovie(this.movieType);
     }
 
     showMoveList = [];
     moveList = [];
     getMovie() {
-        this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type: 'movie' } }).subscribe((res: any) => {
-            if (res && res.address) {
-                this.moveList = res.address;
-                this.setMoviePage();
-            }
+        let i = 0;
+        this.movieTypeArr.map(type => {
+            this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type } }).subscribe((res: any) => {
+                if (i < this.movieTypeArr.length - 1) {
+                    if (res && res.address) {
+                        this.moveList = this.moveList.concat(res.address);
+                    }
+                } else {
+                    if (res && res.address) {
+                        this.moveList = this.moveList.concat(res.address);
+                        this.setMoviePage();
+                    }
+                }
+                i++;
+            })
         })
     }
     moviePageList = [];
@@ -332,5 +337,26 @@ export class BaseInteractionComponent implements OnInit {
         this.http.get('http://127.0.0.1:666/huobi/text').subscribe((res: any) => {
             console.log(res);
         })
+    }
+
+
+    synth = window.speechSynthesis;
+    changeSelectData;
+    changeSelect(event) {
+        this.changeSelectData = new SpeechSynthesisUtterance(event);
+    }
+    readObj;
+    read() {
+        this.readObj = this.synth.speak(this.changeSelectData);
+        console.log(this.synth);
+        console.log(this.synth.getVoices());
+        console.log(this.synth.paused);
+        console.log(this.synth.pause());
+        console.log(this.synth.pending);
+        console.log(this.synth.resume());
+        console.log(this.synth.onvoiceschanged);
+    }
+    close() {
+        this.synth.cancel();
     }
 }
