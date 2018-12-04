@@ -122,11 +122,19 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/cdk@^6.0.0", "@angular/cdk@^6.3.0":
+"@angular/cdk@^6.3.0":
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-6.4.2.tgz#e623cdbbe6258980b0fa93beafce0ea7c4e2c17b"
   dependencies:
     tslib "^1.7.1"
+
+"@angular/cdk@^7.0.0":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-7.1.1.tgz#6916b2303af5e0a56a9b64ff4d54642cf191c54f"
+  dependencies:
+    tslib "^1.7.1"
+  optionalDependencies:
+    parse5 "^5.0.0"
 
 "@angular/cli@^6.2.3":
   version "6.2.5"
@@ -213,9 +221,9 @@
   dependencies:
     tslib "^1.9.0"
 
-"@ant-design/icons-angular@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@ant-design/icons-angular/-/icons-angular-1.0.1.tgz#6eeddbc864deac378c36d882d566d8cce840ad2b"
+"@ant-design/icons-angular@2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@ant-design/icons-angular/-/icons-angular-2.0.0-beta.1.tgz#ad6ae384e126a60217040b3b44224964ed21a7b5"
   dependencies:
     ant-design-palettes "^1.1.3"
     tslib "^1.9.0"
@@ -4932,12 +4940,12 @@ ng-packagr@^3.0.0-rc.2:
     uglify-js "^3.0.7"
     update-notifier "^2.3.0"
 
-ng-zorro-antd@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-1.8.0.tgz#a7864611df1018dbb25ce763d73c8f98f96f6ee8"
+ng-zorro-antd@^7.0.0-rc.0:
+  version "7.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-7.0.0-rc.0.tgz#8ec41cd14c8012b31c95ece0adc3966b543e5a7f"
   dependencies:
-    "@angular/cdk" "^6.0.0"
-    "@ant-design/icons-angular" "^1.0.1"
+    "@angular/cdk" "^7.0.0"
+    "@ant-design/icons-angular" "2.0.0-beta.1"
     date-fns "^1.29.0"
     tslib "^1.9.0"
 
@@ -7251,14 +7259,6 @@ tsconfig@^6.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
-tsickle@>=0.25.5:
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.33.0.tgz#337a8a1abdbc8c9586010a566daf0cd135496fa7"
-  dependencies:
-    minimist "^1.2.0"
-    mkdirp "^0.5.1"
-    source-map "^0.7.3"
-
 tsickle@^0.29.0:
   version "0.29.0"
   resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.29.0.tgz#812806554bb46c1aa16eb0fe2a051da95ca8f5a4"
@@ -7267,6 +7267,14 @@ tsickle@^0.29.0:
     mkdirp "^0.5.1"
     source-map "^0.6.0"
     source-map-support "^0.5.0"
+
+tsickle@^0.34.0:
+  version "0.34.0"
+  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.34.0.tgz#10187fa6401a288a65efb93a60bf28b2ff95f90b"
+  dependencies:
+    minimist "^1.2.0"
+    mkdirp "^0.5.1"
+    source-map "^0.7.3"
 
 tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.2:
   version "1.9.3"
