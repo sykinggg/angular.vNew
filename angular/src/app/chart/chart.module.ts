@@ -16,7 +16,6 @@ import { ChartTemplateComponent } from './directive/chart-template/chart-templat
 import { HchartComponent } from './directive/hchart/hchart.component';
 import { D3Component } from './d3/d3.component';
 import { D3DComponent } from './directive/d3-d/d3-d.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { LayoutModule } from '../layout/layout.module';
 		NgZorroAntdModule,
 		HttpClientModule,
 		FormsModule,
-		NgxChartsModule,
 		LayoutModule
 	],
 	declarations: [
