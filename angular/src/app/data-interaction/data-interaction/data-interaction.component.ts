@@ -13,7 +13,8 @@ export class DataInteractionComponent implements OnInit {
         this.routerLinkArr = [
             { routerName: 'base-interaction', routerLink: 'baseInteraction' },
             { routerName: 'stock-data', routerLink: 'stockData' },
-            { routerName: 'huobiData', routerLink: 'huobiData' }
+            { routerName: 'huobiData', routerLink: 'huobiData' },
+            { routerName: 'weather', routerLink: 'weather' },
         ]
     }
 

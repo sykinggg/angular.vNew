@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { BaseInteractionComponent } from './base-interaction/base-interaction.component';
 import { StockDataComponent } from './stock-data/stock-data.component';
 import { HuobiComponent } from './huobi/huobi.component';
+import { WeatherComponent } from './weather/weather.component';
 
 const dataInteractionRoutes = [
     {
@@ -26,6 +27,10 @@ const dataInteractionRoutes = [
             {
                 path: 'huobiData',
                 component: HuobiComponent
+            },
+            {
+                path: 'weather',
+                component: WeatherComponent
             }
         ]
     }
