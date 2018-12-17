@@ -1,3 +1,8 @@
 <p>
-  dynamic-component works!
+    dynamic-component works!
 </p>
+<button mat-button (click)="choiceType(option)" *ngFor="let option of componentList">{{option.type}}!</button>
+<p>
+    {{showComponent | json}}
+</p>
+<app-dynamic-component-container [ads]="showComponent"></app-dynamic-component-container>

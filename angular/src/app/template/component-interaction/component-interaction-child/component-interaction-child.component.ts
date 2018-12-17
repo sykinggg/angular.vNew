@@ -38,6 +38,7 @@ export class ComponentInteractionChildComponent implements OnInit {
     // announced = false;
     // subscription: Subscription;
 
+    // tslint:disable-next-line:no-output-on-prefix
     @Output() onVoted = new EventEmitter<boolean>();
     voted = false;
 

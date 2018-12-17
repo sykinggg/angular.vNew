@@ -5,21 +5,21 @@
 <button mat-button (click)="weatherGridHourly3h()">公里级网格天气预报</button>
 <button mat-button (click)="weatherGridHourly_history()">过去24小时公里级天气数据</button>
 <button mat-button (click)="lifeSuggestion()">生活指数</button>
-<nz-card style="width:300px;" nzTitle="天气实况" *ngIf="getOneObj">
+<nz-card nzTitle="天气实况" *ngIf="getOneObj">
     {{getOneObj | json}}
 </nz-card>
-<nz-card style="width:300px;" nzTitle="逐日天气预报和昨日天气" *ngIf="weatherDailyObj">
+<nz-card nzTitle="逐日天气预报和昨日天气" *ngIf="weatherDailyObj">
     {{weatherDailyObj | json}}
 </nz-card>
-<nz-card style="width:300px;" nzTitle="公里级网格天气实况" *ngIf="weatherGridNowObj">
+<nz-card nzTitle="公里级网格天气实况" *ngIf="weatherGridNowObj">
     {{weatherGridNowObj | json}}
 </nz-card>
-<nz-card style="width:300px;" nzTitle="公里级网格天气预报" *ngIf="weatherGridHourly3hObj">
+<nz-card nzTitle="公里级网格天气预报" *ngIf="weatherGridHourly3hObj">
     {{weatherGridHourly3hObj | json}}
 </nz-card>
-<nz-card style="width:300px;" nzTitle="过去24小时公里级天气数据" *ngIf="weatherGridHourly_historyObj">
+<nz-card nzTitle="过去24小时公里级天气数据" *ngIf="weatherGridHourly_historyObj">
     {{weatherGridHourly_historyObj | json}}
 </nz-card>
-<nz-card style="width:300px;" nzTitle="生活指数" *ngIf="lifeSuggestionObj">
+<nz-card nzTitle="生活指数" *ngIf="lifeSuggestionObj">
     {{lifeSuggestionObj | json}}
 </nz-card>

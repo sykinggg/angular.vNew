@@ -15,6 +15,7 @@ export class DataInteractionComponent implements OnInit {
             { routerName: 'stock-data', routerLink: 'stockData' },
             { routerName: 'huobiData', routerLink: 'huobiData' },
             { routerName: 'weather', routerLink: 'weather' },
+            { routerName: 'map', routerLink: 'map' }
         ]
     }
 

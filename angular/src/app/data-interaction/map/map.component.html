@@ -1,0 +1,47 @@
+<nz-card nzTitle="地理/逆地理编码" class="mar-b-20">
+    <button mat-button (click)="reverseGeocoding()">地理编码!</button>
+    <button mat-button (click)="reverseRegeocoding()">逆地理编码!</button>
+</nz-card>
+<nz-card nzTitle="路径规划" class="mar-b-20">
+    <button mat-button (click)="directionWalking()">步行路径规划!</button>
+    <button mat-button (click)="directionTransitIntegrated()">公交路径规划!</button>
+    <button mat-button (click)="directionDriving()">驾车路径规划!</button>
+    <button mat-button (click)="directionBicycling()">骑行路径规划!</button>
+    <button mat-button (click)="directionTruck()">货车路径规划!</button>
+    <button mat-button (click)="distance()">距离测量!</button>
+</nz-card>
+<nz-card nzTitle="行政区域查询" class="mar-b-20">
+    <button mat-button (click)="configDistrict()">行政区域查询!</button>
+</nz-card>
+<nz-card nzTitle="搜索POI" class="mar-b-20">
+    <button mat-button (click)="placeText()">关键字搜索!</button>
+    <button mat-button (click)="placeAround()">周边搜索!</button>
+    <button mat-button (click)="placePolygon()">多边形搜索!</button>
+    <button mat-button (click)="placeDetail()">ID查询!</button>
+</nz-card>
+<nz-card nzTitle="IP定位" class="mar-b-20">
+    <button mat-button (click)="v3Ip()">IP定位!</button>
+</nz-card>
+<nz-card nzTitle="批量请求接口" class="mar-b-20"></nz-card>
+<nz-card nzTitle="静态地图" class="mar-b-20">
+    <button mat-button (click)="v3Staticmap()">静态地图!</button>
+    <img src="{{v3StaticmapUrl}}" style="width: 500px; height: 500px;" *ngIf="v3StaticmapUrl" alt="静态地图">
+</nz-card>
+<nz-card nzTitle="坐标转换" class="mar-b-20">
+    <button mat-button (click)="coordinateConvert()">坐标转换!</button>
+</nz-card>
+<nz-card nzTitle="天气查询" class="mar-b-20">
+    <button mat-button (click)="weatherWeatherInfo()">天气查询!</button>
+</nz-card>
+<nz-card nzTitle="输入提示" class="mar-b-20">
+    <button mat-button (click)="assistantInputtips()">输入提示!</button>
+</nz-card>
+<nz-card nzTitle="交通态势" class="mar-b-20">
+    <button mat-button (click)="getStatusRectangleList()">支持交通态势的城市列表!</button>
+    <button mat-button (click)="statusRectangle()">矩形区域交通态势!</button>
+    <button mat-button (click)="statusCircle()">圆形区域交通态势!</button>
+    <button mat-button (click)="statusRoad()">指定线路交通态势!</button>
+</nz-card>
+<nz-card nzTitle="轨迹纠偏" class="mar-b-20">
+    <button mat-button (click)="grasproadDriving()">轨迹纠偏!</button>
+</nz-card>

@@ -5,6 +5,7 @@ import { BaseInteractionComponent } from './base-interaction/base-interaction.co
 import { StockDataComponent } from './stock-data/stock-data.component';
 import { HuobiComponent } from './huobi/huobi.component';
 import { WeatherComponent } from './weather/weather.component';
+import { MapComponent } from './map/map.component';
 
 const dataInteractionRoutes = [
     {
@@ -31,6 +32,10 @@ const dataInteractionRoutes = [
             {
                 path: 'weather',
                 component: WeatherComponent
+            },
+            {
+                path: 'map',
+                component: MapComponent
             }
         ]
     }

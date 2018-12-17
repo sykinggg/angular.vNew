@@ -18,6 +18,7 @@ import { HuobiComponent } from './huobi/huobi.component';
 import { WeatherComponent } from './weather/weather.component';
 import { WaterFullMovieComponent } from '../common-directives/water-full-movie/water-full-movie.component';
 import { AddressLinkageComponent } from '../common-directives/address-linkage/address-linkage.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
     imports: [
@@ -38,7 +39,8 @@ import { AddressLinkageComponent } from '../common-directives/address-linkage/ad
         HuobiComponent,
         WaterFullMovieComponent,
         WeatherComponent,
-        AddressLinkageComponent
+        AddressLinkageComponent,
+        MapComponent
     ]
 })
 export class DataInteractionModule { }
