@@ -1,26 +1,40 @@
 <nz-card nzTitle="地理/逆地理编码" class="mar-b-20">
     <button mat-button (click)="reverseGeocoding()">地理编码!</button>
+    <p *ngIf="reverseGeocodingData">地理编码{{reverseGeocodingData|json}}</p>
     <button mat-button (click)="reverseRegeocoding()">逆地理编码!</button>
+    <p *ngIf="reverseRegeocodingData">逆地理编码{{reverseRegeocodingData|json}}</p>
 </nz-card>
 <nz-card nzTitle="路径规划" class="mar-b-20">
     <button mat-button (click)="directionWalking()">步行路径规划!</button>
+    <p *ngIf="directionWalkingData">步行路径规划{{directionWalkingData|json}}</p>
     <button mat-button (click)="directionTransitIntegrated()">公交路径规划!</button>
+    <p *ngIf="directionTransitIntegratedData">公交路径规划{{directionTransitIntegratedData|json}}</p>
     <button mat-button (click)="directionDriving()">驾车路径规划!</button>
+    <p *ngIf="directionDrivingData">驾车路径规划{{directionDrivingData|json}}</p>
     <button mat-button (click)="directionBicycling()">骑行路径规划!</button>
+    <p *ngIf="directionBicyclingData">骑行路径规划{{directionBicyclingData|json}}</p>
     <button mat-button (click)="directionTruck()">货车路径规划!</button>
+    <p *ngIf="directionTruckData">货车路径规划{{directionTruckData|json}}</p>
     <button mat-button (click)="distance()">距离测量!</button>
+    <p *ngIf="distanceData">距离测量{{distanceData|json}}</p>
 </nz-card>
 <nz-card nzTitle="行政区域查询" class="mar-b-20">
     <button mat-button (click)="configDistrict()">行政区域查询!</button>
+    <p *ngIf="configDistrictData">行政区域查询{{configDistrictData|json}}</p>
 </nz-card>
 <nz-card nzTitle="搜索POI" class="mar-b-20">
     <button mat-button (click)="placeText()">关键字搜索!</button>
+    <p *ngIf="placeTextData">关键字搜索{{placeTextData|json}}</p>
     <button mat-button (click)="placeAround()">周边搜索!</button>
+    <p *ngIf="placeAroundData">周边搜索{{placeAroundData|json}}</p>
     <button mat-button (click)="placePolygon()">多边形搜索!</button>
+    <p *ngIf="placePolygonData">多边形搜索{{placePolygonData|json}}</p>
     <button mat-button (click)="placeDetail()">ID查询!</button>
+    <p *ngIf="placeDetailData">ID查询{{placeDetailData|json}}</p>
 </nz-card>
 <nz-card nzTitle="IP定位" class="mar-b-20">
     <button mat-button (click)="v3Ip()">IP定位!</button>
+    <p *ngIf="v3IpData">IP定位{{v3IpData|json}}</p>
 </nz-card>
 <nz-card nzTitle="批量请求接口" class="mar-b-20"></nz-card>
 <nz-card nzTitle="静态地图" class="mar-b-20">
@@ -29,18 +43,25 @@
 </nz-card>
 <nz-card nzTitle="坐标转换" class="mar-b-20">
     <button mat-button (click)="coordinateConvert()">坐标转换!</button>
+    <p *ngIf="coordinateConvertData">坐标转换{{coordinateConvertData|json}}</p>
 </nz-card>
 <nz-card nzTitle="天气查询" class="mar-b-20">
     <button mat-button (click)="weatherWeatherInfo()">天气查询!</button>
+    <p *ngIf="weatherWeatherInfoData">天气查询{{weatherWeatherInfoData|json}}</p>
 </nz-card>
 <nz-card nzTitle="输入提示" class="mar-b-20">
     <button mat-button (click)="assistantInputtips()">输入提示!</button>
+    <p *ngIf="assistantInputtipsData">输入提示{{assistantInputtipsData|json}}</p>
 </nz-card>
 <nz-card nzTitle="交通态势" class="mar-b-20">
     <button mat-button (click)="getStatusRectangleList()">支持交通态势的城市列表!</button>
+    <p *ngIf="getStatusRectangleListData">支持交通态势的城市列表{{getStatusRectangleListData|json}}</p>
     <button mat-button (click)="statusRectangle()">矩形区域交通态势!</button>
+    <p *ngIf="statusRectangleData">矩形区域交通态势{{statusRectangleData|json}}</p>
     <button mat-button (click)="statusCircle()">圆形区域交通态势!</button>
+    <p *ngIf="statusCircleData">圆形区域交通态势{{statusCircleData|json}}</p>
     <button mat-button (click)="statusRoad()">指定线路交通态势!</button>
+    <p *ngIf="statusRoadData">指定线路交通态势{{statusRoadData|json}}</p>
 </nz-card>
 <nz-card nzTitle="轨迹纠偏" class="mar-b-20">
     <button mat-button (click)="grasproadDriving()">轨迹纠偏!</button>

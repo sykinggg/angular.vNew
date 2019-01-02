@@ -34,7 +34,7 @@ const dataInteractionRoutes = [
                 component: WeatherComponent
             },
             {
-                path: 'map',
+                path: 'GMapData',
                 component: MapComponent
             }
         ]

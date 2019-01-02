@@ -44,37 +44,312 @@
         </nz-table>
     </nz-tab>
     <nz-tab nzTitle="交易日历" (nzSelect)="tradeCal()">
-        {{tradeCalData | json}}
+        <!-- {{tradeCalData | json}} -->
+        <nz-table #tradeCalDataTable [nzData]="tradeCalData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of tradeCalDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="沪深股通成份股" (nzSelect)="hsConst()">
-        {{hsConstData | json}}
+        <!-- {{hsConstData | json}} -->
+        <nz-table #hsConstDataTable [nzData]="hsConstData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of hsConstDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="股票曾用名" (nzSelect)="namechange()">
-        {{namechangeData | json}}
+        <!-- {{namechangeData | json}} -->
+        <nz-table #namechangeDataTable [nzData]="namechangeData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of namechangeDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="上市公司基本信息" (nzSelect)="stockCompany()">
-        {{stockCompanyData | json}}
+        <!-- {{stockCompanyData | json}} -->
+        <nz-table #stockCompanyDataTable [nzData]="stockCompanyData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of stockCompanyDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="IPO新股列表" (nzSelect)="newShare()">
-        {{newShareData | json}}
+        <!-- {{newShareData | json}} -->
+        <nz-table #newShareDataTable [nzData]="newShareData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of newShareDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="日线行情" (nzSelect)="daily()">
-        {{dailyData | json}}
+        <!-- {{dailyData | json}} -->
+        <nz-table #dailyDataTable [nzData]="dailyData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of dailyDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="复权因子" (nzSelect)="adjFactor()">
-        {{adjFactorData | json}}
+        <!-- {{adjFactorData | json}} -->
+        <nz-table #adjFactorDataTable [nzData]="adjFactorData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of adjFactorDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="停复牌信息" (nzSelect)="suspend()">
-        {{suspendData | json}}
+        <!-- {{suspendData | json}} -->
+        <nz-table #suspendDataTable [nzData]="suspendData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of suspendDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="沪深港通资金流向" (nzSelect)="moneyflowHsgt()">
-        {{moneyflowHsgtData | json}}
+        <!-- {{moneyflowHsgtData | json}} -->
+        <nz-table #moneyflowHsgtDataTable [nzData]="moneyflowHsgtData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of moneyflowHsgtDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="沪深股通十大成交股" (nzSelect)="hsgtTop10()">
-        {{hsgtTop10Data | json}}
+        <!-- {{hsgtTop10Data | json}} -->
+        <nz-table #hsgtTop10DataTable [nzData]="hsgtTop10Data" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of hsgtTop10DataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="港股通十大成交股" (nzSelect)="ggtTop10()">
-        {{ggtTop10Data | json}}
+        <!-- {{ggtTop10Data | json}} -->
+        <nz-table #ggtTop10DataTable [nzData]="ggtTop10DataTable" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of ggtTop10DataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <!-- 无权限 -->
     <!-- <nz-tab nzTitle="融资融券交易汇总" (nzSelect)="margin()">
@@ -85,15 +360,115 @@
         {{marginDetailData | json}}
     </nz-tab> -->
     <nz-tab nzTitle="前十大股东" (nzSelect)="top10Holders()">
-        {{top10HoldersData | json}}
+        <!-- {{top10HoldersData | json}} -->
+        <nz-table #top10HoldersDataTable [nzData]="top10HoldersData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of top10HoldersDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="前十大流通股东" (nzSelect)="top10Floatholders()">
-        {{top10FloatholdersData | json}}
+        <!-- {{top10FloatholdersData | json}} -->
+        <nz-table #top10FloatholdersDataTable [nzData]="top10FloatholdersData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of top10FloatholdersDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="指数基本信息" (nzSelect)="indexBasic()">
-        {{indexBasicData | json}}
+        <!-- {{indexBasicData | json}} -->
+        <nz-table #indexBasicDataTable [nzData]="indexBasicData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of indexBasicDataTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
     <nz-tab nzTitle="指数日线行情" (nzSelect)="indexDaily()">
-        {{indexDaily | json}}
+        <!-- {{indexDaily | json}} -->
+        <nz-table #indexDailyTable [nzData]="indexDaily" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" nzSize="small">
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                    <th>TS代码</th>
+                    <th>股票代码</th>
+                    <th>地址</th>
+                    <th>行业</th>
+                    <th>市场类型</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of indexDailyTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[3]}}</td>
+                    <td>{{data[4]}}</td>
+                    <td>{{data[5]}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
     </nz-tab>
 </nz-tabset>

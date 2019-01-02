@@ -41,6 +41,7 @@ export class WeatherComponent implements OnInit {
     }
 
 
+    // 天气实况
     getOne() {
         if (!this.addressStr) {
             this.createMessage('error', '请选择地址');
@@ -55,6 +56,7 @@ export class WeatherComponent implements OnInit {
         })
     }
 
+    // 逐日天气预报和昨日天气
     weatherDaily() {
         if (!this.addressStr) {
             this.createMessage('error', '请选择地址');
@@ -69,24 +71,28 @@ export class WeatherComponent implements OnInit {
         })
     }
 
+    // 公里级网格天气实况
     weatherGridNow() {
         this.http.post('http://127.0.0.1:666/weather/weatherGridNow', { params: null }).subscribe(res => {
             this.weatherGridNowObj = res;
         })
     }
 
+    // 公里级网格天气预报
     weatherGridHourly3h() {
         this.http.post('http://127.0.0.1:666/weather/weatherGridHourly3h', { params: null }).subscribe(res => {
             this.weatherGridHourly3hObj = res;
         })
     }
 
+    // 过去24小时公里级天气数据
     weatherGridHourly_history() {
         this.http.post('http://127.0.0.1:666/weather/weatherGridHourly_history', { params: null }).subscribe(res => {
             this.weatherGridHourly_historyObj = res;
         })
     }
 
+    // 生活指数
     lifeSuggestion() {
         if (!this.addressStr) {
             this.createMessage('error', '请选择地址');
@@ -101,11 +107,13 @@ export class WeatherComponent implements OnInit {
         })
     }
 
+    // 地址联动的回调函数
     onAddressChange(event: Iaddobj) {
         this.addressObj = event;
         this.setAddressStr(event);
     }
 
+    // 根据地址联动的回调函数写入地址
     setAddressStr(obj) {
         if (obj.province.name.indexOf('市') + 1) {
             this.addressStr = obj.province.name;
@@ -116,6 +124,7 @@ export class WeatherComponent implements OnInit {
         }
     }
 
+    // 请求的提示信息
     createMessage(type: string, msg: string) {
         this.message.create(type, msg);
     }

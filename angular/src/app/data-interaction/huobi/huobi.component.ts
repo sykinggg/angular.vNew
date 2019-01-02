@@ -34,12 +34,14 @@ export class HuobiComponent implements OnInit {
 
         this.NO_SIGNATURE_API = [
             {
+                title: '交易币种列表',
                 params: {
                     apiType: 'getCommonCurrencys',
                 },
                 data: []
             },
             {
+                title: '历史K线',
                 params: {
                     apiType: 'marketHistoryKline',
                     symbol: 'ethusdt'
@@ -47,6 +49,7 @@ export class HuobiComponent implements OnInit {
                 data: []
             },
             {
+                title: '滚动24小时交易和最优报价聚合行情(单个symbol)',
                 params: {
                     apiType: 'marketDetailMerged',
                     symbol: 'ethusdt'
@@ -54,12 +57,14 @@ export class HuobiComponent implements OnInit {
                 data: []
             },
             {
+                title: '全部symbol的交易行情',
                 params: {
                     apiType: 'marketTickers',
                 },
                 data: []
             },
             {
+                title: '市场深度行情（单个symbol）',
                 params: {
                     apiType: 'marketDepth',
                     symbol: 'ethusdt'
@@ -67,6 +72,7 @@ export class HuobiComponent implements OnInit {
                 data: []
             },
             {
+                title: '单个symbol最新成交记录',
                 params: {
                     apiType: 'marketTrade',
                     symbol: 'ethusdt'
@@ -74,6 +80,7 @@ export class HuobiComponent implements OnInit {
                 data: []
             },
             {
+                title: '单个symbol批量成交记录',
                 params: {
                     apiType: 'marketHistoryTrade',
                     symbol: 'ethusdt'
@@ -81,6 +88,7 @@ export class HuobiComponent implements OnInit {
                 data: []
             },
             {
+                title: '滚动24小时交易聚合行情(单个symbol)',
                 params: {
                     apiType: 'marketDetail',
                     symbol: 'ethusdt'
@@ -88,12 +96,14 @@ export class HuobiComponent implements OnInit {
                 data: []
             },
             {
+                title: '交易品种的计价货币和报价精度',
                 params: {
                     apiType: 'v1CommonSymbols',
                 },
                 data: []
             },
             {
+                title: '查询当前系统时间',
                 params: {
                     apiType: 'v1CommonTimestamp',
                 },
@@ -114,20 +124,22 @@ export class HuobiComponent implements OnInit {
         })
     }
 
+    // 不需要签名的请求
     getNoSignature() {
         this.NO_SIGNATURE_API.map(item => {
             this.http.post(this.baseUrl + this.noSignatureUrl, item.params).subscribe((res: any) => {
                 if (res.status === 'ok') {
-                    this.createMessage('success', '数据获取成功!');
+                    this.createMessage('success', item.title + '数据获取成功!');
                     item.data = res.data;
                 } else {
                     //  res['err-msg']
-                    this.createMessage('error', item.params.apiType + ':' + res['err-msg']);
+                    this.createMessage('error', item.title + item.params.apiType + ':' + res['err-msg']);
                 }
             })
         })
     }
 
+    // 账号列表
     signatureData = [];
     getSignature() {
         this.basePost(this.baseUrl + this.textSignatureUrl, {}, 'signatureData');
