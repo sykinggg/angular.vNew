@@ -19,6 +19,7 @@ import { WeatherComponent } from './weather/weather.component';
 import { WaterFullMovieComponent } from '../common-directives/water-full-movie/water-full-movie.component';
 import { AddressLinkageComponent } from '../common-directives/address-linkage/address-linkage.component';
 import { MapComponent } from './map/map.component';
+import { MusicComponent } from './music/music.component';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { MapComponent } from './map/map.component';
         WaterFullMovieComponent,
         WeatherComponent,
         AddressLinkageComponent,
-        MapComponent
+        MapComponent,
+        MusicComponent
     ]
 })
 export class DataInteractionModule { }
