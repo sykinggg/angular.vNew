@@ -20,7 +20,7 @@ export class WaterFullMovieComponent implements OnInit {
             this.items = this.box.children;
             setTimeout(() => {
                 this.waterFall();
-            }, 1000);
+            }, 2000);
         }
     };
 
