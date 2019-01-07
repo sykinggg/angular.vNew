@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HttpComponent } from './http/http.component';
-import { templateRoutes } from './template/template.routes';
 import { TemplateModule } from "./template/template.module";
 import { ObservableModule } from "./observable/observable.module";
 

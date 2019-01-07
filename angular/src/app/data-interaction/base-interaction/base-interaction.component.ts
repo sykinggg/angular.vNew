@@ -182,7 +182,7 @@ export class BaseInteractionComponent implements OnInit {
 
     movieTypeArr = ['movie_sf', 'movie_tx', 'movie_qj', 'movie_yz', 'movie_ll', 'movie_zw'];
     setOneMovie(type) {
-        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type } }).subscribe((res: any) => {})
+        this.http.get('http://127.0.0.1:666/pic/picSet', { params: { type } }).subscribe((res: any) => { })
     }
     movieType;
     changeMovie(event) {
@@ -194,22 +194,30 @@ export class BaseInteractionComponent implements OnInit {
 
     showMoveList = [];
     moveList = [];
+    // getMovie() {
+    //     let i = 0;
+    //     this.movieTypeArr.map(type => {
+    //         this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type } }).subscribe((res: any) => {
+    //             if (i < this.movieTypeArr.length - 1) {
+    //                 if (res && res.address) {
+    //                     this.moveList = this.moveList.concat(res.address);
+    //                 }
+    //             } else {
+    //                 if (res && res.address) {
+    //                     this.moveList = this.moveList.concat(res.address);
+    //                     this.setMoviePage();
+    //                 }
+    //             }
+    //             i++;
+    //         })
+    //     })
+    // }
     getMovie() {
-        let i = 0;
-        this.movieTypeArr.map(type => {
-            this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type } }).subscribe((res: any) => {
-                if (i < this.movieTypeArr.length - 1) {
-                    if (res && res.address) {
-                        this.moveList = this.moveList.concat(res.address);
-                    }
-                } else {
-                    if (res && res.address) {
-                        this.moveList = this.moveList.concat(res.address);
-                        this.setMoviePage();
-                    }
-                }
-                i++;
-            })
+        this.http.get('http://127.0.0.1:666/pic/dataFind', { params: { type: this.movieType } }).subscribe((res: any) => {
+            if (res && res.address) {
+                this.moveList = this.moveList.concat(res.address);
+                this.setMoviePage();
+            }
         })
     }
     moviePageList = [];

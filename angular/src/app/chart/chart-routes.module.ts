@@ -23,15 +23,15 @@ const chartRoutes = [
 			{
 				path: 'eChart',
 				component: EChartComponent
-			},
-			{
-				path: 'd3',
-				component: D3Component
 			}
 		]
 	}
 ]
-
+// ,
+// 			{
+// 				path: 'd3',
+// 				component: D3Component
+// 			}
 @NgModule({
 	imports: [
 		RouterModule.forChild(chartRoutes)

@@ -1,0 +1,9 @@
+<nz-select class="min-width-120" [(ngModel)]="addObj.province" (ngModelChange)="provinceChange()">
+    <nz-option *ngFor="let p of addressObj.province" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+</nz-select>
+<nz-select class="min-width-120" [(ngModel)]="addObj.city" (ngModelChange)="cityChange()">
+    <nz-option *ngFor="let p of addressObj.city[addObj.province?.id]" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+</nz-select>
+<nz-select class="min-width-120" [(ngModel)]="addObj.area" (ngModelChange)="areaChange()">
+    <nz-option *ngFor="let p of addressObj.area[addObj.city?.id]" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+</nz-select>

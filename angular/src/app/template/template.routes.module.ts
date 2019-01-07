@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { TemplateComponent } from './template/template.component';
-import { AllTemplateComponent } from './template.component';
+import { AllTemplateComponent } from './template-component/template.component';
 import { ComponentInteractionComponent } from './component-interaction/component-interaction.component';
 import { AttrDirectiveComponent } from './attr-directive/attr-directive.component';
 import { StrDirectiveComponent } from './str-directive/str-directive.component';
@@ -18,7 +18,7 @@ const templateRoutes = [
         children: [
             {
                 path: '',
-                redirectTo: 'tempalte',
+                redirectTo: 'dynamic-component',
                 pathMatch: 'full'
             },
             {

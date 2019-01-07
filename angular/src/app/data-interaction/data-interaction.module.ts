@@ -15,7 +15,11 @@ import { LayoutModule } from '../layout/layout.module';
 import { StockDataComponent } from './stock-data/stock-data.component';
 import { DateStringPipe } from './pipe/date-string/date-string.pipe';
 import { HuobiComponent } from './huobi/huobi.component';
+import { WeatherComponent } from './weather/weather.component';
 import { WaterFullMovieComponent } from '../common-directives/water-full-movie/water-full-movie.component';
+import { AddressLinkageComponent } from '../common-directives/address-linkage/address-linkage.component';
+import { MapComponent } from './map/map.component';
+import { MusicComponent } from './music/music.component';
 
 @NgModule({
     imports: [
@@ -30,7 +34,15 @@ import { WaterFullMovieComponent } from '../common-directives/water-full-movie/w
     declarations: [
         WaterFullComponent,
         DataInteractionComponent, 
-        BaseInteractionComponent, StockDataComponent, DateStringPipe, HuobiComponent, WaterFullMovieComponent
+        BaseInteractionComponent,
+        StockDataComponent,
+        DateStringPipe,
+        HuobiComponent,
+        WaterFullMovieComponent,
+        WeatherComponent,
+        AddressLinkageComponent,
+        MapComponent,
+        MusicComponent
     ]
 })
 export class DataInteractionModule { }

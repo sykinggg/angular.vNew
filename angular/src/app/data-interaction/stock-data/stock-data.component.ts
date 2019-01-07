@@ -128,98 +128,115 @@ export class StockDataComponent implements OnInit {
         })
     }
 
+    // 交易日历
     tradeCalData = [];
     tradeCal() {
-        this.basePost(this.baseUrl + this.TRADE_CAL, null, 'tradeCalData');
+        this.basePost(this.baseUrl + this.TRADE_CAL, null, 'tradeCalData', '交易日历');
     }
 
+    // 沪深股通成份股
     hsConstData = [];
     hsConst() {
-        this.basePost(this.baseUrl + this.HS_CONST, null, 'hsConstData');
+        this.basePost(this.baseUrl + this.HS_CONST, null, 'hsConstData', '沪深股通成份股');
     }
 
+    // 股票曾用名
     namechangeData = [];
     namechange() {
-        this.basePost(this.baseUrl + this.NAME_CHANGE, null, 'namechangeData');
+        this.basePost(this.baseUrl + this.NAME_CHANGE, null, 'namechangeData', '股票曾用名');
     }
 
+    // 上市公司基本信息
     stockCompanyData = [];
     stockCompany() {
-        this.basePost(this.baseUrl + this.STOCK_COMPANY, null, 'stockCompanyData');
+        this.basePost(this.baseUrl + this.STOCK_COMPANY, null, 'stockCompanyData', '上市公司基本信息');
     }
 
+    // IPO新股列表
     newShareData = [];
     newShare() {
-        this.basePost(this.baseUrl + this.NEW_SHARE, null, 'newShareData');
+        this.basePost(this.baseUrl + this.NEW_SHARE, null, 'newShareData', 'IPO新股列表');
     }
 
+    // 日线行情
     dailyData = [];
     daily() {
-        this.basePost(this.baseUrl + this.DAILY, null, 'dailyData');
+        this.basePost(this.baseUrl + this.DAILY, null, 'dailyData', '日线行情');
     }
 
+    // 复权因子
     adjFactorData = [];
     adjFactor() {
-        this.basePost(this.baseUrl + this.ADJ_FACTOR, null, 'adjFactorData');
+        this.basePost(this.baseUrl + this.ADJ_FACTOR, null, 'adjFactorData', '复权因子');
     }
 
+    // 停复牌信息
     suspendData = [];
     suspend() {
-        this.basePost(this.baseUrl + this.SUSPEND, null, 'suspendData');
+        this.basePost(this.baseUrl + this.SUSPEND, null, 'suspendData', '停复牌信息');
     }
 
+    // 沪深港通资金流向
     moneyflowHsgtData = [];
     moneyflowHsgt() {
-        this.basePost(this.baseUrl + this.MONEYFLOW_HSGT, null, 'moneyflowHsgtData');
+        this.basePost(this.baseUrl + this.MONEYFLOW_HSGT, null, 'moneyflowHsgtData', '沪深港通资金流向');
     }
 
+    // 沪深股通十大成交股
     hsgtTop10Data = [];
     hsgtTop10() {
-        this.basePost(this.baseUrl + this.HSGT_TOP10, null, 'hsgtTop10Data');
+        this.basePost(this.baseUrl + this.HSGT_TOP10, null, 'hsgtTop10Data', '沪深股通十大成交股');
     }
 
+    // 港股通十大成交股
     ggtTop10Data = [];
     ggtTop10() {
-        this.basePost(this.baseUrl + this.GGT_TOP10, null, 'ggtTop10Data');
+        this.basePost(this.baseUrl + this.GGT_TOP10, null, 'ggtTop10Data', '港股通十大成交股');
     }
 
+    // 融资融券交易汇总
     marginData = [];
     margin() {
-        this.basePost(this.baseUrl + this.MARGIN, null, 'marginData');
+        this.basePost(this.baseUrl + this.MARGIN, null, 'marginData', '融资融券交易汇总');
     }
 
+    // 融资融券交易明细
     marginDetailData = [];
     marginDetail() {
-        this.basePost(this.baseUrl + this.MARGIN_DETAIL, null, 'marginDetailData');
+        this.basePost(this.baseUrl + this.MARGIN_DETAIL, null, 'marginDetailData', '融资融券交易明细');
     }
 
+    // 前十大股东
     top10HoldersData = [];
     top10Holders() {
-        this.basePost(this.baseUrl + this.TOP10_HOLDERS, null, 'top10HoldersData');
+        this.basePost(this.baseUrl + this.TOP10_HOLDERS, null, 'top10HoldersData', '前十大股东');
     }
 
+    // 前十大流通股东
     top10FloatholdersData = [];
     top10Floatholders() {
-        this.basePost(this.baseUrl + this.TOP10_FLOATHOLDERS, null, 'top10FloatholdersData');
+        this.basePost(this.baseUrl + this.TOP10_FLOATHOLDERS, null, 'top10FloatholdersData', '前十大流通股东');
     }
 
+    // 指数基本信息
     indexBasicData = [];
     indexBasic() {
-        this.basePost(this.baseUrl + this.INDEX_BASIC, null, 'indexBasicData');
+        this.basePost(this.baseUrl + this.INDEX_BASIC, null, 'indexBasicData', '指数基本信息');
     }
+
 
     indexDailyData = [];
     indexDaily() {
         this.basePost(this.baseUrl + this.INDEX_DAILY, null, 'indexDailyData');
     }
 
-    basePost(url, params, typeData) {
+    basePost(url, params, typeData, str?) {
         this.http.post(url, params).subscribe((res: any) => {
             if (+res.code === 0) {
-                this.createMessage('success', '数据获取成功!');
+                this.createMessage('success', str + '数据获取成功!');
                 this[typeData] = res.data.items;
             } else {
-                this.createMessage('error', res.msg || '数据获取失败!');
+                this.createMessage('error', str + res.msg || '数据获取失败!');
             }
         })
     }

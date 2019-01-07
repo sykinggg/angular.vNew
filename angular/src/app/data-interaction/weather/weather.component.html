@@ -1,0 +1,26 @@
+
+<app-address-linkage (addressChange)="onAddressChange($event)"></app-address-linkage>
+<nz-card nzTitle="天气实况" class="mar-b-20 mar-t-20">
+    <button mat-button (click)="getOne()">天气实况!</button>
+    <p *ngIf="getOneObj">{{getOneObj | json}}</p>
+</nz-card>
+<nz-card nzTitle="逐日天气预报和昨日天气" class="mar-b-20">
+    <button mat-button (click)="weatherDaily()">逐日天气预报和昨日天气</button>
+    <p *ngIf="weatherDailyObj">{{weatherDailyObj | json}}</p>
+</nz-card>
+<nz-card nzTitle="公里级网格天气实况" class="mar-b-20">
+    <button mat-button (click)="weatherGridNow()">公里级网格天气实况</button>
+    <p *ngIf="weatherGridNowObj">{{weatherGridNowObj | json}}</p>
+</nz-card>
+<nz-card nzTitle="公里级网格天气预报" class="mar-b-20">
+    <button mat-button (click)="weatherGridHourly3h()">公里级网格天气预报</button>
+    <p *ngIf="weatherGridHourly3hObj">{{weatherGridHourly3hObj | json}}</p>
+</nz-card>
+<nz-card nzTitle="过去24小时公里级天气数据" class="mar-b-20">
+    <button mat-button (click)="weatherGridHourly_history()">过去24小时公里级天气数据</button>
+    <p *ngIf="weatherGridHourly_historyObj">{{weatherGridHourly_historyObj | json}}</p>
+</nz-card>
+<nz-card nzTitle="生活指数" class="mar-b-20">
+    <button mat-button (click)="lifeSuggestion()">生活指数</button>
+    <p *ngIf="lifeSuggestionObj">{{lifeSuggestionObj | json}}</p>
+</nz-card>

@@ -34,10 +34,12 @@
         </nz-card>
     </nz-tab>
     <nz-tab nzTitle="不需要签名的请求" (nzSelect)="getNoSignature()">
-        {{NO_SIGNATURE_API | json}}
+        <nz-card *ngFor="let item of NO_SIGNATURE_API" nzTitle="{{item.title}}" class="mar-b-20">
+            <p>params: {{item.params | json}}</p>
+            <p>data: {{item.data | json}}</p>
+        </nz-card>
     </nz-tab>
     <nz-tab nzTitle="查询当前委托、历史委托" (nzSelect)="getOpenOrders()">
         {{getOpenOrdersData | json}}
     </nz-tab>
-    
 </nz-tabset>
