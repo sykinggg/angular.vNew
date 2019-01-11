@@ -1,3 +1,16 @@
-<p>
-    music works!
-</p>
+<nz-card nzTitle="qq 音乐" class="mar-b-20">
+    <button mat-button (click)="qqCarousel()">轮播图!</button>
+    <p *ngIf="qqCarouselData">轮播图{{qqCarouselData|json}}</p>
+    <button mat-button (click)="qqSongList()">歌单列表!</button>
+    <p *ngIf="qqSongListData">歌单列表{{qqSongListData|json}}</p>
+    <button mat-button (click)="qqSongListDetail()">歌单详情!</button>
+    <p *ngIf="qqSongListDetailData">歌单详情{{qqSongListDetailData|json}}</p>
+    <button mat-button (click)="qqSinger()">歌手数据!</button>
+    <p *ngIf="qqSingerData">歌手数据{{qqSingerData|json}}</p>
+    <button mat-button (click)="qqSingerDetail()">歌手详情!</button>
+    <p *ngIf="qqSingerDetailData">歌手详情{{qqSingerDetailData|json}}</p>
+    <button mat-button (click)="qqRank()">排行榜!</button>
+    <p *ngIf="qqRankData">排行榜{{qqRankData|json}}</p>
+    <button mat-button (click)="qqRankDetail()">排行榜详情!</button>
+    <p *ngIf="qqRankDetailData">排行榜详情{{qqRankDetailData|json}}</p>
+</nz-card>
