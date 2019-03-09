@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { LayoutSliderComponent } from './layout-sider/layout.slider.component';
 import { LayoutHeaderComponent } from './layout-header/layout-header.component';
 import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
+import { HttpService } from './http.service';
 
 @NgModule({
     imports: [
@@ -15,22 +16,23 @@ import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
     providers: [
         LayoutSliderComponent, 
         LayoutHeaderComponent, 
-        LayoutFooterComponent
+        LayoutFooterComponent,
+        HttpService
     ],
     entryComponents: [
         LayoutSliderComponent, 
         LayoutHeaderComponent, 
-        LayoutFooterComponent
+        LayoutFooterComponent,
     ],
     declarations: [
         LayoutSliderComponent, 
         LayoutHeaderComponent, 
-        LayoutFooterComponent
+        LayoutFooterComponent,
     ],
     exports: [
         LayoutSliderComponent, 
         LayoutHeaderComponent, 
-        LayoutFooterComponent
+        LayoutFooterComponent,
     ]
 })
 export class LayoutModule { }

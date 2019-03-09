@@ -10,17 +10,17 @@ import { FormsModule } from '@angular/forms';
 import { DataInteractionComponent } from './data-interaction/data-interaction.component';
 import { BaseInteractionComponent } from './base-interaction/base-interaction.component';
 import { AppUIModule } from '../app.ui.module';
-import { WaterFullComponent } from '../common-directives/water-full/water-full.component';
 import { LayoutModule } from '../layout/layout.module';
 import { StockDataComponent } from './stock-data/stock-data.component';
 import { DateStringPipe } from './pipe/date-string/date-string.pipe';
 import { HuobiComponent } from './huobi/huobi.component';
 import { WeatherComponent } from './weather/weather.component';
-import { WaterFullMovieComponent } from '../common-directives/water-full-movie/water-full-movie.component';
-import { AddressLinkageComponent } from '../common-directives/address-linkage/address-linkage.component';
 import { MapComponent } from './map/map.component';
 import { MusicComponent } from './music/music.component';
 import { ForeignExchangeComponent } from './foreign-exchange/foreign-exchange.component';
+import { HousesComponent } from './houses/houses.component';
+import { CommonDirectivesModule } from '../common-directives/common-directives.module';
+
 
 @NgModule({
     imports: [
@@ -30,21 +30,20 @@ import { ForeignExchangeComponent } from './foreign-exchange/foreign-exchange.co
         NgZorroAntdModule,
 		HttpClientModule,
         FormsModule,
-        LayoutModule
+        LayoutModule,
+        CommonDirectivesModule
     ],
     declarations: [
-        WaterFullComponent,
         DataInteractionComponent, 
         BaseInteractionComponent,
         StockDataComponent,
         DateStringPipe,
         HuobiComponent,
-        WaterFullMovieComponent,
         WeatherComponent,
-        AddressLinkageComponent,
         MapComponent,
         MusicComponent,
-        ForeignExchangeComponent
+        ForeignExchangeComponent,
+        HousesComponent
     ]
 })
 export class DataInteractionModule { }

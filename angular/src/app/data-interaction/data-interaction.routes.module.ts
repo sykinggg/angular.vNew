@@ -8,6 +8,7 @@ import { WeatherComponent } from './weather/weather.component';
 import { MapComponent } from './map/map.component';
 import { MusicComponent } from './music/music.component';
 import { ForeignExchangeComponent } from './foreign-exchange/foreign-exchange.component';
+import { HousesComponent } from './houses/houses.component';
 
 const dataInteractionRoutes = [
     {
@@ -46,6 +47,10 @@ const dataInteractionRoutes = [
             {
                 path: 'music',
                 component: MusicComponent
+            },
+            {
+                path: 'houses',
+                component: HousesComponent
             }
         ]
     }

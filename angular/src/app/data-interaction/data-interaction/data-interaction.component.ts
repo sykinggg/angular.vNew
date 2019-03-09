@@ -18,6 +18,7 @@ export class DataInteractionComponent implements OnInit {
             { routerName: 'gMapData', routerLink: 'gMapData' },
             { routerName: 'music', routerLink: 'music' },
             { routerName: 'foreignExchange', routerLink: 'foreignExchange' },
+            { routerName: 'houses', routerLink: 'houses' },
         ]
     }
 
