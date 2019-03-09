@@ -13,7 +13,7 @@ const chartRoutes = [
 		children: [
 			{
 				path: '',
-				redirectTo: 'highChart',
+				redirectTo: 'eChart',
 				pathMatch: 'full'
 			},
 			{
