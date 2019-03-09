@@ -100,7 +100,7 @@ export class D3DComponent implements OnInit, AfterViewInit {
     ];
 
     onSelect(event) {
-        console.log(event);
+        // console.log(event);
     }
 
     ngOnInit() { }

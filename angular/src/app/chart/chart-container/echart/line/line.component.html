@@ -1,0 +1,7 @@
+<div class="inline-block" *ngIf="outsideData">
+    <app-chart class="col-sm-{{outsideData.init.width || 12}}" [ngStyle]="{height: outsideData.init.height ? outsideData.init.height + 'px' : 'auto'}"
+    [setdata]="outsideData" (ReturnchangeData)="ReturnchangeData1($event)"></app-chart>
+</div>
+<div *ngIf="!outsideData">
+    暂无数据
+</div>

@@ -9,7 +9,7 @@ import { AboutComponent } from './about.component';
 import { AboutIndexComponent } from './about-index/about-index.component';
 import { AboutCreateComponent } from './about-create/about-create.component';
 import { LayoutModule } from '../layout/layout.module';
-
+import { ForeignExchangeAboutComponent } from './foreign-exchange-about/foreign-exchange-about.component';
 
 @NgModule({
     imports: [
@@ -22,7 +22,8 @@ import { LayoutModule } from '../layout/layout.module';
     declarations: [
         AboutComponent,
         AboutIndexComponent,
-        AboutCreateComponent
+        AboutCreateComponent,
+        ForeignExchangeAboutComponent,
     ]
 })
 

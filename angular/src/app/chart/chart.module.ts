@@ -17,6 +17,7 @@ import { HchartComponent } from './directive/hchart/hchart.component';
 import { D3Component } from './d3/d3.component';
 import { D3DComponent } from './directive/d3-d/d3-d.component';
 import { LayoutModule } from '../layout/layout.module';
+import { ChartContainerModule } from './chart-container/chart-container.module';
 
 @NgModule({
 	imports: [
@@ -26,7 +27,8 @@ import { LayoutModule } from '../layout/layout.module';
 		NgZorroAntdModule,
 		HttpClientModule,
 		FormsModule,
-		LayoutModule
+		LayoutModule,
+		ChartContainerModule
 	],
 	declarations: [
 		ChartIndexComponent,

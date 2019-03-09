@@ -1,0 +1,8 @@
+<div class="inline-block" *ngIf="outsideData">
+    <!-- <app-d3 class="col-sm-{{outsideData.init.width || 12}}" [ngStyle]="{height: outsideData.init.height ? outsideData.init.height + 'px' : 'auto'}"
+    [setdata]="outsideData" (ReturnchangeData)="ReturnchangeData1($event)"></app-d3> -->
+    <div class="{{d3Container}}"></div>
+</div>
+<div *ngIf="!outsideData">
+    暂无数据
+</div>

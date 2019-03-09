@@ -1,0 +1,6 @@
+<div class="inline-block" *ngIf="outsideData">
+    <app-hchart class="col-sm-{{outsideData.width || 12}}" [ngStyle]="{height: outsideData.height ? outsideData.height + 'px' : 'auto'}" [hChart]="outsideData"></app-hchart>
+</div>
+<div *ngIf="!outsideData">
+    暂无数据
+</div>
