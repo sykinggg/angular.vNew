@@ -1,6 +1,27 @@
 <p>
     houses works!
 </p>
-<button mat-button (click)="grawlDataLianjiaCity()">grawlDataLianjiaCity!</button>
+<!-- <button mat-button (click)="grawlDataLianjiaCity()">grawlDataLianjiaCity!</button> -->
 <p>自定义地址联动</p>
-<app-custom-address-linkage></app-custom-address-linkage>
+<nz-card nzTitle="链家" class="margin_bottom_20" *ngIf="false">
+    <app-custom-address-linkage [setData]="grawlDataLianjiaCityData" (getData)="getGrawlDataLianjiaCityData($event)"></app-custom-address-linkage>
+    <nz-select class="margin-right-10 min-width-120" [(ngModel)]="lianjiaAddressObj.flag" (ngModelChange)="change($event, i)">
+        <nz-option *ngFor="let p of lianjiaAddressObj.data" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+    </nz-select>
+    <button mat-button (click)="setGrawlDataLianjiaCityURLData()">运行爬虫脚本</button>
+    <button mat-button (click)="getGrawlDataLianjiaCityURLData()">获取爬虫数据</button>
+    {{getGrawlDataLianjiaCityURLDatas | json}}
+</nz-card>
+<nz-card nzTitle="安居客" class="margin_bottom_20" *ngIf="false">
+    <button mat-button (click)="grawlDataAnjukeCity()">grawlDataAnjukeCity</button>
+</nz-card>
+<nz-card nzTitle="贝壳" class="margin_bottom_20">
+    <button mat-button (click)="grawlDataKeCity()">grawlDataKeCity</button>
+    <app-custom-address-linkage [setData]="grawlDataKeCityData" (getData)="getGrawlDataKeCityData($event)"></app-custom-address-linkage>
+    <nz-select class="margin-right-10 min-width-120" [(ngModel)]="keAddressObj.flag" (ngModelChange)="change($event, i)">
+        <nz-option *ngFor="let p of keAddressObj.data" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+    </nz-select>
+    <button mat-button (click)="setGrawlDataLianjiaCityURLData()">运行爬虫脚本</button>
+    <button mat-button (click)="getGrawlDataLianjiaCityURLData()">获取爬虫数据</button>
+    {{getGrawlDataLianjiaCityURLDatas | json}}
+</nz-card>

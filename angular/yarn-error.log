@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add typescript
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add d3.v3
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\sk-yisui\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;D:\worksplace\phantomjs-2.1.1-windows\bin;%M2_HOME%\bin;C:\Program Files\Java\jdk1.8.0_171;D:\apache-maven-3.5.3\apache-maven-3.5.3\apache-maven-3.5.3\bin;D:\apache-tomcat-8.0.52\apache-tomcat-8.0.52\bin;C:\Users\sk-yisui\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\mingw-w64\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\usr\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Scripts;C:\Users\sk-yisui\AppData\Local\Programs\Python\Python37\Scripts;C:\Users\sk-yisui\AppData\Local\Programs\Python\Python37;C:\Users\sk-yisui\AppData\Local\Microsoft\WindowsApps;C:\Users\sk-yisui\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\sk-yisui\AppData\Roaming\npm;C:\Users\sk-yisui\AppData\Local\Yarn\bin;C:\Program Files\Microsoft VS Code\bin
@@ -14,7 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'D:\studySplace\angular.vNew\angular\node_modules\node-sass\vendor\win32-x64-57\binding.node'
+  Error: https://registry.yarnpkg.com/d3.v3: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65656:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:134675:22)
+      at emitTwo (events.js:126:13)
+      at Request.emit (events.js:214:7)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:135658:10)
+      at emitOne (events.js:116:13)
+      at Request.emit (events.js:211:7)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:135578:12)
+      at Object.onceWrapper (events.js:313:30)
+      at emitNone (events.js:111:20)
 
 npm manifest: 
   {
@@ -6786,11 +6796,15 @@ Lockfile:
     version "0.0.6"
     resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   
+  typescript@3.1.6:
+    version "3.1.6"
+    resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
+  
   typescript@3.2.4:
     version "3.2.4"
     resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.4.tgz#c585cb952912263d915b462726ce244ba510ef3d"
   
-  typescript@3.3.3333, typescript@^3.0.3:
+  typescript@^3.0.3:
     version "3.3.3333"
     resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.3333.tgz#171b2c5af66c59e9431199117a3bcadc66fdcfd6"
   

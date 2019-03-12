@@ -35,7 +35,6 @@ export class BaseInteractionComponent implements OnInit {
                 this.imgAllData = res;
             }
         })
-        console.log('ngOninit');
     }
 
     hbSocket;

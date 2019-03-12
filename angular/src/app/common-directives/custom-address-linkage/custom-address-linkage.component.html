@@ -1,4 +1,3 @@
-<p>
-    custom-address-linkage works!
-    未完待续
-</p>
+<nz-select *ngFor="let addressObj of selectedArr; let i = index" class="margin-right-10 min-width-120" [(ngModel)]="addressObj.flag" (ngModelChange)="change($event, i)">
+    <nz-option *ngFor="let p of addressObj.data" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+</nz-select>
