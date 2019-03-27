@@ -69,6 +69,14 @@ export class HousesComponent implements OnInit {
         }
     }
 
+    private text() {
+        this.http.get({
+            api: 'cats/text'
+        }).subscribe((res: any) => {
+            console.log(res);
+        })
+    }
+
     /**
      * 链家
      */

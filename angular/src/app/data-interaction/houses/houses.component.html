@@ -3,6 +3,9 @@
 </p>
 <!-- <button mat-button (click)="grawlDataLianjiaCity()">grawlDataLianjiaCity!</button> -->
 <p>自定义地址联动</p>
+<nz-card nzTitle="测试" class="margin_bottom_20">
+    <button mat-button (click)="text()">运行爬虫脚本</button>
+</nz-card>
 <nz-card nzTitle="链家" class="margin_bottom_20" *ngIf="false">
     <app-custom-address-linkage [setData]="grawlDataLianjiaCityData" (getData)="getGrawlDataLianjiaCityData($event)"></app-custom-address-linkage>
     <nz-select class="margin-right-10 min-width-120" [(ngModel)]="lianjiaAddressObj.flag" (ngModelChange)="change($event, i)">
