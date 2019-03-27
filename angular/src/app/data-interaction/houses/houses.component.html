@@ -21,7 +21,7 @@
     <nz-select class="margin-right-10 min-width-120" [(ngModel)]="keAddressObj.flag" (ngModelChange)="change($event, i)">
         <nz-option *ngFor="let p of keAddressObj.data" [nzValue]="p" [nzLabel]="p.name"></nz-option>
     </nz-select>
-    <button mat-button (click)="setGrawlDataLianjiaCityURLData()">运行爬虫脚本</button>
-    <button mat-button (click)="getGrawlDataLianjiaCityURLData()">获取爬虫数据</button>
+    <button mat-button (click)="setGrawlDataKeCityURLData()">运行爬虫脚本</button>
+    <button mat-button (click)="getGrawlDataKeCityURLData()">获取爬虫数据</button>
     {{getGrawlDataLianjiaCityURLDatas | json}}
 </nz-card>

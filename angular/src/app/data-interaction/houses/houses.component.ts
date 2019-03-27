@@ -62,6 +62,7 @@ export class HousesComponent implements OnInit {
         // 默认获取安居客数据
         // this.grawlDataAnjukeCity();
         // 默认初始化贝壳数据
+        this.grawlDataKeCity();
         this.keAddressObj = {
             data: this.baseKe,
             flag: this.baseKe[0]
@@ -151,8 +152,21 @@ export class HousesComponent implements OnInit {
     }
 
     // 组件进行地址选择
+    getGrawlDataKeCityAllData: any;
     getGrawlDataKeCityData(event) {
-        console.log(event);
+        this.getGrawlDataKeCityAllData = event;
+    }
+
+    // 进行数据爬取并写入数据库
+    setGrawlDataKeCityURLData() {
+        const data = this.getGrawlDataKeCityAllData[this.getGrawlDataKeCityAllData.length - 1].flag;
+        data.flag = this.keAddressObj.flag;
+        this.http.post({
+            data,
+            api: 'houses/grawlDataKeCityURL'
+        }).subscribe((res: any) => {
+            console.log(res);
+        })
     }
 
     /**
