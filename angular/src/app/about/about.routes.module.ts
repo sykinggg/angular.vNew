@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AboutComponent } from './about.component';
 import { AboutIndexComponent } from './about-index/about-index.component';
 import { AboutCreateComponent } from './about-create/about-create.component';
+import { PuppeteerComponent } from './puppeteer/puppeteer.component';
 
 const aboutRoutes = [
     {
@@ -22,6 +23,10 @@ const aboutRoutes = [
             {
                 path: 'aboutCreate',
                 component: AboutCreateComponent
+            },
+            {
+                path: 'puppeteer',
+                component: PuppeteerComponent
             }
         ]
     }

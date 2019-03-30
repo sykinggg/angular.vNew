@@ -10,6 +10,7 @@ import { AboutIndexComponent } from './about-index/about-index.component';
 import { AboutCreateComponent } from './about-create/about-create.component';
 import { LayoutModule } from '../layout/layout.module';
 import { ForeignExchangeAboutComponent } from './foreign-exchange-about/foreign-exchange-about.component';
+import { PuppeteerComponent } from './puppeteer/puppeteer.component';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { ForeignExchangeAboutComponent } from './foreign-exchange-about/foreign-
         AboutIndexComponent,
         AboutCreateComponent,
         ForeignExchangeAboutComponent,
+        PuppeteerComponent,
     ]
 })
 

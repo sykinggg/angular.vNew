@@ -9,7 +9,8 @@ export class AboutComponent implements OnInit {
 
     routerLinkArr: Array<any> = [
         { routerName: 'aboutIndex', routerLink: 'aboutIndex' },
-        { routerName: 'aboutCreate', routerLink: 'aboutCreate' }
+        { routerName: 'aboutCreate', routerLink: 'aboutCreate' },
+        { routerName: 'puppeteer', routerLink: 'puppeteer' },
     ]
 
     constructor() { }
