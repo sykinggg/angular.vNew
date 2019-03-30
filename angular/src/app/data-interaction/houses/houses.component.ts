@@ -77,6 +77,22 @@ export class HousesComponent implements OnInit {
         })
     }
 
+    ismDoSomethingData;
+    private ismDoSomething() {
+        this.http.get({
+            api: 'cats/ismDoSomething'
+        }).subscribe((res: any) => {
+            console.log(res);
+            const bytes = new Uint8Array(res.data);
+            let data = "";
+            let len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+            　　data += String.fromCharCode(bytes[i]);
+            }
+            this.ismDoSomethingData = "data:image/png;base64," + window.btoa(data);
+        })
+    }
+
     /**
      * 链家
      */

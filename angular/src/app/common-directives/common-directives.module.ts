@@ -9,13 +9,15 @@ import { WaterFullMovieComponent } from './water-full-movie/water-full-movie.com
 import { WaterFullComponent } from './water-full/water-full.component';
 import { AddressLinkageComponent } from './address-linkage/address-linkage.component';
 import { CustomAddressLinkageComponent } from './custom-address-linkage/custom-address-linkage.component';
+import { PdfModule } from './pdf/pdf.module';
 
 @NgModule({
     imports: [
         CommonModule,
         HttpClientModule,
         NgZorroAntdModule,
-        FormsModule
+        FormsModule,
+        PdfModule
     ],
     declarations: [
         WaterFullMovieComponent,
