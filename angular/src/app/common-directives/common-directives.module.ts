@@ -36,6 +36,7 @@ import { PdfModule } from './pdf/pdf.module';
         WaterFullComponent,
         AddressLinkageComponent,
         CustomAddressLinkageComponent,
+        PdfModule
     ],
 })
 export class CommonDirectivesModule { }

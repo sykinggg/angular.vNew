@@ -19,25 +19,51 @@ export class PuppeteerComponent implements OnInit {
     ngOnInit() {
     }
 
+    public interceptPicData;
     public screenshot() {
+        this.interceptPicData = null;
         this.http.post({
-            api: '/puppeteer/pic',
+            api: 'puppeteer/pic',
             data: {
                 http: this.httpValue,
             },
         }).subscribe((res: any) => {
+            if (!res) {
+                return;
+            }
             console.log(res);
+            const bytes = new Uint8Array(res.data);
+            let data = "";
+            let len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+                data += String.fromCharCode(bytes[i]);
+            }
+            this.interceptPicData = "data:image/png;base64," + window.btoa(data);
         })
     }
 
+    public interceptPdfData;
     public interceptPdf() {
+        this.interceptPdfData = null;
         this.http.post({
-            api: '/puppeteer/pdf',
+            api: 'puppeteer/pdf',
             data: {
                 http: this.httpValue,
             },
         }).subscribe((res: any) => {
-            console.log(res);
+            if (!res) {
+                return;
+            }
+            const bytes = new Uint8Array(res.data);
+            let data = "";
+            let len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+                data += String.fromCharCode(bytes[i]);
+            }
+            this.interceptPdfData = {
+                data: "data:image/png;base64," + window.btoa(data),
+                type: 'iframe'
+            };
         })
     }
 

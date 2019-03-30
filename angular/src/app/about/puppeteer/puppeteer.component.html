@@ -1,6 +1,13 @@
 <h3 class="text-center mar-t-10 mar-b-10">puppeteer works!</h3>
 <nz-card nzTitle="puppeteer-container">
-    <input nz-input placeholder="Basic usage" [(ngModel)]="httpValue" />
-    <button mat-button (click)="screenshot()">截取图片</button>
-    <button mat-button (click)="interceptPdf()">截取pdf</button>
+    <nz-input-group nzAddOnBefore="网址" nzAddOnAfter="" class="mar-b-10">
+        <input nz-input placeholder="输入截图网址" [(ngModel)]="httpValue" />
+    </nz-input-group>
+    
+    <button mat-button nzType="primary" (click)="screenshot()">截取图片</button>
+    <button mat-button nzType="primary" (click)="interceptPdf()">截取pdf</button>
+    <div>
+        <img style="width: 100%;" [src]="interceptPicData" *ngIf="interceptPicData" alt="interceptPicData" />
+    </div>
+    <app-pdf-container [option]="interceptPdfData" *ngIf="interceptPdfData"></app-pdf-container>
 </nz-card>

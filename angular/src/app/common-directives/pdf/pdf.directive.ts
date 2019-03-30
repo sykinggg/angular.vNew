@@ -1,11 +1,9 @@
-import { Directive } from '@angular/core';
+import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
     selector: '[appPdf]'
 })
 export class PdfDirective {
-    viewContainerRef: any;
-
-    constructor() { }
+    constructor(public viewContainerRef: ViewContainerRef) { }
 
 }

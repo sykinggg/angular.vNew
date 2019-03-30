@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, Input } from '@angular/core';
 import { PdfDirective } from '../pdf.directive';
 import { pdfContainer, IpdfContainerComponent } from '../pdf-container';
 
@@ -8,6 +8,18 @@ import { pdfContainer, IpdfContainerComponent } from '../pdf-container';
     styleUrls: ['./pdf-container.component.scss']
 })
 export class PdfContainerComponent implements OnInit {
+
+    @Input() set option(data) {
+        if (data) {
+            if (Object.prototype.toString.call(data) === '[object Array]') {
+                data.forEach((item, idx) => {
+                    this.loadComponent(item, !!idx);
+                });
+            } else {
+                this.loadComponent(data);
+            }
+        }
+    };
 
     @ViewChild(PdfDirective) host: PdfDirective;
 
