@@ -1,0 +1,39 @@
+// 循环默认间距
+@for $var from 1 to 400 {
+    .mar-r-#{$var*2} {
+        margin-right: #{$var*2}px !important;
+    }
+    .mar-l-#{$var*2} {
+        margin-left: #{$var*2}px !important;
+    }
+    .mar-t-#{$var*2} {
+        margin-top: #{$var*2}px !important;
+    }
+    .mar-b-#{$var*2} {
+        margin-bottom: #{$var*2}px !important;
+    }
+    .pad-r-#{$var*2} {
+        padding-right: #{$var*2}px !important;
+    }
+    .pad-l-#{$var*2} {
+        padding-left: #{$var*2}px !important;
+    }
+    .pad-t-#{$var*2} {
+        padding-top: #{$var*2}px !important;
+    }
+    .pad-b-#{$var*2} {
+        padding-bottom: #{$var*2}px !important;
+    }
+    .max-w-#{$var*2} {
+        max-width: #{$var*2}px !important;
+    }
+    .min-w-#{$var*2} {
+        min-width: #{$var*2}px !important;
+    }
+    .max-h-#{$var*2} {
+        max-height: #{$var*2}px !important;
+    }
+    .min-h-#{$var*2} {
+        min-height: #{$var*2}px !important;
+    }
+}

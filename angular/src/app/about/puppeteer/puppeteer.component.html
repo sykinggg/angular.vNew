@@ -1,11 +1,50 @@
 <h3 class="text-center mar-t-10 mar-b-10">puppeteer works!</h3>
 <nz-card nzTitle="puppeteer-container">
+    <nz-radio-group [(ngModel)]="radioValue" class="mar-b-10">
+        <label nz-radio nzValue="pdf">pdf</label>
+        <label nz-radio nzValue="pic">pic</label>
+    </nz-radio-group>
     <nz-input-group nzAddOnBefore="网址" nzAddOnAfter="" class="mar-b-10">
         <input nz-input placeholder="输入截图网址" [(ngModel)]="httpValue" />
     </nz-input-group>
-    
-    <button mat-button nzType="primary" (click)="screenshot()">截取图片</button>
-    <button mat-button nzType="primary" (click)="interceptPdf()">截取pdf</button>
+    <nz-input-group nzAddOnBefore="页面等待时间（默认1000）" nzAddOnAfter="" class="mar-b-10">
+        <input nz-input placeholder="页面等待时间（默认1000）" [(ngModel)]="waitFor" />
+    </nz-input-group>
+    <div *ngIf="radioValue === 'pdf'">
+        <nz-input-group nzAddOnBefore="pdf文件保存的路径" nzAddOnAfter="" class="mar-b-10 mar-r-10">
+            <input nz-input placeholder="pdf文件保存的路径" [(ngModel)]="pdfObj.path" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="页面渲染的缩放" nzAddOnAfter="" class="mar-b-10 mar-r-10">
+            <input nz-input placeholder="页面渲染的缩放" [(ngModel)]="pdfObj.scale" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="页面宽度" nzAddOnAfter="" class="mar-b-10 mar-r-10">
+            <input nz-input placeholder="页面宽度" [(ngModel)]="pdfObj.width" />
+        </nz-input-group>
+    </div>
+    <div *ngIf="radioValue === 'pic'">
+        <nz-input-group nzAddOnBefore="截图保存路径。截图图片类型将从文件扩展名推断出来" nzAddOnAfter="" class="mar-b-10 mar-r-10">
+            <input nz-input placeholder="截图保存路径。截图图片类型将从文件扩展名推断出来" [(ngModel)]="picObj.path" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="指定截图类型, 可以是 jpeg 或者 png。默认 'png'." nzAddOnAfter="" class="mar-b-10 mar-r-10">
+            <input nz-input placeholder="指定截图类型, 可以是 jpeg 或者 png。默认 'png'." [(ngModel)]="picObj.type" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="图片质量, 可选值 0-100. png 类型不适用" nzAddOnAfter="" class="mar-b-10 mar-r-10">
+            <input nz-input placeholder="图片质量, 可选值 0-100. png 类型不适用" [(ngModel)]="picObj.quality" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="如果设置为true，则对完整的页面（需要滚动的部分也包含在内）。默认是false" nzAddOnAfter="" class="mar-b-10 mar-r-10">
+            <input nz-input placeholder="如果设置为true，则对完整的页面（需要滚动的部分也包含在内）。默认是false" [(ngModel)]="picObj.fullPage" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="隐藏默认的白色背景，背景透明" nzAddOnAfter="" class="mar-b-10 mar-r-10">
+            <input nz-input placeholder="隐藏默认的白色背景，背景透明" [(ngModel)]="picObj.omitBackground" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="图像的编码可以是 base64 或 binary" nzAddOnAfter="" class="mar-b-10 mar-r-10">
+            <input nz-input placeholder="图像的编码可以是 base64 或 binary" [(ngModel)]="picObj.encoding" />
+        </nz-input-group>
+    </div>
+    <div>
+        <button nz-button nzType="primary" *ngIf="radioValue === 'pic'" class="mar-r-10" (click)="screenshot()">截取图片</button>
+        <button nz-button nzType="primary" *ngIf="radioValue === 'pdf'" (click)="interceptPdf()">截取pdf</button>
+    </div>
     <div>
         <img style="width: 100%;" [src]="interceptPicData" *ngIf="interceptPicData" alt="interceptPicData" />
     </div>

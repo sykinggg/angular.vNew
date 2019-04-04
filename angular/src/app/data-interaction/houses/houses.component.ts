@@ -54,11 +54,11 @@ export class HousesComponent implements OnInit {
 
     ngOnInit() {
         // 默认获取链家数据
-        // this.grawlDataLianjiaCity();
-        // this.lianjiaAddressObj = {
-        //     data: this.baseLinjia,
-        //     flag: this.baseLinjia[0]
-        // }
+        this.grawlDataLianjiaCity();
+        this.lianjiaAddressObj = {
+            data: this.baseLinjia,
+            flag: this.baseLinjia[0]
+        }
         // 默认获取安居客数据
         // this.grawlDataAnjukeCity();
         // 默认初始化贝壳数据
@@ -67,30 +67,6 @@ export class HousesComponent implements OnInit {
             data: this.baseKe,
             flag: this.baseKe[0]
         }
-    }
-
-    private text() {
-        this.http.get({
-            api: 'cats/text'
-        }).subscribe((res: any) => {
-            console.log(res);
-        })
-    }
-
-    ismDoSomethingData;
-    private ismDoSomething() {
-        this.http.get({
-            api: 'cats/ismDoSomething'
-        }).subscribe((res: any) => {
-            console.log(res);
-            const bytes = new Uint8Array(res.data);
-            let data = "";
-            let len = bytes.byteLength;
-            for (let i = 0; i < len; i++) {
-            　　data += String.fromCharCode(bytes[i]);
-            }
-            this.ismDoSomethingData = "data:image/png;base64," + window.btoa(data);
-        })
     }
 
     /**
