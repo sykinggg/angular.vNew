@@ -24,6 +24,8 @@ export class FormResponseDetailComponent implements OnInit {
     nameChangeLog: string[] = [];
     states = states;
 
+    i: any;
+
     constructor(
         private fb: FormBuilder,
         private heroService: HeroServiceService

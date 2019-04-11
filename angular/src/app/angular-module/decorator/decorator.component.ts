@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class DecoratorComponent implements OnInit {
 
-	private componentSummary:Array<any> = [
+	public componentSummary: Array<any> = [
 		{
 			active: false,
 			name: '1.animations(用过)',

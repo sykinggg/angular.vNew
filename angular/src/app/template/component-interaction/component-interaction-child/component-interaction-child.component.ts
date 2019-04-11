@@ -32,6 +32,11 @@ export class ComponentInteractionChildComponent implements OnInit {
     @Input()
     serviceShow: Boolean = false;
 
+    astronaut;
+    mission;
+    confirmed;
+    announced;
+
     // @Input() astronaut: string;
     // mission = '<no mission announced>';
     // confirmed = false;
@@ -83,10 +88,10 @@ export class ComponentInteractionChildComponent implements OnInit {
         //     });
     }
 
-    // confirm() {
-    //     this.confirmed = true;
-    //     this.missionService.confirmMission(this.astronaut);
-    // }
+    confirm() {
+        this.confirmed = true;
+        this.missionService.confirmMission(this.astronaut);
+    }
 
     ngOnInit() {
         this.start();

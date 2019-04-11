@@ -20,7 +20,7 @@ export interface Iaddobj {
 })
 export class AddressLinkageComponent implements OnInit {
 
-    private addressObj: any;
+    public addressObj: any;
 
     public addObj: Iaddobj;
 

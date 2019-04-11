@@ -82,24 +82,29 @@
     
     <h6>demo1(Observable.of)</h6>
     <p>{{sourceData1}}</p>
-    <button nz-button nzType="default" (click)="subscribe1()">subscribe1</button>
+    <button nz-button nzType="default">subscribe1</button>
+    <!-- <button nz-button nzType="default" (click)="subscribe1()">subscribe1</button> -->
     
     <h6>demo2(new Observable)</h6>
     <p>{{sourceData2}}</p>
-    <button nz-button nzType="default" (click)="subscribe2()">subscribe2</button>
+    <button nz-button nzType="default">subscribe2</button>
+    <!-- <button nz-button nzType="default" (click)="subscribe2()">subscribe2</button> -->
     
     <h6>demo3(纯响应式编程)</h6>
-    <button nz-button nzType="default" (click)="subscribe3()">subscribe3</button>
+    <button nz-button nzType="default">subscribe3</button>
+    <!-- <button nz-button nzType="default" (click)="subscribe3()">subscribe3</button> -->
     
     <h6>demo4(传统事件绑定)</h6>
     <input nz-input class="width-25p" placeholder="输输看" value="aaa" id="demo4">
     <p>{{demo4Data}}</p>
-    <button nz-button nzType="default" (click)="subscribe4()">subscribe4</button>
+    <button nz-button nzType="default">subscribe4</button>
+    <!-- <button nz-button nzType="default" (click)="subscribe4()">subscribe4</button> -->
     
     <h6>demo5(常见操作-pluck)</h6>
     <input nz-input class="width-25p" placeholder="输呀"  type="text" id="demo5">
     <p>{{demo5Data}}</p>
-    <button nz-button nzType="default" (click)="subscribe5()">subscribe5</button>
+    <button nz-button nzType="default">subscribe5</button>
+    <!-- <button nz-button nzType="default" (click)="subscribe5()">subscribe5</button> -->
     
     <h6>demo6(combineLatest)</h6>
     <p class="f-c-999">
@@ -163,10 +168,12 @@
          src="https://img.ctolib.com/uploadImg/20170326/20170326093646_718.png" >
     <h5>注意：</h5>
     <p class="f-c-999">从效果角度上讲，这个操作符有减缓发射速度的作用，因为它会等待合并序列中最慢的那个</p>
-    <button nz-button nzType="default" (click)="subscribe8()">subscribe8</button>
+    <button nz-button nzType="default">subscribe8</button>
+    <!-- <button nz-button nzType="default" (click)="subscribe8()">subscribe8</button> -->
     
     <h6>demo 9 创建类操作符</h6>
-    <button nz-button nzType="default" (click)="subscribe9()">subscribe9</button>
+    <button nz-button nzType="default">subscribe9</button>
+    <!-- <button nz-button nzType="default" (click)="subscribe9()">subscribe9</button> -->
     
     <h6>demo 10 defer操作符</h6>
     <p class="f-c-999">defer 是直到有订阅者之后才创建Observable</p>

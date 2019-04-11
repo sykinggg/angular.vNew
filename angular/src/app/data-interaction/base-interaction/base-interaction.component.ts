@@ -18,7 +18,11 @@ export class BaseInteractionComponent implements OnInit {
         Select: 'option'
     }
 
+    selectedValue: any;
+
     voiceData: any;
+
+    selectedIndex: any;
 
     constructor(
         private http: HttpClient

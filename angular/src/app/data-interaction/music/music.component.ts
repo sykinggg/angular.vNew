@@ -8,10 +8,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MusicComponent implements OnInit {
 
-    private qqApiUrl = 'http://127.0.0.1:666/music/qq/';
+    public qqApiUrl = 'http://127.0.0.1:666/music/qq/';
 
     constructor(
-        private http: HttpClient,
+        public http: HttpClient,
     ) { }
 
     ngOnInit() {
@@ -23,7 +23,7 @@ export class MusicComponent implements OnInit {
 
     // 轮播图
     qqCarouselData;
-    private qqCarousel() {
+    public qqCarousel() {
         this.http.get(this.qqApiUrl + 'carousel').subscribe(res => {
             if (res) {
                 this.qqCarouselData = res;
@@ -33,7 +33,7 @@ export class MusicComponent implements OnInit {
 
     // 歌单列表
     qqSongListData;
-    private qqSongList() {
+    public qqSongList() {
         this.http.get(this.qqApiUrl + 'songList').subscribe(res => {
             if (res) {
                 this.qqSongListData = res;
@@ -43,7 +43,7 @@ export class MusicComponent implements OnInit {
 
     // 歌单详情
     qqSongListDetailData;
-    private qqSongListDetail() {
+    public qqSongListDetail() {
         this.http.get(this.qqApiUrl + 'songList/detail').subscribe(res => {
             if (res) {
                 this.qqSongListDetailData = res;
@@ -53,7 +53,7 @@ export class MusicComponent implements OnInit {
 
     // 歌手数据
     qqSingerData;
-    private qqSinger() {
+    public qqSinger() {
         this.http.get(this.qqApiUrl + 'singer').subscribe(res => {
             if (res) {
                 this.qqSingerData = res;
@@ -63,7 +63,7 @@ export class MusicComponent implements OnInit {
 
     // 歌手详情
     qqSingerDetailData;
-    private qqSingerDetail() {
+    public qqSingerDetail() {
         this.http.get(this.qqApiUrl + 'singer/detail').subscribe(res => {
             if (res) {
                 this.qqSingerDetailData = res;
@@ -73,7 +73,7 @@ export class MusicComponent implements OnInit {
 
     // 排行榜
     qqRankData;
-    private qqRank() {
+    public qqRank() {
         this.http.get(this.qqApiUrl + 'rank').subscribe(res => {
             if (res) {
                 this.qqRankData = res;
@@ -84,7 +84,7 @@ export class MusicComponent implements OnInit {
 
     // 排行榜详情
     qqRankDetailData;
-    private qqRankDetail() {
+    public qqRankDetail() {
         this.http.get(this.qqApiUrl + 'rank/detail').subscribe(res => {
             if (res) {
                 this.qqRankDetailData = res;

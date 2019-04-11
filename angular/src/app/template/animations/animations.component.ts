@@ -10,20 +10,20 @@ import { flyInOut } from '../../animation/flyInOut';
 })
 export class AnimationsComponent implements OnInit {
 
-    private stateContent: any = {
+    public stateContent: any = {
         name: 'name',
         state: 'inactive'
     }
 
     change() {
-        if (this.stateContent.state == 'inactive') {
+        if (this.stateContent.state === 'inactive') {
             this.stateContent.state = 'active';
         } else {
             this.stateContent.state = 'inactive';
         }
     }
 
-    private flyInOutInspect:Boolean = true;
+    public flyInOutInspect: Boolean = true;
 
     hide() {
         this.flyInOutInspect = !this.flyInOutInspect;

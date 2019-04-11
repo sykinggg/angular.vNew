@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JsSummaryIndexComponent implements OnInit {
 
-	private routerLinkArr:Array<any> = [
+	public routerLinkArr: Array<any> = [
 		{ routerName: 'base', routerLink: 'base' }
 	]
 

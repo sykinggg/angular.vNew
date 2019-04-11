@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IocComponent implements OnInit {
 
-	private routerLinkArr: Array<any> = [
+	public routerLinkArr: Array<any> = [
         { routerName: 'read', routerLink: 'read' }
     ];
 

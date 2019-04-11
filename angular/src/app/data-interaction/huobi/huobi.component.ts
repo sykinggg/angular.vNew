@@ -20,6 +20,10 @@ export class HuobiComponent implements OnInit {
 
     NO_SIGNATURE_API: Array<any>;
 
+    selectedIndex: any;
+    tradeCalData: any;
+    
+
     constructor(
         private http: HttpClient,
         private message: NzMessageService

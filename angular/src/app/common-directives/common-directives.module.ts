@@ -10,6 +10,7 @@ import { WaterFullComponent } from './water-full/water-full.component';
 import { AddressLinkageComponent } from './address-linkage/address-linkage.component';
 import { CustomAddressLinkageComponent } from './custom-address-linkage/custom-address-linkage.component';
 import { PdfModule } from './pdf/pdf.module';
+import { DragDropFrameComponent } from './drag-drop-frame/drag-drop-frame.component';
 
 @NgModule({
     imports: [
@@ -24,12 +25,14 @@ import { PdfModule } from './pdf/pdf.module';
         WaterFullComponent,
         AddressLinkageComponent,
         CustomAddressLinkageComponent,
+        DragDropFrameComponent,
     ],
     entryComponents: [
         WaterFullMovieComponent,
         WaterFullComponent,
         AddressLinkageComponent,
         CustomAddressLinkageComponent,
+        DragDropFrameComponent,
     ],
     exports: [
         WaterFullMovieComponent,

@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class JsSummaryBaseComponent implements OnInit {
 
-	private headSummary:Array<any> = [
+	public headSummary: Array<any> = [
 		{
 			active: true,
 			name: '1 开闭原则',
@@ -72,7 +72,7 @@ export class JsSummaryBaseComponent implements OnInit {
 	]
 
 	constructor(
-		private sanitizer: DomSanitizer
+		public sanitizer: DomSanitizer
 	) { }
 
 	ngOnInit() {

@@ -28,7 +28,7 @@ export class MapBaseComponent implements OnInit {
         mouseTool: []
     }
     // 地图加载控件是否显示标识
-    mapModel: Object = {
+    mapModel: any = {
         toolBar: true,
         scale: true,
         mapType: true,
@@ -55,10 +55,10 @@ export class MapBaseComponent implements OnInit {
     getMapData: Function = (type: String) => {
         this.availableMapData = {};
         this.availableMapObject.forEach(item => {
-            if (typeof item == 'string' && typeof type == 'string') {
-                if (item !== 'circle' && typeof this.mapLoad[item].object[type] == 'function') {
+            if (typeof item === 'string' && typeof type === 'string') {
+                if (item !== 'circle' && typeof this.mapLoad[item].object[type] === 'function') {
                     this.availableMapData[item] = this.mapLoad[item].object[type]();
-                } else if (item == 'circle') {
+                } else if (item === 'circle') {
                     if (!this.availableMapData.circle) {
                         this.availableMapData.circle = {};
                     }
@@ -73,7 +73,7 @@ export class MapBaseComponent implements OnInit {
     }
 
     // 距离测量
-    choiceData: Array<Object> = [
+    choiceData: Array<any> = [
         {
             name: '一种折线',
             code: 'line1'
@@ -113,19 +113,19 @@ export class MapBaseComponent implements OnInit {
     mapMouseToolDataObj: any;
     choiceLine: Function = () => {
         this.mapMouseToolObj.close();
-        if (this.choiceMapData == 'line1') {
+        if (this.choiceMapData === 'line1') {
             this.mapLoad.rangingTool.ruler2.turnOff();
             this.mapLoad.rangingTool.ruler1.turnOn();
-        } else if (this.choiceMapData == 'line2') {
+        } else if (this.choiceMapData === 'line2') {
             this.mapLoad.rangingTool.ruler1.turnOff();
             this.mapLoad.rangingTool.ruler2.turnOn();
         } else {
             this.mapLoad.rangingTool.ruler1.turnOff();
             this.mapLoad.rangingTool.ruler2.turnOff();
-            if (this.choiceMapData == 'marker') {
+            if (this.choiceMapData === 'marker') {
                 this.mapMouseToolObj.marker({ offset: new AMap.Pixel(-10, -34) });
             } else {
-                if (typeof this.choiceMapData == 'string') {
+                if (typeof this.choiceMapData === 'string') {
                     this.mapMouseToolObj[this.choiceMapData]();
                 }
             }
@@ -162,7 +162,7 @@ export class MapBaseComponent implements OnInit {
 
     // 地图功能是否限制
     toggle: Function = function (type) {
-        let setObject: Object = {};
+        let setObject: any = {};
         if (this[type]) {
             setObject[type] = true;
         } else {
@@ -187,7 +187,6 @@ export class MapBaseComponent implements OnInit {
         } else {
             this.mapLoad[type].editObject.open();
         }
-        debugger;
     }
 
     // 限制区域为当前视野
@@ -200,7 +199,7 @@ export class MapBaseComponent implements OnInit {
         let limitBounds = this.map.getLimitBounds();
 
         if (limitBounds) {
-            var tip = [];
+            let tip = [];
             tip.push('限制区域：\n西南坐标[' + limitBounds.southwest.lng + ',' + limitBounds.southwest.lat + ']\n')
             tip.push('东北坐标[' + limitBounds.northeast.lng + ',' + limitBounds.northeast.lat + ']')
             alert(tip.join(''));
@@ -214,7 +213,7 @@ export class MapBaseComponent implements OnInit {
         this.map.clearLimitBounds();
     }
 
-    mapInformation: Object = {};
+    mapInformation: any = {};
     // 默认获取当前视野的地址信息
     mapMoveend: Function = () => {
         this.map.on('moveend', this.getCity);
@@ -241,7 +240,7 @@ export class MapBaseComponent implements OnInit {
     }
     constructor(private mapService: MapServiceService, private baseService: BaseService) { }
 
-    polygonSetting: Object = {
+    polygonSetting: any = {
         // path: arr,    //设置多边形轮廓的节点数组
         strokeColor: "#0000ff",
         strokeOpacity: 0.2,
@@ -250,7 +249,7 @@ export class MapBaseComponent implements OnInit {
         fillOpacity: 0.35
     }
 
-    polygonCircleSetting: Object = {
+    polygonCircleSetting: any = {
         // path: arr,    //设置多边形轮廓的节点数组
         radius: 1000,
         strokeColor: "#0000ff",
@@ -315,7 +314,7 @@ export class MapBaseComponent implements OnInit {
         }
         this.mapLoad.circle = this.mapService.mapCircleShow(this.map, circlePoint, this.polygonCircleSetting);
         // 距离测量
-        let lOptions: Object = {
+        let lOptions: any = {
             strokeStyle: "solid",
             strokeColor: "#FF33FF",
             strokeOpacity: 1,

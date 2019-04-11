@@ -9,9 +9,12 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class HousesComponent implements OnInit {
 
+    change: any;
+    i: any;
+
     constructor(
-        private http: HttpService,
-        private message: NzMessageService
+        public http: HttpService,
+        public message: NzMessageService
     ) { }
 
     lianjiaAddressObj: any;
@@ -74,8 +77,8 @@ export class HousesComponent implements OnInit {
      */
 
     // 获取链家城市
-    private grawlDataLianjiaCityData: any;
-    private grawlDataLianjiaCity() {
+    public grawlDataLianjiaCityData: any;
+    public grawlDataLianjiaCity() {
         this.http.get({
             api: 'houses/grawlDataLianjiaCity'
         }).subscribe((res: any) => {
@@ -85,12 +88,12 @@ export class HousesComponent implements OnInit {
     }
     // 链家获取选择城市
     getGrawlDataLianjiaCityAllData: any;
-    private getGrawlDataLianjiaCityData(data) {
+    public getGrawlDataLianjiaCityData(data) {
         this.getGrawlDataLianjiaCityAllData = data;
     }
 
     // 进行数据爬取并写入数据库
-    private setGrawlDataLianjiaCityURLData() {
+    public setGrawlDataLianjiaCityURLData() {
         const data = this.getGrawlDataLianjiaCityAllData[this.getGrawlDataLianjiaCityAllData.length - 1].flag;
         data.flag = this.lianjiaAddressObj.flag;
         if (data.href.indexOf('.fang.') + 1) {
@@ -106,8 +109,8 @@ export class HousesComponent implements OnInit {
     }
 
     // 获取写入到数据库中爬取的数据
-    private getGrawlDataLianjiaCityURLDatas;
-    private getGrawlDataLianjiaCityURLData() {
+    public getGrawlDataLianjiaCityURLDatas;
+    public getGrawlDataLianjiaCityURLData() {
         const data = this.getGrawlDataLianjiaCityAllData[this.getGrawlDataLianjiaCityAllData.length - 1].flag;
         if (data.href.indexOf('.fang.') + 1) {
             console.log(data);

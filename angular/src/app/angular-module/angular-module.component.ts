@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AngularModuleComponent implements OnInit {
 
-	private routerLinkArr: Array<any> = [
+	public routerLinkArr: Array<any> = [
         { routerName: 'abstract', routerLink: 'abstract' },
 		{ routerName: 'other', routerLink: 'other' },
 		{ routerName: 'dependency', routerLink: 'dependency' },

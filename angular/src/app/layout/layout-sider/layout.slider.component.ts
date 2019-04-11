@@ -31,6 +31,8 @@ export class LayoutSliderComponent implements OnInit, OnDestroy, AfterViewInit {
     sub: Subscription;
     breadCrumbs: Array<string> = [];
 
+    isCollapsed;
+
 
     constructor(
         private router: Router,

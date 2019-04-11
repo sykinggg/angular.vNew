@@ -46,16 +46,16 @@ export interface IPic {
 })
 export class PuppeteerComponent implements OnInit {
 
-    private httpValue: string;
-    private radioValue: string;
-    private waitFor: any;
+    public httpValue: string;
+    public radioValue: string;
+    public waitFor: any;
 
-    private pdfObj: IPdf = {
+    public pdfObj: IPdf = {
         path: '',
         scale: 1,
         width: ''
     };
-    private picObj: IPic = {
+    public picObj: IPic = {
         path: '',
         type: '',
         quality: 0,
@@ -65,8 +65,8 @@ export class PuppeteerComponent implements OnInit {
     };
 
     constructor(
-        private http: HttpService,
-        private message: NzMessageService
+        public http: HttpService,
+        public message: NzMessageService
     ) {
         this.radioValue = 'pdf';
         this.waitFor = 1000;

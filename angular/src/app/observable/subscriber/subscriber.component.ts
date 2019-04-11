@@ -73,7 +73,7 @@ export class SubscriberComponent implements OnInit {
     /**
      * demo1 (使用Observable.of创建对象)
      * */
-    // sourceData1 = [];
+    sourceData1 = [];
     // source1 = Observable.of(1, 2, 3, 4, 5);
     // observer1 = {
     //     next: x => {
@@ -97,7 +97,7 @@ export class SubscriberComponent implements OnInit {
     /**
      * demo2 (使用Observable对象实例化对象并使用时间进行订阅)
      * */
-    // sourceData2 = [];
+    sourceData2 = [];
     // source2 = (observer) => {
     //     setTimeout(observer.next(1), 1000);
         
@@ -147,7 +147,7 @@ export class SubscriberComponent implements OnInit {
     /**
      * demo 4 传统事件绑定
      * */
-    // demo4Data: any;
+    demo4Data: any;
     // subscribe4 = () => {
         // let demo4Event = document.getElementById('demo4');
         // let input$ = Observable.fromEvent(demo4Event, 'keyup');
@@ -166,7 +166,7 @@ export class SubscriberComponent implements OnInit {
     /**
      * demo 5 常见操作(pluck)
      * */
-    // demo5Data: any;
+    demo5Data: any;
     // subscribe5 = () => {
         // let demo5Event = document.getElementById('demo5');
         // let input$ = Observable.fromEvent(demo5Event, 'change');
@@ -182,7 +182,7 @@ export class SubscriberComponent implements OnInit {
     /**
      * demo 6 合并类操作符(combineLatest)
      * */
-    // demo6Data: any;
+    demo6Data: any;
     // subscribe6 = () => {
         // let demo6Input = document.getElementById('demo6Input');
         // let demo6Button = document.getElementById('demo6Button');
@@ -204,7 +204,7 @@ export class SubscriberComponent implements OnInit {
     /**
      * demo 7 合并类操作符(combineLatest使用)
      * */
-    // demo7Data: any;
+    demo7Data: any;
     // subscribe7 = () => {
         // let weight = document.getElementById('demo7Weight');
         // let height = document.getElementById('demo7Height');

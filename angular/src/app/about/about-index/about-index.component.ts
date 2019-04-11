@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-about-index',
-  templateUrl: './about-index.component.html',
-  styleUrls: ['./about-index.component.scss']
+    selector: 'app-about-index',
+    templateUrl: './about-index.component.html',
+    styleUrls: ['./about-index.component.scss']
 })
 export class AboutIndexComponent implements OnInit {
 
-  constructor() { }
+    public name: any;
 
-  ngOnInit() {
-  }
+    constructor() { }
+
+    ngOnInit() {
+    }
 
 }
