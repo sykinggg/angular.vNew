@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class JsSummaryIndexComponent implements OnInit {
 
 	public routerLinkArr: Array<any> = [
-		{ routerName: 'base', routerLink: 'base' }
+		{ routerName: 'sum', routerLink: 'sum' },
+		{ routerName: 'base', routerLink: 'base' },
 	]
 
 	constructor() { }

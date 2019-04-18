@@ -9,6 +9,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { JsSummaryIndexComponent } from './js-summary-index/js-summary-index.component';
 import { JsSummaryBaseComponent } from './js-summary-base/js-summary-base.component';
 import { LayoutModule } from '../layout/layout.module';
+import { JsSummarySumComponent } from './js-summary-sum/js-summary-sum.component';
 
 @NgModule({
 	imports: [
@@ -22,7 +23,8 @@ import { LayoutModule } from '../layout/layout.module';
 	],
 	declarations: [
 		JsSummaryIndexComponent,
-		JsSummaryBaseComponent
+		JsSummaryBaseComponent,
+		JsSummarySumComponent
 	]
 })
 export class JsSummaryModule { }
