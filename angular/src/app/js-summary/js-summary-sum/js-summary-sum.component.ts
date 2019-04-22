@@ -9,10 +9,6 @@ export class JsSummarySumComponent implements OnInit {
 
     constructor() { }
 
-    private switch(type) {
-        this[type] = !this[type];
-    }
-
     ngOnInit() {
     }
 

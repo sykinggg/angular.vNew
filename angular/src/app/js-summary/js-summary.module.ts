@@ -10,6 +10,8 @@ import { JsSummaryIndexComponent } from './js-summary-index/js-summary-index.com
 import { JsSummaryBaseComponent } from './js-summary-base/js-summary-base.component';
 import { LayoutModule } from '../layout/layout.module';
 import { JsSummarySumComponent } from './js-summary-sum/js-summary-sum.component';
+import { JsTemplateSumComponent } from './js-template-sum/js-template-sum.component';
+import { JsTemplateSumDirective } from './js-template-sum/js-template-sum.directive';
 
 @NgModule({
 	imports: [
@@ -24,7 +26,9 @@ import { JsSummarySumComponent } from './js-summary-sum/js-summary-sum.component
 	declarations: [
 		JsSummaryIndexComponent,
 		JsSummaryBaseComponent,
-		JsSummarySumComponent
+		JsSummarySumComponent,
+		JsTemplateSumComponent,
+		JsTemplateSumDirective
 	]
 })
 export class JsSummaryModule { }

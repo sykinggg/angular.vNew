@@ -18,6 +18,7 @@ import { D3Component } from './d3/d3.component';
 import { D3DComponent } from './directive/d3-d/d3-d.component';
 import { LayoutModule } from '../layout/layout.module';
 import { ChartContainerModule } from './chart-container/chart-container.module';
+import { ThreeComponent } from './three/three.component';
 
 @NgModule({
 	imports: [
@@ -39,6 +40,7 @@ import { ChartContainerModule } from './chart-container/chart-container.module';
 		HchartComponent,
 		D3Component,
 		D3DComponent,
+		ThreeComponent,
 	],
 	exports: [
 		ChartIndexComponent,

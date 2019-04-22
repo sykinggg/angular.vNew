@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add d3.v3
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add WebGL
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\sk-yisui\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;D:\worksplace\phantomjs-2.1.1-windows\bin;%M2_HOME%\bin;C:\Program Files\Java\jdk1.8.0_171;D:\apache-maven-3.5.3\apache-maven-3.5.3\apache-maven-3.5.3\bin;D:\apache-tomcat-8.0.52\apache-tomcat-8.0.52\bin;C:\Users\sk-yisui\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\mingw-w64\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\usr\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Scripts;C:\Users\sk-yisui\AppData\Local\Programs\Python\Python37\Scripts;C:\Users\sk-yisui\AppData\Local\Programs\Python\Python37;C:\Users\sk-yisui\AppData\Local\Microsoft\WindowsApps;C:\Users\sk-yisui\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\sk-yisui\AppData\Roaming\npm;C:\Users\sk-yisui\AppData\Local\Yarn\bin;C:\Program Files\Microsoft VS Code\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/d3.v3: Not found
+  Error: https://registry.yarnpkg.com/WebGL: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65656:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:134675:22)
       at emitTwo (events.js:126:13)
@@ -75,6 +75,7 @@ npm manifest:
       "ngx-bootstrap": "^3.2.0",
       "rxjs": "^6.4.0",
       "socket.io-client": "^2.2.0",
+      "three": "^0.103.0",
       "uuid": "^3.2.1",
       "xlsx": "^0.14.1",
       "zone.js": "^0.8.29"
@@ -6620,6 +6621,10 @@ Lockfile:
       commander "~2.17.1"
       source-map "~0.6.1"
       source-map-support "~0.5.9"
+  
+  three@^0.103.0:
+    version "0.103.0"
+    resolved "https://registry.yarnpkg.com/three/-/three-0.103.0.tgz#63b3dbccc861caad93269618061a73dadebae71b"
   
   through2@^2.0.0, through2@^2.0.1:
     version "2.0.5"

@@ -1,5 +1,5 @@
-<nz-card class="mar-b-20" nzTitle="window.performance.timing" [ngClass]="{'switchHide': !timing}" [nzExtra]="timingTemplate">
-    <div *ngIf="timing">
+<app-js-template-sum title="window.performance.timing">
+    <ng-template appJsTemplateSum>
         <h3>window.performance.timing(html5的属性)</h3>
         <ul>
             <li>
@@ -87,13 +87,10 @@
                 <p>返回当前网页load事件的回调函数运行结束时的Unix毫秒时间戳。如果该事件还没有发生，返回0</p>
             </li>
         </ul>
-    </div>
-</nz-card>
-<ng-template #timingTemplate>
-    <a (click)="switch('timing')">{{timing? '关闭': '打开'}}</a>
-</ng-template>
-<nz-card class="mar-b-20" nzTitle="了解html页面的渲染过程" [ngClass]="{'switchHide': !rendering}" [nzExtra]="renderingTemplate">
-    <div *ngIf="rendering">
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="html页面的渲染过程">
+    <ng-template appJsTemplateSum>
         <h3>页面的渲染</h3>
         <ul>
             <li>单线程事件轮询</li>
@@ -114,13 +111,10 @@
             <li>没有匹配的媒体类型的样式文件</li>
             <li>没有通过解析器插入script节点或样式节点</li>
         </ul>
-    </div>
-</nz-card>
-<ng-template #renderingTemplate>
-    <a (click)="switch('rendering')">{{rendering? '关闭': '打开'}}</a>
-</ng-template>
-<nz-card class="mar-b-20" nzTitle="渲染树构建之渲染树和DOM树的关系" [ngClass]="{'switchHide': !renderTree}" [nzExtra]="renderTreeTemplate">
-    <div *ngIf="renderTree">
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="渲染树构建之渲染树和DOM树的关系">
+    <ng-template appJsTemplateSum>
         <h3>渲染树构建之渲染树和DOM树的关系</h3>
         <ul>
             <li>在DOM树构建的同时，浏览器会构建渲染树（render tree）</li>
@@ -135,13 +129,10 @@
                 </ul>
             </li>
         </ul>
-    </div>
-</nz-card>
-<ng-template #renderTreeTemplate>
-    <a (click)="switch('renderTree')">{{renderTree? '关闭': '打开'}}</a>
-</ng-template>
-<nz-card class="mar-b-20" nzTitle="浏览器的运行机制" [ngClass]="{'switchHide': !operatingMechanism}" [nzExtra]="operatingMechanismTemplate">
-    <div *ngIf="operatingMechanism">
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="浏览器的运行机制">
+    <ng-template appJsTemplateSum>
         <h3>渲染进程包括哪些线程</h3>
         <ul>
             <li>
@@ -291,33 +282,420 @@
                 </ul>
             </li>
         </ul>
-    </div>
-</nz-card>
-<ng-template #operatingMechanismTemplate>
-    <a (click)="switch('operatingMechanism')">{{operatingMechanism? '关闭': '打开'}}</a>
-</ng-template>
-<nz-card class="mar-b-20" nzTitle="JS事件循环机制（event loop）之宏任务、微任务" [ngClass]="{'switchHide': !eventLoop}" [nzExtra]="eventLoopTemplate">
-    <ul *ngIf="eventLoop">
-        <li>
-            <pre>
-                console.log('script start');
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="JS事件循环机制（event loop）之宏任务、微任务">
+    <ng-template appJsTemplateSum>
+        <h3>JS事件循环机制（event loop）之宏任务、微任务</h3>
+        <ul>
+            <li>
+                <h6>demo</h6>
+                <pre>
+console.log('script start');
 
-                setTimeout(function() ｛
-                    console.log('setTimeout');
-                ｝, 0);
+setTimeout(function() ｛
+    console.log('setTimeout');
+｝, 0);
 
-                Promise.resolve().then(function() ｛
-                        console.log('promise1');
-                    ｝).then(function() ｛
-                        console.log('promise2');
-                ｝);
+Promise.resolve().then(function() ｛
+        console.log('promise1');
+    ｝).then(function() ｛
+        console.log('promise2');
+｝);
 
-                console.log('script end');
-            </pre>
-            <p></p>
-        </li>
-    </ul>
-</nz-card>
-<ng-template #eventLoopTemplate>
-    <a (click)="switch('eventLoop')">{{eventLoop? '关闭': '打开'}}</a>
-</ng-template>
+console.log('script end');
+                </pre>
+                <p>正确答案是:script start, script end, promise1, promise2, setTimeout</p>
+            </li>
+            <li>
+                <h6>线程中的event loop(事件循环)</h6>
+                <ul>
+                    <li>每个线程都会有它自己的event loop(事件循环)，所以都能独立运行</li>
+                    <li>所有同源窗口会共享一个event loop以同步通信</li>
+                    <li>event loop会一直运行，来执行进入队列的宏任务</li>
+                    <li>一个event loop有多种的宏任务源（译者注：event等等），这些宏任务源保证了在本任务源内的顺序</li>
+                    <li>但是浏览器每次都会选择一个源中的一个宏任务去执行(保证了浏览器给与一些宏任务（如用户输入）以更高的优先级)</li>
+                </ul>
+            </li>
+            <li>
+                <h6>宏任务（task）</h6>
+                <ul>
+                    <li>浏览器为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染 （task->渲染->task->...）</li>
+                    <li>鼠标点击会触发一个事件回调，需要执行一个宏任务，然后解析HTMl</li>
+                    <li>
+                        <p>setTimeout的作用是等待给定的时间后为它的回调产生一个新的宏任务</p>
+                        <span>打印‘script end’是第一个宏任务里面的事情，而‘setTimeout’是另一个独立的任务里面打印的</span>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h6>微任务（Microtasks ）</h6>
+                <ul>
+                    <li>
+                        <p>微任务的定义</p>
+                        <span>微任务通常来说就是需要在当前 task 执行结束后立即执行的任务，比如对一系列动作做出反馈，或或者是需要异步的执行任务而又不需要分配一个新的
+                            task，这样便可以减小一点性能的开销</span>
+                    </li>
+                    <li>
+                        <p>微任务执行顺序</p>
+                        <ul>
+                            <li>只要执行栈中没有其他的js代码正在执行且每个宏任务执行完，微任务队列会立即执行</li>
+                            <li>如果在微任务执行期间微任务队列加入了新的微任务，会将新的微任务加入队列尾部，之后也会被执行</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>微任务定义</p>
+                        <span>微任务包括了mutation observe的回调还有接下来的例子promise的回调</span>
+                    </li>
+                    <li>
+                        <p>微任务的栗子</p>
+                        <ul>
+                            <li>一旦一个pormise有了结果，或者早已有了结果（有了结果是指这个promise到了fulfilled或rejected状态），他就会为它的回调产生一个微任务，这就保证了回调异步的执行即使这个promise早已有了结果</li>
+                            <li>所以对一个已经有了结果的promise调用.then(yey, nay)会立即产生一个微任务</li>
+                            <li>这就是为什么‘promise1’,'promise2'会打印在‘script end’之后，因为所有微任务执行的时候，当前执行栈的代码必须已经执行完毕</li>
+                            <li>‘promise1’,'promise2'会打印在‘setTimeout’之前是因为所有微任务总会在下一个宏任务之前全部执行完毕</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h6>浏览器对于demo代码执行顺序不一致解释</h6>
+                <ul>
+                    <li>
+                        <p>根据观测的结论</p>
+                        <ul>
+                            <li>这些浏览器会把promise的回调视作一个新的宏任务而不是微任务</li>
+                            <li>因为promises 来自于ECMAScript 的标准而不是HTML标准</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>渲染模式的性能问题</p>
+                        <ul>
+                            <li>如果说把 promise 当做一个新的 task 来执行的话，这将会造成一些性能上的问题，因为 promise 的回调函数可能会被延迟执行，因为在每一个 task
+                                执行结束后浏览器可能会进行一些渲染工作</li>
+                            <li>由于作为一个 task 将会和其他任务来源（task source）相互影响，这也会造成一些不确定性，同时这也将打破一些与其他 API 的交互，这样一来便会造成一系列的问题</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h6>分辨宏任务和微任务</h6>
+                <pre>
+html:
+div class="outer">/div>
+    div class="inner">/div>
+/div>
+
+js:
+// Let's get hold of those elements
+var outer = document.querySelector('.outer');
+var inner = document.querySelector('.inner');
+
+// Let's listen for attribute changes on the
+// outer element
+//监听element属性变化
+new MutationObserver(function() ｛
+  console.log('mutate');
+}).observe(outer, ｛
+  attributes: true
+});
+
+// Here's a click listener…
+function onClick() ｛
+  console.log('click');
+
+  setTimeout(function() ｛
+    console.log('timeout');
+  }, 0);
+
+  Promise.resolve().then(function() ｛
+    console.log('promise');
+  });
+
+  outer.setAttribute('data-random', Math.random());
+}
+
+// …which we'll attach to both elements
+inner.addEventListener('click', onClick);
+outer.addEventListener('click', onClick);
+
+// 结果
+click
+promise
+mutate
+click
+promise
+mutate
+timeout
+timeout
+                </pre>
+                <p>流程描述</p>
+                <ul>
+                    <li>分发click event是一个宏任务，Mutation observer和promise都会进入微任务队列，setTimeout回调是一个宏任务</li>
+                    <li>如果js执行栈空了,立即执行microtask checkpoint 会检查整个微任务队列，除非正在执行这个检查动作</li>
+                </ul>
+                <pre>
+// 直接执行
+inner.click();
+
+// 结果
+click
+click
+promise
+mutate
+promise
+timeout
+timeout
+                </pre>
+                <p>我们不一样</p>
+                <ul>
+                    <li>之前的例子，微任务会在监听器回调之间执行</li>
+                    <li>click()会导致事件同步分发，所以在监听器回调之间Js执行栈不为空</li>
+                    <li>上述的这个规则保证了微任务不会打断正在执行的js.这意味着我们不能在监听器回调之间执行微任务，微任务会在监听器之后执行</li>
+                </ul>
+            </li>
+        </ul>
+        <h6>总结</h6>
+        <ul>
+            <li>宏任务按顺序执行，且浏览器在每个宏任务之间渲染页面</li>
+            <li>
+                <p>所有微任务也按顺序执行，且在以下场景会立即执行所有微任务</p>
+                <ul>
+                    <li>每个回调之后且js执行栈中为空</li>
+                    <li>每个宏任务结束后</li>
+                </ul>
+            </li>
+        </ul>
+        <h6>事件循环第三方讲解</h6>
+        <p>上：https://zhuanlan.zhihu.com/p/26229293</p>
+        <p>下：https://zhuanlan.zhihu.com/p/26238030</p>
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="js构造抽象语法书（AST）">
+    <ng-template appJsTemplateSum>
+        <h6>编程语言原理</h6>
+        <ul>
+            <li>需要一些软件来处理源代码以便让计算机能够理解</li>
+            <ul>
+                <li>解释型语言(JavaScript、Python、Ruby)——解释器</li>
+                <li>编译型语言(c#、Java、Rust)——编译器</li>
+            </ul>
+            <li>将源代码作为纯文本解析为 抽象语法树(abstract syntax tree, AST) 的数据结构</li>
+            <li>
+                <p>AST作用</p>
+                <ul>
+                    <li>以结构化的方式显示源代码</li>
+                    <li>在语义分析中，编译器验证程序和语言元素的语法使用是否正确</li>
+                    <li>AST 来生成实际的字节码或者机器码</li>
+                </ul>
+                <p>AST详解</p>
+                <ul>
+                    <li>抽象语法树（abstract syntax tree 或者缩写为 AST），或者语法树（syntax tree），是源代码的抽象语法结构的树状表现形式，这里特指编程语言的源代码</li>
+                    <li>和抽象语法树相对的是具体语法树（concrete syntaxtree），通常称作分析树（parse tree）</li>
+                    <li>在源代码的翻译和编译过程中，语法分析器创建出分析树</li>
+                </ul>
+            </li>
+            <li>
+                <p>AST程序</p>
+                <ul>
+                    <li>AST 不仅仅是用于语言解释器和编译器，在计算机世界中，它们还有多种应用。使用它们最常见的方法之一是进行静态代码分析</li>
+                    <li>Esprima 和 Acorn 帮助解析器生成输出</li>
+                    <li>
+                        <p>例如：</p>
+                        <ul>
+                            <li>实现一个将 Python 代码转换为J avaScript 的转换器</li>
+                            <li>使用Python 转换器生成 AST，然后使用 AST 生成JavaScript代码</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h6>JavaScript 解析</h6>
+        <pre>
+function foo(x) ｛
+    if (x > 10) ｛
+        var a = 2;
+        return a * x;
+    }
+
+    return x + 10;
+}
+        </pre>
+        <p>解析器会产生如下的 AST</p>
+        <img src="https://image.fundebug.com/2019-01-21-01.png">
+        <a href="https://astexplorer.net/">在线javascript AST解析</a>
+        <h6>js文件-解析</h6>
+        <ul>
+            <li>浏览器解析 JavaScript 大约需占总执行时间的 15% 到 20%</li>
+            <li>一个典型的单页程序加载 0.4 mb 左右的 JavaScript，浏览器需要大约 370ms 来解析</li>
+            <li>在手机上花在解析上的时间通常是桌面浏览器的 2 到 5 倍</li>
+        </ul>
+        <h6>js文件-渲染优化</h6>
+        <ul>
+            <li>
+                <p>启发法</p>
+                <ul>
+                    <li>现代JavaScript 解析器使用 启发法(heuristics) 来决定是否立即运行指定的代码片段或者推迟在未来的某个时候运行。基于这些启发法，解析器将进行即时或懒解析</li>
+                    <li>
+                        <p>启发法</p>
+                        <ul>
+                            <li>启发法是针对模型求解方法而言的，是一种逐次逼近最优解的方法</li>
+                            <li>启发法的特点是模型简单，需要进行方案组合的个数少，因此便于找出最终答案。此方法虽不能保证得到最优解，但只要处理得当，可获得决策者满意的近似最优解</li>
+                            <li>一般步骤包括:定义一个计算总费用的方法;报定判别准则;规定方案改选的途径;建立相应的模型;送代求解</li>
+                        </ul>
+                    </li>
+                    <li>立即解析会运行需要立即编译的函数。它主要做三件事:构建 AST，构建作用域层级和查找所有语法错误</li>
+                    <li>懒解析只运行未编译的函数。它不构建AST，也不查找所有语法错误，它只构建作用域层级，与立即解析相比节省了大约一半的时间</li>
+                </ul>
+            </li>
+            <li>
+                <p>立即解析</p>
+                <pre>
+var myModule = (function() ｛
+    // 整个模块的逻辑
+    // 返回模块对象
+})();
+                </pre>
+                <ul>
+                    <li>大多数现代 JavaScript 解析器都能识别这种模式，此模式表示代码需要立即解析</li>
+                    <li>需要运行一次懒解析之后进行另一个立即解析，这和立即解析相比，运行速度会慢 50%</li>
+                    <li>大多数解析器都能识别一种模式:使用括号封装函数</li>
+                    <li>如果解析器看到一个左括号，紧接着是一个函数声明，它将立即解析这个函数。可以通过显式地声明立即执行的函数来帮助解析器加快解析速度</li>
+                </ul>
+                <p>示例</p>
+                <pre>
+function foo(x) ｛
+    return x * 10;
+}                                
+                </pre>
+                <p>因为没有明显地标识表明需要立即运行该函数所以浏览器会进行懒解析</p>
+                <p>优化</p>
+                <ul>
+                    <li>
+                        <p>首先，将函数存储在一个变量中</p>
+                        <pre>
+var foo = function foo(x) ｛
+    return x * 10;
+};
+                        </pre>
+                        <p>注意，这里有使用函数的名称 foo,这不是必需的，但是建议这样做，因为在抛出异常的情况下，stacktrace 会保留实际函数名称，而不仅仅是 anonymous</p>
+                    </li>
+                    <li>
+                        <p>可以用括号封装起来，让解析器进行立即解析</p>
+                        <pre>
+var foo = (function foo(x) ｛
+    return x * 10;
+});
+                        </pre>
+                    </li>
+                    <li>因为需要知道解析器在哪些情况下执行懒解析或者立即解析，所以很难手动管理</li>
+                    <li>可以使用 Optimize.js 可以帮我们做这类事情，该工具只是用来优化 JavaScript 源代码的初始加载时间，它们对代码进行静态分析，然后通过使用括号封装需要立即运行的函数以便浏览器立即解析并准备运行它们</li>
+                </ul>
+            </li>
+        </ul>
+        <h6>预编译</h6>
+        <p>从本质上讲，该思路是拥有可以生成字节码的务器端工具，这样只需要传输字节码并在客户端运行，之后会看到启动时间的一些主要差异</p>
+        <h6>总结</h6>
+        <ul>
+            <li>检查依赖，减少不必要的依赖</li>
+            <li>分割代码为更小的块而不是一整陀</li>
+            <li>尽可能推迟加载 JavaScript，按需要加载或者动态加载</li>
+            <li>使用开发者工具和 DeviceTiming 来检测性能瓶颈</li>
+            <li>用像 Optimize.js 的工具来帮助解析器选择立即解析或者懒解析以加快解析速度</li>
+            <li><a href="https://www.fundebug.com/">https://www.fundebug.com/</a></li>
+        </ul>
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="视觉流组件构建">
+    <ng-template appJsTemplateSum>
+        <h6>组件分类</h6>
+        <ul>
+            <li>
+                <p>原生组件</p>
+                <span>系统本身自带的组件类型，例如按钮、导航、弹窗等等</span>
+            </li>
+            <li>
+                <p>扩展组件</p>
+                <span>基于原有组件基础，进行功能扩展，例如在导航栏上加下拉操作，在弹窗中加操作项等等</span>
+            </li>
+            <li>
+                <p>自定义组件</p>
+                <span>根据产品特点创造出来的特有组件</span>
+            </li>
+            <li>
+                <p>封装组件</p>
+                <span>对产品中经常出现的一系列场景页面进行组合封装的复杂组件</span>
+            </li>
+        </ul>
+        <h6>颗粒化管理</h6>
+        <ul>
+            <li>
+                <p>好处</p>
+                <span>比较直观，没有复杂的组合逻辑、方便交接</span>
+            </li>
+            <li>
+                <p>坏处</p>
+                <span>难以管理、拓展性小，文件冗余、牵一发动全身</span>
+            </li>
+        </ul>
+        <h6>组件的精细化管理</h6>
+        <ul>
+            <li>
+                <p>结构细分</p>
+                <ul>
+                    <li>
+                        <p>位置、尺寸的结构细分</p>
+                        <span>一般模块拆解到按钮、图标等最细颗粒后通常不会再进行拆分，并且拆分模块不建议层级超过4个层级</span>
+                    </li>
+                    <li>
+                        <p>颜色与字体样式</p>
+                        <span>通过 Sketch 自带的 Layer Styles 和 Text Styles 进行管理，也可通过 Craft Manager 来管理</span>
+                    </li>
+                    <li>图标</li>
+                    <li>图片与文案</li>
+                </ul>
+            </li>
+            <li>
+                <p>响应式布局</p>
+            </li>
+            <li>
+                <p>命名</p>
+                <ul>
+                    <li>
+                        <p>组件分类名</p>
+                        <span>指组件的准确名称，如导航、工具栏、弹窗、按钮</span>
+                    </li>
+                    <li>
+                        <p>组件的的细分模块命名</p>
+                        <span>通过一些最容易理解的特征来区分</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="浏览器缓存机制">
+    <ng-template appJsTemplateSum>
+        <p>使用HTML Meta 标签，Web开发者可以在HTML页面的head节点中加入meta标签 CONTENT="no-cache"</p>
+        <span>所有缓存代理服务器都不支持，因为代理不解析HTML内容本身</span>
+        <h6>Expires策略(HTTP1.0 现在 HTTP1.1)</h6>
+        <p>Expires是Web服务器响应消息头字段，在响应http请求时告诉浏览器在过期时间前浏览器可以直接从浏览器缓存取数据，而无需再次请求</p>
+        <span>不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略</span>
+        <h6>Cache-control策略</h6>
+        <ul>
+            <li>Cache-Control与Expires的作用一致，都是指明当前资源的有效期(控制浏览器是否直接从浏览器缓存取数据还是重新发请求到服务器取数据)</li>
+            <li>Cache-Control的选择更多，设置更细致，如果同时设置的话，其优先级高于Expires</li>
+        </ul>
+        <h6>Cache-control参数</h6>
+        <p>值可以是public、private、no-cache、no- store、no-transform、must-revalidate、proxy-revalidate、max-age</p>
+        <ul>
+            <li>Public指示响应可被任何缓存区缓存</li>
+            <li>Private指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效</li>
+            <li>no-cache指示请求或响应消息不能缓存</li>
+            <li>no-store用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存</li>
+            <li>max-age指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应</li>
+            <li>min-fresh指示客户机可以接收响应时间小于当前时间加上指定时间的响应</li>
+            <li>max-stale指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息</li>
+        </ul>
+    </ng-template>
+</app-js-template-sum>

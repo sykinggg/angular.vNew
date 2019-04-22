@@ -1,0 +1,6 @@
+<nz-card class="mar-b-20" [nzTitle]="title" [ngClass]="{'switchHide': !timing}" [nzExtra]="timingTemplate">
+    <ng-template [ngTemplateOutlet]="tpl?.content?.templateRef" *ngIf="timing"></ng-template>
+</nz-card>
+<ng-template #timingTemplate>
+    <a (click)="switch('timing')">{{timing? '关闭': '打开'}}</a>
+</ng-template>
