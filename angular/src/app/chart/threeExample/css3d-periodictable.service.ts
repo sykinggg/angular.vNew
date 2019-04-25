@@ -176,6 +176,7 @@ export class Css3dPeriodictableService {
                 cursor: 'default',
             }
             this.defaultStyle(elementStyle, element);
+            
 
             let number = document.createElement('div');
             number.className = 'number';
