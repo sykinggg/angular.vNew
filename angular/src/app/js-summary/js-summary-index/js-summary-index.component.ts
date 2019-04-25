@@ -10,6 +10,7 @@ export class JsSummaryIndexComponent implements OnInit {
 	public routerLinkArr: Array<any> = [
 		{ routerName: 'sum', routerLink: 'sum' },
 		{ routerName: 'base', routerLink: 'base' },
+		{ routerName: 'AI', routerLink: 'AI' },
 	]
 
 	constructor() { }

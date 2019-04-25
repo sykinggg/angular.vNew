@@ -12,6 +12,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { JsSummarySumComponent } from './js-summary-sum/js-summary-sum.component';
 import { JsTemplateSumComponent } from './js-template-sum/js-template-sum.component';
 import { JsTemplateSumDirective } from './js-template-sum/js-template-sum.directive';
+import { JsAiComponent } from './js-ai/js-ai.component';
 
 @NgModule({
 	imports: [
@@ -28,7 +29,8 @@ import { JsTemplateSumDirective } from './js-template-sum/js-template-sum.direct
 		JsSummaryBaseComponent,
 		JsSummarySumComponent,
 		JsTemplateSumComponent,
-		JsTemplateSumDirective
+		JsTemplateSumDirective,
+		JsAiComponent
 	]
 })
 export class JsSummaryModule { }

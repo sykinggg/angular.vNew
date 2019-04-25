@@ -4,6 +4,7 @@ import { JsSummaryIndexComponent } from './js-summary-index/js-summary-index.com
 import { JsSummaryBaseComponent } from './js-summary-base/js-summary-base.component';
 import { RouterModule } from '@angular/router';
 import { JsSummarySumComponent } from './js-summary-sum/js-summary-sum.component';
+import { JsAiComponent } from './js-ai/js-ai.component';
 
 const jsSummaryRoutes = [
 	{
@@ -22,6 +23,10 @@ const jsSummaryRoutes = [
 			{
 				path: 'sum',
 				component: JsSummarySumComponent
+			},
+			{
+				path: 'AI',
+				component: JsAiComponent
 			}
 		]
 	}
