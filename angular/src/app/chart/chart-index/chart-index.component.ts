@@ -19,6 +19,7 @@ export class ChartIndexComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log('ChartIndexComponent');
 	}
 
 }

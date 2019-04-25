@@ -10,6 +10,8 @@ export class JsTemplateSumComponent implements OnInit {
 
     public tpl: any = {};
 
+    public timing: Boolean = false;
+
     @Input()
     title: string;
 

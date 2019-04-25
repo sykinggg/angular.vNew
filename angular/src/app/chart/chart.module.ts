@@ -19,6 +19,9 @@ import { D3DComponent } from './directive/d3-d/d3-d.component';
 import { LayoutModule } from '../layout/layout.module';
 import { ChartContainerModule } from './chart-container/chart-container.module';
 import { ThreeComponent } from './three/three.component';
+import { ThreeModule } from './three-base/three.module';
+import { ThreeCss3dOrthographiComponent } from './three-base/three-css3d-orthographi/three-css3d-orthographi.component';
+import { ThreeChoiceComponent } from './three-choice/three-choice.component';
 
 @NgModule({
 	imports: [
@@ -29,7 +32,8 @@ import { ThreeComponent } from './three/three.component';
 		HttpClientModule,
 		FormsModule,
 		LayoutModule,
-		ChartContainerModule
+		ChartContainerModule,
+		ThreeModule,
 	],
 	declarations: [
 		ChartIndexComponent,
@@ -41,6 +45,7 @@ import { ThreeComponent } from './three/three.component';
 		D3Component,
 		D3DComponent,
 		ThreeComponent,
+		ThreeChoiceComponent
 	],
 	exports: [
 		ChartIndexComponent,

@@ -32,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
         { routerName: 'cssSummary', routerLink: 'cssSummary' },
         { routerName: 'jsSummary', routerLink: 'jsSummary' },
         // { routerName: 'commonDirective', routerLink: 'commonDirective' },
-        { routerName: 'chart', routerLink: 'visible' },
+        { routerName: 'chart', routerLink: 'chart' },
         { routerName: 'data-interaction', routerLink: 'data-interaction' },
     ]
 

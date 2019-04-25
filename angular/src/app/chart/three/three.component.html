@@ -1,1 +1,4 @@
-<div class="threeContainer"></div>
+<div>
+    <app-three-choice [choiceData]="threeOption" (changeData)="outPutChangeData($event)"></app-three-choice>
+</div>
+<app-three-container [option]="choiceOption"></app-three-container>
