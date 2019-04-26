@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AiIndexService } from '../jsAiServer';
+import { AiIndexService } from '../jsAiServer/aiIndex/ai-index.service';
 
 @Component({
     selector: 'app-js-ai',
@@ -10,7 +10,7 @@ export class JsAiComponent implements OnInit {
 
     constructor(
         public aiIndexService: AiIndexService,
-    ) { 
+    ) {
 
     }
 
@@ -18,7 +18,21 @@ export class JsAiComponent implements OnInit {
     }
 
     public testBtn() {
+        console.log('this.aiIndexService.training();');
         this.aiIndexService.training();
+        // this.doThing(10);
+    }
+
+    public doThing(n: number) {
+        let a, i;
+        a = setInterval(() => {
+            if (n >= i) {
+                this.aiIndexService.training();
+                i++
+            } else {
+                clearInterval(a);
+            }
+        })
     }
 
 }

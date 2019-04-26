@@ -81,21 +81,19 @@ export class AiIndexService {
     }
 
     public training() {
-        if (!this.disabled) {
-            Promise.all(this.imageList.map(imageContainer => imageContainer())).then((res: any) => {
-                console.log("模型训练好了！！！👌")
-                this.disabled = true;
-                // 告诉机器每一类对应的是什么（即让机器认识图片的过程）
-                const carNameList = ["奥迪", "奔驰", "宝马", "本田", "别克", "比亚迪", "保时捷", "大众", "哈弗"];
-                const x = this.convnetjs.img_to_vol(document.getElementById('some_image'));
-                // console.log(net.forward(x));
-                const result = Array.from(this.net.forward(x).w);
-                let max = Math.max.apply(Math, result);
-                console.log("最有可能的那个汽车logo🚗", carNameList[result.indexOf(max)])
-                console.log("接着训练！！！💪")
-                this.training()
-            })
-        }
+        Promise.all(this.imageList.map(imageContainer => imageContainer())).then((res: any) => {
+            console.log("模型训练好了！！！👌")
+            this.disabled = true;
+            // 告诉机器每一类对应的是什么（即让机器认识图片的过程）
+            const carNameList = ["奥迪", "奔驰", "宝马", "本田", "别克", "比亚迪", "保时捷", "大众", "哈弗"];
+            const x = this.convnetjs.img_to_vol(document.getElementById('some_image'));
+            // console.log(net.forward(x));
+            const result = Array.from(this.net.forward(x).w);
+            let max = Math.max.apply(Math, result);
+            console.log("最有可能的那个汽车logo🚗", carNameList[result.indexOf(max)])
+            console.log("接着训练！！！💪")
+            this.training()
+        })
     }
 
 

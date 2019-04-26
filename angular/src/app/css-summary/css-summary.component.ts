@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class CssSummaryComponent implements OnInit {
 
 	routerLinkArr: Array<any> = [
-        { routerName: 'cssMiddle', routerLink: 'cssMiddle' }
-    ]
+		{ routerName: 'cssMiddle', routerLink: 'cssMiddle' },
+		{ routerName: 'cssSpecial', routerLink: 'cssSpecial' },
+	]
 
 	constructor() { }
 
