@@ -10,7 +10,8 @@
             </li>
         </ul>
     </nz-sider>
-    <nz-content style="background:#fff; min-height: 100vh;" [@routeAnmiation]="routerStateCode">
+    <!-- <nz-content style="background:#fff; min-height: 100vh;" [@routeAnmiation]="routerStateCode"> -->
+    <nz-content style="background:#fff;" [@routeAnmiation]="routerStateCode">
         <nz-breadcrumb [nzSeparator]="iconTemplate" style="margin:16px 0;">
             <nz-breadcrumb-item *ngFor="let item of breadCrumbs">{{item}}</nz-breadcrumb-item>
         </nz-breadcrumb>

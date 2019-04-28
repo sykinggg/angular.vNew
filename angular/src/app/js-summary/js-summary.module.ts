@@ -13,6 +13,7 @@ import { JsSummarySumComponent } from './js-summary-sum/js-summary-sum.component
 import { JsTemplateSumComponent } from './js-template-sum/js-template-sum.component';
 import { JsTemplateSumDirective } from './js-template-sum/js-template-sum.directive';
 import { JsAiComponent } from './js-ai/js-ai.component';
+import { JsBaseQuestionComponent } from './js-base-question/js-base-question.component';
 
 @NgModule({
 	imports: [
@@ -30,7 +31,8 @@ import { JsAiComponent } from './js-ai/js-ai.component';
 		JsSummarySumComponent,
 		JsTemplateSumComponent,
 		JsTemplateSumDirective,
-		JsAiComponent
+		JsAiComponent,
+		JsBaseQuestionComponent
 	]
 })
 export class JsSummaryModule { }
