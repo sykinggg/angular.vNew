@@ -39,6 +39,13 @@ export interface IPic {
     encoding?: string;
 }
 
+// tslint:disable-next-line:no-empty-interface
+export interface IGetData {
+    selector?: string;
+    attr?: string;
+    name?: string;
+}
+
 @Component({
     selector: 'app-puppeteer',
     templateUrl: './puppeteer.component.html',
@@ -63,6 +70,12 @@ export class PuppeteerComponent implements OnInit {
         omitBackground: true,
         encoding: 'base64'
     };
+    public getData: IGetData = {
+        selector: '',
+        attr: '',
+        name: ''
+    }
+    public getDataArr: IGetData[] = [];
 
     constructor(
         public http: HttpService,
@@ -70,6 +83,7 @@ export class PuppeteerComponent implements OnInit {
     ) {
         this.radioValue = 'pdf';
         this.waitFor = 1000;
+        this.addGetDataArr();
     }
 
     ngOnInit() {
@@ -126,6 +140,32 @@ export class PuppeteerComponent implements OnInit {
                 type: 'iframe'
             };
         })
+    }
+
+    public getDataClickData;
+    public getDataClick() {
+        this.getDataClickData = null;
+        this.http.post({
+            api: 'puppeteer/getData',
+            data: {
+                http: this.httpValue,
+                waitFor: this.waitFor,
+                option: this.getDataArr,
+            },
+        }).subscribe((res: any) => {
+            if (!res) {
+                return;
+            }
+            this.getDataClickData = res;
+        })
+    }
+
+    public deleteGetDataArr(idx) {
+        this.getDataArr.splice(idx, 1);
+    }
+
+    public addGetDataArr() {
+        this.getDataArr.push(JSON.parse(JSON.stringify(this.getData)));
     }
 
 }

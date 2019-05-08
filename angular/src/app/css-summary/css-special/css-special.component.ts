@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CssSpecialComponent implements OnInit {
 
-    private cssSpectalData: any[];
+    public cssSpectalData: any[];
 
     constructor() { }
 

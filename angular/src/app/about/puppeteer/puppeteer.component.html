@@ -1,15 +1,17 @@
 <h3 class="text-center mar-t-10 mar-b-10">puppeteer works!</h3>
-<nz-card nzTitle="puppeteer-container">
-    <nz-radio-group [(ngModel)]="radioValue" class="mar-b-10">
-        <label nz-radio nzValue="pdf">pdf</label>
-        <label nz-radio nzValue="pic">pic</label>
-    </nz-radio-group>
+<nz-card nzTitle="设置地址以及等待时间" class="mar-b-10">
     <nz-input-group nzAddOnBefore="网址" nzAddOnAfter="" class="mar-b-10">
         <input nz-input placeholder="输入截图网址" [(ngModel)]="httpValue" />
     </nz-input-group>
     <nz-input-group nzAddOnBefore="页面等待时间（默认1000）" nzAddOnAfter="" class="mar-b-10">
         <input nz-input placeholder="页面等待时间（默认1000）" [(ngModel)]="waitFor" />
     </nz-input-group>
+</nz-card>
+<nz-card nzTitle="获取图片或者pdf" class="mar-b-10">
+    <nz-radio-group [(ngModel)]="radioValue" class="mar-b-10">
+        <label nz-radio nzValue="pdf">pdf</label>
+        <label nz-radio nzValue="pic">pic</label>
+    </nz-radio-group>
     <div *ngIf="radioValue === 'pdf'">
         <nz-input-group nzAddOnBefore="pdf文件保存的路径" nzAddOnAfter="" class="mar-b-10 mar-r-10">
             <input nz-input placeholder="pdf文件保存的路径" [(ngModel)]="pdfObj.path" />
@@ -49,4 +51,23 @@
         <img style="width: 100%;" [src]="interceptPicData" *ngIf="interceptPicData" alt="interceptPicData" />
     </div>
     <app-pdf-container [option]="interceptPdfData" *ngIf="interceptPdfData"></app-pdf-container>
+</nz-card>
+<nz-card nzTitle="获取数据" class="mar-b-10">
+    <div *ngFor="let getData of getDataArr; index as idx;" class="mar-b-10">
+        <nz-input-group nzAddOnBefore="name" nzAddOnAfter="" class="mar-b-10">
+            <input nz-input placeholder="data name" [(ngModel)]="getData.name" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="selector" nzAddOnAfter="" class="mar-b-10">
+            <input nz-input placeholder="dom selector" [(ngModel)]="getData.selector" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="attr" nzAddOnAfter="" class="mar-b-10">
+            <input nz-input placeholder="attr Name" [(ngModel)]="getData.attr" />
+        </nz-input-group>
+        <button nz-button nzType="primary" *ngIf="idx >= 1" (click)="deleteGetDataArr(idx)">删除</button>
+    </div>
+    <div>
+        <button nz-button nzType="primary" class="mar-r-10" (click)="addGetDataArr()">增加参数</button>
+        <button nz-button nzType="primary" class="mar-r-10" (click)="getDataClick()">获取数据</button>
+    </div>
+    <div *ngIf="getDataClickData">{{getDataClickData | json}}</div>
 </nz-card>
