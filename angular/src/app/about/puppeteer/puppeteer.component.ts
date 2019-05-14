@@ -87,6 +87,7 @@ export class PuppeteerComponent implements OnInit {
     }
 
     ngOnInit() {
+        // this.getMm131BasicClass();
     }
 
     public interceptPicData;
@@ -166,6 +167,61 @@ export class PuppeteerComponent implements OnInit {
 
     public addGetDataArr() {
         this.getDataArr.push(JSON.parse(JSON.stringify(this.getData)));
+    }
+
+
+    // getMm131BasicClass
+    public getMm131BasicClassData;
+    public getMm131BasicClass() {
+        this.http.get({
+            api: 'puppeteer/getMm131BasicClass'
+        }).subscribe((res: any) => {
+            console.log(res);
+            this.getMm131BasicClassData = res;
+        })
+    }
+    public choiceData;
+    public getMm131GetDetailsData;
+    public getMm131GetDetails() {
+        this.http.post({
+            api: 'puppeteer/getMm131GetDetails',
+            data: this.choiceData
+        }).subscribe((res: any) => {
+            console.log(res);
+            this.getMm131GetDetailsData = res;
+        })
+    }
+
+
+    // girl 13
+    public setGirl13GetDetails() {
+        this.http.post({
+            api: 'puppeteer/setGirl13GetDetails',
+            data: this.choiceData
+        }).subscribe((res: any) => {
+            console.log(res);
+        })
+    }
+    public getGirl13GetDetailsData;
+    public getGirl13GetDetails() {
+        this.http.post({
+            api: 'puppeteer/getGirl13GetDetails',
+            data: this.choiceData
+        }).subscribe((res: any) => {
+            console.log(res);
+            this.getGirl13GetDetailsData = res;
+        })
+    }
+
+
+    // Mzitu
+    public setMzituUrlGetDetails() {
+        this.http.post({
+            api: 'puppeteer/setMzituUrlGetDetails',
+            data: this.choiceData
+        }).subscribe((res: any) => {
+            console.log(res);
+        })
     }
 
 }

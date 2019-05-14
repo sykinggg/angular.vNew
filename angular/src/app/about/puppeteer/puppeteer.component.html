@@ -71,3 +71,50 @@
     </div>
     <div *ngIf="getDataClickData">{{getDataClickData | json}}</div>
 </nz-card>
+<nz-card nzTitle="mm131" class="mar-b-10" *ngIf="false">
+    <p>网站爬取被发现</p>
+    <div class="mar-b-10">
+        <button nz-button nzType="primary" class="mar-r-10" (click)="getMm131BasicClass()">mm131获取基础分类</button>
+    </div>
+    <div class="mar-b-10">
+        <nz-select class="min-width-120 mar-r-10" [(ngModel)]="choiceData" (ngModelChange)="areaChange()">
+            <nz-option *ngFor="let p of getMm131BasicClassData" [nzValue]="p" [nzLabel]="p.name"></nz-option>
+        </nz-select>
+        <button nz-button nzType="primary" class="mar-r-10" (click)="getMm131GetDetails()">mm131获取详情</button>
+    </div>
+    <div *ngIf="getMm131GetDetailsData && getMm131GetDetailsData.length">
+        <div *ngFor="let item of getMm131GetDetailsData">
+            <div class="pull-left" (click)="item.noShow = !item.noShow">
+                <img [src]="item.img" alt="item.name">
+                <p>{{item.name}}</p>
+            </div>
+            <div *ngIf="item.details && item.details.length">
+                <div *ngFor="let pic of item.details">
+                    <img [src]="pic" alt="item.name">    
+                </div>
+            </div>
+        </div>
+    </div>
+</nz-card>
+<nz-card nzTitle="girl13" class="mar-b-10">
+    <div class="mar-b-10">
+        <button nz-button nzType="primary" class="mar-r-10" (click)="setGirl13GetDetails()">写入数据</button>
+        <button nz-button nzType="primary" class="mar-r-10" (click)="getGirl13GetDetails()">获取数据</button>
+    </div>
+    <div class="masonry">
+        <div *ngFor="let item of getGirl13GetDetailsData" class="item">
+            <img [src]="item" alt="item">
+        </div>
+    </div>
+</nz-card>
+<nz-card nzTitle="Mzitu" class="mar-b-10">
+    <div class="mar-b-10">
+        <button nz-button nzType="primary" class="mar-r-10" (click)="setMzituUrlGetDetails()">写入数据</button>
+        <button nz-button nzType="primary" class="mar-r-10" (click)="getGirl13GetDetails()">获取数据</button>
+    </div>
+    <div class="masonry">
+        <div *ngFor="let item of getGirl13GetDetailsData" class="item">
+            <img [src]="item" alt="item">
+        </div>
+    </div>
+</nz-card>
