@@ -215,9 +215,25 @@ export class PuppeteerComponent implements OnInit {
 
 
     // Mzitu
+    public setMzituUrlList() {
+        this.http.post({
+            api: 'puppeteer/setMzituUrlList',
+            data: this.choiceData
+        }).subscribe((res: any) => {
+            console.log(res);
+        })
+    }
     public setMzituUrlGetDetails() {
         this.http.post({
             api: 'puppeteer/setMzituUrlGetDetails',
+            data: this.choiceData
+        }).subscribe((res: any) => {
+            console.log(res);
+        })
+    }
+    public getMzituUrlGetDetails() {
+        this.http.post({
+            api: 'puppeteer/getMzituUrlGetDetails',
             data: this.choiceData
         }).subscribe((res: any) => {
             console.log(res);
