@@ -13,6 +13,7 @@ import { DependencyComponent } from './dependency/dependency.component';
 import { DiskillComponent } from './diskill/diskill.component';
 import { DecoratorComponent } from './decorator/decorator.component';
 import { LayoutModule } from '../layout/layout.module';
+import { SumUpComponent } from './sum-up/sum-up.component';
 
 @NgModule({
  	imports: [
@@ -31,6 +32,7 @@ import { LayoutModule } from '../layout/layout.module';
 		DependencyComponent,
 		DiskillComponent,
 		DecoratorComponent,
+		SumUpComponent,
 	]
 })
 export class AngularModuleModule { }
