@@ -589,7 +589,8 @@ var foo = (function foo(x) ｛
                         </pre>
                     </li>
                     <li>因为需要知道解析器在哪些情况下执行懒解析或者立即解析，所以很难手动管理</li>
-                    <li>可以使用 Optimize.js 可以帮我们做这类事情，该工具只是用来优化 JavaScript 源代码的初始加载时间，它们对代码进行静态分析，然后通过使用括号封装需要立即运行的函数以便浏览器立即解析并准备运行它们</li>
+                    <li>可以使用 Optimize.js 可以帮我们做这类事情，该工具只是用来优化 JavaScript
+                        源代码的初始加载时间，它们对代码进行静态分析，然后通过使用括号封装需要立即运行的函数以便浏览器立即解析并准备运行它们</li>
                 </ul>
             </li>
         </ul>
@@ -697,5 +698,162 @@ var foo = (function foo(x) ｛
             <li>min-fresh指示客户机可以接收响应时间小于当前时间加上指定时间的响应</li>
             <li>max-stale指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息</li>
         </ul>
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="PNG 图片压缩原理解析">
+    <ng-template appJsTemplateSum>
+        <h6>PNG</h6>
+        <p>PNG的全称叫便携式网络图型（Portable Network Graphics）是目前最流行的网络传输和展示的图片格式</p>
+        <ul>
+            <li>
+                <p>无损压缩：PNG图片采取了基于LZ77派生算法对文件进行压缩，使得它压缩比率更高，生成的文件体积更小，并且不损失数据</p>
+                <p>LZ77算法是由 Lempel-Ziv 在1977发明的，也是GBA内置的压缩算法</p>
+            </li>
+            <li>体积小：它利用特殊的编码方法标记重复出现的数据，使得同样格式的图片，PNG图片文件的体积更小</li>
+            <li>支持透明效果：PNG支持对原图像定义256个透明层次，使得图像的边缘能与任何背景平滑融合，这种功能是GIF和JPEG没有的</li>
+        </ul>
+        <h6>PNG类型</h6>
+        <p>PNG 8/ PNG 24 / PNG 32</p>
+        <p>后面的数字代表拥有的颜色值</p>
+        <ul>
+            <li>8bits 2^8等于256 PNG8能存储256种颜色</li>
+            <li>24bits 2^24等于16777216 R(0~255),G(0~255),B(0~255) PNG24能存储16777216种颜色</li>
+            <li>32bits 2^32等于16777216 R(0~255),G(0~255),B(0~255),A(0~255) PNG32能存储很多颜色</li>
+        </ul>
+        <h6>PNG图片数据结构</h6>
+        <ul>
+            <li>header=>chunk...</li>
+            <li>89504e470d0a1a0a：这个是PNG图片的头，所有的PNG图片的头都是这一串编码，图片软件通过这串编码判定这个文件是不是PNG格式的图片</li>
+        </ul>
+        <h6>PNG图片压缩</h6>
+        <ul>
+            <li>颜色越单一，颜色值越少，压缩率就越大</li>
+            <li>
+                <p>压缩过程</p>
+                <ul>
+                    <li>预解析（Prediction）：这个阶段就是对png图片进行一个预处理，处理后让它更方便后续的压缩</li>
+                    <li>压缩（Compression）：执行Deflate压缩，该算法结合了 LZ77 算法和 Huffman 算法对图片进行编码</li>
+                </ul>
+            </li>
+        </ul>
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="异步编程 6种">
+    <ng-template appJsTemplateSum>
+        <h6>总结</h6>
+        <ul>
+            <li>
+                <p>回调函数</p>
+                <pre>{{jsAsyncSumUp.callBack}}</pre>
+            </li>
+            <li>
+                <p>事件监听</p>
+                <pre>{{jsAsyncSumUp.eventWatch}}</pre>
+            </li>
+            <li>
+                <p>发布订阅</p>
+                <pre>{{jsAsyncSumUp.subscribe}}</pre>
+            </li>
+            <li>
+                <p>Promise</p>
+                <pre>{{jsAsyncSumUp.promise}}</pre>
+            </li>
+            <li>
+                <p>Generator</p>
+                <ul>
+                    <li>Generator 函数是一个状态机，封装了多个内部状态</li>
+                    <li>执行 Generator 函数会返回一个遍历器对象，使用该对象的 next() 方法，可以遍历 Generator 函数内部的每一个状态，直到 return 语句</li>
+                    <li>1.function关键字与函数名之间有一个星号</li>
+                    <li>2.函数体内部使用yield表达式， yield是暂停执行的标记</li>
+                    <li>next() 方法遇到yield表达式，就暂停执行后面的操作，并将紧跟在yield后面的那个表达式的值，作为返回的对象的value属性值</li>
+                </ul>
+                <pre>{{jsAsyncSumUp.generator}}</pre>
+            </li>
+            <li>
+                <p>async</p>
+                <ul>
+                    <li>async函数返回的是一个 Promise 对象</li>
+                    <li>可以使用 then 方法添加回调函数，async 函数内部 return 语句返回的值，会成为 then 方法回调函数的参数</li>
+                    <li>当函数执行的时候，一旦遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句</li>
+                </ul>
+                <pre>{{jsAsyncSumUp.async}}</pre>
+            </li>
+        </ul>
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="JavaScript 复杂判断的更优雅写法">
+    <ng-template appJsTemplateSum>
+        <ul>
+            <li>if/else</li>
+            <li>switch</li>
+            <li>一元判断时：存到Object里</li>
+            <li>一元判断时：存到Map里</li>
+            <li>多元判断时：将condition拼接成字符串存到Object里</li>
+            <li>多元判断时：将condition拼接成字符串存到Map里</li>
+            <li>多元判断时：将condition存为Object存到Map里</li>
+            <li>多元判断时：将condition写作正则存到Map里</li>
+        </ul>
+        <pre>{{complexJudgment}}</pre>
+    </ng-template>
+</app-js-template-sum>
+<app-js-template-sum title="JavaScript 异步 总结">
+    <ng-template appJsTemplateSum>
+        <h6>浏览器线程</h6>
+        <p>GUI 与 js 线程互斥</p>
+        <ul>
+            <li>GUI渲染线程 - GUI渲染线程处于挂起状态的，也就是冻结状态</li>
+            <li>JavaScript引擎线程 - 用于解析JavaScript代码</li>
+            <li>定时器触发线程 - 浏览器定时计数器并不是 js引擎计数</li>
+            <li>浏览器事件线程 - 用于解析BOM渲染等工作</li>
+            <li>http线程 - 主要负责数据请求</li>
+            <li>EventLoop轮询处理线程 - 事件被触发时该线程会把事件添加到待处理队列的队尾</li>
+            <li>
+                <p>进程</p>
+                <p>进程是指在操作系统中正在运行的一个应用程序</p>
+            </li>
+            <li>
+                <p>线程</p>
+                <ul>
+                    <li>线程是指进程内独立执行某个任务的一个单元</li>
+                    <li>线程自己基本上不拥有系统资源，只拥有一点在运行中必不可少的资源(如程序计数器，一组寄存器和栈)</li>
+                </ul>
+            </li>
+            <li>
+                <p>进程 && 线程</p>
+                <ul>
+                    <li>进程中包含线程，一个进程中可以有N个进程</li>
+                    <li>比如打开3个浏览器，那么就开启了3个进程</li>
+                </ul>
+            </li>
+        </ul>
+        <h6>异步运行机制</h6>
+        <ul>
+            <li>所有同步任务都在主线程上执行，形成一个执行栈</li>
+            <li>
+                <p>主线程之外，还存在一个 任务队列</p>
+                <p>只要异步任务有了运行结果，就在 任务队列之中放置一个事件</p>
+            </li>
+            <li>
+                <p>一旦 执行栈中的所有同步任务执行完毕，系统就会读取 任务队列，看看里面有哪些事件</p>
+                <p>那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行</p>
+            </li>                    
+            <li>
+                主线程不断重复上面的第三步
+            </li>
+        </ul>
+        <pre>{{jsAsyncSumUp.asyncDemo}}</pre>
+        <ul>
+            <li>updateSync函数运行过程中 UI更新被阻塞，只有当它结束退出后才会更新 UI</li>
+            <li>当点击 异步的时候，会明显的看到 Dom在逐步更新的过程</li>
+        </ul>
+        <p>回调函数应用场景</p>
+        <ul>
+            <li>资源加载：动态加载js文件后执行回调，加载iframe后执行回调，ajax操作回调，图片加载完成执行回调，AJAX</li>
+            <li>DOM事件及Node.js事件基于回调机制(Node.js回调可能会出现多层回调嵌套的问题)</li>
+            <li>setTimeout的延迟时间为0，这个hack经常被用到，settimeout调用的函数其实就是一个callback的体现</li>
+            <li>链式调用：链式调用的时候，在赋值器(setter)方法中(或者本身没有返回值的方法中)很容易实现链式调用，而取值器(getter)相对来说不好实现链式调用，因为你需要取值器返回你需要的数据而不是this指针，如果要实现链式方法，可以用回调函数来实现</li>
+            <li>setTimeout、setInterval的函数调用得到其返回值</li>
+        </ul>
+        <p>https://mp.weixin.qq.com/s/Ek5ONtorGbDtgvcPkivVVA</p>
     </ng-template>
 </app-js-template-sum>
