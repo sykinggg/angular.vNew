@@ -1,2 +1,9 @@
-<img src="http://p.pstatp.com/avatar/100x100/1dd5000048d6334c26b4.png" id="some_image" crossorigin="anonymous" />
-<input type="button" value="识别" (click)="testBtn()" />
+<img class="mar-r-10" src="http://p.pstatp.com/avatar/100x100/1dd5000048d6334c26b4.png" id="some_image" crossorigin="anonymous" />
+
+<button class="mar-r-10" nz-button nzType="primary" (click)="testBtn()">识别</button>
+<button class="mar-r-10" nz-button nzType="primary" (click)="getData()">getData</button>
+<button class="mar-r-10" nz-button nzType="danger" (click)="deleteData()">deleteData</button>
+
+<div *ngIf="eCharrtOption">
+    <app-chart-container [option]="eCharrtOption"></app-chart-container>
+</div>

@@ -14,6 +14,7 @@ import { JsTemplateSumComponent } from './js-template-sum/js-template-sum.compon
 import { JsTemplateSumDirective } from './js-template-sum/js-template-sum.directive';
 import { JsAiComponent } from './js-ai/js-ai.component';
 import { JsBaseQuestionComponent } from './js-base-question/js-base-question.component';
+import { ChartModule } from '../chart/chart.module';
 
 @NgModule({
 	imports: [
@@ -23,7 +24,8 @@ import { JsBaseQuestionComponent } from './js-base-question/js-base-question.com
 		JsSummaryRoutesModule,
 		AppUIModule,
 		NgZorroAntdModule,
-		LayoutModule
+		LayoutModule,
+		ChartModule
 	],
 	declarations: [
 		JsSummaryIndexComponent,

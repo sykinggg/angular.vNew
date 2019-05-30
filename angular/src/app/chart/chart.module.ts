@@ -56,6 +56,11 @@ import { ThreeChoiceComponent } from './three-choice/three-choice.component';
 		HchartComponent,
 		D3Component,
 		D3DComponent,
+		ThreeComponent,
+		ThreeChoiceComponent,
+		LayoutModule,
+		ChartContainerModule,
+		ThreeModule,
 	]
 })
 export class ChartModule { }

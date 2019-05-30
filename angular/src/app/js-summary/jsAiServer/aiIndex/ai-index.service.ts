@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConvnetService, CarService } from '../index';
+import { HttpService } from '../../../layout/http.service';
 
 @Injectable({
     providedIn: 'root'
@@ -25,6 +26,7 @@ export class AiIndexService {
     constructor(
         public convnetService: ConvnetService,
         public carService: CarService,
+        public http: HttpService,
     ) {
 
         let self = this;
@@ -80,9 +82,14 @@ export class AiIndexService {
         }
     }
 
+    public dataResult = {
+        correct: 0,
+        error: 0
+    }
+
     public training() {
         Promise.all(this.imageList.map(imageContainer => imageContainer())).then((res: any) => {
-            console.log("模型训练好了！！！👌")
+            // console.log("模型训练好了！！！👌")
             this.disabled = true;
             // 告诉机器每一类对应的是什么（即让机器认识图片的过程）
             const carNameList = ["奥迪", "奔驰", "宝马", "本田", "别克", "比亚迪", "保时捷", "大众", "哈弗"];
@@ -90,9 +97,25 @@ export class AiIndexService {
             // console.log(net.forward(x));
             const result = Array.from(this.net.forward(x).w);
             let max = Math.max.apply(Math, result);
-            console.log("最有可能的那个汽车logo🚗", carNameList[result.indexOf(max)])
-            console.log("接着训练！！！💪")
+            // console.log("最有可能的那个汽车logo🚗", carNameList[result.indexOf(max)])
+            // console.log("接着训练！！！💪")
+            if (carNameList[result.indexOf(max)] === "奥迪") {
+                this.dataResult.correct++;
+            } else {
+                this.dataResult.error++;
+            }
+            console.log((this.dataResult.correct + this.dataResult.error), "次", "正确率：", (this.dataResult.correct / (this.dataResult.correct + this.dataResult.error)) * 100, '%');
+            this.saveLearning();
             this.training()
+        })
+    }
+
+    public saveLearning() {
+        this.http.post({
+            api: 'ai/dataBaseSave',
+            data: this.dataResult,
+        }).subscribe((res: any) => {
+            console.log(res);
         })
     }
 
