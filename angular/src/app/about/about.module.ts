@@ -13,6 +13,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { ForeignExchangeAboutComponent } from './foreign-exchange-about/foreign-exchange-about.component';
 import { PuppeteerComponent } from './puppeteer/puppeteer.component';
 import { CommonDirectivesModule } from '../common-directives/common-directives.module';
+import { WebpackComponent } from './webpack/webpack.component';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import { CommonDirectivesModule } from '../common-directives/common-directives.m
         AboutCreateComponent,
         ForeignExchangeAboutComponent,
         PuppeteerComponent,
+        WebpackComponent,
     ]
 })
 

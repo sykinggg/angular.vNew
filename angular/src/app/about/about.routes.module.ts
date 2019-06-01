@@ -5,6 +5,7 @@ import { AboutComponent } from './about.component';
 import { AboutIndexComponent } from './about-index/about-index.component';
 import { AboutCreateComponent } from './about-create/about-create.component';
 import { PuppeteerComponent } from './puppeteer/puppeteer.component';
+import { WebpackComponent } from './webpack/webpack.component';
 
 const aboutRoutes = [
     {
@@ -27,6 +28,10 @@ const aboutRoutes = [
             {
                 path: 'puppeteer',
                 component: PuppeteerComponent
+            },
+            {
+                path: 'webpack',
+                component: WebpackComponent
             }
         ]
     }
