@@ -1,3 +1,11 @@
-<p>
-    webpack works!
-</p>
+<h3 class="text-center mar-t-10 mar-b-10">webpack works!</h3>
+<nz-collapse nzAccordion class="m-t-20">
+	<nz-collapse-panel 
+		*ngFor="let panel of webpackSummary"
+		[nzHeader]="panel.name || '暂无内容'"
+		[nzActive]="panel.content">
+		<div [innerHtml]="panel.content">
+			暂无内容
+		</div>
+	</nz-collapse-panel>
+</nz-collapse>
