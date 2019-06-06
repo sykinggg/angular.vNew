@@ -733,7 +733,337 @@ package.json
             active: false,
             name: '7 模块(modules)',
             content: this.sanitizer.bypassSecurityTrustHtml(`
+<h6>模块(modules)</h6>
+<p>将程序分解成离散功能块(discrete chunks of functionality)，并称之为模块</p>
+<p>优点</p>
+<ul>
+    <li>每个模块具有比完整程序更小的接触面，使得校验、调试、测试轻而易举</li>
+    <li>精心编写的模块提供了可靠的抽象和封装界限，使得应用程序中每个模块都具有条理清楚的设计和明确的目的</li>
+</ul>
+<ul>
+    <li>
+        <h6>webpack 模块</h6>
+        <ul>
+            <li>ES2015 import 语句</li>
+            <li>CommonJS require() 语句</li>
+            <li>AMD define 和 require 语句</li>
+            <li>css/sass/less 文件中的 @import 语句</li>
+            <li>'样式(url(...))或 HTML 文件(<img src=...>)中的图片链接(image url)'</li>
+            <li>webpack 1 需要特定的 loader 来转换 ES 2015 import，然而通过 webpack 2 可以开箱即用</li>
+        </ul>
+    </li>
+    <li>
+        <h6>支持的模块类型 也就是官方支持的loader</h6>
+        <ul>
+            <li>CoffeeScript</li>
+            <li>TypeScript</li>
+            <li>ESNext (Babel)</li>
+            <li>Sass</li>
+            <li>Less</li>
+            <li>Stylus</li>
+        </ul>
+    </li>
+</ul>
+            `)
+        },
+        {
+            active: false,
+            name: '8 模块解析(module resolution)',
+            content: this.sanitizer.bypassSecurityTrustHtml(`
+<p>resolver 是一个库(library)，用于帮助找到模块的绝对路径</p>
+<pre>
+一个模块可以作为另一个模块的依赖模块，然后被后者引用
 
+import foo from 'path/to/module'
+// 或者
+require('path/to/module')
+</pre>
+<p>细节描述</p>
+<ul>
+    <li>所依赖的模块可以是来自应用程序代码或第三方的库(library)</li>
+    <li>resolver 帮助 webpack 找到 bundle 中需要引入的模块代码</li>
+    <li>这些代码在包含在每个 require/import 语句中</li>
+    <li>当打包模块时，webpack 使用 enhanced-resolve 来解析文件路径</li>
+</ul>
+<ul>
+    <li>
+        <h6>绝对路径</h6>
+        <pre>
+import "/home/me/file";
+
+import "C:\\Users\\me\\file";
+
+已经取得文件的绝对路径，因此不需要进一步再做解析
+        </pre>
+    </li>
+    <li>
+        <h6>相对路径</h6>
+        <pre>
+import "../src/file1";
+import "./file2";
+
+使用 import 或 require 的资源文件(resource file)所在的目录被认为是上下文目录(context directory)
+
+在 import/require 中给定的相对路径，会添加此上下文路径(context path)，以产生模块的绝对路径(absolute path
+        </pre>
+    </li>
+    <li>
+        <h6>模块路径</h6>
+        <pre>
+import "module";
+import "module/lib/file";
+
+模块将在 resolve.modules 中指定的所有目录内搜索
+
+可以替换初始模块路径，此替换路径通过使用 resolve.alias 配置选项来创建一个别名
+        </pre>
+        <p>解析详情</p>
+        <span>一旦根据上述规则解析路径后，解析器(resolver)将检查路径是否指向文件或目录</span>
+        <ul>
+            <li>
+                <span>如果路径指向一个文件</span>
+                <ul>
+                    <li>如果路径具有文件扩展名，则被直接将文件打包</li>
+                    <li>否则，将使用 [resolve.extensions] 选项作为文件扩展名来解析，此选项告诉解析器在解析中能够接受哪些扩展名（例如 .js, .jsx）</li>
+                </ul>
+            </li>
+            <li>
+                <span>如果路径指向一个文件夹，则采取以下步骤找到具有正确扩展名的正确文件</span>
+                <ul>
+                    <li>如果文件夹中包含 package.json 文件，则按照顺序查找 resolve.mainFields 配置选项中指定的字段。并且 package.json 中的第一个这样的字段确定文件路径</li>
+                    <li>如果 package.json 文件不存在或者 package.json 文件中的 main 字段没有返回一个有效路径，则按照顺序查找 resolve.mainFiles 配置选项中指定的文件名，看是否能在 import/require 目录下匹配到一个存在的文件名</li>
+                    <li>文件扩展名通过 resolve.extensions 选项采用类似的方法进行解析</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h6>解析 Loader(Resolving Loaders)</h6>
+        <ul>
+            <li>Loader 解析遵循与文件解析器指定的规则相同的规则</li>
+            <li>resolveLoader 配置选项可以用来为 Loader 提供独立的解析规则</li>
+        </ul>
+    </li>
+    <li>
+        <h6>缓存</h6>
+        <ul>
+            <li>每个文件系统访问都被缓存，以便更快触发对同一文件的多个并行或串行请求</li>
+            <li>在观察模式下，只有修改过的文件会从缓存中摘出</li>
+            <li>如果关闭观察模式，在每次编译前清理缓存</li>
+        </ul>
+    </li>
+</ul>
+            `)
+        },
+        {
+            active: false,
+            name: '9 依赖图(dependency graph)',
+            content: this.sanitizer.bypassSecurityTrustHtml(`
+<p>流程描述</p>
+<ul>
+    <li>一个文件依赖于另一个文件，webpack 就把此视为文件之间有 依赖关系</li>
+    <li>这使得 webpack 可以接收非代码资源(non-code asset)（例如图像或 web 字体），并且可以把它们作为 _依赖_ 提供给你的应用程序</li>
+    <li>webpack 从命令行或配置文件中定义的一个模块列表开始，处理你的应用程序</li>
+    <li>从这些 入口起点 开始，webpack 递归地构建一个 依赖图 ，这个依赖图包含着应用程序所需的每个模块</li>
+    <li>然后将所有这些模块打包为少量的 bundle - 通常只有一个 - 可由浏览器加载</li>
+</ul>
+            `)
+        },
+        {
+            active: false,
+            name: '10 manifest',
+            content: this.sanitizer.bypassSecurityTrustHtml(`
+<p>三种代码类型</p>
+<ul>
+    <li>团队编写的源码</li>
+    <li>源码会依赖的任何第三方的 library 或 "vendor" 代码</li>
+    <li>webpack 的 runtime 和 manifest，管理所有模块的交互</li>
+</ul>
+
+<ul>
+    <li>
+        <h6>Runtime</h6>
+        <ul>
+            <li>
+                <h6>runtime，以及伴随的 manifest 数据</h6>
+                <ul>
+                    <li>在浏览器运行时，webpack 用来连接模块化的应用程序的所有代码</li>
+                    <li>runtime 包含：在模块交互时，连接模块所需的加载和解析逻辑。包括浏览器中的已加载模块的连接，以及懒加载模块的执行逻辑</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h6>Manifest</h6>
+        <p> webpack 如何管理所有模块之间的交互——manifest 数据用途的由来</p>
+        <ul>
+            <li>当编译器(compiler)开始执行、解析和映射应用程序时，它会保留所有模块的详细要点</li>
+            <li>这个数据集合称为 "Manifest"</li>
+            <li>当完成打包并发送到浏览器时，会在运行时通过 Manifest 来解析和加载模块</li>
+            <li>无论选择哪种模块语法，那些 import 或 require 语句现在都已经转换为 __webpack_require__ 方法</li>
+            <li>此方法指向模块标识符(module identifier)</li>
+            <li>通过使用 manifest 中的数据，runtime 将能够查询模块标识符，检索出背后对应的模块</li>
+        </ul>
+    </li>
+    <li>
+        <h6>问题</h6>
+        <p>runtime 和 manifest 的注入在每次构建都会发生变化</p>
+    </li>
+</ul>
+            `)
+        },
+        {
+            active: false,
+            name: '11 构建目标(targets)',
+            content: this.sanitizer.bypassSecurityTrustHtml(`
+<p>服务器和浏览器代码都可以用 JavaScript 编写，所以 webpack 提供了多种构建目标(target)，你可以在你的 webpack 配置中设置</p>
+<h6>webpack 的 target 属性不要和 output.libraryTarget 属性混淆</h6>
+
+<ul>
+    <li>
+        <h6>用法</h6>
+        <pre>
+设置 target 属性，只需要在你的 webpack 配置中设置 target 的值
+
+webpack.config.js
+
+module.exports = {
+    target: 'node'
+};
+
+使用 node webpack 会编译为用于「类 Node.js」环境（使用 Node.js 的 require ，而不是使用任意内置模块（如 fs 或 path）来加载 chunk）
+        </pre>
+        <p>每个target都有各种部署(deployment)/环境(environment)特定的附加项，以支持满足其需求</p>
+    </li>
+    <li>
+        <h6>多个 Target</h6>
+        <pre>
+注意: webpack 不支持向 target 传入多个字符串
+解决: 可以通过打包两份分离的配置来创建同构的库
+
+webpack.config.js
+
+var path = require('path');
+var serverConfig = {
+    target: 'node',
+    output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'lib.node.js'
+    }
+    //…
+};
+
+var clientConfig = {
+    target: 'web', // <=== 默认是 'web'，可省略
+    output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'lib.js'
+    }
+    //…
+};
+
+module.exports = [ serverConfig, clientConfig ];
+        </pre>
+        <p>在 dist 文件夹下创建 lib.js 和 lib.node.js 文件</p>
+    </li>
+    <li>
+        <h6>资源</h6>
+        <ul>
+            <li>compare-webpack-target-bundles：有关「测试和查看」不同的 webpack target 的大量资源。也有大量 bug 报告</li>
+            <li>Boilerplate of Electron-React Application：一个 electron 主进程和渲染进程构建过程的很好的例子</li>
+        </ul>
+    </li>
+</ul>
+            `)
+        },
+        {
+            active: false,
+            name: '12 模块热替换(hot module replacement)',
+            content: this.sanitizer.bypassSecurityTrustHtml(`
+<p>模块热替换(HMR - Hot Module Replacement)功能会在应用程序运行过程中替换、添加或删除模块，而无需重新加载整个页面</p>
+<ul>
+    <li>留在完全重新加载页面时丢失的应用程序状态</li>
+    <li>只更新变更内容，以节省宝贵的开发时间</li>
+    <li>调整样式更加快速 - 几乎相当于在浏览器调试器中更改样式</li>
+</ul>
+<h6>工作原理</h6>
+<ul>
+    <li>
+        <h6>在应用程序中</h6>
+        <ul>
+            <li>应用程序代码要求 HMR runtime 检查更新</li>
+            <li>HMR runtime（异步）下载更新，然后通知应用程序代码</li>
+            <li>应用程序代码要求 HMR runtime 应用更新</li>
+            <li>HMR runtime（同步）应用更新</li>
+            <li>可以设置 HMR，以使此进程自动触发更新，或者你可以选择要求在用户交互时进行更新</li>
+        </ul>
+    </li>
+    <li>
+        <h6>在编译器中</h6>
+        <ul>
+            <li>除了普通资源，编译器(compiler)需要发出 "update"，以允许更新之前的版本到新的版本</li>
+            <li>
+                <p>update</p>
+                <ul>
+                    <li>更新后的 manifest(JSON)</li>
+                    <li>一个或多个更新后的 chunk (JavaScript)</li>
+                </ul>
+            </li>
+            <li>manifest 包括新的编译 hash 和所有的待更新 chunk 目录</li>
+            <li>每个更新 chunk 都含有对应于此 chunk 的全部更新模块（或一个 flag 用于表明此模块要被移除）的代码</li>
+            <li>编译器确保模块 ID 和 chunk ID 在这些构建之间保持一致</li>
+            <li>通常将这些 ID 存储在内存中（例如，使用 webpack-dev-server 时），但是也可能将它们存储在一个 JSON 文件中</li>
+        </ul>
+    </li>
+    <li>
+        <h6>在模块中</h6>
+        <ul>
+            <li>
+                <p>HMR 是可选功能，只会影响包含 HMR 代码的模块</p>
+                <span>举个栗子</span>
+                <ul>
+                    <li>通过 style-loader 为 style 样式追加补丁</li>
+                    <li>为了运行追加补丁，style-loader 实现了 HMR 接口</li>
+                    <li>当它通过 HMR 接收到更新，它会使用新的样式替换旧的样式</li>
+                </ul>
+            </li>
+            <li>当在一个模块中实现了 HMR 接口，你可以描述出当模块被更新后发生了什么</li>
+            <li>如果一个模块没有 HMR 处理函数，更新就会冒泡(bubble up)</li>
+            <li>这意味着一个简单的处理函数能够对整个模块树(complete module tree)进行更新</li>
+            <li>如果在这个模块树中，一个单独的模块被更新，那么整组依赖模块都会被重新加载</li>
+        </ul>
+    </li>
+    <li>
+        <h6>在 HMR Runtime 中</h6>
+        <ul>
+            <li>对于模块系统的 runtime，附加的代码被发送到 parents 和 children 跟踪模块</li>
+            <li>在管理方面，runtime 支持两个方法 check 和 apply</li>
+            <li>
+                <h6>check</h6>
+                <ul>
+                    <li>check 发送 HTTP 请求来更新 manifest</li>
+                    <li>如果请求失败，说明没有可用更新</li>
+                    <li>如果请求成功，待更新 chunk 会和当前加载过的 chunk 进行比较</li>
+                    <li>对每个加载过的 chunk，会下载相对应的待更新 chunk</li>
+                    <li>当所有待更新 chunk 完成下载，就会准备切换到 ready 状态</li>
+                </ul>
+            </li>
+            <li>
+                <h6>apply</h6>
+                <ul>
+                    <li>apply 方法将所有被更新模块标记为无效</li>
+                    <li>对于每个无效模块，都需要在模块中有一个更新处理函数(update handler)，或者在它的父级模块们中有更新处理函数</li>
+                    <li>否则，无效标记冒泡，并也使父级无效</li>
+                    <li>每个冒泡继续，直到到达应用程序入口起点，或者到达带有更新处理函数的模块（以最先到达为准，冒泡停止）</li>
+                    <li>如果它从入口起点开始冒泡，则此过程失败</li>
+                </ul>
+            </li>
+            <li>所有无效模块都被（通过 dispose 处理函数）处理和解除加载</li>
+            <li>然后更新当前 hash，并且调用所有 "accept" 处理函数</li>
+            <li>runtime 切换回闲置状态(idle state)，一切照常继续</li>
+        </ul>
+    </li>
+</ul>
             `)
         }
     ]
