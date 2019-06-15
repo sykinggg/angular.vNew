@@ -1,0 +1,115 @@
+<div class="design-answer-box">
+    <h3>storage 和 cookie 的比较</h3>
+    <div class="answer-brief nc-post-content">
+        <p>
+            <span>1)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <b>
+                <span>存储空间不同</span>
+            </b>
+            <span>。</span>
+        </p>
+        <p style="margin-left: 54.0pt;text-indent: -18.0pt;">
+            <span>a)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <span>Web Storage</span>
+            <span>能提供</span>
+            <span>5MB</span>
+            <span>的存储空间（不同浏览器</span>
+            <span>的提供的空间不同）</span>
+        </p>
+        <p style="margin-left: 54.0pt;">
+            <span>Cookie</span>
+            <span>仅</span>
+            <span>4KB</span>
+            <span>。</span>
+        </p>
+        <p style="margin-left: 54.0pt;text-indent: -18.0pt;">
+            <span>b)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <span>Web Storage</span>
+            <span>每个域（包括子域）有独立的存储空间，各个存储空间是完全独立的，因此不会造成数据混乱。</span>
+        </p>
+        <p>
+            <span>2)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <b>
+                <span>与服务器交互</span>
+            </b>
+            <span>。</span>
+        </p>
+        <p>
+            <span>Web Storage</span>
+            <span>中的数据则仅仅是存在本地，不会与服务器发生任何交互。</span>
+        </p>
+        <p>
+            <span>Cookie</span>
+            <span>的内容会随着请求一并发送的服务器（带宽浪费）。</span>
+        </p>
+        <p>
+            <span>3)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <b>
+                <span>接口</span>
+            </b>
+            <span>。</span>
+        </p>
+        <p>
+            <span>Web Storage</span>
+            <span>提供更多丰富易用的接口，拥有</span>
+            <span>setItem</span>
+            <span>，</span>
+            <span>getItem</span>
+            <span>，</span>
+            <span>removeItem</span>
+            <span>，</span>
+            <span>clear</span>
+            <span>等方法，操作数据更方便。</span>
+        </p>
+        <p>
+            <span>Cookie</span>
+            <span>需要前端开发者自己封装</span>
+            <span>setCookie</span>
+            <span>，</span>
+            <span>getCookie</span>
+            <span>。</span>
+        </p>
+        <p>
+            <span>4)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <b>
+                <span>跨域问题</span>
+            </b>
+            <span>。</span>
+        </p>
+        <p>
+            <span>cookie</span>
+            <span>需要指定作用域，不可以跨域调用。</span>
+        </p>
+        <p>
+            <b>
+                <span>&nbsp;</span>
+            </b>
+        </p>
+        <div>
+            <b>
+                <span>说明：</span>
+            </b>
+            <span>Cookie</span>
+            <span>也是不可以或缺的：</span>
+            <span>Cookie</span>
+            <span>的作用是与服务器进行交互，作为</span>
+            <span>HTTP</span>
+            <span>规范的一部分而存在</span>
+            <span></span>
+            <span>，而</span>
+            <span>Web Storage</span>
+            <span>仅仅是为了在本地“存储”数据而生。</span>
+        </div>
+        <div>
+            <span>
+                <br>
+            </span>
+        </div>
+    </div>
+</div>

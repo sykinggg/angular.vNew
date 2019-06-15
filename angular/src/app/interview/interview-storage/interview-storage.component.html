@@ -1,0 +1,185 @@
+<div class="design-answer-box">
+    <h3>storage 存储</h3>
+    <div class="answer-brief nc-post-content">
+        <p>
+            <span>1)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <b>
+                <span>Cookie</span>
+            </b>
+            <span>：</span>
+            <span>&nbsp;</span>
+            <span>广泛应用，局限明显。支持数据存储量相对较少，每个</span>
+            <span>domain</span>
+            <span>最多只能有</span>
+            <span>20</span>
+            <span>条</span>
+            <span>cookie</span>
+            <span>，每个</span>
+            <span>cookie</span>
+            <span>长度不能超过</span>
+            <span>4KB</span>
+            <span>，否则会被截掉；同时，存在安全性问题，如果被拦截，就可以取得所有的</span>
+            <span>session</span>
+            <span>信息。</span>
+        </p>
+        <p>
+            <span>2)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <b>
+                <span>Flash SharedObject</span>
+            </b>
+            <span>：使用的是</span>
+            <span>kissy</span>
+            <span>的</span>
+            <span>store</span>
+            <span>模块来调用</span>
+            <span>Flash SharedObject</span>
+            <span>。</span>
+        </p>
+        <p>
+            <span>优点：容量适中，基本上不存在兼容性问题</span>
+        </p>
+        <p>
+            <span>缺点：要在页面中引入特定的</span>
+            <span>Flash</span>
+            <span>和</span>
+            <span>JS</span>
+            <span>，增加额外负担，处理繁琐；还是有部分机子没有</span>
+            <span>flash</span>
+            <span>运行环境。</span>
+        </p>
+        <p>
+            <span>3)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <b>
+                <span>Google Gears</span>
+            </b>
+            <span>：</span>
+            <span>&nbsp;Google</span>
+            <span>的离线方案，已经停止更新，官方推荐使用</span>
+            <span>HTML5</span>
+            <span>的</span>
+            <span>localStorage</span>
+            <span>方案。</span>
+        </p>
+        <p>
+            <span>4)<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <b>
+                <span>User Data</span>
+            </b>
+            <span>：</span>
+            <span>&nbsp;</span>
+            <span>是微软为</span>
+            <span>IE</span>
+            <span>专门在系统中开辟的一块存储空间，只支持</span>
+            <span>Windows+IE</span>
+            <span>的组合。单个文件的大小限制是</span>
+            <span>128KB</span>
+            <span>，一个域名下总共可以保存</span>
+            <span>1024KB</span>
+            <span>的文件，文件个数应该没有限制。在受限站点里这两个值分别是</span>
+            <span>64KB</span>
+            <span>和</span>
+            <span>640KB</span>
+            <span>。</span>
+        </p>
+        <p>
+            <span>（所以如果考虑到各种情况的话，单个文件最好能控制</span>
+            <span>64KB</span>
+            <span>以下。）</span>
+        </p>
+        <p>
+            <span>（实际测试</span>
+            <span>2000</span>
+            <span>（</span>
+            <span>IE5.5</span>
+            <span>）、</span>
+            <span>XP</span>
+            <span>（</span>
+            <span>IE6</span>
+            <span>、</span>
+            <span>IE7</span>
+            <span>），</span>
+            <span>Vista</span>
+            <span>（</span>
+            <span>IE7</span>
+            <span>）下都是可正常使用。）</span>
+        </p>
+        <p>
+            <b>
+                <span>5)<span style="font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                </span>
+            </b>
+            <b>
+                <span>Web Storage</span>
+            </b>
+        </p>
+        <p>
+            <span>在较高版本的浏览器中，</span>
+            <span>JS</span>
+            <span>提供了</span>
+            <span>sessionStorage</span>
+            <span>和</span>
+            <span>globalStorage</span>
+            <span>。</span>
+        </p>
+        <p>
+            <span>在</span>
+            <span>HTML5</span>
+            <span>中提供了</span>
+            <span>sessionStorage</span>
+            <span>和</span>
+            <span>localStorage</span>
+            <span>。</span>
+        </p>
+        <p>
+            <b>
+                <span>sessionStorage</span>
+            </b>
+            <span>用于本地存储一个会话（</span>
+            <span>session</span>
+            <span>）中的数据，这些数据只有在同一个会话中的页面才能访问，会话结束后数据随之销毁。因此</span>
+            <span>sessionStorage</span>
+            <span>不是一种持久化的本地存储，仅仅是会话级别的存储。</span>
+        </p>
+        <p>
+            <b>
+                <span>globalStorage</span>
+            </b>
+            <span>跨越会话存储数据。有特定访问限制，要指定哪些域可访问该数据。</span>
+            <span></span>
+        </p>
+        <p>
+            <b>
+                <span>localStorage</span>
+            </b>
+            <span>用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。不能给</span>
+            <span>localStorage</span>
+            <span>指定任何规则，要访问同一个</span>
+            <span>localStorage</span>
+            <span>，页面必须使用同一个域名，使用同一种协议，在同一个端口上。</span>
+        </p>
+        <p>
+            <span>优点：容量大、易用、强大、原生支持</span>
+        </p>
+        <p>
+            <span>缺点：</span>
+            <span>a) </span>
+            <span>兼容性差（</span>
+            <span>Chrome,&nbsp; Safari, Firefox,Opera,IE8+</span>
+            <span>支持</span>
+            <span></span>
+            <span>，</span>
+            <span>IE8</span>
+            <span>以下版本不支持）</span>
+        </p>
+        <p style="margin-left: 72.0pt;">
+            <span>b) </span>
+            <span>安全性差（所以请勿使用</span>
+            <span>localStorage</span>
+            <span>保存敏感信息）</span>
+        </p>
+    </div>
+</div>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+    selector: 'app-about',
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
 
@@ -12,6 +12,7 @@ export class AboutComponent implements OnInit {
         { routerName: 'aboutCreate', routerLink: 'aboutCreate' },
         { routerName: 'puppeteer', routerLink: 'puppeteer' },
         { routerName: 'webpack', routerLink: 'webpack' },
+        { routerName: 'interview', routerLink: 'interview' }
     ]
 
     constructor() { }

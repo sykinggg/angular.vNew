@@ -1,0 +1,8 @@
+<a href="https://www.nowcoder.com/ta/front-end-interview/review?query=&asc=true&order=&page=35" target="_blank">太热了</a>
+<a href="https://segmentfault.com" target="_blank">太热了</a>
+
+<div class="mar-b-20">
+    <app-interview-container-choice (determineData)="determineData($event)" title="choice" [option]="choiceOption"></app-interview-container-choice>
+</div>
+
+<app-interview-container *ngIf="option && option.length" [option]="option" title="选中的总结"></app-interview-container>

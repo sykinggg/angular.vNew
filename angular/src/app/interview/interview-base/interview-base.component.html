@@ -1,0 +1,29 @@
+<div class="design-answer-box">
+    <h3>基础总结</h3>
+    <ul>
+        <li>
+            <h4>减少页面加载时间</h4>
+            <div class="answer-brief nc-post-content">
+                <div> 1. 优化图片&nbsp; </div>
+                <div> 2. 图像格式的选择（GIF：提供的颜色较少，可用在一些对颜色要求不高的地方）&nbsp; </div>
+                <div> 3. 优化CSS（压缩合并css，如 margin-top, margin-left...)&nbsp; </div>
+                <div> 4. 网址后加斜杠（如www.campr.com/目录，会判断这个目录是什么文件类型，或者是目录。）&nbsp; </div>
+                <div> 5.
+                    标明高度和宽度（如果浏览器没有找到这两个参数，它需要一边下载图片一边计算大小，如果图片很多，浏览器需要不断地调整页面。这不但影响速度，也影响浏览体验。&nbsp; </div>
+                <div>
+                    当浏览器知道了高度和宽度参数后，即使图片暂时无法显示，页面上也会腾出图片的空位，然后继续加载后面的内容。从而加载时间快了，浏览体验也更好了）&nbsp; </div>
+                <div> 6. 减少http请求（合并文件，合并图片） </div>
+            </div>
+        </li>
+        <li>
+            <h4>JSON </h4>
+            <p>json在js中是对象和数组，常用的json就是将json转换成字符串，字符串转换成对象</p>
+            <div class="answer-brief nc-post-content">
+                <p>json是js的一个子集 是数据交换的一种格式</p>
+                <p>格式：｛“name”：“joy”}</p>
+                <p>json转化为字符串 JSON.stringify（）</p>
+                <p>字符串转化为json JSON.parse（）</p>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -14,6 +14,8 @@ import { ForeignExchangeAboutComponent } from './foreign-exchange-about/foreign-
 import { PuppeteerComponent } from './puppeteer/puppeteer.component';
 import { CommonDirectivesModule } from '../common-directives/common-directives.module';
 import { WebpackComponent } from './webpack/webpack.component';
+import { InterviewModule } from '../interview/interview.module';
+import { InterviewComponent } from './interview/interview.component';
 
 @NgModule({
     imports: [
@@ -24,6 +26,7 @@ import { WebpackComponent } from './webpack/webpack.component';
         LayoutModule,
         FormsModule,
         CommonDirectivesModule,
+        InterviewModule
     ],
     declarations: [
         AboutComponent,
@@ -32,6 +35,7 @@ import { WebpackComponent } from './webpack/webpack.component';
         ForeignExchangeAboutComponent,
         PuppeteerComponent,
         WebpackComponent,
+        InterviewComponent,
     ]
 })
 

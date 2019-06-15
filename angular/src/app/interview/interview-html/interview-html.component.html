@@ -1,0 +1,161 @@
+<div class="design-answer-box">
+    <h3>html 总结</h3>
+    <ul>
+        <li>
+            <h4>Doctype作用&严格模式与混杂模式</h4>
+            <div> 1. &lt;!DOCTYPE&gt; 声明位于文档中的最前面，处于 &lt;html&gt;
+                标签之前。告知浏览器以何种模式来渲染文档。&nbsp; </div>
+            <div> 2. 严格模式的排版和 JS 运作模式是 &nbsp;以该浏览器支持的最高标准运行。 </div>
+            <div> 3. 在混杂模式中，页面以宽松的向后兼容的方式显示。模拟老式浏览器的行为以防止站点无法工作。 </div>
+            <div> 4. DOCTYPE不存在或格式不正确会导致文档以混杂模式呈现。&nbsp; </div>
+        </li>
+        <li>
+            <h4>HTML 差异化</h4>
+            <div class="answer-brief nc-post-content">
+                <div style="margin: 0.0px 0.0px 0.0px 15.0px;padding: 20.0px 0.0px;">
+                    <h5> HTML 4.01 与 HTML5 之间的差异 </h5>
+                    <p> 在 HTML 4.01 中有三种 &lt;!DOCTYPE&gt; 声明。在 HTML5 中只有一种： </p>
+                    <pre>&lt;!DOCTYPE html&gt;</pre>
+                </div>
+                <div style="margin: 0.0px 0.0px 0.0px 15.0px;padding: 20.0px 0.0px;">
+                    <h5> HTML 元素和文档类型（Doctype） </h5>
+                    <p> 请参阅这个&nbsp;<a href="http://www.w3school.com.cn/tags/html_ref_dtd.asp">HTML
+                            元素表，其中列出了每种元素会出现在哪个文档类型中</a>。 </p>
+                </div>
+                <div style="margin: 0.0px 0.0px 0.0px 15.0px;padding: 20.0px 0.0px;">
+                    <h5> 提示和注释 </h5>
+                    <p>
+                        <span style="font-weight: bold;">注释：</span>&lt;!DOCTYPE&gt;
+                        声明没有结束标签。 </p>
+                    <p>
+                        <span style="font-weight: bold;color: rgb(255,153,85);">提示：</span>&lt;!DOCTYPE&gt;
+                        声明对大小写不敏感。 </p>
+                    <p>
+                        <span style="font-weight: bold;color: rgb(255,153,85);">提示：</span>请使用 W3C
+                        的验证器来检查您是否编写了有效的 HTML / XHTML 文档！ </p>
+                </div>
+                <div style="margin: 0.0px 0.0px 0.0px 15.0px;padding: 20.0px 0.0px;">
+                    <h5> 常用的 DOCTYPE 声明 </h5>
+                    <h3> HTML 5 </h3>
+                    <pre>&lt;!DOCTYPE html&gt;</pre>
+                    <h3> HTML 4.01 Strict </h3>
+                    <p> 该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。 </p>
+                    <pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</pre>
+                    <h3> HTML 4.01 Transitional </h3>
+                    <p> 该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。 </p>
+                    <pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+              "http://www.w3.org/TR/html4/loose.dtd"&gt;</pre>
+                    <h3> HTML 4.01 Frameset </h3>
+                    <p> 该 DTD 等同于 HTML 4.01 Transitional，但允许框架集内容。 </p>
+                    <pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" 
+              "http://www.w3.org/TR/html4/frameset.dtd"&gt;</pre>
+                    <h3> XHTML 1.0 Strict </h3>
+                    <p> 该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如
+                        font）。不允许框架集（Framesets）。必须以格式正确的 XML 来编写标记。 </p>
+                    <pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+              "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</pre>
+                    <h3> XHTML 1.0 Transitional </h3>
+                    <p> 该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如
+                        font）。不允许框架集（Framesets）。必须以格式正确的 XML 来编写标记。 </p>
+                    <pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "
+              http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</pre>
+                    <h3> XHTML 1.0 Frameset </h3>
+                    <p> 该 DTD 等同于 XHTML 1.0 Transitional，但允许框架集内容。 </p>
+                    <pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" 
+              "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"&gt;</pre>
+                    <h3> XHTML 1.1 </h3>
+                    <p> 该 DTD 等同于 XHTML 1.0 Strict，但允许添加模型（例如提供对东亚语系的 ruby 支持）。 </p>
+                    <pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;</pre>
+                </div>
+            </div>
+        </li>
+        <li>
+            <h4>HTML与XHTML</h4>
+            <div class="answer-brief nc-post-content">
+                <div> 1、<span>XHTML 元素必须被正确地嵌套。</span>
+                </div>
+                <div>
+                    <span style="color: rgb(69,69,69);">错误：&lt;p&gt;&lt;span&gt;this is example.&lt;/p&gt;&lt;/span&gt;</span>
+                    <br>
+                    <span style="color: rgb(69,69,69);">正确：&lt;p&gt;&lt;span&gt;this is example.&lt;/span&gt;&lt;/p&gt;</span>
+                </div>
+                <div>
+                    <span style="color: rgb(69,69,69);">而html不需要被正确嵌套也不会报错。</span>
+                </div>
+                <div>
+                    <span style="color: rgb(69,69,69);">2、</span>
+                    <span>XHTML 元素必须被关闭。即使是空标签&lt;/br&gt;</span>
+                </div>
+                <div>
+                    <span>html可以写成&lt;br&gt;</span>
+                </div>
+                <div>
+                    <span>3、</span>
+                    <span>XHTML</span>
+                    <span>标签名必须用小写字母。html可以大写。</span>
+                </div>
+                <div>
+                    <span>4、</span>
+                    <span>XHTML 文档必须拥有根元素。</span>
+                </div>
+                <div>
+                    <span>5、</span>
+                    <span style="color: rgb(69,69,69);">所有的 XHTML 元素必须被嵌套于 &lt;html&gt; 根元素中。</span>
+                </div>
+                <div>
+                    <span style="color: rgb(69,69,69);">而html不是必须的。</span>
+                </div>
+                <div>
+                    <span style="color: rgb(102,102,102);">
+                        <br>
+                    </span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <h4>html5 新特性</h4>
+            <div> HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。 </div>
+            <div> 1. 拖拽释放(Drag and drop) API&nbsp; </div>
+            <div> 2. 语义化更好的内容标签（header,nav,footer,aside,article,section） </div>
+            <div> 3. 音频、视频API(audio,video) </div>
+            <div> 4. 画布(Canvas) API </div>
+            <div> 5. 地理(Geolocation) API </div>
+            <div> 6. 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失； </div>
+            <div> 7. sessionStorage 的数据在浏览器关闭后自动删除 </div>
+            <div> 8. 表单控件，calendar、date、time、email、url、search &nbsp; </div>
+            <div> 9. 新的技术webworker, websocket, Geolocation </div>
+            <div>
+                <br>
+            </div>
+            <div> 移除的元素： </div>
+            <div> 1. 纯表现的元素：basefont，big，center，font, s，strike，tt，u； </div>
+            <div> 2. 对可用性产生负面影响的元素：frame，frameset，noframes； </div>
+            <div>
+                <br>
+            </div>
+            <div> 支持HTML5新标签： </div>
+            <div> 1. IE8/IE7/IE6支持通过 document.createElement
+                方法产生的标签，可以利用这一特性让这些浏览器支持 HTML5
+                新标签，浏览器支持新标签后，还需要添加标签默认的样式（当然最好的方式是直接使用成熟的框架、使用最多的是html5shiv框架）： </div>
+            <pre [innerHtml]="code.h5New"></pre>
+            <div> 如何区分：&nbsp; </div>
+            <div> DOCTYPE声明新增的结构元素、功能元素 </div>
+        </li>
+        <li>
+            <h4>iframe</h4>
+            <div class="answer-brief nc-post-content">
+                <div> 优点： </div>
+                <div> 1. 解决加载缓慢的第三方内容如图标和广告等的加载问题 </div>
+                <div> 2. Security sandbox </div>
+                <div> 3. 并行加载脚本 </div>
+                <div>
+                    <br>
+                </div>
+                <div> 缺点： </div>
+                <div> 1. iframe会阻塞主页面的Onload事件 </div>
+                <div> 2. 即时内容为空，加载也需要时间 </div>
+                <div> 3. 没有语意 </div>
+            </div>
+        </li>
+    </ul>
+</div>

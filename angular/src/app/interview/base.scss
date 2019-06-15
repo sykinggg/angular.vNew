@@ -1,0 +1,66 @@
+@for $i from 1 through 100 {
+    .mar-t-#{$i} {
+        margin-top: $i * 10px;
+    }
+    .mar-r-#{$i} {
+        margin-right: $i * 10px;
+    }
+    .mar-b-#{$i} {
+        margin-bottom: $i * 10px;
+    }
+    .mar-l-#{$i} {
+        margin-left: $i * 10px;
+    }
+}
+
+.design-answer-box {
+    font-size: 14px;
+    border-radius: 6px;
+    padding: 15px;
+    background: #e8edf2;
+    border: 1px solid #d4d4d4;
+    margin-bottom: 20px
+}
+
+.answer-brief {
+    font-size: 14px;
+    line-height: 2
+}
+
+.answer-brief a {
+    color: #25bb9b
+}
+
+.answer-brief a:hover {
+    color: #333
+}
+
+.answer-brief img {
+    max-width: 480px;
+    cursor: -moz-zoom-in;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+    cursor: url(//static.zhihu.com/static/img/zoom-in.cur)
+}
+
+.answer-brief blockquote {
+    padding-left: 10px;
+    margin: .8em 0
+}
+
+.answer-brief ol,.answer-brief ul {
+    padding-left: 20px
+}
+
+.answer-brief ul li {
+    list-style-type: disc
+}
+
+.answer-brief ol li {
+    list-style-type: decimal
+}
+
+.answer-brief em {
+    font-weight: inherit;
+    font-style: italic
+}
