@@ -1,0 +1,34 @@
+<div class="design-answer-box">
+    <h3>js延时加载</h3>
+    <ul>
+        <li>
+            <h5>defer 属性</h5>
+            <p>HTML 4.01 为&lt;script&gt;标签定义了 defer属性。 <br>
+                用途：表明脚本在执行时不会影响页面的构造。也就是说，脚本会被延迟到整个页面都解析完毕之后再执行。</p>
+            <p>defer属性<strong>只适用于外部脚本文件</strong>。支持 HTML5 的实现会忽略嵌入脚本设置的 defer属性。</p>
+        </li>
+        <li>
+            <h5>async 属性</h5>
+            <p>HTML5 为 &lt;script&gt;标签定义了 async属性。与defer属性类似，都用于改变处理脚本的行为。同样，<strong>只适用于外部脚本文件</strong>。
+                <br>
+                目的：不让页面等待脚本下载和执行，从而<strong>异步加载页面其他内容</strong>。</p>
+            <p>异步脚本一定会在页面 load 事件前执行。 <br>
+                不能保证脚本会按顺序执行。</p>
+        </li>
+        <li>
+            <h5>动态创建DOM方式</h5>
+            <p>动态创建script引用js延时</p>
+        </li>
+        <li>
+            <h5>jQuery的getScript()方法</h5>
+            <pre [innerHtml]="code.jqueryGetScript"></pre>
+        </li>
+        <li>
+            <h5>使用setTimeout延迟方法</h5>
+        </li>
+        <li>
+            <h5>让JS最后加载</h5>
+            <p>js引入的文件放到页面底部，来让js最后引入，从而加快页面加载速度</p>
+        </li>
+    </ul>
+</div>

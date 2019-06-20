@@ -1,0 +1,368 @@
+<div class="design-answer-box">
+    <h3>基础总结</h3>
+    <ul>
+        <li>
+            <h4>减少页面加载时间</h4>
+            <div class="answer-brief nc-post-content">
+                <div> 1. 优化图片&nbsp; </div>
+                <div> 2. 图像格式的选择（GIF：提供的颜色较少，可用在一些对颜色要求不高的地方）&nbsp; </div>
+                <div> 3. 优化CSS（压缩合并css，如 margin-top, margin-left...)&nbsp; </div>
+                <div> 4. 网址后加斜杠（如www.campr.com/目录，会判断这个目录是什么文件类型，或者是目录。）&nbsp; </div>
+                <div> 5.
+                    标明高度和宽度（如果浏览器没有找到这两个参数，它需要一边下载图片一边计算大小，如果图片很多，浏览器需要不断地调整页面。这不但影响速度，也影响浏览体验。&nbsp; </div>
+                <div>
+                    当浏览器知道了高度和宽度参数后，即使图片暂时无法显示，页面上也会腾出图片的空位，然后继续加载后面的内容。从而加载时间快了，浏览体验也更好了）&nbsp; </div>
+                <div> 6. 减少http请求（合并文件，合并图片） </div>
+            </div>
+        </li>
+        <li>
+            <h4>JSON </h4>
+            <p>json在js中是对象和数组，常用的json就是将json转换成字符串，字符串转换成对象</p>
+            <div class="answer-brief nc-post-content">
+                <p>json是js的一个子集 是数据交换的一种格式</p>
+                <p>格式：｛“name”：“joy”}</p>
+                <p>json转化为字符串 JSON.stringify（）</p>
+                <p>字符串转化为json JSON.parse（）</p>
+            </div>
+        </li>
+        <li>
+            <h4>优雅降级和渐进增强</h4>
+            <div> 1.
+                优雅降级：Web站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会检查以确认它们是否能正常工作。由于IE独特的盒模型布局问题，针对不同版本的IE的hack实践过优雅降级了,为那些无法支持功能的浏览器增加候选方案，使之在旧式浏览器上以某种形式降级体验却不至于完全失效。
+            </div>
+            <div>
+                <br>
+            </div>
+            <div> 2.
+                渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新式浏览器才支持的功能,向页面增加无害于基础浏览器的额外样式和功能的。当浏览器支持时，它们会自动地呈现出来并发挥作用。 </div>
+        </li>
+        <li>
+            <h4>前端界面工程师</h4>
+            <div> 前端是最贴近用户的程序员，比后端、数据库、产品经理、运营、安全都近。 </div>
+            <div> 1. 实现界面交互 </div>
+            <div> 2. 提升用户体验 </div>
+            <div> 3. 有了Node.js，前端可以实现服务端的一些事情 </div>
+            <div>
+                <br>
+            </div>
+            <div> 前景： </div>
+            <div> 1. 前端是最贴近用户的程序员，前端的能力就是能让产品从 90分进化到 100 分，甚至更好 </div>
+            <div> 2. 参与项目，快速高质量完成实现效果图，精确到1px； </div>
+            <div> 3. 与团队成员，UI设计，产品经理的沟通； </div>
+            <div> 4. 做好的页面结构，页面重构和用户体验； </div>
+            <div> 5. 处理hack，兼容、写出优美的代码格式； </div>
+            <div> 6. 针对服务器的优化、拥抱最新前端技术。 </div>
+        </li>
+        <li>
+            <h4>性能优化</h4>
+            <div> 1. 减少http请求次数：CSS Sprites, JS、CSS 源码压缩、图片大小控制合适；网页 Gzip，CDN
+                托管，data 缓存 ，图片服务器 </div>
+            <div> 2. 前端模板 JS + 数据，减少由于HTML标签导致的带宽浪费，前端用变量保存 AJAX
+                请求结果，每次操作本地变量，不用请求，减少请求次数 </div>
+            <div> 3. 用 innerHTML 代替 DOM 操作，减少 DOM 操作次数，优化 javascript 性能 </div>
+            <div> 4. 当需要设置的样式很多时设置 className 而不是直接操作 style </div>
+            <div> 5. 少用全局变量、缓存DOM节点查找的结果。减少 IO 读取操作 </div>
+            <div> 6. 避免使用 CSS Expression（css表达式)又称 Dynamic properties(动态属性) </div>
+            <div> 7. 图片预加载，将样式表放在顶部，将脚本放在底部，加上时间戳 </div>
+        </li>
+        <li>
+            <h4>http状态码</h4>
+            <div class="answer-brief nc-post-content">
+                <div> 1XX 信息类，客户端应当继续发送请求 </div>
+                <div> 2XX 表示请求被正确接收，理解，接受 </div>
+                <div> 3XX 表示重定向 </div>
+                <div> 4XX &nbsp;表示客户端错误 </div>
+                <div> 5XX &nbsp;表示服务器错误 </div>
+            </div>
+            <div> 100 Continue &nbsp;继续，一般在发送post请求时，已发送了http
+                header之后服务端将返回此信息，表示确认，之后发送具体参数信息 </div>
+            <div> 200 OK &nbsp; 正常返回信息 </div>
+            <div> 201 Created &nbsp;请求成功并且服务器创建了新的资源 </div>
+            <div> 202 Accepted &nbsp;服务器已接受请求，但尚未处理 </div>
+            <div> 301 Moved Permanently &nbsp;请求的网页已永久移动到新位置 </div>
+            <div> 302 Found &nbsp;临时性重定向 </div>
+            <div> 303 See Other &nbsp;临时性重定向，且总是使用 GET 请求新的 URI </div>
+            <div> 304 Not Modified &nbsp;自从上次请求后，请求的网页未修改过 </div>
+            <div> 400 Bad Request &nbsp;服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求 </div>
+            <div> 401 Unauthorized &nbsp;请求未授权 </div>
+            <div> 403 Forbidden &nbsp;禁止访问 </div>
+            <div> 404 Not Found &nbsp;找不到如何与 URI 相匹配的资源 </div>
+            <div> 500 Internal Server Error &nbsp;最常见的服务器端错误 </div>
+            <div> 503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护） </div>
+        </li>
+        <li>
+            <h4>一个页面从输入 URL 到页面加载显示完成</h4>
+            <div> 分为4个步骤： </div>
+            <div> 1. 当发送一个 URL 请求时，不管这个 URL 是 Web 页面的 URL 还是 Web 页面上每个资源的
+                URL，浏览器都会开启一个线程来处理这个请求，同时在远程 DNS 服务器上启动一个 DNS 查询。这能使浏览器获得请求对应的 IP 地址。 </div>
+            <div> 2. 浏览器与远程 Web 服务器通过 TCP 三次握手协商来建立一个 TCP/IP
+                连接。该握手包括一个同步报文，一个同步-应答报文和一个应答报文，这三个报文在
+                浏览器和服务器之间传递。该握手首先由客户端尝试建立起通信，而后服务器应答并接受客户端的请求，最后由客户端发出该请求已经被接受的报文。 </div>
+            <div> 3. 一旦 TCP/IP 连接建立，浏览器会通过该连接向远程服务器发送 HTTP 的 GET 请求。远程服务器找到资源并使用
+                HTTP 响应返回该资源，值为 200 的 HTTP 响应状态表示一个正确的响应。 </div>
+            <div> 4. 此时，Web 服务器提供资源服务，客户端开始下载资源。 </div>
+            <div>
+                <br>
+            </div>
+            <div> 请求返回后，便进入了我们关注的前端模块 </div>
+            <div> 简单来说，浏览器会解析 HTML 生成 DOM Tree，其次会根据 CSS 生成 CSS Rule Tree，而
+                javascript 又可以根据 DOM API 操作 DOM </div>
+        </li>
+        <li>
+            <h4>管理项目</h4>
+            <div> 1. 先期团队必须确定好全局样式（globe.css），编码模式(utf-8) 等 </div>
+            <div> 2. 编写习惯必须一致（例如都是采用继承式的写法，单样式都写成一行） </div>
+            <div> 3. 标注样式编写人，各模块都及时标注（标注关键样式调用的地方） </div>
+            <div> 4. 页面进行标注（例如 页面 模块 开始和结束） </div>
+            <div> 5. CSS 跟 HTML 分文件夹并行存放，命名都得统一（例如 style.css） </div>
+            <div> 6. JS 分文件夹存放 命名以该 JS 功能为准的英文翻译 </div>
+            <div> 7. 图片采用整合的 images.png png8 格式文件使用 尽量整合在一起使用方便将来的管理&nbsp; </div>
+        </li>
+        <li>
+            <h4>ajax</h4>
+            <div> 1. 创建XMLHttpRequest对象,也就是创建一个异步调用对象 </div>
+            <div> 2. 创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息 </div>
+            <div> 3. 设置响应HTTP请求状态变化的函数 </div>
+            <div> 4. 发送HTTP请求 </div>
+            <div> 5. 获取异步调用返回的数据 </div>
+            <div> 6. 使用JavaScript和DOM实现局部刷新 </div>
+        </li>
+        <li>
+            <h4>异步加载和延迟加载</h4>
+            <div> 1. 异步加载的方案： 动态插入 script 标签 </div>
+            <div> 2. 通过 ajax 去获取 js 代码，然后通过 eval 执行 </div>
+            <div> 3. script 标签上添加 defer 或者 async 属性 </div>
+            <div> 4. 创建并插入 iframe，让它异步执行 js </div>
+            <div> 5. 延迟加载：有些 js 代码并不是页面初始化的时候就立刻需要的，而稍后的某些情况才需要的 </div>
+        </li>
+        <li>
+            <h4>前端的安全</h4>
+            <div> 1. XSS </div>
+            <div> 2. sql注入 </div>
+            <div> 3. CSRF：是跨站请求伪造，很明显根据刚刚的解释，他的核心也就是请求伪造，通过伪造身份提交POST和GET请求来进行跨域的攻击 </div>
+            <div>
+                <br>
+            </div>
+            <div> 完成CSRF需要两个步骤： </div>
+            <div> 1. 登陆受信任的网站A，在本地生成 COOKIE </div>
+            <div> 2. 在不登出A的情况下，或者本地 COOKIE 没有过期的情况下，访问危险网站B。 </div>
+        </li>
+        <li>
+            <h4>ie 各版本和 chrome 可以并行下载多少个资源</h4>
+            <div> 1. IE6 2 个并发 </div>
+            <div> 2. iE7 升级之后的 6 个并发，之后版本也是 6 个 </div>
+            <div> 3. Firefox，chrome 也是6个 </div>
+        </li>
+        <li>
+            <h4>css阻塞 && js阻塞</h4>
+            <div> js 的阻塞特性：所有浏览器在下载 JS 的时候，会阻止一切其他活动，比如其他资源的下载，内容的呈现等等。直到 JS
+                下载、解析、执行完毕后才开始继续并行下载其他资源并呈现内容。为了提高用户体验，新一代浏览器都支持并行下载 JS，但是 JS
+                下载仍然会阻塞其它资源的下载（例如.图片，css文件等）。 </div>
+            <div> 由于浏览器为了防止出现 JS 修改 DOM 树，需要重新构建 DOM 树的情况，所以就会阻塞其他的下载和呈现。 </div>
+            <div> 嵌入 JS 会阻塞所有内容的呈现，而外部 JS 只会阻塞其后内容的显示，2
+                种方式都会阻塞其后资源的下载。也就是说外部样式不会阻塞外部脚本的加载，但会阻塞外部脚本的执行。 </div>
+            <div>
+                <br>
+            </div>
+            <div> CSS 怎么会阻塞加载了？CSS 本来是可以并行下载的，在什么情况下会出现阻塞加载了(在测试观察中，IE6 下 CSS
+                都是阻塞加载） </div>
+            <div> 当 CSS 后面跟着嵌入的 JS 的时候，该 CSS 就会出现阻塞后面资源下载的情况。而当把嵌入 JS 放到 CSS
+                前面，就不会出现阻塞的情况了。 </div>
+            <div> 根本原因：因为浏览器会维持 html 中 css 和 js 的顺序，样式表必须在嵌入的 JS 执行前先加载、解析完。而嵌入的 JS
+                会阻塞后面的资源加载，所以就会出现上面 CSS 阻塞下载的情况。 </div>
+            <div>
+                <br>
+            </div>
+            <div> 嵌入JS应该放在什么位置？ </div>
+            <div> 1. 放在底部，虽然放在底部照样会阻塞所有呈现，但不会阻塞资源下载。 </div>
+            <div> 2. 如果嵌入JS放在head中，请把嵌入JS放在CSS头部。 </div>
+            <div> 3. 使用 defer（只支持IE） </div>
+            <div> 4. 不要在嵌入的JS中调用运行时间较长的函数，如果一定要用，可以用 setTimeout 来调用 </div>
+            <div>
+                <br>
+            </div>
+            <div> Javascript无阻塞加载具体方式： </div>
+            <div> 1.
+                将脚本放在底部。&lt;link&gt;还是放在head中，用以保证在js加载前，能加载出正常显示的页面。&lt;script&gt;标签放在&lt;/body&gt;前。 </div>
+            <div> 2.
+                阻塞脚本：由于每个&lt;script&gt;标签下载时阻塞页面解析过程，所以限制页面的&lt;script&gt;总数也可以改善性能。适用于内联脚本和外部脚本。 </div>
+            <div> 3. 非阻塞脚本：等页面完成加载后，再加载js代码。也就是，在 window.onload 事件发出后开始下载代码。 </div>
+            <div> 4. defer属性：支持IE4和fierfox3.5更高版本浏览器 </div>
+            <div> 5. 动态脚本元素：文档对象模型（DOM）允许你使用js动态创建HTML的几乎全部文档内容。代码如下： </div>
+            <pre [innerHtml]="code.cssJs"></pre>
+            <div> 此技术的重点在于：无论在何处启动下载，文件额下载和运行都不会阻塞其他页面处理过程，即使在head里（除了用于下载文件的 http
+                链接）。 </div>
+        </li>
+        <li>
+            <h4>Node.js 的适用场景</h4>
+            <div> 1. 高并发 </div>
+            <div> 2. 聊天 </div>
+            <div> 3. 实时消息推送 &nbsp;&nbsp; </div>
+        </li>
+        <li>
+            <h4>重构</h4>
+            <div class="answer-brief nc-post-content">
+                <p>
+                    <span>1. </span>
+                    <span>表格</span>
+                    <span>(table)</span>
+                    <span>布局改为</span>
+                    <span> DIV + CSS </span>
+                </p>
+                <p>
+                    <span>2. </span>
+                    <span>使网站前端兼容于现代浏览器</span>
+                    <span>(</span>
+                    <span>针对于不合规范的</span>
+                    <span>CSS</span>
+                    <span>、如对</span>
+                    <span> IE6 </span>
+                    <span>有效的</span>
+                    <span>) </span>
+                </p>
+                <p>
+                    <span>3. </span>
+                    <span>对于移动平台的优化</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>4. </span>
+                    <span>针对于</span>
+                    <span> SEO </span>
+                    <span>进行优化</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>5. </span>
+                    <span>深层次的网站重构应该考虑的方面</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>6. </span>
+                    <span>减少代码间的耦合</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>7. </span>
+                    <span>让代码保持弹性</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>8. </span>
+                    <span>严格按规范编写代码</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>9. </span>
+                    <span>设计可扩展的</span>
+                    <span>API </span>
+                </p>
+                <p>
+                    <span>10. </span>
+                    <span>代替旧有的框架、语言</span>
+                    <span>(</span>
+                    <span>如</span>
+                    <span>VB) </span>
+                </p>
+                <p>
+                    <span>11. </span>
+                    <span>增强用户体验</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>12. </span>
+                    <span>通常来说对于速度的优化也包含在重构中</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>13. </span>
+                    <span>压缩</span>
+                    <span>JS</span>
+                    <span>、</span>
+                    <span>CSS</span>
+                    <span>、</span>
+                    <span>image</span>
+                    <span>等前端资源</span>
+                    <span>(</span>
+                    <span>通常是由服务器来解决</span>
+                    <span>) </span>
+                </p>
+                <p>
+                    <span>14. </span>
+                    <span>程序的性能优化</span>
+                    <span>(</span>
+                    <span>如数据读写</span>
+                    <span>) </span>
+                </p>
+                <p>
+                    <span>15. </span>
+                    <span>采用</span>
+                    <span>CDN</span>
+                    <span>来加速资源加载</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>16. </span>
+                    <span>对于</span>
+                    <span>JS DOM</span>
+                    <span>的优化</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>17. HTTP</span>
+                    <span>服务器的文件缓存</span>
+                    <span></span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>WEB应用从服务器主动推送Data到客户端</h4>
+            <div class="answer-brief nc-post-content">
+                <div> 1. html5&nbsp;<span style="color: rgb(51,51,51);">websocket</span>
+                </div>
+                <div> 2. WebSocket 通过 Flash </div>
+                <div> 3. XHR长时间连接 </div>
+                <div> 4. XHR Multipart Streaming </div>
+                <div> 5. 不可见的Iframe </div>
+                <div> 6. &lt;script&gt;标签的长时间连接(可跨域) </div>
+            </div>
+        </li>
+        <li>
+            <h4>UA</h4>
+            <pre [innerHtml]="code.ua"></pre>
+        </li>
+        <li>
+            <h4>cache-contro</h4>
+            <div>
+                网页的缓存是由HTTP消息头中的“Cache-control”来控制的，常见的取值有private、no-cache、max-age、must-revalidate等，默认为private。
+            </div>
+            <div>
+                <br>
+            </div>
+            <div> Expires
+                头部字段提供一个日期和时间，响应在该日期和时间后被认为失效。允许客户端在这个时间之前不去检查（发请求），等同max-age的效果。但是如果同时存在，则被Cache-Control的max-age覆盖。
+            </div>
+            <div>
+                <br>
+            </div>
+            <div> Expires = "Expires" ":" HTTP-date </div>
+            <div> 例如： </div>
+            <div> Expires: Thu, 01 Dec 1994 16:00:00 GMT （必须是GMT格式） </div>
+            <div> 如果把它设置为-1，则表示立即过期 </div>
+            <div>
+                <br>
+            </div>
+            <div> Expires 和 max-age 都可以用来指定文档的过期时间，但是二者有一些细微差别 </div>
+            <div> 1.
+                Expires在HTTP/1.0中已经定义，Cache-Control:max-age在HTTP/1.1中才有定义，为了向下兼容，仅使用max-age不够 </div>
+            <div> 2. Expires指定一个绝对的过期时间(GMT格式),这么做会导致至少2个问题： </div>
+            <div> &nbsp; &nbsp; 2.1客户端和服务器时间不同步导致Expires的配置出现问题。&nbsp; </div>
+            <div> &nbsp; &nbsp; 2.2很容易在配置后忘记具体的过期时间，导致过期来临出现浪涌现象 </div>
+            <div> 3. max-age
+                指定的是从文档被访问后的存活时间，这个时间是个相对值(比如:3600s)，相对的是文档第一次被请求时服务器记录的Request_time(请求时间) </div>
+            <div> 4. Expires
+                指定的时间可以是相对文件的最后访问时间(Atime)或者修改时间(MTime)，而max-age相对对的是文档的请求时间(Atime) </div>
+            <div> 5. 如果值为 no-cache,那么每次都会访问服务器。如果值为max-age，则在过期之前不会重复访问服务器。 </div>
+        </li>
+    </ul>
+</div>

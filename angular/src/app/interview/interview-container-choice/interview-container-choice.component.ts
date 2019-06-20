@@ -15,7 +15,7 @@ export class InterviewContainerChoiceComponent implements OnInit {
             console.log(data);
             for (let key in data) {
                 let obj = {
-                    name: key,
+                    name: data[key].name,
                     type: key,
                     active: false
                 }

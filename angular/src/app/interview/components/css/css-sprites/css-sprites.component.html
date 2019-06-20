@@ -1,0 +1,20 @@
+<div class="design-answer-box">
+    <h3>CSS sprites 雪碧图</h3>
+
+    CSS Sprites 其实就是把网页中一些背景图片整合到一张图片文件中，再利用 CSS
+    的"background-image"，"background-repeat"，"background-position"
+    的组合进行背景定位，background-position
+    可以用数字能精确的定位出背景图片的位置。这样可以减少很多图片请求的开销，因为请求耗时比较长；请求虽然可以并发，但是也有限制，一般浏览器都是6个。对于未来而言，就不需要这样做了，因为有了 http2。
+
+    <p style="vertical-align: baseline;color: rgb(51,51,51);"> HTTP/1.x
+        有个问题叫线端阻塞(head-of-line
+        blocking),&nbsp;<strong>它是指一个连接(connection)一次只提交一个请求的效率比较高,
+            多了就会变慢</strong>。 HTTP/1.1 试过用流水线(pipelining)来解决这个问题,
+        但是效果并不理想(数据量较大或者速度较慢的响应, 会阻碍排在他后面的请求). 此外, 由于网络媒介(intermediary
+        )和服务器不能很好的支持流水线, 导致部署起来困难重重。
+    </p>
+
+    <div style="padding: 0.0px;vertical-align: baseline;color: rgb(51,51,51);">
+        而多路传输(Multiplexing)能很好的解决这些问题, 因为它能同时处理多个消息的请求和响应; 甚至可以在传输过程中将一个消息跟另外一个掺杂在一起。&nbsp;<strong>所以客户端只需要一个连接就能加载一个页面。</strong>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="design-answer-box">
+    <h3>跨域</h3>
+    <ul>
+        <li>
+            <h5>jsonp（jsonp 的原理是动态插入 script 标签）</h5>
+            <p>jsonp。需要服务器支持。使用script src动态得到一段java代码。是回调页面上的js函数，参数是一个json对象。 jquery也有封装。</p>
+        </li>
+        <li>
+            <h5>document.domain|local + iframe</h5>
+            <p>使用iFrame访问另一个域。 然后再从另一个页面读取iFrame的内容。jquery等有一些封装。 据说Firefox等可能不支持读取另一个iFrame的内容。</p>
+        </li>
+        <li>
+            <h5>设置http头</h5>
+            <p>设置http头，Access-Control-Allow-Origin：* 但据说IE有一些版本不识别这个http头</p>
+        </li>
+        <li>
+            <h5>服务器代理</h5>
+            <p>服务器写一个url的处理action。其参数是一个url。这个服务器会用参数拼凑一个url,用httpclient库去执行url，然后把读取的内容再输出到http客户端。</p>
+        </li>
+        <li>
+            <h5>CORS</h5>
+            <p>可以理解为支持跨域通信的变种Ajax。当你在浏览器中发送一个ajax跨域请求时，浏览器会在http头中加入一个origin。如果只是一个普通的ajax，则会被浏览器拦截</p>
+        </li>
+    </ul>
+</div>

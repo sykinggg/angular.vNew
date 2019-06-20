@@ -1,0 +1,59 @@
+<div class="design-answer-box">
+    <h4>GET和POST</h4>
+    <div class="answer-brief nc-post-content">
+        <div>
+            <div> HTTP方法
+                是根据意图区分的，HTTP中的GET，POST，PUT，DELETE就对应着对这个资源的查，改，增，删4个操作。 </div>
+            <div> GET一般用于获取/查询资源信息，而POST一般用于更新资源信息。 </div>
+            <div> 表面区别： </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <span></span>1. 传参方式 </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <span></span>1. GET可以通过URL直接传参 </div>
+            <div>
+                <span></span>2. 两者都可以通过body传参 </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <span></span>2. 长度 </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <span></span>1. header和body都没有对长度的限制 </div>
+            <div>
+                <span></span>2. URL的长度受到部分早期浏览器的限制 </div>
+            <div>
+                <span></span>3.
+                URL的长度还可能受到服务器的限制，由于URL的实际超长或者设定其Content-Length较大值会引起服务器最大并发数下降或者资源空耗 </div>
+            <div>
+                <span></span>4. 2和3间接限定了URL方式发起GET方法的长度 </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <span></span>3. 安全性 </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <span></span>1. GET不会修改服务端数据，POST可以修改数据 </div>
+            <div>
+                <span></span>2. URL方式发起GET请求，参数会明文暴露 </div>
+            <div>
+                <span></span>3. 使用GET提交数据还可能会造成Cross-site request forgery攻击 </div>
+            <div>
+                <span></span>4. 本质上安全性无区别 </div>
+            <div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

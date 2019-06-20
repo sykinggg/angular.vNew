@@ -1,0 +1,97 @@
+<div class="design-answer-box">
+    <h3>CSS中 link 和@import 的区别</h3>
+    <div class="answer-brief nc-post-content">
+        <p style="margin-left: 21.0pt;text-indent: -21.0pt;">
+            <span>1.导入的语法不相同</span>
+        </p>
+        <p style="margin-left: 21.0pt;">
+            <span>link</span>
+            <span>（链接式）语法为：</span>
+        </p>
+        <p style="margin-left: 21.0pt;">
+            <span>&lt;link rel="stylesheet" href="style.css" type="text/css"/&gt;</span>
+        </p>
+        <p style="margin-left: 21.0pt;">
+            <span>@import</span>
+            <span>（导入式）语法为：</span>
+        </p>
+        <p style="margin-left: 21.0pt;">
+            <span>&lt;style type="text/css"&gt;</span>
+        </p>
+        <p style="margin-left: 21.0pt;">
+            <span>@import url("style.css");</span>
+        </p>
+        <p style="margin-left: 21.0pt;">
+            <span>&lt;/style&gt;</span>
+        </p>
+        <p style="margin-left: 21.0pt;text-indent: -21.0pt;">
+            <span>
+                <span>2.&nbsp;</span>
+            </span>
+            <span>link</span>
+            <span>和</span>
+            <span>import</span>
+            <span>语法结构不同，前者</span>
+            <span>&lt;link&gt;</span>
+            <span>是</span>
+            <span>html</span>
+            <span>标签，只能放入</span>
+            <span>html</span>
+            <span>源代码中使用，</span>
+            <span>link</span>
+            <span>标签除了可以加载</span>
+            <span>CSS</span>
+            <span>外，还可以做很多其它的事情，比如定义</span>
+            <span>RSS</span>
+            <span>，定义</span>
+            <span>rel</span>
+            <span>连接属性等，</span>
+            <span>@import</span>
+            <span>看作为</span>
+            <span>css</span>
+            <span>的样式，就只能加载</span>
+            <span>CSS</span>
+            <span>了；</span>
+        </p>
+        <p style="margin-left: 21.0pt;text-indent: -21.0pt;">
+            <span>3.使用</span>
+            <span>link</span>
+            <span>方式，浏览器将</span>
+            <span>CSS</span>
+            <span>文件和</span>
+            <span>HTML</span>
+            <span>的主体部分一同装载，所以显示出来的页面从开始就是带样式效果的；而采用</span>
+            <span>@import</span>
+            <span>方式，浏览器则会先装载完整个</span>
+            <span>HTML</span>
+            <span>文件后再装载</span>
+            <span>CSS</span>
+            <span>文件；</span>
+        </p>
+        <p style="margin-left: 21.0pt;text-indent: -21.0pt;">
+            <span>4.当使用</span>
+            <span>Javascript</span>
+            <span>控制</span>
+            <span>DOM</span>
+            <span>去改变样式的时候，只能使用</span>
+            <span>link</span>
+            <span>方式，因为</span>
+            <span>@import</span>
+            <span>眼里只有</span>
+            <span>CSS</span>
+            <span>，不是</span>
+            <span>DOM</span>
+            <span>可以控制的；</span>
+        </p>
+        <p style="margin-left: 21.0pt;text-indent: -21.0pt;">
+            <span>5link</span>
+            <span>是</span>
+            <span>XHTML</span>
+            <span>标签，无兼容问题；</span>
+            <span>@import</span>
+            <span>是在</span>
+            <span>CSS2.1</span>
+            <span>提出的，低版本的浏览器不支持</span>
+        </p>
+    </div>
+</div>

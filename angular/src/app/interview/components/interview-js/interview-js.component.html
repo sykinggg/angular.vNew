@@ -1,0 +1,144 @@
+<div class="design-answer-box">
+    <h3>js 总结</h3>
+    <ul>
+        <li>
+            <h4>documen.write和 innerHTML</h4>
+            <ul>
+                <li>document.write 只能同步执行，如果在window.onload之前执行则在文档流中绘制内容，如果在window.onload之后则会重绘整个页面（之前内容被冲刷掉）</li>
+                <li>innerHTML 则是绘制某个元素内的内容，没有这个限制</li>
+            </ul>
+        </li>
+        <li>
+            <h4>内存泄露</h4>
+            <div> 内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。 </div>
+            <div> 垃圾回收器定期扫描对象，并计算引用了每个对象的其他对象的数量。如果一个对象的引用数量为
+                0（没有其他对象引用过该对象），或对该对象的惟一引用是循环的，那么该对象的内存即可回收。 </div>
+            <div>
+                <br>
+            </div>
+            <div> 1. setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。 </div>
+            <div> 2. 闭包 </div>
+            <div> 3. 控制台日志 </div>
+            <div> 4. 循环（在两个对象彼此引用且彼此保留时，就会产生一个循环） </div>
+        </li>
+        <li>
+            <h4>判断当前脚本运行在浏览器还是node环境中</h4>
+            通过判断 Global 对象是否为window，如果不为window，当前脚本没有运行在浏览器中。即在<span style="color: rgb(51,51,51);">node中的全局变量是global
+                ,浏览器的全局变量是window。 可以通过该全局变量是否定义来判断宿主环境</span>
+            <p>exports = typeof window === 'undefined' ? global : window ;</p>
+            <div>获取全局对象的方式
+                同理可得，typeof window可以用来判断是不是在浏览器环境中</div>
+        </li>
+        <li>
+            <h4>Node的优点和缺点</h4>
+            <div> 优点： </div>
+            <div> 1.
+                因为Node是基于事件驱动和无阻塞的，所以非常适合处理并发请求，因此构建在Node上的代理服务器相比其他技术实现（如Ruby）的服务器表现要好得多。 </div>
+            <div> 2.
+                与Node代理服务器交互的客户端代码是由javascript语言编写的，因此客户端和服务器端都用同一种语言编写，这是非常美妙的事情。 </div>
+            <div>
+                <br>
+            </div>
+            <div> 缺点： </div>
+            <div> 1. Node是一个相对新的开源项目，所以不太稳定，它总是一直在变。 </div>
+            <div> 2.
+                缺少足够多的第三方库支持。看起来，就像是Ruby/Rails当年的样子（第三方库现在已经很丰富了，所以这个缺点可以说不存在了）。 </div>
+        </li>
+        <li>
+            <h4>javascript对象创建</h4>
+            <div> 1. 工厂模式 </div>
+            <div> 2. 构造函数模式 </div>
+            <div> 3. 原型模式 </div>
+            <div> 4. 混合构造函数和原型模式 </div>
+            <div> 5. 动态原型模式 </div>
+            <div> 6. 寄生构造函数模式 </div>
+            <div> 7. 稳妥构造函数模式 </div>
+        </li>
+        <li>
+            <h4>javascript继承</h4>
+            <div> 1. 原型链继承 </div>
+            <div> 2. 借用构造函数继承 </div>
+            <div> 3. 组合继承(原型+借用构造) </div>
+            <div> 4. 原型式继承 </div>
+            <div> 5. 寄生式继承 </div>
+            <div> 6. 寄生组合式继承 </div>
+        </li>
+        <li>
+            <h4>javascript里面的继承怎么实现，如何避免原型链上面的对象共享</h4>
+            用构造函数和原型链的混合模式去实现继承，避免对象共享可以参考经典的extend()函数，很多前端框架都有封装的，就是用一个空函数当做中间变量
+        </li>
+        <li>
+            <h4>use strict</h4>
+            <div> ECMAscript 5添加了第二种运行模式："严格模式"（strict
+                mode）。顾名思义，这种模式使得Javascript在更严格的条件下运行。 </div>
+            <div>
+                <br>
+            </div>
+            <div> 设立"严格模式"的目的，主要有以下几个： </div>
+            <div> 1. 消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为; </div>
+            <div> 2. 消除代码运行的一些不安全之处，保证代码运行的安全； </div>
+            <div> 3. 提高编译器效率，增加运行速度； </div>
+            <div> 4. 为未来新版本的Javascript做好铺垫。 </div>
+            <div> 注：经过测试 IE6,7,8,9 均不支持严格模式。 </div>
+            <div>
+                <br>
+            </div>
+            <div> 缺点： </div>
+            <div> 现在网站的 JS 都会进行压缩，一些文件用了严格模式，而另一些没有。这时这些本来是严格模式的文件，被 merge
+                后，这个串就到了文件的中间，不仅没有指示严格模式，反而在压缩后浪费了字节。 </div>
+        </li>
+        <li>
+            <h4>eval</h4>
+            <div class="answer-brief nc-post-content">
+                1.eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。<br>
+                2.通过计算 string 得到的值（如果有的话）。<br>
+                3.该方法只接受原始字符串作为参数，如果 string 参数不是原始字符串，那么该方法将不作任何改变地返回。因此请不要为 eval()
+                函数传递 String 对象来作为参数。<br>
+                4.如果试图覆盖 eval 属性或把 eval() 方法赋予另一个属性，并通过该属性调用它，则 ECMAScript 实现允许抛出一个
+                EvalError 异常。<br>
+                5.应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）<br>
+                **虽然 eval() 的功能非常强大，但在实际使用中用到它的情况并不多。
+            </div>
+        </li>
+        <li>
+            <h4>通用的事件侦听器函数</h4>
+            <pre [innerHtml]="code.eventListener"></pre>
+        </li>
+        <li>
+            <h4>JavaScript 原型，原型链</h4>
+            <div class="answer-brief nc-post-content">
+                <p>
+                    <a href="https://www.cnblogs.com/shuiyi/p/5305435.html" target="_blank">
+                        https://www.cnblogs.com/shuiyi/p/5305435.html</a>
+                    <br>
+                    链接的博客解释原型和原型链挺清楚，用三张图来说明。<br>
+                    <img alt="图片说明" src="https://uploadfiles.nowcoder.com/files/20180309/1191095_1520584640454_787416-20160323103557261-114570044.png"
+                        title="图片标题"><br>
+                    <img alt="图片说明" src="https://uploadfiles.nowcoder.com/files/20180309/1191095_1520584697862_787416-20160322110905589-2039017350.png"
+                        title="图片标题"> </p>
+            </div>
+        </li>
+        <li>
+            <h4>事件、IE与火狐的事件机制 && 阻止冒泡</h4>
+            <div class="answer-brief nc-post-content">
+                <div> 1. 我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript
+                    侦测到的行为 </div>
+                <div> 2. 事件处理机制：IE是事件冒泡、firefox同时支持两种事件模型，也就是：捕获型事件和冒泡型事件 </div>
+                <div> 3. ev.stopPropagation(); </div>
+                <div> 注意旧ie的方法：ev.cancelBubble = true; </div>
+            </div>
+        </li>
+        <li>
+            <h4>js对象的深度克隆</h4>
+            <pre [innerHtml]="code.deepClone"></pre>
+        </li>
+        <li>
+            <h4>js 数组去重</h4>
+            <pre [innerHtml]="code.realArr"></pre>
+        </li>
+        <li>
+            <h4>js 操作获取和设置 cookie</h4>
+            <pre [innerHtml]="code.cookie"></pre>
+        </li>
+    </ul>
+</div>
