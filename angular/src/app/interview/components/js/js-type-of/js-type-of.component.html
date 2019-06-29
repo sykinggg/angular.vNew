@@ -1,0 +1,30 @@
+<div class="design-answer-box">
+    <h3>js 类型判断</h3>
+    <ul>
+        <li>
+            <h4>typeof运算符</h4>
+            <pre [innerHtml]="code.typeof"></pre>
+            <ul>
+                <li>NaN（就是not a number啦）和infinity一样是number类型的一个特殊的值</li>
+                <li>typeof null==="object"，这就是由于历史的原因</li>
+            </ul>
+        </li>
+        <li>
+            <h4>instanceof操作符（基于原型链）</h4>
+            <p>obj instanceof Object</p>
+            <p>
+                instanceof操作符判断左操作数对象的原型链上是否有右边这个构造函数的prototype属性，也就是说指定对象是否是某个构造函数的实例，
+                最后返回布尔值，这个对整个原型链上的对象都是有效的，由于instanceof对整个原型链上的对象都有效，
+                因此同一个实例对象，可能会对多个构造函数都返回true！
+            </p>
+        </li>
+        <li>
+            <h4>Object.prototype.toString</h4>
+            <pre [innerHtml]="code.objectToString"></pre>
+        </li>
+        <li>
+            <h4>doctype</h4>
+            <p>根据特定属性来判断很水</p>
+        </li>
+    </ul>
+</div>

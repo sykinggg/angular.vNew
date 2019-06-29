@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-js-async-load',
-    templateUrl: './js-async-load.component.html',
-    styleUrls: ['./js-async-load.component.scss']
+    selector: 'app-js-opera-cookie',
+    templateUrl: './js-opera-cookie.component.html',
+    styleUrls: ['./js-opera-cookie.component.scss']
 })
-export class JsAsyncLoadComponent implements OnInit {
+export class JsOperaCookieComponent implements OnInit {
 
     public code = {
         new: this.sanitizer.bypassSecurityTrustHtml(`

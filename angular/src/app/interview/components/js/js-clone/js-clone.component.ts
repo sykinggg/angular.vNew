@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-js-async-load',
-    templateUrl: './js-async-load.component.html',
-    styleUrls: ['./js-async-load.component.scss']
+    selector: 'app-js-clone',
+    templateUrl: './js-clone.component.html',
+    styleUrls: ['./js-clone.component.scss']
 })
-export class JsAsyncLoadComponent implements OnInit {
+export class JsCloneComponent implements OnInit {
 
     public code = {
         new: this.sanitizer.bypassSecurityTrustHtml(`

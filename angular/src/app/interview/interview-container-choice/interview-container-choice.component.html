@@ -1,5 +1,10 @@
 <nz-card [nzTitle]="title">
-    <label *ngFor="let item of allOption" nz-checkbox [(ngModel)]="item.active">{{item.name}}</label>
+    <div class="mar-t-2">
+        <label *ngFor="let item of classOption" nz-checkbox (ngModelChange)="choiceClass(item)" [(ngModel)]="item.active" >{{item.name}}</label>
+    </div>
+    <div class="mar-t-2">
+        <label *ngFor="let item of allOption" nz-checkbox [hidden]="hashKey.indexOf(item.className) === -1" [(ngModel)]="item.active">{{item.name}}</label>
+    </div>
     <div class="mar-t-2">
         <button nz-button nzType="primary" class="mar-r-2" (click)="determine()">确定</button>
         <button nz-button nzType="default" (click)="cancel()">取消</button>

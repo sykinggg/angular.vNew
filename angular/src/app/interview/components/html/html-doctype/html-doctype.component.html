@@ -5,4 +5,21 @@
     <div> 2. 严格模式的排版和 JS 运作模式是 &nbsp;以该浏览器支持的最高标准运行。 </div>
     <div> 3. 在混杂模式中，页面以宽松的向后兼容的方式显示。模拟老式浏览器的行为以防止站点无法工作。 </div>
     <div> 4. DOCTYPE不存在或格式不正确会导致文档以混杂模式呈现。&nbsp; </div>
+    <ul>
+        <li>
+            <div>在标准模式中，浏览器根据规范呈现页面</div>
+            <div>在混杂模式中，页面以一种比较宽松的向后兼容的方式显示</div>
+        </li>
+        <li>杂模式通常模拟老式浏览器的行为以防止老站点无法工作</li>
+        <li>
+            <div>浏览器根据DOCTYPE是否存在以及使用的哪种DTD来选择要使用的呈现方法</div>
+            <div>如果XHTML文档包含形式完整的DOCTYPE，那么它一般以标准模式 呈现</div>
+            <div>对于HTML4.01文档，包含严格DTD的DOCTYPE常常导致页面以标准模式呈现</div>
+            <div>包含过渡DTD和URI的DOCTYPE也导致页面以标准 模式呈现，但是有过渡DTD而没有URI会导致页面以混杂模式呈现</div>
+        </li>
+        <li>
+            <div>根据DOCTYPE是否存在选择呈现模式，被称为DOCTYPE切换或DOCTYPE侦测</div>
+            <div>因此一定要在每个页面上包含形式完整的DOCTYPE声明，并且在使用HTML时选择严格的DTD</div>
+        </li>
+    </ul>
 </div>

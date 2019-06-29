@@ -1,0 +1,44 @@
+<div class="design-answer-box">
+    <h3>js 数组去重</h3>
+    <ul>
+        <li>
+            <h4>普通数组的去重</h4>
+            <ul>
+                <li>
+                    <h5>方法一：利用ES6的Array.from()/扩展运算符 以及 Set</h5>
+                    <ul>
+                        <li>该方法接收两个参数要转换的非数组对象,对每个元素进行处理的方法（可选）</li>
+                        <li>只要对象具有length属性，就可以通过Array.from()转换为真正的数组</li>
+                    </ul>
+                    <pre [innerHtml]="code.ArraySet"></pre>
+                </li>
+                <li>
+                    <h5>方法二：遍历数组，建立新数组，利用indexOf判断是否存在于新数组中，不存在则push到新数组，最后返回新数组</h5>
+                    <pre [innerHtml]="code.ArrayIndexOf"></pre>
+                </li>
+                <li>
+                    <h5>方法三：遍历数组，利用object对象的key值保存数组值(key不重复)，判断数组值是否已经保存在object中，未保存则push到新数组并用object[arrayItem]=true的方式记录保存
+                    </h5>
+                    <pre [innerHtml]="code.ObjectKey"></pre>
+                </li>
+                <li>
+                    <h5>方法四：先排序，新数组最后一项为旧数组第一项，每次插入判断新数组最后一项是否与插入项相等</h5>
+                    <pre [innerHtml]="code.fourWay"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h4>对象数组的去重</h4>
+            <ul>
+                <li>
+                    <h5>方法一：利用对象的键名不能重复的特点</h5>
+                    <pre [innerHtml]="code.fiveWay"></pre>
+                </li>
+                <li>
+                    <h5>方法二：还是利用对象的键名无法重复的特点,必须知道至少一个对象数组中的对象的属性名</h5>
+                    <pre [innerHtml]="code.sixWay"></pre>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
