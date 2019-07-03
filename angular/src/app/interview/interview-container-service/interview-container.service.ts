@@ -40,6 +40,11 @@ import { JsThisComponent } from '../components/js/js-this/js-this.component';
 import { JsArrDeWeightingComponent } from '../components/js/js-arr-de-weighting/js-arr-de-weighting.component';
 import { CssDomShowHideComponent } from '../components/css/css-dom-show-hide/css-dom-show-hide.component';
 import { JsTypeOfComponent } from '../components/js/js-type-of/js-type-of.component';
+import { JsComparisonComponent } from '../components/js/js-comparison/js-comparison.component';
+import { JsClosuresComponent } from '../components/js/js-closures/js-closures.component';
+import { JsEventCommissionComponent } from '../components/js/js-event-commission/js-event-commission.component';
+import { HtmlAccessUrlComponent } from '../components/html/html-access-url/html-access-url.component';
+import { HtmlHttpHttpsComponent } from '../components/html/html-http-https/html-http-https.component';
 
 @Injectable({
     providedIn: 'root'
@@ -60,6 +65,16 @@ export class InterviewContainerService {
         htmlStandard: {
             name: 'web 标准',
             component: HtmlStandardComponent,
+            className: 'base'
+        },
+        htmlAccessUrl: {
+            name: '浏览器解析 url',
+            component: HtmlAccessUrlComponent,
+            className: 'base'
+        },
+        htmlHttpHttps: {
+            name: 'Http && Https 区别',
+            component: HtmlHttpHttpsComponent,
             className: 'base'
         },
         cookieStorage: {
@@ -245,6 +260,21 @@ export class InterviewContainerService {
         jsTypeOf: {
             name: 'js 类型判断',
             component: JsTypeOfComponent,
+            className: 'js'
+        },
+        jsComparison: {
+            name: 'js 比较',
+            component: JsComparisonComponent,
+            className: 'js'
+        },
+        jsClosures: {
+            name: 'js 闭包',
+            component: JsClosuresComponent,
+            className: 'js'
+        },
+        jsEventCommission: {
+            name: 'js 事件委托',
+            component: JsEventCommissionComponent,
             className: 'js'
         },
         webBase: {

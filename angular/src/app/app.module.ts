@@ -23,11 +23,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 registerLocaleData(zh);
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { LayoutModule } from './layout/layout.module';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 const antDesignIcons = AllIcons as {
@@ -35,6 +38,9 @@ const antDesignIcons = AllIcons as {
 };
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
     declarations: [
@@ -52,6 +58,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
         HttpClientModule,
         NgZorroAntdModule.forRoot(),
         LayoutModule, // UI组件引用
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (HttpLoaderFactory),
+                deps: [HttpClient]
+            }
+        })
     ],
     providers: [
         LocalStorage,

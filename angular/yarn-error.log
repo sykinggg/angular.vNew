@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add TweenJS
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add ngx-translate
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\sk-yisui\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;D:\worksplace\phantomjs-2.1.1-windows\bin;%M2_HOME%\bin;C:\Program Files\Java\jdk1.8.0_171;D:\apache-maven-3.5.3\apache-maven-3.5.3\apache-maven-3.5.3\bin;D:\apache-tomcat-8.0.52\apache-tomcat-8.0.52\bin;C:\Users\sk-yisui\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\mingw-w64\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\usr\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Scripts;C:\Users\sk-yisui\AppData\Local\Programs\Python\Python37\Scripts;C:\Users\sk-yisui\AppData\Local\Programs\Python\Python37;C:\Users\sk-yisui\AppData\Local\Microsoft\WindowsApps;C:\Users\sk-yisui\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\sk-yisui\AppData\Roaming\npm;C:\Users\sk-yisui\AppData\Local\Yarn\bin;C:\Program Files\Microsoft VS Code\bin
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\sk-yisui\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;D:\worksplace\phantomjs-2.1.1-windows\bin;%M2_HOME%\bin;C:\Program Files\Java\jdk1.8.0_171;D:\apache-maven-3.5.3\apache-maven-3.5.3\apache-maven-3.5.3\bin;D:\apache-tomcat-8.0.52\apache-tomcat-8.0.52\bin;C:\Users\sk-yisui\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\nodejs;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\mingw-w64\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\usr\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Library\bin;C:\Users\sk-yisui\AppData\Local\Continuum\Anaconda2\Scripts;C:\Users\sk-yisui\AppData\Local\Programs\Python\Python37\Scripts;C:\Users\sk-yisui\AppData\Local\Programs\Python\Python37;C:\Users\sk-yisui\AppData\Local\Microsoft\WindowsApps;C:\Users\sk-yisui\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\sk-yisui\AppData\Local\Yarn\bin;C:\Program Files\Microsoft VS Code\bin;D:\studySpace\1flutter\flutter_windows_v1.5.4-hotfix.2-stable\flutter\bin;D:\SDK\platform-tools;D:\SDK\tools;D:\studySpace\1flutter\flutter_windows_v1.5.4-hotfix.2-stable\flutter\bin\cache\dart-sdk\bin;C:\Users\sk-yisui\AppData\Roaming\npm
 
 Yarn version: 
   1.7.0
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/TweenJS: Not found
+  Error: https://registry.yarnpkg.com/ngx-translate: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65656:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:134675:22)
       at emitTwo (events.js:126:13)
@@ -69,11 +69,12 @@ npm manifest:
       "echarts": "^4.1.0",
       "hammerjs": "^2.0.8",
       "highcharts": "^7.0.3",
-      "jquery": "^3.3.1",
+      "jquery": "^3.4.0",
       "lodash": "^4.17.11",
       "moment": "^2.24.0",
       "ng-zorro-antd": "^7.0.1",
       "ngx-bootstrap": "^3.2.0",
+      "path-to-regexp": "^3.0.0",
       "rxjs": "^6.4.0",
       "socket.io-client": "^2.2.0",
       "three": "^0.103.0",
@@ -3901,9 +3902,9 @@ Lockfile:
     version "2.2.0"
     resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
   
-  jquery@^3.3.1:
-    version "3.3.1"
-    resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+  jquery@^3.4.0:
+    version "3.4.0"
+    resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.0.tgz#8de513fa0fa4b2c7d2e48a530e26f0596936efdf"
   
   js-base64@^2.1.8:
     version "2.5.1"
@@ -5179,6 +5180,10 @@ Lockfile:
   path-to-regexp@0.1.7:
     version "0.1.7"
     resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
+  
+  path-to-regexp@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-3.0.0.tgz#c981a218f3df543fa28696be2f88e0c58d2e012a"
   
   path-type@^1.0.0:
     version "1.1.0"
