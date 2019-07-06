@@ -14,6 +14,8 @@ import { MapInformationPipe } from '../pipe/map-information/map-information.pipe
 import { MapDirectiveDirective } from '../directive/map-directive/map-directive.directive';
 import { GmapComponent } from './gmap/gmap.component';
 import { LayoutModule } from '../layout/layout.module';
+import { AMapDemoComponent } from './a-map-demo/a-map-demo.component';
+import { AMapModule } from './a-map/a-map.module';
 
 @NgModule({
     imports: [
@@ -23,7 +25,8 @@ import { LayoutModule } from '../layout/layout.module';
         MapRoutesModule,
         MapUiModule,
         NgZorroAntdModule,
-        LayoutModule
+        LayoutModule,
+        AMapModule
     ],
     declarations: [
         MapComponent,
@@ -31,7 +34,8 @@ import { LayoutModule } from '../layout/layout.module';
         MapSearchComponent,
         MapInformationPipe,
         MapDirectiveDirective,
-        GmapComponent
+        GmapComponent,
+        AMapDemoComponent
     ]
 })
 

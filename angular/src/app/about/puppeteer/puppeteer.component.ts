@@ -194,6 +194,7 @@ export class PuppeteerComponent implements OnInit {
 
 
     // girl 13
+    public getGirl13GetDetailsAll: Boolean = false;
     public setGirl13GetDetails() {
         this.http.post({
             api: 'puppeteer/setGirl13GetDetails',
@@ -206,10 +207,22 @@ export class PuppeteerComponent implements OnInit {
     public getGirl13GetDetails() {
         this.http.post({
             api: 'puppeteer/getGirl13GetDetails',
-            data: this.choiceData
+            data: {
+                size: this.getGirl13GetDetailsAll ? 'all' : 1
+            }
         }).subscribe((res: any) => {
-            console.log(res);
             this.getGirl13GetDetailsData = res;
+        })
+    }
+    public loadGirl13GetDetailsData() {
+        this.http.post({
+            api: 'puppeteer/getGirl13GetDetails',
+            data: {
+                index: ++this.getGirl13GetDetailsData.index
+            }
+        }).subscribe((res: any) => {
+            this.getGirl13GetDetailsData.index = res.index;
+            this.getGirl13GetDetailsData.data = this.getGirl13GetDetailsData.data.concat(res.data);
         })
     }
 

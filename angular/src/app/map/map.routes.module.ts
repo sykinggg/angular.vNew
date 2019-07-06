@@ -5,6 +5,7 @@ import { MapComponent } from './map.component';
 import { MapBaseComponent } from './map-base/map-base.component';
 import { MapSearchComponent } from './map-search/map-search.component';
 import { GmapComponent } from './gmap/gmap.component';
+import { AMapDemoComponent } from './a-map-demo/a-map-demo.component';
 
 const mapRoutes = [
     {
@@ -13,7 +14,7 @@ const mapRoutes = [
         children: [
             {
                 path: '',
-                redirectTo: 'base',
+                redirectTo: 'gaode',
                 pathMatch: 'full'
             },
             {
@@ -27,6 +28,10 @@ const mapRoutes = [
             {
                 path: 'google',
                 component: GmapComponent
+            },
+            {
+                path: 'gaode',
+                component: AMapDemoComponent
             }
         ]
     }

@@ -11,6 +11,7 @@ export class MapComponent implements OnInit {
         { routerName: 'base', routerLink: 'base' },
         // { routerName: 'operation', routerLink: 'search' },
         { routerName: 'google', routerLink: 'google' },
+        { routerName: '高德', routerLink: 'gaode' }
     ];
 
     constructor() { }

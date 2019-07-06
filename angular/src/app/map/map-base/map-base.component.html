@@ -5,14 +5,21 @@
     <button mat-raised-button (click)="setMapType()">加载地图实景（含路况）</button>
     <button mat-raised-button (click)="setOverView()">加载鹰眼</button>
 </div> -->
-<mat-card class="example-map-information">
+<div>
+    <label nz-checkbox [(ngModel)]="mapContron.baseStatus">baseStatus</label>
+    <label nz-checkbox [(ngModel)]="mapContron.fun">fun</label>
+    <label nz-checkbox [(ngModel)]="mapContron.search">search</label>
+    <label nz-checkbox [(ngModel)]="mapContron.draw">draw</label>
+    <label nz-checkbox [(ngModel)]="mapContron.mouseTool">mouseTool</label>
+</div>
+<mat-card class="example-map-information" *ngIf="mapContron.baseStatus">
     <!-- <mat-card-header>{{mapInformation | mapInformation}}</mat-card-header> -->
     <mat-card-title>province：{{mapInformation.province}}</mat-card-title>
     <mat-card-title>city：{{mapInformation.city}}</mat-card-title>
     <mat-card-title>district：{{mapInformation?.district}}</mat-card-title>
     <mat-card-title>地图缩放级别：{{zoomNum}}</mat-card-title>
 </mat-card>
-<mat-card class="mar-t-10">
+<mat-card class="mar-t-10" *ngIf="mapContron.fun">
     <mat-card-content>
         <h2 class="example-h2">地图方法</h2>
         <section class="example-section">
@@ -37,7 +44,7 @@
         </div>
     </mat-card-content>
 </mat-card>
-<mat-card class="mar-t-10">
+<mat-card class="mar-t-10" *ngIf="mapContron.search">
     <mat-card-content>
         <h2 class="mar-t-10">搜索-并且标注</h2>
         <div class="example-container">
@@ -56,7 +63,7 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card class="mar-t-10">
+<mat-card class="mar-t-10" *ngIf="mapContron.draw">
     <mat-card-content>
         <h2 class="mar-t-10">编辑折线、多边形、圆</h2>
         <section class="example-section">
@@ -74,7 +81,7 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card class="mar-t-10">
+<mat-card class="mar-t-10" *ngIf="mapContron.mouseTool">
     <mat-card-content>
         <h2 class="mar-t-10">鼠标工具</h2>
         <p class="f-c-999">鼠标在地图上点击获取量测点，右键或双击左键结束当前量距操作</p>

@@ -98,14 +98,16 @@
 </nz-card>
 <nz-card nzTitle="girl13" class="mar-b-10">
     <div class="mar-b-10">
+        <label nz-checkbox [(ngModel)]="getGirl13GetDetailsAll">all</label>
         <button nz-button nzType="primary" class="mar-r-10" (click)="setGirl13GetDetails()">写入数据</button>
         <button nz-button nzType="primary" class="mar-r-10" (click)="getGirl13GetDetails()">获取数据</button>
     </div>
-    <div class="masonry">
-        <div *ngFor="let item of getGirl13GetDetailsData" class="item">
+    <div class="masonry" *ngIf="getGirl13GetDetailsData">
+        <div *ngFor="let item of getGirl13GetDetailsData.data" class="item">
             <img [src]="item" alt="item">
         </div>
     </div>
+    <div class="text-center" *ngIf="getGirl13GetDetailsData && getGirl13GetDetailsData.data && getGirl13GetDetailsData.data.length" (click)="loadGirl13GetDetailsData()">加载</div>
 </nz-card>
 <nz-card nzTitle="Mzitu" class="mar-b-10">
     <div class="mar-b-10">
@@ -114,9 +116,9 @@
         <button nz-button nzType="primary" class="mar-r-10" (click)="setMzituUrlGetPageDetails()">写入class page detail数据</button>
         <button nz-button nzType="primary" class="mar-r-10" (click)="getMzituUrlGetPageDetails()">获取class page detail数据</button>
     </div>
-    <div class="masonry">
+    <!-- <div class="masonry">
         <div *ngFor="let item of getGirl13GetDetailsData" class="item">
             <img [src]="item" alt="item">
         </div>
-    </div>
+    </div> -->
 </nz-card>

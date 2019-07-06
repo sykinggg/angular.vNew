@@ -12,6 +12,15 @@ declare var AMap: any;
 })
 export class MapBaseComponent implements OnInit {
 
+    // 地图功能展示
+    mapContron = {
+        baseStatus: false,
+        fun: false,
+        search: false,
+        draw: false,
+        mouseTool: false
+    }
+
     // 地图对象
     map: any;
 
