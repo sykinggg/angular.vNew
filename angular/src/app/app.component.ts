@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
     routerUnsubscribe: Subscription;
 
     routerLinkArr: Array<any> = [
+        { routerName: 'math', routerLink: 'math' },
         { routerName: 'about', routerLink: 'about' },
         { routerName: 'module', routerLink: 'module' },
         { routerName: 'map', routerLink: 'map' },

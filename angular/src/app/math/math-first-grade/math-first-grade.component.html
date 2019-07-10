@@ -1,0 +1,17 @@
+<nz-card nzTitle="math base calculation">
+    <div class="mar-b-16">
+        <nz-input-group nzAddOnBefore="多少以上计算">
+            <input type="text" nz-input [(ngModel)]="setCalculation.minNumber" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="多少以下计算">
+            <input type="text" nz-input [(ngModel)]="setCalculation.maxNumber" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="几项">
+            <input type="text" nz-input [(ngModel)]="setCalculation.severalItems" />
+        </nz-input-group>
+        <label nz-checkbox *ngFor="let item of calculationType" [(ngModel)]="item.active" (change)="calculationTypeChange(item)">{{item.name}}</label>
+    </div>
+    <div>
+        <button nz-button nzType="primary" (click)="create()">生成</button>
+    </div>
+</nz-card>

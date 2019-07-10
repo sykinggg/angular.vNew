@@ -12,6 +12,10 @@ const appRoutes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'math',
+        loadChildren: './math/math.module#MathModule'
+    },
+    {
         path: 'about',
         loadChildren: './about/about.module#AboutModule'
     },
