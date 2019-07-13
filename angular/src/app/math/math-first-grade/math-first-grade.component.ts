@@ -19,29 +19,41 @@ export class MathFirstGradeComponent implements OnInit {
     }
     public create() {
         // 纯加
-        // let equation1 = this.mathServiceService.generatingPurePlusEquation(this.setCalculation);
-        // console.log('纯加+');
-        // console.log(equation1.question.join('+'));
-        // console.log(equation1.answer);
+        let equation1 = this.mathServiceService.generatingPurePlusEquation(this.setCalculation);
+        console.log('纯加+');
+        console.log(equation1.question.join('+'));
+        console.log(equation1.answer);
         // 纯减
-        // let equation2 = this.mathServiceService.generatingPureLessEquation(this.setCalculation);
-        // console.log('纯减-');
-        // console.log(equation2.question.join('-'));
-        // console.log(equation2.answer);
+        let equation2 = this.mathServiceService.generatingPureLessEquation(this.setCalculation);
+        console.log('纯减-');
+        console.log(equation2.question.join('-'));
+        console.log(equation2.answer);
         // 纯乘
-        // let equation3 = this.mathServiceService.generatingPureMultiplyEquation(this.setCalculation);
-        // console.log('纯乘*');
-        // console.log(equation3.question.join('*'));
-        // console.log(equation3.answer);
+        let equation3 = this.mathServiceService.generatingPureMultiplyEquation(this.setCalculation);
+        console.log('纯乘*');
+        console.log(equation3.question.join('*'));
+        console.log(equation3.answer);
         // 纯除
-        // let equation4 = this.mathServiceService.generatingPureExceptEquation(this.setCalculation);
-        // console.log('纯除/');
-        // console.log(equation4.question.join('/'));
-        // console.log(equation4.answer);
+        let equation4 = this.mathServiceService.generatingPureExceptEquation(this.setCalculation);
+        console.log('纯除/');
+        console.log(equation4.question.join('/'));
+        console.log(equation4.answer);
         // 加&减
         let equation5 = this.mathServiceService.generatingPurePlusLessEquation(this.setCalculation);
-        console.log('加&减+/');
-        console.log(equation5.question.join('/'));
+        console.log('加&减+-');
+        let equation5Str = '';
+        console.log(equation5);
+        equation5.question.forEach((item, key) => {
+            if (key !== 0) {
+                if (equation5.calculationTypes[key - 1] === 'less') {
+                    equation5Str += '-';
+                } else {
+                    equation5Str += '+';
+                }
+            }
+            equation5Str += item;
+        })
+        console.log(equation5Str);
         console.log(equation5.answer);
     }
 

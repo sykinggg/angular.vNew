@@ -16,6 +16,9 @@ import { CommonDirectivesModule } from '../common-directives/common-directives.m
 import { WebpackComponent } from './webpack/webpack.component';
 import { InterviewModule } from '../interview/interview.module';
 import { InterviewComponent } from './interview/interview.component';
+import { VideoStreamComponent } from './video-stream/video-stream.component';
+import { VideoServiceService } from '../service/video-service/video-service.service';
+import { BaseService } from '../service/base/base.service';
 
 @NgModule({
     imports: [
@@ -36,6 +39,11 @@ import { InterviewComponent } from './interview/interview.component';
         PuppeteerComponent,
         WebpackComponent,
         InterviewComponent,
+        VideoStreamComponent,
+    ],
+    providers: [
+        VideoServiceService,
+        BaseService
     ]
 })
 

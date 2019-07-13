@@ -7,6 +7,7 @@ import { AboutCreateComponent } from './about-create/about-create.component';
 import { PuppeteerComponent } from './puppeteer/puppeteer.component';
 import { WebpackComponent } from './webpack/webpack.component';
 import { InterviewComponent } from './interview/interview.component';
+import { VideoStreamComponent } from './video-stream/video-stream.component';
 
 const aboutRoutes = [
     {
@@ -37,6 +38,10 @@ const aboutRoutes = [
             {
                 path: 'interview',
                 component: InterviewComponent
+            },
+            {
+                path: 'video',
+                component: VideoStreamComponent
             }
         ]
     }

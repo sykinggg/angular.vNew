@@ -1,0 +1,18 @@
+<p>
+    video-stream works!
+</p>
+<!-- <button class="mar-r-16" nz-button nzType="primary" (click)="prohibitClickSelectCopy()">禁止右键、选择、复制</button>
+<button class="mar-r-16" nz-button nzType="primary" (click)="banCertainKeyboardEvents()">禁止某些键盘事件</button> -->
+<video class="video-demo video-demo-1"></video>
+<div class="mar-t-10">
+    <button class="mar-r-16" nz-button nzType="primary" (click)="playPause()">
+        <span *ngIf="videoObj && videoObj.pause">暂停</span>
+        <span *ngIf="videoObj && !videoObj.pause">开始</span>
+    </button>
+    <button class="mar-r-16" nz-button nzType="primary" (click)="makeBig()">大</button>
+    <button class="mar-r-16" nz-button nzType="primary" (click)="makeSmall()">小</button>
+    <button class="mar-r-16" nz-button nzType="primary" (click)="makeNormal()">中</button>
+    <video class="video-demo video-demo-2">
+        <source src="/assets/sourceVideo/fbe8e36b64cfcd127f65819b0896930e.mp4" type="video/mp4" />
+    </video>
+</div>

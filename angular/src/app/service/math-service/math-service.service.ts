@@ -240,9 +240,16 @@ export class MathServiceService {
 
         for (let i = 0; i < option.severalItems; i++) {
             min = returnData.question[0] || option.minNumber;
-            returnData.calculationTypes.push(this.calculationType[this.GenerateRandomNumbers(-1, 2)].code);
-            console.log(returnData.calculationTypes);
-            max = max - min;
+            let choiceNum = this.GenerateRandomNumbers(0, 3);
+            if (i !== 0) {
+                returnData.calculationTypes.push(this.calculationType[choiceNum - 1].code);
+                let calculationType = returnData.calculationTypes[i];
+                if (calculationType === 'less') {
+                    max = max - min;
+                } else {
+                    max = max + min;
+                }
+            }
             if (max && (max - min > 1)) {
                 returnData.question.push(this.GenerateRandomNumbers(0, max));
             } else {
@@ -250,10 +257,19 @@ export class MathServiceService {
             }
         }
 
-        returnData.question.forEach(item => {
-            returnData.answer += item;
+        returnData.question.forEach((item, key) => {
+            if (key !== 0) {
+                let calculationType = returnData.calculationTypes[key - 1];
+                if (calculationType === 'less') {
+                    returnData.answer -= item;
+                } else {
+                    returnData.answer += item;
+                }
+            } else {
+                returnData.answer = item;
+            }
         })
-        if (returnData.answer >= option.maxNumber) {
+        if ((returnData.answer > option.maxNumber) || (returnData.answer < option.minNumber)) {
             return this.generatingPurePlusLessEquation(option);
         }
         return returnData;

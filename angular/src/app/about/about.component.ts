@@ -12,7 +12,8 @@ export class AboutComponent implements OnInit {
         { routerName: 'aboutCreate', routerLink: 'aboutCreate' },
         { routerName: 'puppeteer', routerLink: 'puppeteer' },
         { routerName: 'webpack', routerLink: 'webpack' },
-        { routerName: 'interview', routerLink: 'interview' }
+        { routerName: 'interview', routerLink: 'interview' },
+        { routerName: '视频流', routerLink: 'video' },
     ]
 
     constructor() { }

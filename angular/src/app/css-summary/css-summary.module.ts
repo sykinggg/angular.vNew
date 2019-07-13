@@ -8,6 +8,7 @@ import { CssMiddleComponent } from './css-middle/css-middle.component';
 import { CssSummaryComponent } from './css-summary.component';
 import { LayoutModule } from '../layout/layout.module';
 import { CssSpecialComponent } from './css-special/css-special.component';
+import { CssUseSumupComponent } from './css-use-sumup/css-use-sumup.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { CssSpecialComponent } from './css-special/css-special.component';
   ],
   declarations: [
 	  CssMiddleComponent, 
-	  CssSummaryComponent, CssSpecialComponent
+	  CssSummaryComponent, CssSpecialComponent, CssUseSumupComponent
 	]
 })
 export class CssSummaryModule { }
