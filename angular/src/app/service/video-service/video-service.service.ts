@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import Player from 'xgplayer';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +17,15 @@ export class VideoServiceService {
             console.warn('初始化video');
             return false;
         }
+    }
+
+    public defaultXgplayer(option) {
+        let player = new Player({
+            el: option.element,
+            url: 'http://s1.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4'
+        })
+
+        return player;
     }
 
     public defaultVideoDemo(video) {
@@ -51,7 +61,7 @@ export class VideoServiceService {
                         sourceBuffer.appendBuffer(arrayBuffer);
                     });
             }
-
+            
             return video;
     }
 

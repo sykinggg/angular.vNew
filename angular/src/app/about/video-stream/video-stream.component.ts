@@ -38,13 +38,15 @@ export class VideoStreamComponent implements OnInit {
     }
 
     public defaultVideo() {
-        console.log(this.videoServiceService.isViedeo());
+        // console.log(this.videoServiceService.isViedeo());
         let isViedeo = this.videoServiceService.isViedeo();
         if (isViedeo) {
             // this.videoServiceService.defaultVideo(document.querySelector('.video-demo-1'));
-            this.videoServiceService.defaultVideoDemo(document.querySelector('.video-demo-1'));
+            // this.videoServiceService.defaultVideoDemo(document.querySelector('.video-demo-1'));
             // this.videoObj = this.videoServiceService.defaultVideoDemo(document.querySelector('.video-demo-1'));
             // console.log(this.videoObj);
+            this.videoObj = this.videoServiceService.defaultXgplayer({ element: document.querySelector('.video-demo-1') });
+            console.log(this.videoObj);
         }
     }
 
