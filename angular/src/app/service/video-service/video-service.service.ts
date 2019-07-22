@@ -1,6 +1,43 @@
 import { Injectable } from '@angular/core';
 import Player from 'xgplayer';
 
+export interface Irequired {
+    el: string | Element;
+    url: string | Array<any>
+}
+
+export interface IOptional {
+    // 尺寸
+    width?: number;
+    height?: number;
+    // 流式布局
+    fluid?: boolean;
+    // 音量 0 ~ 1
+    volume?: number;
+    // 自动播放
+    autoplay?: boolean;
+    // 配合autoplay 进行自动播放设置
+    autoplayMuted?: boolean;
+    // 初始化显示视频首帧
+    videoInit?: boolean;
+    // 封面图
+    poster?: string;
+    // 倍速播放
+    playbackRate?: Array<number>;
+    defaultPlaybackRate?: number;
+    // 视频旋转
+    rotate?: {
+        // 只旋转内部video
+        innerRotate?: boolean;
+        // 旋转方向是否为顺时针
+        clockwise?: boolean;
+    }
+}
+
+// player.on('rotate',function(deg) {
+//     console.log(deg);// 旋转时会触发rotate事件，角度有四个值90，180，270，0
+// })
+
 @Injectable({
     providedIn: 'root'
 })
