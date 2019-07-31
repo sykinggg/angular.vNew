@@ -19,6 +19,8 @@ import { InterviewComponent } from './interview/interview.component';
 import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VideoServiceService } from '../service/video-service/video-service.service';
 import { BaseService } from '../service/base/base.service';
+import { VideoStreamMusicComponent } from './video-stream-music/video-stream-music.component';
+import { VideoStreamVideoComponent } from './video-stream-video/video-stream-video.component';
 
 @NgModule({
     imports: [
@@ -40,6 +42,11 @@ import { BaseService } from '../service/base/base.service';
         WebpackComponent,
         InterviewComponent,
         VideoStreamComponent,
+        VideoStreamMusicComponent,
+        VideoStreamVideoComponent,
+    ],
+    entryComponents: [
+        VideoStreamMusicComponent
     ],
     providers: [
         VideoServiceService,

@@ -1,0 +1,29 @@
+canvas {
+  margin: 20px;
+}
+.lyric {
+  display: block;
+  position: relative;
+}
+.wrapper {
+  width: 100%;
+  height: 300px;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+.xgplayer * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+.xgplayer-icon, .xgplayer-backward, .xgplayer-play {
+  display: block;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  fill: #fff;
+}
