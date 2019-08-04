@@ -72,7 +72,7 @@ export class ComponentInteractionComponent implements OnInit {
     }
 
     // 父组件调用@ViewChild()
-    @ViewChild(ComponentInteractionChildComponent)
+    @ViewChild(ComponentInteractionChildComponent, { static: false })
     private timerComponent: ComponentInteractionChildComponent;
 
     seconds() { return 0; }

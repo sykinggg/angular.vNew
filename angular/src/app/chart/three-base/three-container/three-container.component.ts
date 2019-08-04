@@ -20,7 +20,7 @@ export class ThreeContainerComponent implements OnInit {
             }
         }
     };
-    @ViewChild(ThreeDirective) host: ThreeDirective;
+    @ViewChild(ThreeDirective, { static: true }) host: ThreeDirective;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 

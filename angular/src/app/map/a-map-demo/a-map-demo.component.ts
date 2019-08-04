@@ -9,7 +9,7 @@ import { AMapViewDirective } from '../a-map/directive/a-map-view.directive';
 })
 export class AMapDemoComponent implements OnInit {
 
-    @ViewChild(AMapViewDirective) host: AMapViewDirective;
+    @ViewChild(AMapViewDirective, { static: false }) host: AMapViewDirective;
 
     constructor(public aMapDefaultService: AMapDefaultService) { }
 

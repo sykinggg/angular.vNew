@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 // import 'rxjs/add/operator/map';
 
@@ -12,7 +12,7 @@ export class PipeHttpPipe implements PipeTransform {
     private cacheData: any = null;
     private cacheUrl: any = '';
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     transform(url: String): any {
         // if (url !== this.cacheUrl && typeof url === 'string') {

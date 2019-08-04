@@ -16,7 +16,7 @@ export class DynamicComponentContainerComponent implements OnInit {
             this.loadComponent(ads);
         }
     };
-    @ViewChild(DynamicDirective) host: DynamicDirective;
+    @ViewChild(DynamicDirective, { static: true }) host: DynamicDirective;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 

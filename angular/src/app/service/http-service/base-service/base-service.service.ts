@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 // import 'rxjs/add/operator/toPromise';
 
@@ -7,15 +7,16 @@ import { resData } from './resData';
 @Injectable()
 export class BaseServiceService {
 
-    private headers = new Headers({ 'Content-Type': 'application/json' });
+    // private headers = new Headers({ 'Content-Type': 'application/json' });
+    private headers = { 'Content-Type': 'application/json' };
     private heroesUrl = 'app/dataArr';  // URL to web api
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     getHeroes(): Promise<resData[]> {
         return this.http.get(this.heroesUrl)
             .toPromise()
-            .then(response => response.json().data as resData[])
+            // .then(response => response.json().data as resData[])
             .catch(this.handleError);
     }
 
@@ -24,7 +25,7 @@ export class BaseServiceService {
         const url = `${this.heroesUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as resData)
+            // .then(response => response.json().data as resData)
             .catch(this.handleError);
     }
 
@@ -40,7 +41,7 @@ export class BaseServiceService {
         return this.http
             .post(this.heroesUrl, JSON.stringify({ name: name }), { headers: this.headers })
             .toPromise()
-            .then(res => res.json().data as resData)
+            // .then(res => res.json().data as resData)
             .catch(this.handleError);
     }
 

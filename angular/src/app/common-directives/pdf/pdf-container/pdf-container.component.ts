@@ -21,7 +21,7 @@ export class PdfContainerComponent implements OnInit {
         }
     };
 
-    @ViewChild(PdfDirective) host: PdfDirective;
+    @ViewChild(PdfDirective, { static: true }) host: PdfDirective;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 

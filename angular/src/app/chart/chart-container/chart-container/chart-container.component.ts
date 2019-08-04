@@ -20,7 +20,7 @@ export class ChartContainerComponent implements OnInit {
             }
         }
     };
-    @ViewChild(ChartContainerDirective) host: ChartContainerDirective;
+    @ViewChild(ChartContainerDirective, { static: true }) host: ChartContainerDirective;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 

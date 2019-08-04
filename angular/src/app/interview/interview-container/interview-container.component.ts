@@ -31,7 +31,7 @@ export class InterviewContainerComponent implements OnInit {
 
     @Input() title: string;
 
-    @ViewChild(InterviewContainerDirective) host: InterviewContainerDirective;
+    @ViewChild(InterviewContainerDirective, { static: true }) host: InterviewContainerDirective;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,

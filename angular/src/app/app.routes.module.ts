@@ -13,19 +13,19 @@ const appRoutes: Routes = [
     },
     {
         path: 'math',
-        loadChildren: './math/math.module#MathModule'
+        loadChildren: () => import('./math/math.module').then(m => m.MathModule)
     },
     {
         path: 'about',
-        loadChildren: './about/about.module#AboutModule'
+        loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
     },
     {
         path: 'module',
-        loadChildren: './angular-module/angular-module.module#AngularModuleModule'
+        loadChildren: () => import('./angular-module/angular-module.module').then(m => m.AngularModuleModule)
     },
     {
         path: 'map',
-        loadChildren: './map/map.module#MapModule',
+        loadChildren: () => import('./map/map.module').then(m => m.MapModule),
     },
     {
         path: 'http',
@@ -33,35 +33,35 @@ const appRoutes: Routes = [
     },
     {
         path: 'template',
-        loadChildren: './template/template.module#TemplateModule'
+        loadChildren: () => import('./template/template.module').then(m => m.TemplateModule)
     },
     {
         path: 'form',
-        loadChildren: './form/form.module#FormModule'
+        loadChildren: () => import('./form/form.module').then(m => m.FormModule)
     },
     {
         path: 'observable',
-        loadChildren: './observable/observable.module#ObservableModule'
+        loadChildren: () => import('./observable/observable.module').then(m => m.ObservableModule)
     },
     {
         path: 'chart',
-        loadChildren: './chart/chart.module#ChartModule'
+        loadChildren: () => import('./chart/chart.module').then(m => m.ChartModule)
     },
     {
         path: 'cssSummary',
-        loadChildren: './css-summary/css-summary.module#CssSummaryModule'
+        loadChildren: () => import('./css-summary/css-summary.module').then(m => m.CssSummaryModule)
     },
     {
         path: 'jsSummary',
-        loadChildren: './js-summary/js-summary.module#JsSummaryModule'
+        loadChildren: () => import('./js-summary/js-summary.module').then(m => m.JsSummaryModule)
     },
     {
         path: 'ico',
-        loadChildren: './ioc/ioc.module#IocModule'
+        loadChildren: () => import('./ioc/ioc.module').then(m => m.IocModule)
     },
     {
         path: 'data-interaction',
-        loadChildren: './data-interaction/data-interaction.module#DataInteractionModule'
+        loadChildren: () => import('./data-interaction/data-interaction.module').then(m => m.DataInteractionModule)
     }
 ];
 
