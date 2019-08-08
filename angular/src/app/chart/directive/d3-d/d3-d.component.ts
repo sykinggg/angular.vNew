@@ -1,5 +1,5 @@
 // https://swimlane.gitbook.io/ngx-charts/v/docs-test/examples/bar-charts
-// angular6 + d3
+// angular + d3
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 
 @Component({

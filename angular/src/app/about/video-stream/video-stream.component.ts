@@ -45,7 +45,7 @@ export class VideoStreamComponent implements OnInit {
 
     public videoOption: IvideoOption = {
         name: 'video111',
-        url: 'http://s1.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4'
+        url: 'https://www.697313.com:65/20190323/EUzt1oou/index.m3u8'
     }
 
     /**
