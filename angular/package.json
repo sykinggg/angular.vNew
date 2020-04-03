@@ -45,6 +45,7 @@
     "moment": "^2.24.0",
     "ng-zorro-antd": "^8.5.2",
     "ngx-bootstrap": "^5.5.0",
+    "ngx-monaco-editor": "^8.1.1",
     "path-to-regexp": "^6.1.0",
     "rxjs": "^6.5.2",
     "socket.io-client": "^2.2.0",
