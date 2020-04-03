@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Player from 'xgplayer';
+import Player, { IPlayerOptions } from 'xgplayer';
 import Music from 'xgplayer-music';
 import { IOption, IdanmuContent } from './video.interface';
 import { IMusicOptionUrl, IMusicOption } from './music.interface';
@@ -34,7 +34,7 @@ export class VideoServiceService {
      * @memberof VideoServiceService
      */
     public defaultXgplayer(option: IOption) {
-        let data = {};
+        let data: any = {};
         data = Object.assign(option.optional, option.required);
         let player = new Player(data);
 
