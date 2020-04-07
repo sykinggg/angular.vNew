@@ -6716,6 +6716,11 @@ moment@^2.24.0:
   resolved "http://192.168.20.172/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
+monaco-editor@^0.20.0:
+  version "0.20.0"
+  resolved "http://192.168.20.172/monaco-editor/-/monaco-editor-0.20.0.tgz#5d5009343a550124426cb4d965a4d27a348b4dea"
+  integrity sha512-hkvf4EtPJRMQlPC3UbMoRs0vTAFAYdzFQ+gpMb8A+9znae1c43q8Mab9iVsgTcg/4PNiLGGn3SlDIa8uvK1FIQ==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "http://192.168.20.172/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -6845,12 +6850,10 @@ ngx-bootstrap@^5.5.0:
   resolved "http://192.168.20.172/ngx-bootstrap/-/ngx-bootstrap-5.5.0.tgz#29646053a7ff8c4b1d51704c841f926d74e3a7ea"
   integrity sha512-BJeghbkKFQl49sg3GIYQyjvwaHn64xFOsinBVD8HWKOVpRJSnuafrjXByGDtfq35jGY4R+7iBLksM1IYLUPshg==
 
-ngx-monaco-editor@^8.1.1:
-  version "8.1.1"
-  resolved "http://192.168.20.172/ngx-monaco-editor/-/ngx-monaco-editor-8.1.1.tgz#5998e7f42b4f39c5959fe61200795cb4a8214286"
-  integrity sha512-SmUGFG5m2HHWybHD6qXdB1FrtC/XySSHm5O/E1cDGW7moIWzJGqiitCKLJdSh9D2hsoe8oBNEg74vYF1UGznsQ==
-  dependencies:
-    tslib "^1.9.0"
+ngx-monaco-editor@^9.0.0:
+  version "9.0.0"
+  resolved "http://192.168.20.172/ngx-monaco-editor/-/ngx-monaco-editor-9.0.0.tgz#bb69784606f549e369cee3f483ecf26bab2fcc97"
+  integrity sha512-fPXT3M8W920Vs0KPMX6iA7GJYjBRnl9naug9A7D2inPPzxQGtgPZrSEatIPf37a6ir9Ts+8fwt1bTkFzfTgIpQ==
 
 nice-try@^1.0.4:
   version "1.0.5"

@@ -8,6 +8,7 @@ import { PuppeteerComponent } from './puppeteer/puppeteer.component';
 import { WebpackComponent } from './webpack/webpack.component';
 import { InterviewComponent } from './interview/interview.component';
 import { VideoStreamComponent } from './video-stream/video-stream.component';
+import { VsCodeComponent } from './vs-code/vs-code.component';
 
 const aboutRoutes = [
     {
@@ -42,6 +43,10 @@ const aboutRoutes = [
             {
                 path: 'video',
                 component: VideoStreamComponent
+            },
+            {
+                path: 'monacoEditor',
+                component: VsCodeComponent
             }
         ]
     }
@@ -51,7 +56,8 @@ const aboutRoutes = [
     imports: [
         RouterModule.forChild(aboutRoutes)
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    declarations: []
 })
 
 export class AboutRoutesModule {}

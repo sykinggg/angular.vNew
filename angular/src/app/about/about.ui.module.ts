@@ -11,6 +11,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 @NgModule({
     exports: [
         MatButtonModule,
@@ -23,6 +25,7 @@ import { MatRadioModule } from '@angular/material/radio';
         MatFormFieldModule,
         MatInputModule,
         MatRadioModule,
+        NzButtonModule
     ]
 })
 

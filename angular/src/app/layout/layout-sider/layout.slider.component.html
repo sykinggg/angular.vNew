@@ -4,7 +4,7 @@
             <li nz-menu-item *ngFor="let item of routerLinkArr; let i = index" [routerLink]="item.routerLink"
                 routerLinkActive #rla="routerLinkActive" [ngClass]="{'ant-menu-item-selected': rla.isActive}">
                 <span>
-                    <i nz-icon type="user"></i>
+                    <i nz-icon nzType="user" nzTheme="outline"></i>
                     <span class="nav-text">{{item.routerName}}</span>
                 </span>
             </li>
@@ -15,7 +15,9 @@
         <nz-breadcrumb [nzSeparator]="iconTemplate" style="margin:16px 0;">
             <nz-breadcrumb-item *ngFor="let item of breadCrumbs">{{item}}</nz-breadcrumb-item>
         </nz-breadcrumb>
-        <ng-template #iconTemplate><i nz-icon type="arrow-right"></i></ng-template>
+        <ng-template #iconTemplate>
+            <i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+        </ng-template>
         <router-outlet class="mar-t-20"></router-outlet>
     </nz-content>
 </nz-layout>

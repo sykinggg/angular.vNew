@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 
 import { LocalStorage } from './common/local.storage';
 //  UI组�, NZ_I18N, zh_CN��
-import { NgZorroAntdModule, NZ_ICON_DEFAULT_TWOTONE_COLOR, NZ_ICONS } from 'ng-zorro-antd';
+import { NgZorroAntdModule, NZ_ICONS, NZ_CONFIG } from 'ng-zorro-antd';
 
 import { BasePipe } from './pipe/base/base.pipe';
 import { HttpComponent } from './http/http.component';
@@ -31,6 +31,7 @@ import { LayoutModule } from './layout/layout.module';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 
 const antDesignIcons = AllIcons as {
@@ -56,7 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
-        NgZorroAntdModule.forRoot(),
+        NgZorroAntdModule,
         LayoutModule, // UI组件引用
         TranslateModule.forRoot({
             loader: {
@@ -64,12 +65,13 @@ export function HttpLoaderFactory(http: HttpClient) {
                 useFactory: (HttpLoaderFactory),
                 deps: [HttpClient]
             }
-        })
+        }),
+        MonacoEditorModule.forRoot()
     ],
     providers: [
         LocalStorage,
         BaseServiceService,
-        { provide: NZ_ICON_DEFAULT_TWOTONE_COLOR, useValue: '#00ff00' }, // 不提供的话，即为 Ant Design 的主题蓝色
+        { provide: NZ_CONFIG, useValue: '#00ff00' }, // 不提供的话，即为 Ant Design 的主题蓝色
         { provide: NZ_ICONS, useValue: icons }
     ],
     bootstrap: [AppComponent]

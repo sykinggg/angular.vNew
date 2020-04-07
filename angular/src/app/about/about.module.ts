@@ -21,6 +21,8 @@ import { VideoServiceService } from '../service/video-service/video-service.serv
 import { BaseService } from '../service/base/base.service';
 import { VideoStreamMusicComponent } from './video-stream-music/video-stream-music.component';
 import { VideoStreamVideoComponent } from './video-stream-video/video-stream-video.component';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { VsCodeComponent } from './vs-code/vs-code.component';
 
 @NgModule({
     imports: [
@@ -31,7 +33,8 @@ import { VideoStreamVideoComponent } from './video-stream-video/video-stream-vid
         LayoutModule,
         FormsModule,
         CommonDirectivesModule,
-        InterviewModule
+        InterviewModule,
+        MonacoEditorModule.forRoot()
     ],
     declarations: [
         AboutComponent,
@@ -44,6 +47,7 @@ import { VideoStreamVideoComponent } from './video-stream-video/video-stream-vid
         VideoStreamComponent,
         VideoStreamMusicComponent,
         VideoStreamVideoComponent,
+        VsCodeComponent,
     ],
     entryComponents: [
         VideoStreamMusicComponent

@@ -14,6 +14,7 @@ export class AboutComponent implements OnInit {
         { routerName: 'webpack', routerLink: 'webpack' },
         { routerName: 'interview', routerLink: 'interview' },
         { routerName: '视频流', routerLink: 'video' },
+        { routerName: 'vscode Edit', routerLink: 'monacoEditor' }
     ]
 
     constructor() { }
